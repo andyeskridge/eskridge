@@ -13,6 +13,7 @@ processes    = []
   database__connection__database = "ghost"
   database__connection__host     = "eskridge-db.internal"
   database__connection__user     = "ghost_user"
+  mail__from                     = "andy@eskridge.dev"
   mail__options__host            = "smtp.postmarkapp.com"
   mail__options__port            = "587"
   mail__options__service         = "Postmark"
