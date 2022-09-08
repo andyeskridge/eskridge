@@ -17,10 +17,11 @@ import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoStarbucks from '@/images/logos/starbucks.svg'
+import logoCenergistic from '@/images/logos/cenergistic.jpg'
+import logoAllegro from '@/images/logos/allegro.jpg'
+import logoBeckTech from '@/images/logos/becktech.jpg'
+import logoGwynnGroup from '@/images/logos/gwynngroup.jpg'
+import logoProviderScience from '@/images/logos/providerscience.jpg'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
@@ -110,8 +111,10 @@ function SocialLink({ icon: Icon, ...props }) {
 function Newsletter() {
   return (
     <form
-      action="/thank-you"
+      action="https://buttondown.email/api/emails/embed-subscribe/andyeskridge"
       className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
+      method="post"
+      target="popupwindow"
     >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <MailIcon className="h-6 w-6 flex-none" />
@@ -121,8 +124,10 @@ function Newsletter() {
         Get notified when I publish something new, and unsubscribe at any time.
       </p>
       <div className="mt-6 flex">
+        <input type="hidden" value="1" name="embed" />
         <input
           type="email"
+          name="email"
           placeholder="Email address"
           aria-label="Email address"
           required
@@ -139,35 +144,39 @@ function Newsletter() {
 function Resume() {
   let resume = [
     {
-      company: 'Planetaria',
-      title: 'CEO',
-      logo: logoPlanetaria,
-      start: '2019',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear(),
-      },
+      company: 'Cenergistic',
+      title: 'CTO',
+      logo: logoCenergistic,
+      start: '2018',
+      end: '2022',
     },
     {
-      company: 'Airbnb',
-      title: 'Product Designer',
-      logo: logoAirbnb,
-      start: '2014',
-      end: '2019',
+      company: 'Beck Technology',
+      title: 'Project Leader',
+      logo: logoBeckTech,
+      start: '2016',
+      end: '2018',
     },
     {
-      company: 'Facebook',
-      title: 'iOS Software Engineer',
-      logo: logoFacebook,
-      start: '2011',
-      end: '2014',
+      company: 'ProviderScience',
+      title: 'Senior Software Engineer',
+      logo: logoProviderScience,
+      start: '2015',
+      end: '2016',
     },
     {
-      company: 'Starbucks',
-      title: 'Shift Supervisor',
-      logo: logoStarbucks,
-      start: '2008',
-      end: '2011',
+      company: 'Gwynn Group',
+      title: 'Senior Software Engineer',
+      logo: logoGwynnGroup,
+      start: '2015',
+      end: '2015',
+    },
+    {
+      company: 'Allegro',
+      title: 'Software Developer',
+      logo: logoAllegro,
+      start: '2013',
+      end: '2015',
     },
   ]
 
@@ -181,7 +190,12 @@ function Resume() {
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+              <Image
+                src={role.logo}
+                alt=""
+                className="h-7 w-7 rounded-full"
+                unoptimized
+              />
             </div>
             <dl className="flex flex-auto flex-wrap gap-x-2">
               <dt className="sr-only">Company</dt>
@@ -250,43 +264,33 @@ export default function Home({ articles }) {
   return (
     <>
       <Head>
-        <title>
-          Spencer Sharp - Software designer, founder, and amateur astronaut
-        </title>
+        <title>Andy Eskridge - Engineering Manager</title>
         <meta
           name="description"
-          content="I’m Spencer, a software designer and entrepreneur based in New York City. I’m the founder and CEO of Planetaria, where we develop technologies that empower regular people to explore space on their own terms."
+          content="I’m Andy, an engineering manager based in Dallas, TX."
         />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software designer, founder, and amateur astronaut.
+            Engineering Manager
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Spencer, a software designer and entrepreneur based in New York
-            City. I’m the founder and CEO of Planetaria, where we develop
-            technologies that empower regular people to explore space on their
-            own terms.
+            I’m Andy, an engineering manager based in Dallas, TX.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
-              href="https://twitter.com"
+              href="https://twitter.com/andyeskridge"
               aria-label="Follow on Twitter"
               icon={TwitterIcon}
             />
             <SocialLink
-              href="https://instagram.com"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            />
-            <SocialLink
-              href="https://github.com"
+              href="https://github.com/andyeskridge"
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
             />
             <SocialLink
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/andyeskridge"
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
             />
