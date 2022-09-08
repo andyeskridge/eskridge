@@ -220,7 +220,11 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
+      <Button
+        href="/Andrew_Eskridge-Engineering_Manager.pdf"
+        variant="secondary"
+        className="group mt-6 w-full"
+      >
         Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
@@ -271,7 +275,10 @@ export default function Home({ articles }) {
             Engineering Manager
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Andy, an engineering manager based in Dallas, TX.
+            I’m Andy, an engineering manager based in Dallas, TX. I was raised
+            in Florida, but I’ve lived in Texas for the last 10 years. I’m a
+            husband and father of two. One of my favorite hobbies is running
+            races.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
