@@ -15,5 +15,6 @@
     "prBodyDefinitions": {
       "Change": "All locks refreshed"
     }
-  }
+  },
+  "prHourlyLimit": 0
 }
