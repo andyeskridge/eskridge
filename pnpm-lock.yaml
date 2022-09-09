@@ -421,13 +421,13 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.6
-      '@types/estree': 1.0.0
+      '@types/estree': 0.0.51
     dev: false
 
   /@types/eslint/8.4.6:
     resolution: {integrity: sha512-/fqTbjxyFUaYNO7VcW5g+4npmqVACz1bB7RTHYuLj+PRjw9hrCwrUXVQFpChUS0JsyEFvMZ7U/PfmvWgxJhI9g==}
     dependencies:
-      '@types/estree': 1.0.0
+      '@types/estree': 0.0.51
       '@types/json-schema': 7.0.11
     dev: false
 
@@ -956,7 +956,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001393
-      electron-to-chromium: 1.4.244
+      electron-to-chromium: 1.4.246
       node-releases: 2.0.6
       update-browserslist-db: 1.0.7_browserslist@4.21.3
     dev: false
@@ -1445,8 +1445,8 @@ packages:
       sigmund: 1.0.1
     dev: false
 
-  /electron-to-chromium/1.4.244:
-    resolution: {integrity: sha512-E21saXLt2eTDaTxgUtiJtBUqanF9A32wZasAwDZ8gvrqXoxrBrbwtDCx7c/PQTLp81wj4X0OLDeoGQg7eMo3+w==}
+  /electron-to-chromium/1.4.246:
+    resolution: {integrity: sha512-/wFCHUE+Hocqr/LlVGsuKLIw4P2lBWwFIDcNMDpJGzyIysQV4aycpoOitAs32FT94EHKnNqDR/CVZJFbXEufJA==}
     dev: false
 
   /emoji-regex/7.0.3:
