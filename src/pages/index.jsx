@@ -18,6 +18,7 @@ import logoBeckTech from '@/images/logos/becktech.jpg'
 import logoGwynnGroup from '@/images/logos/gwynngroup.jpg'
 import logoProviderScience from '@/images/logos/providerscience.jpg'
 import { generateRssFeed } from '@/lib/generateRssFeed'
+import { generateSitemap } from '@/lib/generateSitemap'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
 
@@ -320,6 +321,7 @@ export default function Home({ articles }) {
 export async function getStaticProps() {
   if (process.env.NODE_ENV === 'production') {
     await generateRssFeed()
+    await generateSitemap()
   }
 
   return {
