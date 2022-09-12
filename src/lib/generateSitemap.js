@@ -17,7 +17,6 @@ function addPage(page) {
 }
 
 export async function generateSitemap() {
-  console.log(`Current working directory: ${process.cwd()}`)
   // Ignore Next.js specific files (e.g., _app.js) and API routes.
   const pages = await globby([
     'src/pages/**/*{.jsx,.mdx}',
