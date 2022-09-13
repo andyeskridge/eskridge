@@ -8,7 +8,7 @@ specifiers:
   '@next/mdx': 12.3.0
   '@tailwindcss/typography': 0.5.7
   '@types/mapbox__rehype-prism': 0.8.0
-  '@types/react': 18.0.19
+  '@types/react': 18.0.20
   autoprefixer: 10.4.9
   clsx: 1.2.1
   eslint: 8.23.1
@@ -52,7 +52,7 @@ dependencies:
 
 devDependencies:
   '@types/mapbox__rehype-prism': 0.8.0
-  '@types/react': 18.0.19
+  '@types/react': 18.0.20
   eslint: 8.23.1
   eslint-config-next: 12.3.0_irgkl5vooow2ydyo6aokmferha
   playwright: 1.25.2
@@ -218,7 +218,7 @@ packages:
       react: '>=16'
     dependencies:
       '@types/mdx': 2.0.2
-      '@types/react': 18.0.19
+      '@types/react': 18.0.20
       react: 18.2.0
     dev: false
 
@@ -502,8 +502,8 @@ packages:
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
 
-  /@types/react/18.0.19:
-    resolution: {integrity: sha512-BDc3Q+4Q3zsn7k9xZrKfjWyJsSlEDMs38gD1qp2eDazLCdcPqAT+vq1ND+Z8AGel/UiwzNUk8ptpywgNQcJ1MQ==}
+  /@types/react/18.0.20:
+    resolution: {integrity: sha512-MWul1teSPxujEHVwZl4a5HxQ9vVNsjTchVA+xRqv/VYGCuKGAU6UhfrTdF5aBefwD1BHUD8i/zq+O/vyCm/FrA==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
