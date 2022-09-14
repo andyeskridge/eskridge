@@ -222,7 +222,7 @@ function Resume() {
         ))}
       </ol>
       <Button
-        href="/Andrew_Eskridge-Engineering_Manager.pdf"
+        href="/AndyEskridgeResume.pdf"
         variant="secondary"
         className="group mt-6 w-full"
       >
