@@ -9,7 +9,7 @@ specifiers:
   '@tailwindcss/typography': 0.5.7
   '@types/mapbox__rehype-prism': 0.8.0
   '@types/react': 18.0.20
-  autoprefixer: 10.4.10
+  autoprefixer: 10.4.11
   clsx: 1.2.1
   eslint: 8.23.1
   eslint-config-next: 12.3.0
@@ -36,7 +36,7 @@ dependencies:
   '@mdx-js/react': 2.1.3_react@18.2.0
   '@next/mdx': 12.3.0_hbo3tj2k5fhsh63l2ltjrymaq4
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
-  autoprefixer: 10.4.10_postcss@8.4.16
+  autoprefixer: 10.4.11_postcss@8.4.16
   clsx: 1.2.1
   fast-glob: 3.2.12
   feed: 4.2.2
@@ -877,8 +877,8 @@ packages:
     hasBin: true
     dev: false
 
-  /autoprefixer/10.4.10_postcss@8.4.16:
-    resolution: {integrity: sha512-nMaiDARyp1e74c8IeAXkr+BmFKa8By4Zak7tyaNPF09Iu39WFpNXOWrVirmXjKr+5cOyERwvtbMOLYz6iBJYgQ==}
+  /autoprefixer/10.4.11_postcss@8.4.16:
+    resolution: {integrity: sha512-5lHp6DgRodxlBLSkzHOTcufWFflH1ewfy2hvFQyjrblBFlP/0Yh4O/Wrg4ow8WRlN3AAUFFLAQwX8hTptzqVHg==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
