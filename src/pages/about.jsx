@@ -64,6 +64,18 @@ export default function About() {
                 years. I’m a husband and father of two. One of my favorite
                 hobbies is running races.
               </p>
+              <p>
+                I am an Engineering Manager with experience managing product
+                development, software engineering and quality assurance teams. I
+                produce highly productive and effective teams through
+                technological expertise and empathetic leadership, building
+                value through trust and personal investment in team members. I
+                have demonstrated success in managing growing markets,
+                delivering multiple products, and producing impressive results
+                on time. I can take complete ownership of the design,
+                development, testing, deployment, and maintenance of software
+                applications, systems, and technology projects.
+              </p>
             </div>
           </div>
           <div className="lg:pl-20">
