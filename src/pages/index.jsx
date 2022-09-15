@@ -264,22 +264,22 @@ export default function Home({ articles }) {
   return (
     <>
       <Head>
-        <title>Andy Eskridge - Engineering Manager</title>
+        <title>Andy Eskridge - Senior Engineering Manager</title>
         <meta
           name="description"
-          content="I’m Andy, an engineering manager based in Dallas, TX."
+          content="I’m Andy, a senior engineering manager based in Dallas, TX."
         />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Engineering Manager
+            Senior Engineering Manager
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Andy, an engineering manager based in Dallas, TX. I was raised
-            in Florida, but I’ve lived in Texas for the last 10 years. I’m a
-            husband and father of two. One of my favorite hobbies is running
-            races.
+            I’m Andy, a senior engineering manager based in Dallas, TX. I was
+            raised in Florida, but I’ve lived in Texas for the last 10 years.
+            I’m a husband and father of two. One of my favorite hobbies is
+            running races.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
