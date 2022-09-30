@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
 
+export { reportWebVitals } from 'next-axiom'
+
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 
