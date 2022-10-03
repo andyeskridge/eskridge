@@ -7,7 +7,17 @@ import { Container } from '@/components/Container'
 import { TwitterIcon, GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
 
-function SocialLink({ className, href, children, icon: Icon }) {
+function SocialLink({
+  className,
+  href,
+  children,
+  icon: Icon,
+}: {
+  className?: string
+  href: string
+  children: React.ReactNode
+  icon: React.ComponentType<{ className?: string }>
+}) {
   return (
     <li className={clsx(className, 'flex')}>
       <Link

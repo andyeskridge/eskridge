@@ -6,7 +6,7 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import avatarImage from '@/images/avatar.jpg'
-import { Fragment, useEffect, useRef } from 'react'
+import { CSSProperties, Fragment, ReactNode, useEffect, useRef } from 'react'
 
 function CloseIcon(props) {
   return (
@@ -207,7 +207,14 @@ function clamp(number, a, b) {
   return Math.min(Math.max(number, min), max)
 }
 
-function AvatarContainer({ className, ...props }) {
+function AvatarContainer({
+  className,
+  ...props
+}: {
+  className?: string
+  children?: ReactNode
+  style?: CSSProperties
+}) {
   return (
     <div
       className={clsx(
@@ -219,7 +226,15 @@ function AvatarContainer({ className, ...props }) {
   )
 }
 
-function Avatar({ large = false, className, ...props }) {
+function Avatar({
+  large = false,
+  className,
+  ...props
+}: {
+  large?: boolean
+  className?: string
+  style?: CSSProperties
+}) {
   return (
     <Link
       href="/"
@@ -244,8 +259,8 @@ function Avatar({ large = false, className, ...props }) {
 export function Header() {
   let isHomePage = useRouter().pathname === '/'
 
-  let headerRef = useRef()
-  let avatarRef = useRef()
+  let headerRef = useRef(null)
+  let avatarRef = useRef(null)
   let isInitial = useRef(true)
 
   useEffect(() => {
@@ -325,6 +340,7 @@ export function Header() {
     window.addEventListener('resize', updateStyles)
 
     return () => {
+      // @ts-ignore
       window.removeEventListener('scroll', updateStyles, { passive: true })
       window.removeEventListener('resize', updateStyles)
     }

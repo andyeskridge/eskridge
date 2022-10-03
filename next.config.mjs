@@ -5,7 +5,7 @@ import { withAxiom } from 'next-axiom'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['jsx', 'mdx'],
+  pageExtensions: ['jsx', 'mdx', 'tsx'],
   reactStrictMode: true,
   experimental: {
     newNextLinkBehavior: true,
