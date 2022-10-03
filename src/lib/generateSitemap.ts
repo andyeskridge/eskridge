@@ -6,6 +6,7 @@ function addPage(page) {
   const path = page
     .replace('src/pages', '')
     .replace('.jsx', '')
+    .replace('.tsx', '')
     .replace('.mdx', '')
     .replace('/index', '')
   const route = unixify(path)
@@ -19,8 +20,9 @@ function addPage(page) {
 export async function generateSitemap() {
   // Ignore Next.js specific files (e.g., _app.js) and API routes.
   const pages = await globby([
-    'src/pages/**/*{.jsx,.mdx}',
+    'src/pages/**/*{.jsx,.mdx,.tsx}',
     '!src/pages/_*.jsx',
+    '!src/pages/_*.tsx',
     '!src/pages/api',
   ])
   const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
