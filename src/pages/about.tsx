@@ -39,7 +39,7 @@ export default function About() {
         <title>About - Andy Eskridge</title>
         <meta
           name="description"
-          content="I’m Andy, an engineering manager based in Dallas, TX."
+          content="I’m Andy, a senior engineering manager based in Dallas, TX."
         />
       </Head>
       <Container className="mt-16 sm:mt-32">
@@ -56,13 +56,25 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              I’m Andy, an engineering manager based in Dallas, TX.
+              I’m Andy, a senior engineering manager based in Dallas, TX.
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
                 I was raised in Florida, but I’ve lived in Texas for the last 10
                 years. I’m a husband and father of two. One of my favorite
                 hobbies is running races.
+              </p>
+              <p>
+                I am a Senior Engineering Manager with experience managing
+                product development, software engineering and quality assurance
+                teams. I produce highly productive and effective teams through
+                technological expertise and empathetic leadership, building
+                value through trust and personal investment in team members. I
+                have demonstrated success in managing growing markets,
+                delivering multiple products, and producing impressive results
+                on time. I can take complete ownership of the design,
+                development, testing, deployment, and maintenance of software
+                applications, systems, and technology projects.
               </p>
             </div>
           </div>
