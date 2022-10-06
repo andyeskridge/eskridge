@@ -3,8 +3,8 @@ lockfileVersion: 5.4
 specifiers:
   '@headlessui/react': 1.7.3
   '@mapbox/rehype-prism': 0.8.0
-  '@mdx-js/loader': 2.1.3
-  '@mdx-js/react': 2.1.3
+  '@mdx-js/loader': 2.1.4
+  '@mdx-js/react': 2.1.4
   '@next/mdx': 12.3.1
   '@tailwindcss/typography': 0.5.7
   '@types/mapbox__rehype-prism': 0.8.0
@@ -37,9 +37,9 @@ specifiers:
 dependencies:
   '@headlessui/react': 1.7.3_biqbaboplfbrettd7655fr4n2y
   '@mapbox/rehype-prism': 0.8.0
-  '@mdx-js/loader': 2.1.3_webpack@5.74.0
-  '@mdx-js/react': 2.1.3_react@18.2.0
-  '@next/mdx': 12.3.1_hbo3tj2k5fhsh63l2ltjrymaq4
+  '@mdx-js/loader': 2.1.4_webpack@5.74.0
+  '@mdx-js/react': 2.1.4_react@18.2.0
+  '@next/mdx': 12.3.1_rj6w2tqk5jpf3257utt7msfu4a
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
   autoprefixer: 10.4.12_postcss@8.4.17
   clsx: 1.2.1
@@ -186,8 +186,8 @@ packages:
       unist-util-visit: 2.0.3
     dev: false
 
-  /@mdx-js/loader/2.1.3_webpack@5.74.0:
-    resolution: {integrity: sha512-7LtklcfzZC9aWWFREop0ivemhwcp/cke2tICHEhnDyGn+hTg7LIbWCfSos68kJv9w7Z47KYfNcg9/8zBD+8eXA==}
+  /@mdx-js/loader/2.1.4_webpack@5.74.0:
+    resolution: {integrity: sha512-7k2I1vYht89cONaAkThmbq6CW0yyaEZOHDFngAMj6jqfpMfUnCE+zIbpKYJNPlgmWCR9T5r/deVNvH3BcokbKw==}
     peerDependencies:
       webpack: '>=4'
     dependencies:
@@ -222,8 +222,8 @@ packages:
       - supports-color
     dev: false
 
-  /@mdx-js/react/2.1.3_react@18.2.0:
-    resolution: {integrity: sha512-11n4lTvvRyxq3OYbWJwEYM+7q6PE0GxKbk0AwYIIQmrRkxDeljIsjDQkKOgdr/orgRRbYy5zi+iERdnwe01CHQ==}
+  /@mdx-js/react/2.1.4_react@18.2.0:
+    resolution: {integrity: sha512-PRwLjoAxhSA6xTB2+FA5CPGUCOsIK3bJD0RYsoju+nUIyOpIZUSw6SJChfILByLizzxqslE0R+l8IjARo0N+hA==}
     peerDependencies:
       react: '>=16'
     dependencies:
@@ -242,14 +242,14 @@ packages:
       glob: 7.1.7
     dev: true
 
-  /@next/mdx/12.3.1_hbo3tj2k5fhsh63l2ltjrymaq4:
+  /@next/mdx/12.3.1_rj6w2tqk5jpf3257utt7msfu4a:
     resolution: {integrity: sha512-b7G3CsAwyD/8Eo6uDjCCqNwEi68LTyo/JYPC0N2Yu3yl/iveMDCi03ME+9JsnFPr3DcjmGSKc1ioiYM4dJUkTg==}
     peerDependencies:
       '@mdx-js/loader': '>=0.15.0'
       '@mdx-js/react': '*'
     dependencies:
-      '@mdx-js/loader': 2.1.3_webpack@5.74.0
-      '@mdx-js/react': 2.1.3_react@18.2.0
+      '@mdx-js/loader': 2.1.4_webpack@5.74.0
+      '@mdx-js/react': 2.1.4_react@18.2.0
     dev: false
 
   /@next/swc-android-arm-eabi/12.3.1:
