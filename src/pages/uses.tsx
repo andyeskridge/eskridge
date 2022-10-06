@@ -4,7 +4,14 @@ import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
 
-function ToolsSection({ children, title, ...props }) {
+function ToolsSection({
+  children,
+  title,
+  ...props
+}: {
+  children: React.ReactNode
+  title: string
+}) {
   return (
     <Section title={title} {...props}>
       <ul role="list" className="space-y-16">

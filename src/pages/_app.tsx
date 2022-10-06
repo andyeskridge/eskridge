@@ -7,9 +7,10 @@ import { Header } from '@/components/Header'
 
 import '@/styles/tailwind.css'
 import 'focus-visible'
+import { AppProps } from 'next/app'
 
-function usePrevious(value) {
-  let ref = useRef()
+function usePrevious(value: string) {
+  let ref = useRef<string>()
 
   useEffect(() => {
     ref.current = value
@@ -18,7 +19,7 @@ function usePrevious(value) {
   return ref.current
 }
 
-export default function App({ Component, pageProps, router }) {
+export default function App({ Component, pageProps, router }: AppProps) {
   let previousPathname = usePrevious(router.pathname)
 
   return (
