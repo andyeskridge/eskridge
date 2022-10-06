@@ -2,7 +2,7 @@ import { writeFileSync } from 'fs'
 import { globby } from 'globby'
 import unixify from 'unixify'
 
-function addPage(page) {
+function addPage(page: string) {
   const path = page
     .replace('src/pages', '')
     .replace('.jsx', '')

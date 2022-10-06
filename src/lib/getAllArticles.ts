@@ -2,7 +2,7 @@ import glob from 'fast-glob'
 import * as path from 'path'
 import { ReactElement, ReactNode } from 'react'
 
-async function importArticle(articleFilename): Promise<{
+async function importArticle(articleFilename: string): Promise<{
   slug: string
   component: ReactElement
   author: string

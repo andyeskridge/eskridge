@@ -1,7 +1,10 @@
 import Link from 'next/link'
 import clsx from 'clsx'
+import { SVGProps } from 'react'
 
-function ChevronRightIcon(props) {
+function ChevronRightIcon(
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -32,7 +35,14 @@ export function Card({
   )
 }
 
-Card.Link = function CardLink({ children, href, ...props }) {
+Card.Link = function CardLink({
+  children,
+  href,
+  ...props
+}: {
+  children: React.ReactNode
+  href: string
+}) {
   return (
     <>
       <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl" />
@@ -60,7 +70,11 @@ Card.Title = function CardTitle({
   )
 }
 
-Card.Description = function CardDescription({ children }) {
+Card.Description = function CardDescription({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
       {children}
@@ -68,7 +82,7 @@ Card.Description = function CardDescription({ children }) {
   )
 }
 
-Card.Cta = function CardCta({ children }) {
+Card.Cta = function CardCta({ children }: { children: React.ReactNode }) {
   return (
     <div
       aria-hidden="true"

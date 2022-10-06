@@ -4,8 +4,11 @@ import { useRouter } from 'next/router'
 import { Container } from '@/components/Container'
 import { formatDate } from '@/lib/formatDate'
 import { Prose } from '@/components/Prose'
+import { SVGProps } from 'react'
 
-function ArrowLeftIcon(props) {
+function ArrowLeftIcon(
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -23,6 +26,15 @@ export function ArticleLayout({
   meta,
   isRssFeed = false,
   previousPathname,
+}: {
+  children: React.ReactNode
+  meta: {
+    title: string
+    description: string
+    date: string
+  }
+  isRssFeed?: boolean
+  previousPathname?: string
 }) {
   let router = useRouter()
 

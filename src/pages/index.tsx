@@ -22,7 +22,7 @@ import { generateSitemap } from '@/lib/generateSitemap'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
 
-function MailIcon(props) {
+function MailIcon(props: React.ComponentProps<'svg'>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -45,7 +45,7 @@ function MailIcon(props) {
   )
 }
 
-function BriefcaseIcon(props) {
+function BriefcaseIcon(props: React.ComponentProps<'svg'>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -68,7 +68,7 @@ function BriefcaseIcon(props) {
   )
 }
 
-function ArrowDownIcon(props) {
+function ArrowDownIcon(props: React.ComponentProps<'svg'>) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -81,7 +81,11 @@ function ArrowDownIcon(props) {
   )
 }
 
-function Article({ article }) {
+function Article({
+  article,
+}: {
+  article: { title: string; slug: string; date: string; description: string }
+}) {
   return (
     <Card as="article">
       <Card.Title href={`/articles/${article.slug}`}>
@@ -96,7 +100,14 @@ function Article({ article }) {
   )
 }
 
-function SocialLink({ icon: Icon, href, ...props }) {
+function SocialLink({
+  icon: Icon,
+  href,
+  ...props
+}: {
+  icon: any
+  href: string
+}) {
   return (
     <Link className="group -m-1 p-1" href={href} {...props}>
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
@@ -254,7 +265,11 @@ function Photos() {
   )
 }
 
-export default function Home({ articles }) {
+export default function Home({
+  articles,
+}: {
+  articles: { title: string; slug: string; date: string; description: string }[]
+}) {
   return (
     <>
       <Head>

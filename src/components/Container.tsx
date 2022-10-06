@@ -35,7 +35,7 @@ const InnerContainer = forwardRef(function InnerContainer(
   )
 })
 
-export const Container: ForwardRefExoticComponent<
+const _Container: ForwardRefExoticComponent<
   {
     children: React.ReactNode
     className?: string
@@ -65,5 +65,26 @@ export const Container: ForwardRefExoticComponent<
   )
 })
 
-Container.Outer = OuterContainer
-Container.Inner = InnerContainer
+_Container.Outer = OuterContainer
+_Container.Inner = InnerContainer
+
+export const Container = _Container as ForwardRefExoticComponent<
+  {
+    children: React.ReactNode
+    className?: string
+    style?: React.CSSProperties
+  } & RefAttributes<HTMLDivElement>
+> & {
+  Outer: ForwardRefExoticComponent<
+    {
+      className?: string
+      children: React.ReactNode
+    } & RefAttributes<HTMLDivElement>
+  >
+  Inner: ForwardRefExoticComponent<
+    {
+      className?: string
+      children: React.ReactNode
+    } & RefAttributes<HTMLDivElement>
+  >
+}
