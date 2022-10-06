@@ -8,7 +8,7 @@ import { Container } from '@/components/Container'
 import avatarImage from '@/images/avatar.jpg'
 import { CSSProperties, Fragment, ReactNode, useEffect, useRef } from 'react'
 
-function CloseIcon(props) {
+function CloseIcon(props: React.ComponentProps<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -23,7 +23,7 @@ function CloseIcon(props) {
   )
 }
 
-function ChevronDownIcon(props) {
+function ChevronDownIcon(props: React.ComponentProps<'svg'>) {
   return (
     <svg viewBox="0 0 8 6" aria-hidden="true" {...props}>
       <path
@@ -37,7 +37,7 @@ function ChevronDownIcon(props) {
   )
 }
 
-function SunIcon(props) {
+function SunIcon(props: React.ComponentProps<'svg'>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -56,7 +56,7 @@ function SunIcon(props) {
   )
 }
 
-function MoonIcon(props) {
+function MoonIcon(props: React.ComponentProps<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -69,7 +69,13 @@ function MoonIcon(props) {
   )
 }
 
-function MobileNavItem({ href, children }) {
+function MobileNavItem({
+  href,
+  children,
+}: {
+  href: string
+  children: ReactNode
+}) {
   return (
     <li>
       <Popover.Button as={Link} href={href} className="block py-2">
@@ -79,7 +85,7 @@ function MobileNavItem({ href, children }) {
   )
 }
 
-function MobileNavigation(props) {
+function MobileNavigation(props: React.ComponentProps<'div'>) {
   return (
     <Popover {...props}>
       <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
@@ -132,7 +138,7 @@ function MobileNavigation(props) {
   )
 }
 
-function NavItem({ href, children }) {
+function NavItem({ href, children }: { href: string; children: ReactNode }) {
   let isActive = useRouter().pathname === href
 
   return (
@@ -155,7 +161,7 @@ function NavItem({ href, children }) {
   )
 }
 
-function DesktopNavigation(props) {
+function DesktopNavigation(props: React.ComponentProps<'nav'>) {
   return (
     <nav {...props}>
       <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
@@ -201,7 +207,7 @@ function ModeToggle() {
   )
 }
 
-function clamp(number, a, b) {
+function clamp(number: number, a: number, b: number) {
   let min = Math.min(a, b)
   let max = Math.max(a, b)
   return Math.min(Math.max(number, min), max)
@@ -259,20 +265,20 @@ function Avatar({
 export function Header() {
   let isHomePage = useRouter().pathname === '/'
 
-  let headerRef = useRef(null)
-  let avatarRef = useRef(null)
+  let headerRef = useRef<HTMLDivElement>(null)
+  let avatarRef = useRef<HTMLDivElement>(null)
   let isInitial = useRef(true)
 
   useEffect(() => {
     let downDelay = avatarRef.current?.offsetTop ?? 0
     let upDelay = 64
 
-    function setProperty(property, value) {
+    function setProperty(property: string, value: any) {
       document.documentElement.style.setProperty(property, value)
     }
 
     function updateHeaderStyles() {
-      let { top, height } = headerRef.current.getBoundingClientRect()
+      let { top, height } = headerRef.current!.getBoundingClientRect()
       let scrollY = clamp(
         window.scrollY,
         0,
