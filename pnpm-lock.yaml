@@ -21,7 +21,7 @@ specifiers:
   globby: 13.1.2
   next: 12.3.1
   next-axiom: 0.14.0
-  playwright: 1.26.1
+  playwright: 1.27.0
   postcss: 8.4.17
   postcss-focus-visible: 7.1.0
   prettier: 2.7.1
@@ -64,7 +64,7 @@ devDependencies:
   '@types/unixify': 1.0.0
   eslint: 8.25.0
   eslint-config-next: 12.3.1_z4bbprzjrhnsfa24uvmcbu7f5q
-  playwright: 1.26.1
+  playwright: 1.27.0
   postcss: 8.4.17
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
@@ -4051,19 +4051,19 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /playwright-core/1.26.1:
-    resolution: {integrity: sha512-hzFchhhxnEiPc4qVPs9q2ZR+5eKNifY2hQDHtg1HnTTUuphYCBP8ZRb2si+B1TR7BHirgXaPi48LIye5SgrLAA==}
+  /playwright-core/1.27.0:
+    resolution: {integrity: sha512-VBKaaFUVKDo3akW+o4DwbK1ZyXh46tcSwQKPK3lruh8IJd5feu55XVZx4vOkbb2uqrNdIF51sgsadYT533SdpA==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
 
-  /playwright/1.26.1:
-    resolution: {integrity: sha512-WQmEdCgYYe8jOEkhkW9QLcK0PB+w1RZztBLYIT10MEEsENYg251cU0IzebDINreQsUt+HCwwRhtdz4weH9ICcQ==}
+  /playwright/1.27.0:
+    resolution: {integrity: sha512-F+0+0RD03LS+KdNAMMp63OBzu+NwYYLd52pKLczuSlTsV5b/SLkUoNhSfzDFngEFOuRL2gk0LlfGW3mKiUBk6w==}
     engines: {node: '>=14'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      playwright-core: 1.26.1
+      playwright-core: 1.27.0
     dev: true
 
   /postcss-focus-visible/7.1.0_postcss@8.4.17:
