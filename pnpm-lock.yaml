@@ -9,7 +9,7 @@ specifiers:
   '@tailwindcss/typography': 0.5.7
   '@types/mapbox__rehype-prism': 0.8.0
   '@types/react': 18.0.21
-  '@types/react-dom': 18.0.6
+  '@types/react-dom': 18.0.7
   '@types/unixify': 1.0.0
   autoprefixer: 10.4.12
   clsx: 1.2.1
@@ -60,7 +60,7 @@ dependencies:
 devDependencies:
   '@types/mapbox__rehype-prism': 0.8.0
   '@types/react': 18.0.21
-  '@types/react-dom': 18.0.6
+  '@types/react-dom': 18.0.7
   '@types/unixify': 1.0.0
   eslint: 8.26.0
   eslint-config-next: 12.3.1_wyqvi574yv7oiwfeinomdzmc3m
@@ -433,13 +433,13 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.7
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
     dev: false
 
   /@types/eslint/8.4.7:
     resolution: {integrity: sha512-ehM7cCt2RSFs42mb+lcmhFT9ouIlV92PuaeRGn8N8c98oMjG4Z5pJHA9b1QiCcuqnbPSHcyfiD3mlhqMaHsQIw==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: false
 
@@ -504,8 +504,8 @@ packages:
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
 
-  /@types/react-dom/18.0.6:
-    resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
+  /@types/react-dom/18.0.7:
+    resolution: {integrity: sha512-HaXc+BbqAZE1RdsK3tC8SbkFy6UL2xF76lT9rQs5JkPrJg3rWA3Ou/Lhw3YJQzEDkBpmJ79nBsfnd05WrBd2QQ==}
     dependencies:
       '@types/react': 18.0.21
     dev: true
