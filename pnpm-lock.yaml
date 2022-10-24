@@ -30,7 +30,7 @@ specifiers:
   react-dom: 18.2.0
   remark-gfm: 3.0.1
   sharp: 0.31.1
-  tailwindcss: 3.2.0
+  tailwindcss: 3.2.1
   typescript: 4.8.4
   unixify: 1.0.0
 
@@ -40,7 +40,7 @@ dependencies:
   '@mdx-js/loader': 2.1.5_webpack@5.74.0
   '@mdx-js/react': 2.1.5_react@18.2.0
   '@next/mdx': 12.3.1_wuv4qx5dshjptmdbtsqqkih5iu
-  '@tailwindcss/typography': 0.5.7_tailwindcss@3.2.0
+  '@tailwindcss/typography': 0.5.7_tailwindcss@3.2.1
   autoprefixer: 10.4.12_postcss@8.4.18
   clsx: 1.2.1
   fast-glob: 3.2.12
@@ -54,7 +54,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   remark-gfm: 3.0.1
   sharp: 0.31.1
-  tailwindcss: 3.2.0_postcss@8.4.18
+  tailwindcss: 3.2.1_postcss@8.4.18
   unixify: 1.0.0
 
 devDependencies:
@@ -405,7 +405,7 @@ packages:
       defer-to-connect: 1.1.3
     dev: false
 
-  /@tailwindcss/typography/0.5.7_tailwindcss@3.2.0:
+  /@tailwindcss/typography/0.5.7_tailwindcss@3.2.1:
     resolution: {integrity: sha512-JTTSTrgZfp6Ki4svhPA4mkd9nmQ/j9EfE7SbHJ1cLtthKkpW2OxsFXzSmxbhYbEkfNIyAyhle5p4SYyKRbz/jg==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
@@ -414,7 +414,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.0_postcss@8.4.18
+      tailwindcss: 3.2.1_postcss@8.4.18
     dev: false
 
   /@types/acorn/4.0.6:
@@ -4897,8 +4897,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  /tailwindcss/3.2.0_postcss@8.4.18:
-    resolution: {integrity: sha512-ARh/W0uH5UlWIC2nn02V0+5fyF0k6qZliyt4QYic2upOhPUE/Spu1EURNc9txJ3+4j8OEmdigqfDpw4d2tA4vA==}
+  /tailwindcss/3.2.1_postcss@8.4.18:
+    resolution: {integrity: sha512-Uw+GVSxp5CM48krnjHObqoOwlCt5Qo6nw1jlCRwfGy68dSYb/LwS9ZFidYGRiM+w6rMawkZiu1mEMAsHYAfoLg==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
@@ -4914,6 +4914,7 @@ packages:
       glob-parent: 6.0.2
       is-glob: 4.0.3
       lilconfig: 2.0.6
+      micromatch: 4.0.5
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.0
