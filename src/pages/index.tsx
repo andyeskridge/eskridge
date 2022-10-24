@@ -13,6 +13,7 @@ import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import logoCenergistic from '@/images/logos/cenergistic.jpg'
+import logoProjekt202 from '@/images/logos/projekt202.jpg'
 import logoAllegro from '@/images/logos/allegro.jpg'
 import logoBeckTech from '@/images/logos/becktech.jpg'
 import logoGwynnGroup from '@/images/logos/gwynngroup.jpg'
@@ -150,6 +151,13 @@ function Newsletter() {
 
 function Resume() {
   let resume = [
+    {
+      company: 'projekt202',
+      title: 'Senior Solution Architect',
+      logo: logoProjekt202,
+      start: '2022',
+      end: 'Present',
+    },
     {
       company: 'Cenergistic',
       title: 'CTO',
