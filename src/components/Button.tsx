@@ -28,8 +28,8 @@ export function Button({
   )
 
   return href ? (
-    <Link href={href} className={className} {...props} />
+    <Link href={href} className={className} {...props} legacyBehavior />
   ) : (
     <button className={className} {...props} />
-  )
+  );
 }
