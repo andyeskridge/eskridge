@@ -8,8 +8,8 @@ const nextConfig = {
   pageExtensions: ['jsx', 'mdx', 'tsx'],
   reactStrictMode: true,
   experimental: {
-    newNextLinkBehavior: true,
     scrollRestoration: true,
+    appDir: true,
   },
 }
 
