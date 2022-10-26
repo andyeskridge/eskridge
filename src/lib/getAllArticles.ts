@@ -21,7 +21,7 @@ async function importArticle(articleFilename: string): Promise<{
     slug: articleFilename.replace(/(\/index)?\.mdx$/, ''),
     ...meta,
     component,
-  }
+  };
 }
 
 export async function getAllArticles() {
