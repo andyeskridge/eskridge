@@ -11,7 +11,7 @@ specifiers:
   '@types/react': 18.0.24
   '@types/react-dom': 18.0.8
   '@types/unixify': 1.0.0
-  autoprefixer: 10.4.12
+  autoprefixer: 10.4.13
   clsx: 1.2.1
   eslint: 8.26.0
   eslint-config-next: 13.0.0
@@ -41,7 +41,7 @@ dependencies:
   '@mdx-js/react': 2.1.5_react@18.2.0
   '@next/mdx': 13.0.0_wuv4qx5dshjptmdbtsqqkih5iu
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.2.1
-  autoprefixer: 10.4.12_postcss@8.4.18
+  autoprefixer: 10.4.13_postcss@8.4.18
   clsx: 1.2.1
   fast-glob: 3.2.12
   feed: 4.2.2
@@ -433,13 +433,13 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.9
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
     dev: false
 
   /@types/eslint/8.4.9:
     resolution: {integrity: sha512-jFCSo4wJzlHQLCpceUhUnXdrPuCNOjGFMQ8Eg6JXxlz3QaCKOb7eGi2cephQdM4XTYsNej69P9JDJ1zqNIbncQ==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: false
 
@@ -889,8 +889,8 @@ packages:
     hasBin: true
     dev: false
 
-  /autoprefixer/10.4.12_postcss@8.4.18:
-    resolution: {integrity: sha512-WrCGV9/b97Pa+jtwf5UGaRjgQIg7OK3D06GnoYoZNcG1Xb8Gt3EfuKjlhh9i/VtT16g6PYjZ69jdJ2g8FxSC4Q==}
+  /autoprefixer/10.4.13_postcss@8.4.18:
+    resolution: {integrity: sha512-49vKpMqcZYsJjwotvt4+h/BCjJVnhGwcLpDt5xkcaOG3eLrG/HUYLagrihYsQ+qrIBgIzX1Rw7a6L8I/ZA1Atg==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
