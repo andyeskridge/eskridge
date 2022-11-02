@@ -1,0 +1,42 @@
+
+> eskridge.dev@0.1.0 build C:\Users\andye\Development\eskridge
+> next build
+
+info  - Loaded env from C:\Users\andye\Development\eskridge\.env.local
+warn  - You have enabled experimental feature (scrollRestoration) in next.config.mjs.
+warn  - Experimental features are not covered by semver, and may cause unexpected or broken application behavior. Use at your own risk.
+
+info  - Linting and checking validity of types...
+[33mwarn[0m - axiom: Envvars not detected. If this is production please see https://github.com/axiomhq/next-axiom for help
+[33mwarn[0m - axiom: Sending Web Vitals to /dev/null
+[33mwarn[0m - axiom: Sending logs to console
+info  - Creating an optimized production build...
+info  - Compiled successfully
+info  - Collecting page data...
+info  - Generating static pages (0/9)
+info  - Generating static pages (2/9)
+info  - Generating static pages (4/9)
+info  - Generating static pages (6/9)
+info  - Generating static pages (9/9)
+info  - Finalizing page optimization...
+
+Route (pages)                              Size     First Load JS
+┌ ● / (699 ms)                             5.81 kB         100 kB
+├   /_app                                  0 B            94.3 kB
+├ ○ /404                                   182 B          94.5 kB
+├ ○ /about (537 ms)                        2.94 kB        97.2 kB
+├ ● /articles (630 ms)                     1.64 kB        95.9 kB
+├ ○ /articles/crdts (562 ms)               1.84 kB        96.1 kB
+├ ○ /articles/typescript-issues (568 ms)   2.85 kB        97.1 kB
+├ ○ /thank-you (535 ms)                    720 B            95 kB
+└ ○ /uses (548 ms)                         2.03 kB        96.3 kB
++ First Load JS shared by all              101 kB
+  ├ chunks/framework-8d78bf989db74c8f.js   45.4 kB
+  ├ chunks/main-c6c8b5eef60ce01e.js        25.8 kB
+  ├ chunks/pages/_app-7de9c5d4a8a71241.js  22.2 kB
+  ├ chunks/webpack-59c5c889f52620d6.js     819 B
+  └ css/0c4e0003854efd2d.css               6.59 kB
+
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+
