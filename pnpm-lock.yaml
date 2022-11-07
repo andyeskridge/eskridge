@@ -20,7 +20,7 @@ specifiers:
   focus-visible: 5.2.0
   globby: 13.1.2
   next: 13.0.2
-  next-axiom: 0.15.0
+  next-axiom: 0.15.1
   playwright: 1.27.1
   postcss: 8.4.18
   postcss-focus-visible: 7.1.0
@@ -48,7 +48,7 @@ dependencies:
   focus-visible: 5.2.0
   globby: 13.1.2
   next: 13.0.2_biqbaboplfbrettd7655fr4n2y
-  next-axiom: 0.15.0_next@13.0.2
+  next-axiom: 0.15.1_next@13.0.2
   postcss-focus-visible: 7.1.0_postcss@8.4.18
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -435,13 +435,13 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.10
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
     dev: false
 
   /@types/eslint/8.4.10:
     resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: false
 
@@ -3665,11 +3665,11 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: false
 
-  /next-axiom/0.15.0_next@13.0.2:
-    resolution: {integrity: sha512-43ajCZ9PFuihwVkdhTTKsAcdOvsCtugu7C0uKxkmbangq2Q7CwunnM6jcR1L1Pc/E+X3+Y4M99j9hZGOxoi7Lw==}
+  /next-axiom/0.15.1_next@13.0.2:
+    resolution: {integrity: sha512-5leWEoW6LugxLGFilmJPCVmG8cfZio6sXtVw+/7dqQvEbX5T1dwvoOSfmLh2NjocP/i/R2jpdrtgFl+ZrkOl1Q==}
     engines: {node: '>=15'}
     peerDependencies:
-      next: '>= 12.1.4 < 14'
+      next: ^12.1.4 || ^13
     dependencies:
       next: 13.0.2_biqbaboplfbrettd7655fr4n2y
       whatwg-fetch: 3.6.2
