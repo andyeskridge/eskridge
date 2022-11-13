@@ -22,7 +22,7 @@ specifiers:
   next: 13.0.2
   next-axiom: 0.15.1
   playwright: 1.27.1
-  postcss: 8.4.18
+  postcss: 8.4.19
   postcss-focus-visible: 7.1.0
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.13
@@ -41,7 +41,7 @@ dependencies:
   '@mdx-js/react': 2.1.5_react@18.2.0
   '@next/mdx': 13.0.2_wuv4qx5dshjptmdbtsqqkih5iu
   '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
-  autoprefixer: 10.4.13_postcss@8.4.18
+  autoprefixer: 10.4.13_postcss@8.4.19
   clsx: 1.2.1
   fast-glob: 3.2.12
   feed: 4.2.2
@@ -49,12 +49,12 @@ dependencies:
   globby: 13.1.2
   next: 13.0.2_biqbaboplfbrettd7655fr4n2y
   next-axiom: 0.15.1_next@13.0.2
-  postcss-focus-visible: 7.1.0_postcss@8.4.18
+  postcss-focus-visible: 7.1.0_postcss@8.4.19
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   remark-gfm: 3.0.1
   sharp: 0.31.2
-  tailwindcss: 3.2.4_postcss@8.4.18
+  tailwindcss: 3.2.4_postcss@8.4.19
   unixify: 1.0.0
 
 devDependencies:
@@ -65,7 +65,7 @@ devDependencies:
   eslint: 8.27.0
   eslint-config-next: 13.0.2_rmayb2veg2btbq6mbmnyivgasy
   playwright: 1.27.1
-  postcss: 8.4.18
+  postcss: 8.4.19
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
   typescript: 4.8.4
@@ -416,7 +416,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.4_postcss@8.4.18
+      tailwindcss: 3.2.4_postcss@8.4.19
     dev: false
 
   /@types/acorn/4.0.6:
@@ -891,7 +891,7 @@ packages:
     hasBin: true
     dev: false
 
-  /autoprefixer/10.4.13_postcss@8.4.18:
+  /autoprefixer/10.4.13_postcss@8.4.19:
     resolution: {integrity: sha512-49vKpMqcZYsJjwotvt4+h/BCjJVnhGwcLpDt5xkcaOG3eLrG/HUYLagrihYsQ+qrIBgIzX1Rw7a6L8I/ZA1Atg==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -903,7 +903,7 @@ packages:
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
-      postcss: 8.4.18
+      postcss: 8.4.19
       postcss-value-parser: 4.2.0
     dev: false
 
@@ -4072,39 +4072,39 @@ packages:
       playwright-core: 1.27.1
     dev: true
 
-  /postcss-focus-visible/7.1.0_postcss@8.4.18:
+  /postcss-focus-visible/7.1.0_postcss@8.4.19:
     resolution: {integrity: sha512-OGxO+eCXVkF94us4uOVLHDPaoJuV8HQhaqmVPo2DtECdjqzWNkmwhFRSRRDT5Sg04JQsAECzgIhpyX0JRTgwlQ==}
     engines: {node: ^12 || ^14 || >=16}
     peerDependencies:
       postcss: ^8.2
     dependencies:
-      postcss: 8.4.18
+      postcss: 8.4.19
       postcss-selector-parser: 6.0.10
     dev: false
 
-  /postcss-import/14.1.0_postcss@8.4.18:
+  /postcss-import/14.1.0_postcss@8.4.19:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       postcss: ^8.0.0
     dependencies:
-      postcss: 8.4.18
+      postcss: 8.4.19
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.1
     dev: false
 
-  /postcss-js/4.0.0_postcss@8.4.18:
+  /postcss-js/4.0.0_postcss@8.4.19:
     resolution: {integrity: sha512-77QESFBwgX4irogGVPgQ5s07vLvFqWr228qZY+w6lW599cRlK/HmnlivnnVUxkjHnCu4J16PDMHcH+e+2HbvTQ==}
     engines: {node: ^12 || ^14 || >= 16}
     peerDependencies:
       postcss: ^8.3.3
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.18
+      postcss: 8.4.19
     dev: false
 
-  /postcss-load-config/3.1.4_postcss@8.4.18:
+  /postcss-load-config/3.1.4_postcss@8.4.19:
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
     peerDependencies:
@@ -4117,17 +4117,17 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.0.6
-      postcss: 8.4.18
+      postcss: 8.4.19
       yaml: 1.10.2
     dev: false
 
-  /postcss-nested/6.0.0_postcss@8.4.18:
+  /postcss-nested/6.0.0_postcss@8.4.19:
     resolution: {integrity: sha512-0DkamqrPcmkBDsLn+vQDIrtkSbNkv5AD/M322ySo9kqFkCIYklym2xEmWkwo+Y3/qZo34tzEPNUw4y7yMCdv5w==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.2.14
     dependencies:
-      postcss: 8.4.18
+      postcss: 8.4.19
       postcss-selector-parser: 6.0.10
     dev: false
 
@@ -4152,8 +4152,8 @@ packages:
       source-map-js: 1.0.2
     dev: false
 
-  /postcss/8.4.18:
-    resolution: {integrity: sha512-Wi8mWhncLJm11GATDaQKobXSNEYGUHeQLiQqDFG1qQ5UTDPTEvKw0Xt5NsTpktGTwLps3ByrWsBrG0rB8YQ9oA==}
+  /postcss/8.4.19:
+    resolution: {integrity: sha512-h+pbPsyhlYj6N2ozBmHhHrs9DzGmbaarbLvWipMRO7RLS+v4onj26MPFXA5OBYFxyqYhUJK456SwDcY9H2/zsA==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.4
@@ -4904,7 +4904,7 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  /tailwindcss/3.2.4_postcss@8.4.18:
+  /tailwindcss/3.2.4_postcss@8.4.19:
     resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
@@ -4925,11 +4925,11 @@ packages:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.18
-      postcss-import: 14.1.0_postcss@8.4.18
-      postcss-js: 4.0.0_postcss@8.4.18
-      postcss-load-config: 3.1.4_postcss@8.4.18
-      postcss-nested: 6.0.0_postcss@8.4.18
+      postcss: 8.4.19
+      postcss-import: 14.1.0_postcss@8.4.19
+      postcss-js: 4.0.0_postcss@8.4.19
+      postcss-load-config: 3.1.4_postcss@8.4.19
+      postcss-nested: 6.0.0_postcss@8.4.19
       postcss-selector-parser: 6.0.10
       postcss-value-parser: 4.2.0
       quick-lru: 5.1.1
