@@ -8,9 +8,9 @@ const nextConfig = {
   pageExtensions: ['jsx', 'mdx', 'tsx'],
   reactStrictMode: true,
   experimental: {
-    newNextLinkBehavior: true,
     scrollRestoration: true,
   },
+  swcMinify: true,
 }
 
 const withMDX = nextMDX({
