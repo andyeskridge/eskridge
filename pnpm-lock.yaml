@@ -24,7 +24,7 @@ specifiers:
   playwright: 1.28.0
   postcss: 8.4.19
   postcss-focus-visible: 7.1.0
-  prettier: 2.7.1
+  prettier: 2.8.0
   prettier-plugin-tailwindcss: 0.2.0
   react: 18.2.0
   react-dom: 18.2.0
@@ -66,8 +66,8 @@ devDependencies:
   eslint-config-next: 13.0.2_hsf322ms6xhhd4b5ne6lb74y4a
   playwright: 1.28.0
   postcss: 8.4.19
-  prettier: 2.7.1
-  prettier-plugin-tailwindcss: 0.2.0_prettier@2.7.1
+  prettier: 2.8.0
+  prettier-plugin-tailwindcss: 0.2.0_prettier@2.8.0
   typescript: 4.9.3
 
 packages:
@@ -4213,17 +4213,17 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /prettier-plugin-tailwindcss/0.2.0_prettier@2.7.1:
+  /prettier-plugin-tailwindcss/0.2.0_prettier@2.8.0:
     resolution: {integrity: sha512-Ruqig/mdWCSpqdq9WK44nrmqM4BFWTzBPhPGwC5NK3coV9eZntEQPB84MGZbjAg0XQU02jVRHXNRPREBzxvM+A==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
       prettier: '>=2.2.0'
     dependencies:
-      prettier: 2.7.1
+      prettier: 2.8.0
     dev: true
 
-  /prettier/2.7.1:
-    resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
+  /prettier/2.8.0:
+    resolution: {integrity: sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
