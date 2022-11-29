@@ -1,6 +1,6 @@
 import glob from 'fast-glob'
 import * as path from 'path'
-import { ReactElement, ReactNode } from 'react'
+import { ReactElement } from 'react'
 
 async function importArticle(articleFilename: string): Promise<{
   slug: string
@@ -21,7 +21,7 @@ async function importArticle(articleFilename: string): Promise<{
     slug: articleFilename.replace(/(\/index)?\.mdx$/, ''),
     ...meta,
     component,
-  };
+  }
 }
 
 export async function getAllArticles() {
