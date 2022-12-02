@@ -1,16 +1,9 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const meta = {
-  author: 'Andy Eskridge',
-  date: '2022-09-09',
-  title: 'Conflict-free replicated data type',
-  description:
-    'A conflict-free replicated data type (CRDT) is a data type that can be replicated across multiple computers and used concurrently by multiple users, with the guarantee that, as long as the operations are commutative and associative, the result will be the same regardless of the order in which the operations were performed.',
-}
-
-export default function Article(props) {
-  return <ArticleLayout meta={meta} {...props} />
-}
+---
+author: Andy Eskridge,
+date: 2022-09-09,
+title: Conflict-free replicated data type,
+description: A conflict-free replicated data type (CRDT) is a data type that can be replicated across multiple computers and used concurrently by multiple users, with the guarantee that, as long as the operations are commutative and associative, the result will be the same regardless of the order in which the operations were performed.,
+---
 
 ## What is a CRDT?
 

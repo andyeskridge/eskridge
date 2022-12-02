@@ -1,9 +1,9 @@
+import { Container } from '@/components/Container'
+import { Prose } from '@/components/Prose'
+import { formatDate } from '@/lib/formatDate'
+import { allArticles, Article } from 'contentlayer/generated'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-
-import { Container } from '@/components/Container'
-import { formatDate } from '@/lib/formatDate'
-import { Prose } from '@/components/Prose'
 import { SVGProps } from 'react'
 
 function ArrowLeftIcon(
@@ -21,32 +21,38 @@ function ArrowLeftIcon(
   )
 }
 
-export function ArticleLayout({
-  children,
-  meta,
-  isRssFeed = false,
+export async function getStaticPaths() {
+  const paths = allArticles.map((post) => post.url)
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+  const post = allArticles.find(
+    (post) => post._raw.flattenedPath === params.slug
+  )
+  return {
+    props: {
+      post,
+    },
+  }
+}
+
+const Article = ({
+  post,
   previousPathname,
 }: {
-  children: React.ReactNode
-  meta: {
-    title: string
-    description: string
-    date: string
-  }
-  isRssFeed?: boolean
-  previousPathname?: string
-}) {
-  let router = useRouter()
-
-  if (isRssFeed) {
-    return children
-  }
-
+  post: Article
+  previousPathname: string
+}) => {
+  const router = useRouter()
   return (
     <>
       <Head>
-        <title>{`${meta.title} - Andy Eskridge`}</title>
-        <meta name="description" content={meta.description} />
+        <title>{`${post.title} - Andy Eskridge`}</title>
+        <meta name="description" content={post.description} />
       </Head>
       <Container className="mt-16 lg:mt-32">
         <div className="xl:relative">
@@ -64,17 +70,19 @@ export function ArticleLayout({
             <article>
               <header className="flex flex-col">
                 <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-                  {meta.title}
+                  {post.title}
                 </h1>
                 <time
-                  dateTime={meta.date}
+                  dateTime={post.date}
                   className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
                 >
                   <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
-                  <span className="ml-3">{formatDate(meta.date)}</span>
+                  <span className="ml-3">{formatDate(post.date)}</span>
                 </time>
               </header>
-              <Prose className="mt-8">{children}</Prose>
+              <Prose className="mt-8">
+                <div dangerouslySetInnerHTML={{ __html: post.body.html }} />
+              </Prose>
             </article>
           </div>
         </div>
@@ -82,3 +90,5 @@ export function ArticleLayout({
     </>
   )
 }
+
+export default Article
