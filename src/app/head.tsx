@@ -1,3 +1,5 @@
+import Script from 'next/script'
+
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
@@ -36,7 +38,8 @@ const modeScript = `
 export default function Head() {
   return (
     <>
-      <script dangerouslySetInnerHTML={{ __html: modeScript }} />
+      {/* eslint-disable-next-line @next/next/inline-script-id,@next/next/no-before-interactive-script-outside-document */}
+      <Script id="themeScript">{modeScript}</Script>
       <link
         rel="alternate"
         type="application/rss+xml"

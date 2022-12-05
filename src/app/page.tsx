@@ -265,7 +265,8 @@ function Photos() {
   )
 }
 
-export default function Home({ articles }: { articles: Article[] }) {
+export default async function Home() {
+  const articles = (await getAllArticles()).slice(0, 4)
   return (
     <>
       <Container className="mt-9">
@@ -314,12 +315,4 @@ export default function Home({ articles }: { articles: Article[] }) {
       </Container>
     </>
   )
-}
-
-export async function getStaticProps() {
-  return {
-    props: {
-      articles: (await getAllArticles()).slice(0, 4),
-    },
-  }
 }

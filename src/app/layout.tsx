@@ -1,6 +1,9 @@
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 
+import '@/styles/tailwind.css'
+import 'focus-visible'
+
 export default function RootLayout({
   // Layouts must accept a children prop.
   // This will be populated with nested layouts or pages
