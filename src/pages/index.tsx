@@ -18,10 +18,9 @@ import logoAllegro from '@/images/logos/allegro.jpg'
 import logoBeckTech from '@/images/logos/becktech.jpg'
 import logoGwynnGroup from '@/images/logos/gwynngroup.jpg'
 import logoProviderScience from '@/images/logos/providerscience.jpg'
-import { generateRssFeed } from '@/lib/generateRssFeed'
-import { generateSitemap } from '@/lib/generateSitemap'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
+import { type Article } from 'contentlayer/generated'
 
 function MailIcon(props: React.ComponentProps<'svg'>) {
   return (
@@ -82,16 +81,10 @@ function ArrowDownIcon(props: React.ComponentProps<'svg'>) {
   )
 }
 
-function Article({
-  article,
-}: {
-  article: { title: string; slug: string; date: string; description: string }
-}) {
+function Article({ article }: { article: Article }) {
   return (
     <Card as="article">
-      <Card.Title href={`/articles/${article.slug}`}>
-        {article.title}
-      </Card.Title>
+      <Card.Title href={article.url}>{article.title}</Card.Title>
       <Card.Eyebrow as="time" dateTime={article.date} decorate>
         {formatDate(article.date)}
       </Card.Eyebrow>
@@ -273,11 +266,7 @@ function Photos() {
   )
 }
 
-export default function Home({
-  articles,
-}: {
-  articles: { title: string; slug: string; date: string; description: string }[]
-}) {
+export default function Home({ articles }: { articles: Article[] }) {
   return (
     <>
       <Head>
@@ -322,7 +311,7 @@ export default function Home({
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
             {articles.map((article) => (
-              <Article key={article.slug} article={article} />
+              <Article key={article.url} article={article} />
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
@@ -336,16 +325,9 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  if (process.env.NODE_ENV === 'production') {
-    await generateRssFeed()
-    await generateSitemap()
-  }
-
   return {
     props: {
-      articles: (await getAllArticles())
-        .slice(0, 4)
-        .map(({ component, ...meta }) => meta),
+      articles: (await getAllArticles()).slice(0, 4),
     },
   }
 }
