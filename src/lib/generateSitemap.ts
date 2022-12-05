@@ -1,4 +1,3 @@
-import { writeFileSync } from 'fs'
 import { globby } from 'globby'
 import unixify from 'unixify'
 
@@ -29,5 +28,5 @@ export async function generateSitemap() {
 ${pages.map(addPage).join('\n')}
 </urlset>`
 
-  writeFileSync('public/sitemap.xml', sitemap)
+  return sitemap
 }

@@ -3,7 +3,7 @@ import { withContentlayer } from 'next-contentlayer'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['jsx', 'mdx', 'tsx'],
+  pageExtensions: ['jsx', 'mdx', 'tsx', 'ts'],
   reactStrictMode: true,
   experimental: {
     scrollRestoration: true,

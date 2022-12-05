@@ -5,6 +5,7 @@ import { allArticles, Article } from 'contentlayer/generated'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { SVGProps } from 'react'
+import { useMDXComponent } from 'next-contentlayer/hooks'
 
 function ArrowLeftIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
@@ -48,6 +49,7 @@ const Article = ({
   previousPathname: string
 }) => {
   const router = useRouter()
+  const Component = useMDXComponent(post.body.code)
   return (
     <>
       <Head>
@@ -81,7 +83,7 @@ const Article = ({
                 </time>
               </header>
               <Prose className="mt-8">
-                <div dangerouslySetInnerHTML={{ __html: post.body.html }} />
+                <Component />
               </Prose>
             </article>
           </div>

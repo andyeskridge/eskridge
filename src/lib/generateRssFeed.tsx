@@ -1,6 +1,5 @@
 import ReactDOMServer from 'react-dom/server'
 import { Feed } from 'feed'
-import { mkdir, writeFile } from 'fs/promises'
 
 import { getAllArticles } from './getAllArticles'
 
@@ -22,8 +21,8 @@ export async function generateRssFeed() {
     favicon: `${siteUrl}/favicon.ico`,
     copyright: `All rights reserved ${new Date().getFullYear()}`,
     feedLinks: {
-      rss2: `${siteUrl}/rss/feed.xml`,
-      json: `${siteUrl}/rss/feed.json`,
+      rss2: `${siteUrl}/feed.xml`,
+      json: `${siteUrl}/feed.json`,
     },
   })
 
@@ -46,9 +45,5 @@ export async function generateRssFeed() {
     })
   }
 
-  await mkdir('./public/rss', { recursive: true })
-  await Promise.all([
-    writeFile('./public/rss/feed.xml', feed.rss2(), 'utf8'),
-    writeFile('./public/rss/feed.json', feed.json1(), 'utf8'),
-  ])
+  return feed
 }

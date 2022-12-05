@@ -1,8 +1,16 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import readingTime from 'reading-time'
+import remarkGfm from 'remark-gfm'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeCodeTitles from 'rehype-code-titles'
+import rehypePrism from 'rehype-prism-plus'
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
 
 export const Article = defineDocumentType(() => ({
   name: 'Article',
-  filePathPattern: `**/*.md`,
+  filePathPattern: `**/*.mdx`,
+  contentType: 'mdx',
   fields: {
     title: {
       type: 'string',
@@ -26,6 +34,10 @@ export const Article = defineDocumentType(() => ({
     },
   },
   computedFields: {
+    readingTime: {
+      type: 'json',
+      resolve: (doc) => readingTime(doc.body.raw),
+    },
     url: {
       type: 'string',
       resolve: (article) => `/articles/${article._raw.flattenedPath}`,
@@ -36,4 +48,14 @@ export const Article = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: 'articles',
   documentTypes: [Article],
+  mdx: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      rehypeSlug,
+      rehypeCodeTitles,
+      rehypePrism,
+      rehypeAutolinkHeadings,
+      rehypeAccessibleEmojis,
+    ],
+  },
 })
