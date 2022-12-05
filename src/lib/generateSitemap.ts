@@ -10,23 +10,23 @@ function addPage(page: string) {
 export async function generateSitemap() {
   const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-      <loc>${process.env.NEXT_PUBLIC_VERCEL_URL}/about</loc>
+      <loc>${process.env.NEXT_PUBLIC_SITE_URL}/about</loc>
       <changefreq>hourly</changefreq>
     </url>
     <url>
-      <loc>${process.env.NEXT_PUBLIC_VERCEL_URL}</loc>
+      <loc>${process.env.NEXT_PUBLIC_SITE_URL}</loc>
       <changefreq>hourly</changefreq>
     </url>
     <url>
-      <loc>${process.env.NEXT_PUBLIC_VERCEL_URL}/thank-you</loc>
+      <loc>${process.env.NEXT_PUBLIC_SITE_URL}/thank-you</loc>
       <changefreq>hourly</changefreq>
     </url>
     <url>
-      <loc>${process.env.NEXT_PUBLIC_VERCEL_URL}/uses</loc>
+      <loc>${process.env.NEXT_PUBLIC_SITE_URL}/uses</loc>
      <changefreq>hourly</changefreq>
     </url>
     <url>
-      <loc>${process.env.NEXT_PUBLIC_VERCEL_URL}/articles</loc>
+      <loc>${process.env.NEXT_PUBLIC_SITE_URL}/articles</loc>
       <changefreq>hourly</changefreq>
     </url>
     ${allArticles.map((article) => addPage(article.url)).join('')}
