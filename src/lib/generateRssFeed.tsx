@@ -2,6 +2,7 @@ import ReactDOMServer from 'react-dom/server'
 import { Feed } from 'feed'
 
 import { getAllArticles } from './getAllArticles'
+import { useMDXComponent } from 'next-contentlayer/hooks'
 
 export async function generateRssFeed() {
   let articles = await getAllArticles()
@@ -27,11 +28,8 @@ export async function generateRssFeed() {
   })
 
   for (let article of articles) {
-    let url = `${siteUrl}/${article.url}`
-    let html = ReactDOMServer.renderToStaticMarkup(
-      // @ts-ignore
-      <article.component isRssFeed />
-    )
+    let url = `${siteUrl}${article.url}`
+    let html = article.body.raw
 
     feed.addItem({
       title: article.title,
