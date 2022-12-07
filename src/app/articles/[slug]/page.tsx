@@ -1,11 +1,14 @@
+'use client'
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
 import { formatDate } from '@/lib/formatDate'
-import { allArticles, Article } from 'contentlayer/generated'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { type Article } from 'contentlayer/generated'
+import { useRouter } from 'next/navigation'
 import { SVGProps } from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
+import { getAllArticles } from '@/lib/getAllArticles'
+import { notFound } from 'next/navigation'
+import rehypeSlug from 'rehype-slug'
 
 function ArrowLeftIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
@@ -22,40 +25,35 @@ function ArrowLeftIcon(
   )
 }
 
-export async function getStaticPaths() {
-  const paths = allArticles.map((post) => post.url)
-  return {
-    paths,
-    fallback: false,
-  }
+export function generateStaticParams() {
+  return getAllArticles().map((post) => ({
+    slug: post._raw.flattenedPath,
+  }))
 }
 
-export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const post = allArticles.find(
-    (post) => post._raw.flattenedPath === params.slug
+function getArticle(slug: string) {
+  const post = getAllArticles().find(
+    (post: Article) => post._raw.flattenedPath === slug
   )
-  return {
-    props: {
-      post,
-    },
+  if (!post) {
+    throw notFound()
   }
+  return post
 }
 
 const Article = ({
-  post,
-  previousPathname,
+  params: { slug, previousPathname = '' },
 }: {
-  post: Article
-  previousPathname: string
+  params: {
+    slug: string
+    previousPathname: string
+  }
 }) => {
   const router = useRouter()
+  const post = getArticle(slug)
   const Component = useMDXComponent(post.body.code)
   return (
     <>
-      <Head>
-        <title>{`${post.title} - Andy Eskridge`}</title>
-        <meta name="description" content={post.description} />
-      </Head>
       <Container className="mt-16 lg:mt-32">
         <div className="xl:relative">
           <div className="mx-auto max-w-2xl">
