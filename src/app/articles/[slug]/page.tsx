@@ -40,10 +40,9 @@ function getArticle(slug: string) {
   return post
 }
 
-export default async function Article({
-  params,
-}: {
-  params: { slug: string; previousPathname?: string }
+export default async function Article(params: {
+  slug: string
+  previousPathname?: string
 }) {
   const router = useRouter()
   const post = getArticle(params.slug)
