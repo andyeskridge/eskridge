@@ -8,7 +8,6 @@ import { SVGProps } from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { notFound } from 'next/navigation'
-import rehypeSlug from 'rehype-slug'
 
 function ArrowLeftIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
@@ -41,23 +40,20 @@ function getArticle(slug: string) {
   return post
 }
 
-const Article = ({
-  params: { slug, previousPathname = '' },
+export default async function Article({
+  params,
 }: {
-  params: {
-    slug: string
-    previousPathname: string
-  }
-}) => {
+  params: { slug: string; previousPathname?: string }
+}) {
   const router = useRouter()
-  const post = getArticle(slug)
+  const post = getArticle(params.slug)
   const Component = useMDXComponent(post.body.code)
   return (
     <>
       <Container className="mt-16 lg:mt-32">
         <div className="xl:relative">
           <div className="mx-auto max-w-2xl">
-            {previousPathname && (
+            {params.previousPathname && (
               <button
                 type="button"
                 onClick={() => router.back()}
@@ -90,5 +86,3 @@ const Article = ({
     </>
   )
 }
-
-export default Article
