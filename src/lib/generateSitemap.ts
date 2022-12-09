@@ -22,10 +22,6 @@ export function generateSitemap() {
       <changefreq>hourly</changefreq>
     </url>
     <url>
-      <loc>${process.env.NEXT_PUBLIC_SITE_URL}/uses</loc>
-     <changefreq>hourly</changefreq>
-    </url>
-    <url>
       <loc>${process.env.NEXT_PUBLIC_SITE_URL}/articles</loc>
       <changefreq>hourly</changefreq>
     </url>
