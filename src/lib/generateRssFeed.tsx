@@ -1,8 +1,6 @@
-import ReactDOMServer from 'react-dom/server'
 import { Feed } from 'feed'
 
 import { getAllArticles } from './getAllArticles'
-import { useMDXComponent } from 'next-contentlayer/hooks'
 
 export async function generateRssFeed() {
   let articles = await getAllArticles()

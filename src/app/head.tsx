@@ -40,16 +40,6 @@ export default function Head() {
     <>
       {/* eslint-disable-next-line @next/next/inline-script-id,@next/next/no-before-interactive-script-outside-document */}
       <Script id="themeScript">{modeScript}</Script>
-      <link
-        rel="alternate"
-        type="application/rss+xml"
-        href={`${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`}
-      />
-      <link
-        rel="alternate"
-        type="application/feed+json"
-        href={`${process.env.NEXT_PUBLIC_SITE_URL}/feed.json`}
-      />
       <title>Andy Eskridge - Senior Engineering Manager</title>
       <meta
         name="description"
