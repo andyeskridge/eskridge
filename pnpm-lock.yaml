@@ -2,8 +2,8 @@ lockfileVersion: 5.4
 
 specifiers:
   '@headlessui/react': 1.7.5
-  '@mdx-js/loader': 2.1.5
-  '@mdx-js/react': 2.1.5
+  '@mdx-js/loader': 2.2.1
+  '@mdx-js/react': 2.2.1
   '@tailwindcss/typography': 0.5.8
   '@types/mapbox__rehype-prism': 0.8.0
   '@types/react': 18.0.26
@@ -43,8 +43,8 @@ specifiers:
 
 dependencies:
   '@headlessui/react': 1.7.5_biqbaboplfbrettd7655fr4n2y
-  '@mdx-js/loader': 2.1.5_webpack@5.75.0
-  '@mdx-js/react': 2.1.5_react@18.2.0
+  '@mdx-js/loader': 2.2.1_webpack@5.75.0
+  '@mdx-js/react': 2.2.1_react@18.2.0
   '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
   autoprefixer: 10.4.13_postcss@8.4.20
   clsx: 1.2.1
@@ -431,8 +431,8 @@ packages:
       - supports-color
     dev: false
 
-  /@mdx-js/loader/2.1.5_webpack@5.75.0:
-    resolution: {integrity: sha512-oXjfTa/iAcMmW8DdQ+hQFodPCLqw5VKT2yoZkLwrZfPVVpUgKrI+5/ZePYq328xxtAUStZmR3ed0PWJrwd5Pkg==}
+  /@mdx-js/loader/2.2.1_webpack@5.75.0:
+    resolution: {integrity: sha512-J4E8A5H+xtk4otZiEZ5AXl61Tj04Avm5MqLQazITdI3+puVXVnTTuZUKM1oNHTtfDIfOl0uMt+o/Ij+x6Fvf+g==}
     peerDependencies:
       webpack: '>=4'
     dependencies:
@@ -467,8 +467,8 @@ packages:
       - supports-color
     dev: false
 
-  /@mdx-js/react/2.1.5_react@18.2.0:
-    resolution: {integrity: sha512-3Az1I6SAWA9R38rYjz5rXBrGKeZhq96CSSyQtqY+maPj8stBsoUH5pNcmIixuGkufYsh8F5+ka2CVPo2fycWZw==}
+  /@mdx-js/react/2.2.1_react@18.2.0:
+    resolution: {integrity: sha512-YdXcMcEnqZhzql98RNrqYo9cEhTTesBiCclEtoiQUbJwx87q9453GTapYU6kJ8ZZ2ek1Vp25SiAXEFy5O/eAPw==}
     peerDependencies:
       react: '>=16'
     dependencies:
