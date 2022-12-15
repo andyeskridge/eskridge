@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@headlessui/react': 1.7.5
+  '@headlessui/react': 1.7.6
   '@mdx-js/loader': 2.2.1
   '@mdx-js/react': 2.2.1
   '@tailwindcss/typography': 0.5.8
@@ -42,7 +42,7 @@ specifiers:
   unixify: 1.0.0
 
 dependencies:
-  '@headlessui/react': 1.7.5_biqbaboplfbrettd7655fr4n2y
+  '@headlessui/react': 1.7.6_biqbaboplfbrettd7655fr4n2y
   '@mdx-js/loader': 2.2.1_webpack@5.75.0
   '@mdx-js/react': 2.2.1_react@18.2.0
   '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
@@ -341,8 +341,8 @@ packages:
       yargs: 16.2.0
     dev: false
 
-  /@headlessui/react/1.7.5_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-UZSxOfA0CYKO7QDT5OGlFvesvlR1SKkawwSjwQJwt7XQItpzRKdE3ZUQxHcg4LEz3C0Wler2s9psdb872ynwrQ==}
+  /@headlessui/react/1.7.6_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-yM/IOGCRaS/DaQRchElrTiH0jOfYWbBX5wkZTAbPDu4OMYdQ1ateM/UgApOcv+7DNpeRaMjUz4bZ4xxNgTGNLA==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16 || ^17 || ^18
@@ -877,13 +877,13 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.10
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
     dev: false
 
   /@types/eslint/8.4.10:
     resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: false
 
