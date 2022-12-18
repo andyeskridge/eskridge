@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@headlessui/react': 1.7.6
+  '@headlessui/react': 1.7.7
   '@mdx-js/loader': 2.2.1
   '@mdx-js/react': 2.2.1
   '@tailwindcss/typography': 0.5.8
@@ -42,7 +42,7 @@ specifiers:
   unixify: 1.0.0
 
 dependencies:
-  '@headlessui/react': 1.7.6_biqbaboplfbrettd7655fr4n2y
+  '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
   '@mdx-js/loader': 2.2.1_webpack@5.75.0
   '@mdx-js/react': 2.2.1_react@18.2.0
   '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
@@ -341,8 +341,8 @@ packages:
       yargs: 16.2.0
     dev: false
 
-  /@headlessui/react/1.7.6_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-yM/IOGCRaS/DaQRchElrTiH0jOfYWbBX5wkZTAbPDu4OMYdQ1ateM/UgApOcv+7DNpeRaMjUz4bZ4xxNgTGNLA==}
+  /@headlessui/react/1.7.7_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-BqDOd/tB9u2tA0T3Z0fn18ktw+KbVwMnkxxsGPIH2hzssrQhKB5n/6StZOyvLYP/FsYtvuXfi9I0YowKPv2c1w==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16 || ^17 || ^18
