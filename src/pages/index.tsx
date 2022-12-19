@@ -6,7 +6,12 @@ import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
-import { TwitterIcon, GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
+import {
+  TwitterIcon,
+  GitHubIcon,
+  LinkedInIcon,
+  MastodonIcon,
+} from '@/components/SocialIcons'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -101,6 +106,7 @@ function SocialLink({
 }: {
   icon: any
   href: string
+  rel?: string
 }) {
   return (
     <Link className="group -m-1 p-1" href={href} {...props}>
@@ -302,6 +308,12 @@ export default function Home({ articles }: { articles: Article[] }) {
               href="https://linkedin.com/in/andyeskridge"
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
+            />
+            <SocialLink
+              href="https://mastodon.social/@andy"
+              aria-label="Follow on Mastodon"
+              icon={MastodonIcon}
+              rel="me"
             />
           </div>
         </div>
