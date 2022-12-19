@@ -1,4 +1,4 @@
-import { Head, Html, Main, NextScript } from 'next/document'
+import Script from 'next/script'
 
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -35,26 +35,16 @@ const modeScript = `
   }
 `
 
-export default function Document() {
+export default function Head() {
   return (
-    <Html className="h-full antialiased" lang="en">
-      <Head>
-        <script dangerouslySetInnerHTML={{ __html: modeScript }} />
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          href={`${process.env.NEXT_PUBLIC_SITE_URL}/rss/feed.xml`}
-        />
-        <link
-          rel="alternate"
-          type="application/feed+json"
-          href={`${process.env.NEXT_PUBLIC_SITE_URL}/rss/feed.json`}
-        />
-      </Head>
-      <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
+    <>
+      {/* eslint-disable-next-line @next/next/inline-script-id,@next/next/no-before-interactive-script-outside-document */}
+      <Script id="themeScript">{modeScript}</Script>
+      <title>Andy Eskridge - Senior Engineering Manager</title>
+      <meta
+        name="description"
+        content="I’m Andy, a senior engineering manager based in Dallas, TX."
+      />
+    </>
   )
 }

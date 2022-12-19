@@ -1,5 +1,3 @@
-import Head from 'next/head'
-
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { getAllArticles } from '@/lib/getAllArticles'
@@ -33,16 +31,10 @@ function Article({ article }: { article: Article }) {
   )
 }
 
-export default function ArticlesIndex({ articles }: { articles: Article[] }) {
+export default async function ArticlesIndex() {
+  const articles = await getAllArticles()
   return (
     <>
-      <Head>
-        <title>Articles - Andy Eskridge</title>
-        <meta
-          name="description"
-          content="All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order."
-        />
-      </Head>
       <SimpleLayout
         title="Writing on software design, managing high performing teams and more."
         intro="All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order."
@@ -57,12 +49,4 @@ export default function ArticlesIndex({ articles }: { articles: Article[] }) {
       </SimpleLayout>
     </>
   )
-}
-
-export async function getStaticProps() {
-  return {
-    props: {
-      articles: await getAllArticles(),
-    },
-  }
 }

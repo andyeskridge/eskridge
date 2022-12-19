@@ -1,11 +1,13 @@
+'use client'
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
 import { formatDate } from '@/lib/formatDate'
-import { allArticles, Article } from 'contentlayer/generated'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { type Article } from 'contentlayer/generated'
+import { useRouter } from 'next/navigation'
 import { SVGProps } from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
+import { getAllArticles } from '@/lib/getAllArticles'
+import { notFound } from 'next/navigation'
 
 function ArrowLeftIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
@@ -22,53 +24,44 @@ function ArrowLeftIcon(
   )
 }
 
-export async function getStaticPaths() {
-  const paths = allArticles.map((post) => post.url)
-  return {
-    paths,
-    fallback: false,
-  }
+export function generateStaticParams() {
+  return getAllArticles().map((post) => ({
+    slug: post._raw.flattenedPath,
+  }))
 }
 
-export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const post = allArticles.find(
-    (post) => post._raw.flattenedPath === params.slug
+function getArticle(slug?: string) {
+  const post = getAllArticles().find(
+    (post: Article) => post._raw.flattenedPath === slug
   )
-  return {
-    props: {
-      post,
-    },
+  if (!post) {
+    throw notFound()
   }
+  return post
 }
 
-const Article = ({
-  post,
-  previousPathname,
+export default async function Article({
+  params,
 }: {
-  post: Article
-  previousPathname: string
-}) => {
+  params: { slug?: string }
+}) {
   const router = useRouter()
+  const post = getArticle(params.slug)
   const Component = useMDXComponent(post.body.code)
   return (
     <>
-      <Head>
-        <title>{`${post.title} - Andy Eskridge`}</title>
-        <meta name="description" content={post.description} />
-      </Head>
       <Container className="mt-16 lg:mt-32">
         <div className="xl:relative">
           <div className="mx-auto max-w-2xl">
-            {previousPathname && (
-              <button
-                type="button"
-                onClick={() => router.back()}
-                aria-label="Go back to articles"
-                className="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:absolute lg:-left-5 lg:mb-0 lg:-mt-2 xl:-top-1.5 xl:left-0 xl:mt-0"
-              >
-                <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" />
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={() => router.back()}
+              aria-label="Go back to articles"
+              className="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:absolute lg:-left-5 lg:mb-0 lg:-mt-2 xl:-top-1.5 xl:left-0 xl:mt-0"
+            >
+              <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" />
+            </button>
+
             <article>
               <header className="flex flex-col">
                 <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
@@ -92,5 +85,3 @@ const Article = ({
     </>
   )
 }
-
-export default Article

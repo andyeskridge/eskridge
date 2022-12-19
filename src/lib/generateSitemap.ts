@@ -7,7 +7,7 @@ function addPage(page: string) {
   </url>`
 }
 
-export async function generateSitemap() {
+export function generateSitemap() {
   const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
       <loc>${process.env.NEXT_PUBLIC_SITE_URL}/about</loc>
@@ -20,10 +20,6 @@ export async function generateSitemap() {
     <url>
       <loc>${process.env.NEXT_PUBLIC_SITE_URL}/thank-you</loc>
       <changefreq>hourly</changefreq>
-    </url>
-    <url>
-      <loc>${process.env.NEXT_PUBLIC_SITE_URL}/uses</loc>
-     <changefreq>hourly</changefreq>
     </url>
     <url>
       <loc>${process.env.NEXT_PUBLIC_SITE_URL}/articles</loc>

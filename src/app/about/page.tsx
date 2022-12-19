@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
 
@@ -45,13 +44,6 @@ function MailIcon(props: React.ComponentProps<'svg'>) {
 export default function About() {
   return (
     <>
-      <Head>
-        <title>About - Andy Eskridge</title>
-        <meta
-          name="description"
-          content="I’m Andy, a senior engineering manager based in Dallas, TX."
-        />
-      </Head>
       <Container className="mt-16 sm:mt-32">
         <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
           <div className="lg:pl-20">
