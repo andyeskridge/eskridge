@@ -7,6 +7,7 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     scrollRestoration: true,
+    allowMiddlewareResponseBody: true,
   },
   swcMinify: true,
 }
