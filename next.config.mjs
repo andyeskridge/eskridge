@@ -9,7 +9,6 @@ const nextConfig = {
     scrollRestoration: true,
     allowMiddlewareResponseBody: true,
   },
-  swcMinify: true,
 }
 
 export default withAxiom(withContentlayer(nextConfig))
