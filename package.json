@@ -34,7 +34,7 @@
     "rehype-prism-plus": "^1.5.0",
     "rehype-slug": "^5.1.0",
     "remark-gfm": "^3.0.1",
-    "sharp": "0.31.2",
+    "sharp": "0.31.3",
     "tailwindcss": "3.2.4",
     "unixify": "1.0.0"
   },
