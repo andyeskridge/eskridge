@@ -9,6 +9,18 @@ const nextConfig = {
     scrollRestoration: true,
     allowMiddlewareResponseBody: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/feed.xml',
+        destination: '/api/feed',
+      },
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
+      },
+    ]
+  },
 }
 
 export default withAxiom(withContentlayer(nextConfig))
