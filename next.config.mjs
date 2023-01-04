@@ -7,7 +7,6 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     scrollRestoration: true,
-    allowMiddlewareResponseBody: true,
   },
   async rewrites() {
     return [
