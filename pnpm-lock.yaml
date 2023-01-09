@@ -9,6 +9,7 @@ specifiers:
   '@types/mapbox__rehype-prism': 0.8.0
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.10
+  '@vercel/analytics': ^0.1.6
   autoprefixer: 10.4.13
   clsx: 1.2.1
   contentlayer: ^0.2.9
@@ -18,7 +19,6 @@ specifiers:
   focus-visible: 5.2.0
   markdown-wasm: ^1.2.0
   next: 13.1.1
-  next-axiom: 0.16.0
   next-contentlayer: ^0.2.9
   playwright: 1.29.2
   postcss: 8.4.21
@@ -43,12 +43,12 @@ dependencies:
   '@mdx-js/loader': 2.2.1_webpack@5.75.0
   '@mdx-js/react': 2.2.1_react@18.2.0
   '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
+  '@vercel/analytics': 0.1.6_react@18.2.0
   autoprefixer: 10.4.13_postcss@8.4.21
   clsx: 1.2.1
   contentlayer: 0.2.9_wz67uwuxl6z6zeyvnbtaoac7z4
   focus-visible: 5.2.0
   next: 13.1.1_65aaefrptgalbi6a2fwpzxfmae
-  next-axiom: 0.16.0_next@13.1.1
   next-contentlayer: 0.2.9_eos7o3tldcauakcvktmq5izzw4
   postcss-focus-visible: 7.1.0_postcss@8.4.21
   react: 18.2.0
@@ -1462,6 +1462,14 @@ packages:
       '@typescript-eslint/types': 5.48.0
       eslint-visitor-keys: 3.3.0
     dev: true
+
+  /@vercel/analytics/0.1.6_react@18.2.0:
+    resolution: {integrity: sha512-zNd5pj3iDvq8IMBQHa1YRcIteiw6ZiPB8AsONHd8ieFXlNpLqhXfIYnf4WvTfZ7S1NSJ++mIM14aJnNac/VMXQ==}
+    peerDependencies:
+      react: ^16.8||^17||^18
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /@vue/compiler-core/3.2.45:
     resolution: {integrity: sha512-rcMj7H+PYe5wBV3iYeUgbCglC+pbpN8hBLTJvRiK2eKQiWqu+fG9F+8sW99JdL4LQi7Re178UOxn09puSXvn4A==}
@@ -4273,16 +4281,6 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: false
 
-  /next-axiom/0.16.0_next@13.1.1:
-    resolution: {integrity: sha512-WlmObMtra/OJPiJ6Gim4g8OTuLlJx9DVTeEaNmBIO3wEkR+Nt4932/xng2a9XofOVR7RgaNk1QIyPrqZW9P25w==}
-    engines: {node: '>=15'}
-    peerDependencies:
-      next: ^12.1.4 || ^13
-    dependencies:
-      next: 13.1.1_65aaefrptgalbi6a2fwpzxfmae
-      whatwg-fetch: 3.6.2
-    dev: false
-
   /next-contentlayer/0.2.9_eos7o3tldcauakcvktmq5izzw4:
     resolution: {integrity: sha512-W3sDr86zqfjOc6WaKnIbYtR4mTbwQ/Kql/8FGpbk6cAAn42sHW9tuRpQi0mpdHOIIn1mg/ms/L/r7aM4rdk4gA==}
     peerDependencies:
@@ -5749,10 +5747,6 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
-    dev: false
-
-  /whatwg-fetch/3.6.2:
-    resolution: {integrity: sha512-bJlen0FcuU/0EMLrdbJ7zOnW6ITZLrZMIarMUVmdKtsGvZna8vxKYaexICWPfZ8qwf9fzNq+UEIZrnSaApt6RA==}
     dev: false
 
   /which-boxed-primitive/1.0.2:
