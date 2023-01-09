@@ -3,7 +3,17 @@
   "pipeline": {
     "build": {
       "outputs": [".next/**"],
-      "env": ["NEXT_PUBLIC_SITE_URL"]
+      "env": ["NEXT_PUBLIC_SITE_URL"],
+      "inputs": [
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.js",
+        "next.config.mjs",
+        "package.json",
+        "tsconfig.json",
+        "pnpm-lock.yaml",
+        ".env"
+      ]
     },
     "lint": {
       "outputs": []
