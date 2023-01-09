@@ -36,5 +36,4 @@ yarn-error.log*
 tsconfig.tsbuildinfo
 public/sitemap.xml
 .contentlayer/
-.turbo/turbo-build.log
-.turbo/turbo-lint.log
+.turbo/
