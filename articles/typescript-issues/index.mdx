@@ -1,15 +1,9 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const meta = {
-  author: 'Andy Eskridge',
-  date: '2022-10-06',
-  title: 'Typescript issues',
-  description: 'An issue I ran into with Typescript and how I solved it',
-}
-
-export default function Article(props) {
-  return <ArticleLayout meta={meta} {...props} />
-}
+---
+author: Andy Eskridge,
+date: 2022-10-06,
+title: Typescript issues,
+description: An issue I ran into with Typescript and how I solved it,
+---
 
 ## Context
 

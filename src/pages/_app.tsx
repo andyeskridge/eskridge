@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export { reportWebVitals } from 'next-axiom'
+import { Analytics } from '@vercel/analytics/react'
 
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
@@ -36,6 +36,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
         </main>
         <Footer />
       </div>
+      <Analytics />
     </>
   )
 }

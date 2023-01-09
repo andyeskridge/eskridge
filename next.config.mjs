@@ -1,24 +1,24 @@
-import nextMDX from '@next/mdx'
-import remarkGfm from 'remark-gfm'
-import rehypePrism from '@mapbox/rehype-prism'
-import { withAxiom } from 'next-axiom'
+import { withContentlayer } from 'next-contentlayer'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['jsx', 'mdx', 'tsx'],
+  pageExtensions: ['jsx', 'mdx', 'tsx', 'ts'],
   reactStrictMode: true,
   experimental: {
-    newNextLinkBehavior: true,
     scrollRestoration: true,
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/feed.xml',
+        destination: '/api/feed',
+      },
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
+      },
+    ]
   },
 }
 
-const withMDX = nextMDX({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypePrism],
-  },
-})
-
-export default withAxiom(withMDX(nextConfig))
+export default withContentlayer(nextConfig)

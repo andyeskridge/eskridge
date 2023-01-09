@@ -1,33 +1,36 @@
-import { writeFileSync } from 'fs'
-import { globby } from 'globby'
-import unixify from 'unixify'
+import { allArticles } from 'contentlayer/generated'
 
 function addPage(page: string) {
-  const path = page
-    .replace('src/pages', '')
-    .replace('.jsx', '')
-    .replace('.tsx', '')
-    .replace('.mdx', '')
-    .replace('/index', '')
-  const route = unixify(path)
-
   return `  <url>
-    <loc>${`${process.env.NEXT_PUBLIC_SITE_URL}${route}`}</loc>
+    <loc>${`${process.env.NEXT_PUBLIC_SITE_URL}${page}`}</loc>
     <changefreq>hourly</changefreq>
   </url>`
 }
 
-export async function generateSitemap() {
-  // Ignore Next.js specific files (e.g., _app.js) and API routes.
-  const pages = await globby([
-    'src/pages/**/*{.jsx,.mdx,.tsx}',
-    '!src/pages/_*.jsx',
-    '!src/pages/_*.tsx',
-    '!src/pages/api',
-  ])
+export function generateSitemap() {
   const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages.map(addPage).join('\n')}
-</urlset>`
+    <url>
+      <loc>${process.env.NEXT_PUBLIC_SITE_URL}/about</loc>
+      <changefreq>hourly</changefreq>
+    </url>
+    <url>
+      <loc>${process.env.NEXT_PUBLIC_SITE_URL}</loc>
+      <changefreq>hourly</changefreq>
+    </url>
+    <url>
+      <loc>${process.env.NEXT_PUBLIC_SITE_URL}/thank-you</loc>
+      <changefreq>hourly</changefreq>
+    </url>
+    <url>
+      <loc>${process.env.NEXT_PUBLIC_SITE_URL}/uses</loc>
+     <changefreq>hourly</changefreq>
+    </url>
+    <url>
+      <loc>${process.env.NEXT_PUBLIC_SITE_URL}/articles</loc>
+      <changefreq>hourly</changefreq>
+    </url>
+    ${allArticles.map((article) => addPage(article.url)).join('')}
+  </urlset>`
 
-  writeFileSync('public/sitemap.xml', sitemap)
+  return sitemap
 }
