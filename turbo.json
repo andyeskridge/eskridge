@@ -1,7 +1,7 @@
 {
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
-    "build": {
+    "_build": {
       "outputs": [".next/**"],
       "env": ["NEXT_PUBLIC_SITE_URL"],
       "inputs": [
@@ -15,7 +15,7 @@
         ".env"
       ]
     },
-    "lint": {
+    "_lint": {
       "outputs": []
     }
   }
