@@ -7,10 +7,10 @@
     "_build": "next build",
     "_start": "next start",
     "_lint": "next lint",
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "start": "turbo start",
-    "lint": "turbo lint"
+    "dev": "turbo _dev",
+    "build": "turbo _build",
+    "start": "turbo _start",
+    "lint": "turbo _lint"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
