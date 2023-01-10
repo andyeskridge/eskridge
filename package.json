@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "_dev": "next dev",
+    "_build": "next build",
+    "_start": "next start",
+    "_lint": "next lint",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "start": "turbo start",
+    "lint": "turbo lint"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
