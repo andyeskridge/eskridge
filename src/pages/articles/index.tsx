@@ -62,7 +62,8 @@ export default function ArticlesIndex({ articles }: { articles: Article[] }) {
 export async function getStaticProps() {
   return {
     props: {
-      articles: await getAllArticles(),
+      articles: getAllArticles(),
     },
   }
 }
+

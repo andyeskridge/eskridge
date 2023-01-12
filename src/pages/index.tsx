@@ -339,7 +339,7 @@ export default function Home({ articles }: { articles: Article[] }) {
 export async function getStaticProps() {
   return {
     props: {
-      articles: (await getAllArticles()).slice(0, 4),
+      articles: getAllArticles().slice(0, 4),
     },
   }
 }
