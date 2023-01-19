@@ -8,10 +8,7 @@
     "rebaseStalePrs": true,
     "branchTopic": "lock-file-maintenance",
     "commitMessageAction": "Lock file maintenance",
-    "commitMessageTopic": null,
-    "commitMessageExtra": null,
     "schedule": ["before 5am on monday"],
-    "groupName": null,
     "prBodyDefinitions": {
       "Change": "All locks refreshed"
     }
