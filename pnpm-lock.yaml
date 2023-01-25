@@ -22,7 +22,7 @@ specifiers:
   next-contentlayer: 0.3.0
   playwright: 1.30.0
   postcss: 8.4.21
-  postcss-focus-visible: 7.1.0
+  postcss-focus-visible: 8.0.0
   prettier: 2.8.3
   prettier-plugin-tailwindcss: 0.2.2
   react: 18.2.0
@@ -51,7 +51,7 @@ dependencies:
   focus-visible: 5.2.0
   next: 13.1.5_biqbaboplfbrettd7655fr4n2y
   next-contentlayer: 0.3.0_zlmohcl427rmb47gj3oxx66h5u
-  postcss-focus-visible: 7.1.0_postcss@8.4.21
+  postcss-focus-visible: 8.0.0_postcss@8.4.21
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   reading-time: 1.5.0
@@ -4304,11 +4304,11 @@ packages:
       playwright-core: 1.30.0
     dev: true
 
-  /postcss-focus-visible/7.1.0_postcss@8.4.21:
-    resolution: {integrity: sha512-OGxO+eCXVkF94us4uOVLHDPaoJuV8HQhaqmVPo2DtECdjqzWNkmwhFRSRRDT5Sg04JQsAECzgIhpyX0JRTgwlQ==}
-    engines: {node: ^12 || ^14 || >=16}
+  /postcss-focus-visible/8.0.0_postcss@8.4.21:
+    resolution: {integrity: sha512-mLIYkOFGXJSJtFwj9VX5LYUfWbxuwBWQxOqcdKk2p4apCAvsxji0jFpZhOPEpwD9YFbcTi0RWb+9Zam5y7qw5g==}
+    engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
-      postcss: ^8.2
+      postcss: ^8.4
     dependencies:
       postcss: 8.4.21
       postcss-selector-parser: 6.0.11
