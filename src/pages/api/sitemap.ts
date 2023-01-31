@@ -1,5 +1,6 @@
-import { generateSitemap } from '@/lib/generateSitemap'
 import type { NextRequest } from 'next/server'
+
+import { generateSitemap } from '@/lib/generateSitemap'
 
 export const config = {
   runtime: 'edge',

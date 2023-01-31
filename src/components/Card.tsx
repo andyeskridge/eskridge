@@ -1,6 +1,8 @@
-import Link from 'next/link'
-import clsx from 'clsx'
 import { SVGProps } from 'react'
+
+import Link from 'next/link'
+
+import clsx from 'clsx'
 
 function ChevronRightIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>

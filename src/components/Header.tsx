@@ -1,12 +1,13 @@
+import { CSSProperties, Fragment, ReactNode, useEffect, useRef } from 'react'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Popover, Transition } from '@headlessui/react'
-import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import avatarImage from '@/images/avatar.jpg'
-import { CSSProperties, Fragment, ReactNode, useEffect, useRef } from 'react'
+import { Popover, Transition } from '@headlessui/react'
+import clsx from 'clsx'
 
 function CloseIcon(props: React.ComponentProps<'svg'>) {
   return (

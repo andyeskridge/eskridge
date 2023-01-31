@@ -1,10 +1,12 @@
+import { SVGProps } from 'react'
+
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
 import { formatDate } from '@/lib/formatDate'
-import { allArticles, Article } from 'contentlayer/generated'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { SVGProps } from 'react'
+import { Article as ArticleType, allArticles } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 
 function ArrowLeftIcon(
@@ -45,7 +47,7 @@ const Article = ({
   post,
   previousPathname,
 }: {
-  post: Article
+  post: ArticleType
   previousPathname: string
 }) => {
   const router = useRouter()

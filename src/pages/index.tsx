@@ -1,31 +1,31 @@
-import Image from 'next/image'
 import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import {
-  TwitterIcon,
   GitHubIcon,
   LinkedInIcon,
   MastodonIcon,
+  TwitterIcon,
 } from '@/components/SocialIcons'
+import logoAllegro from '@/images/logos/allegro.jpg'
+import logoBeckTech from '@/images/logos/becktech.jpg'
+import logoCenergistic from '@/images/logos/cenergistic.jpg'
+import logoGwynnGroup from '@/images/logos/gwynngroup.jpg'
+import logoProjekt202 from '@/images/logos/projekt202.jpg'
+import logoProviderScience from '@/images/logos/providerscience.jpg'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
-import logoCenergistic from '@/images/logos/cenergistic.jpg'
-import logoProjekt202 from '@/images/logos/projekt202.jpg'
-import logoAllegro from '@/images/logos/allegro.jpg'
-import logoBeckTech from '@/images/logos/becktech.jpg'
-import logoGwynnGroup from '@/images/logos/gwynngroup.jpg'
-import logoProviderScience from '@/images/logos/providerscience.jpg'
-import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
-import { type Article } from 'contentlayer/generated'
+import { getAllArticles } from '@/lib/getAllArticles'
+import clsx from 'clsx'
+import type { Article as ArticleType } from 'contentlayer/generated'
 
 function MailIcon(props: React.ComponentProps<'svg'>) {
   return (
@@ -86,7 +86,7 @@ function ArrowDownIcon(props: React.ComponentProps<'svg'>) {
   )
 }
 
-function Article({ article }: { article: Article }) {
+function Article({ article }: { article: ArticleType }) {
   return (
     <Card as="article">
       <Card.Title href={article.url}>{article.title}</Card.Title>
@@ -272,7 +272,7 @@ function Photos() {
   )
 }
 
-export default function Home({ articles }: { articles: Article[] }) {
+export default function Home({ articles }: { articles: ArticleType[] }) {
   return (
     <>
       <Head>
