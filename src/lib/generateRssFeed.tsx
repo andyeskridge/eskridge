@@ -1,5 +1,5 @@
-import { Article } from 'contentlayer/generated'
 import { getAllArticles } from './getAllArticles'
+import { Article } from 'contentlayer/generated'
 
 function addLeadingZero(num: string | number) {
   num = num.toString()

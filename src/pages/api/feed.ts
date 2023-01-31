@@ -1,5 +1,6 @@
-import { generateRssFeed } from '@/lib/generateRssFeed'
 import type { NextRequest } from 'next/server'
+
+import { generateRssFeed } from '@/lib/generateRssFeed'
 
 export const config = {
   runtime: 'edge',

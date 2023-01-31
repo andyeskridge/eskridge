@@ -2,11 +2,11 @@ import Head from 'next/head'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
-import { type Article } from 'contentlayer/generated'
+import { getAllArticles } from '@/lib/getAllArticles'
+import type { Article as ArticleType } from 'contentlayer/generated'
 
-function Article({ article }: { article: Article }) {
+function Article({ article }: { article: ArticleType }) {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
@@ -33,7 +33,11 @@ function Article({ article }: { article: Article }) {
   )
 }
 
-export default function ArticlesIndex({ articles }: { articles: Article[] }) {
+export default function ArticlesIndex({
+  articles,
+}: {
+  articles: ArticleType[]
+}) {
   return (
     <>
       <Head>
@@ -49,7 +53,7 @@ export default function ArticlesIndex({ articles }: { articles: Article[] }) {
       >
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">
-            {articles.map((article: Article) => (
+            {articles.map((article: ArticleType) => (
               <Article key={article.url} article={article} />
             ))}
           </div>
@@ -66,4 +70,3 @@ export async function getStaticProps() {
     },
   }
 }
-

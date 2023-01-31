@@ -1,16 +1,16 @@
-import Image from 'next/image'
 import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import {
-  TwitterIcon,
   GitHubIcon,
   LinkedInIcon,
   MastodonIcon,
+  TwitterIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
+import clsx from 'clsx'
 
 function SocialLink({
   className,
