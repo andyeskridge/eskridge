@@ -22,7 +22,7 @@ specifiers:
   next-contentlayer: 0.3.0
   playwright: 1.30.0
   postcss: 8.4.21
-  postcss-focus-visible: 8.0.0
+  postcss-focus-visible: 8.0.1
   prettier: 2.8.3
   prettier-plugin-tailwindcss: 0.2.2
   react: 18.2.0
@@ -51,7 +51,7 @@ dependencies:
   focus-visible: 5.2.0
   next: 13.1.5_biqbaboplfbrettd7655fr4n2y
   next-contentlayer: 0.3.0_egzshiigjefnrczohtxitqc2v4
-  postcss-focus-visible: 8.0.0_postcss@8.4.21
+  postcss-focus-visible: 8.0.1_postcss@8.4.21
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   reading-time: 1.5.0
@@ -1068,13 +1068,13 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.10
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
     dev: false
 
   /@types/eslint/8.4.10:
     resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: false
 
@@ -4310,8 +4310,8 @@ packages:
       playwright-core: 1.30.0
     dev: true
 
-  /postcss-focus-visible/8.0.0_postcss@8.4.21:
-    resolution: {integrity: sha512-mLIYkOFGXJSJtFwj9VX5LYUfWbxuwBWQxOqcdKk2p4apCAvsxji0jFpZhOPEpwD9YFbcTi0RWb+9Zam5y7qw5g==}
+  /postcss-focus-visible/8.0.1_postcss@8.4.21:
+    resolution: {integrity: sha512-azd1NMrLBe5bfKyomui9AMcgIR2zzlqXCTnKjshNDSClmmSO5MauTyflJUqmIwjIhD16+FbPyGV8Nxsly87BjA==}
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
       postcss: ^8.4
