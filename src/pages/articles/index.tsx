@@ -1,10 +1,12 @@
 import Head from 'next/head'
 
-import { Card } from '@/components/Card'
-import { SimpleLayout } from '@/components/SimpleLayout'
+import type { Article as ArticleType } from 'contentlayer/generated'
+
 import { formatDate } from '@/lib/formatDate'
 import { getAllArticles } from '@/lib/getAllArticles'
-import type { Article as ArticleType } from 'contentlayer/generated'
+
+import { Card } from '@/components/Card'
+import { SimpleLayout } from '@/components/SimpleLayout'
 
 function Article({ article }: { article: ArticleType }) {
   return (
