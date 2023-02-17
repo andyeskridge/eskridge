@@ -36,7 +36,7 @@ specifiers:
   rehype-slug: 5.1.0
   remark-gfm: 3.0.1
   sharp: 0.31.3
-  tailwindcss: 3.2.6
+  tailwindcss: 3.2.7
   turbo: 1.7.4
   typescript: 4.9.5
 
@@ -44,7 +44,7 @@ dependencies:
   '@headlessui/react': 1.7.11_biqbaboplfbrettd7655fr4n2y
   '@mdx-js/loader': 2.3.0_webpack@5.75.0
   '@mdx-js/react': 2.3.0_react@18.2.0
-  '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.6
+  '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
   '@vercel/analytics': 0.1.9_react@18.2.0
   autoprefixer: 10.4.13_postcss@8.4.21
   clsx: 1.2.1
@@ -63,7 +63,7 @@ dependencies:
   rehype-slug: 5.1.0
   remark-gfm: 3.0.1
   sharp: 0.31.3
-  tailwindcss: 3.2.6_postcss@8.4.21
+  tailwindcss: 3.2.7_postcss@8.4.21
 
 devDependencies:
   '@trivago/prettier-plugin-sort-imports': 4.0.0_ht5m4fjxbv43inzcw5hdarafmm
@@ -1263,7 +1263,7 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@tailwindcss/typography/0.5.9_tailwindcss@3.2.6:
+  /@tailwindcss/typography/0.5.9_tailwindcss@3.2.7:
     resolution: {integrity: sha512-t8Sg3DyynFysV9f4JDOVISGsjazNb48AeIYQwcL+Bsq5uf4RYL75C1giZ43KISjeDGBaTN3Kxh7Xj/vRSMJUUg==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
@@ -1272,7 +1272,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.6_postcss@8.4.21
+      tailwindcss: 3.2.7_postcss@8.4.21
     dev: false
 
   /@trivago/prettier-plugin-sort-imports/4.0.0_ht5m4fjxbv43inzcw5hdarafmm:
@@ -5499,8 +5499,8 @@ packages:
       tslib: 2.5.0
     dev: true
 
-  /tailwindcss/3.2.6_postcss@8.4.21:
-    resolution: {integrity: sha512-BfgQWZrtqowOQMC2bwaSNe7xcIjdDEgixWGYOd6AL0CbKHJlvhfdbINeAW76l1sO+1ov/MJ93ODJ9yluRituIw==}
+  /tailwindcss/3.2.7_postcss@8.4.21:
+    resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
