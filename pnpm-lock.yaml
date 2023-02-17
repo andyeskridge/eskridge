@@ -9,7 +9,7 @@ specifiers:
   '@types/mapbox__rehype-prism': 0.8.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
-  '@vercel/analytics': 0.1.9
+  '@vercel/analytics': 0.1.10
   autoprefixer: 10.4.13
   clsx: 1.2.1
   contentlayer: 0.3.0
@@ -45,7 +45,7 @@ dependencies:
   '@mdx-js/loader': 2.3.0_webpack@5.75.0
   '@mdx-js/react': 2.3.0_react@18.2.0
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
-  '@vercel/analytics': 0.1.9_react@18.2.0
+  '@vercel/analytics': 0.1.10_react@18.2.0
   autoprefixer: 10.4.13_postcss@8.4.21
   clsx: 1.2.1
   contentlayer: 0.3.0_gn7tycbbfqny3zw4s5udgqu7qq
@@ -1472,8 +1472,8 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vercel/analytics/0.1.9_react@18.2.0:
-    resolution: {integrity: sha512-Lfus/6HAZXQBr4uv5eCtNKrEvthKWQFFcUNh5wC3fWn+4PbHxT8bqcm1TMQfYvGJ8O4TWzn0IfrQFNWh1DHDbQ==}
+  /@vercel/analytics/0.1.10_react@18.2.0:
+    resolution: {integrity: sha512-jjJ8GzcPnQp0cMxpfYoUycMRBtDiaIeyVjZPiEPe99Dj1PdjMzAFYEASiV/hpNsXHkpcNYCveDFh6jnmh0YSDQ==}
     peerDependencies:
       react: ^16.8||^17||^18
     dependencies:
