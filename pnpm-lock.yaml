@@ -21,7 +21,7 @@ specifiers:
   markdown-wasm: 1.2.0
   next: 13.2.4
   next-contentlayer: 0.3.0
-  playwright: 1.32.0
+  playwright: 1.32.1
   postcss: 8.4.21
   postcss-focus-visible: 8.0.2
   prettier: 2.8.7
@@ -75,7 +75,7 @@ devDependencies:
   eslint-config-prettier: 8.8.0_eslint@8.36.0
   eslint-config-turbo: 0.0.10_eslint@8.36.0
   markdown-wasm: 1.2.0
-  playwright: 1.32.0
+  playwright: 1.32.1
   postcss: 8.4.21
   prettier: 2.8.7
   prettier-plugin-tailwindcss: 0.2.5_yk5p2qt6yzw3zyyilt4azle7eu
@@ -4515,19 +4515,19 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /playwright-core/1.32.0:
-    resolution: {integrity: sha512-Z9Ij17X5Z3bjpp6XKujGBp9Gv4eViESac9aDmwgQFUEJBW0K80T21m/Z+XJQlu4cNsvPygw33b6V1Va6Bda5zQ==}
+  /playwright-core/1.32.1:
+    resolution: {integrity: sha512-KZYUQC10mXD2Am1rGlidaalNGYk3LU1vZqqNk0gT4XPty1jOqgup8KDP8l2CUlqoNKhXM5IfGjWgW37xvGllBA==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
 
-  /playwright/1.32.0:
-    resolution: {integrity: sha512-zQVzxTGoC/ak2Zu0l3CeBGQ6z5oOka5ecUOk+5QbmAerih6CaVsjY9BjjhiN+UOImd3xLiNeCcmLEWcXlz1Dlg==}
+  /playwright/1.32.1:
+    resolution: {integrity: sha512-GnEizysWMvoqHC3I9l8+4/ZxeLwLNdJJG76xdKGxzOcIZDcw5RSk/FKrFb5CuA+zcLpjIM2p9eR9Z4CuUDkWXg==}
     engines: {node: '>=14'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      playwright-core: 1.32.0
+      playwright-core: 1.32.1
     dev: true
 
   /postcss-focus-visible/8.0.2_postcss@8.4.21:
