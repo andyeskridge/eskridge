@@ -46,13 +46,13 @@
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "eslint-config-prettier": "8.8.0",
-    "eslint-config-turbo": "1.10.6",
+    "eslint-config-turbo": "1.10.7",
     "markdown-wasm": "1.2.0",
     "playwright": "1.35.1",
     "postcss": "8.4.24",
     "prettier": "2.8.8",
     "prettier-plugin-tailwindcss": "0.3.0",
-    "turbo": "1.10.6",
+    "turbo": "1.10.7",
     "typescript": "5.1.6"
   }
 }
