@@ -39,8 +39,8 @@ dependencies:
     specifier: 0.3.4
     version: 0.3.4(contentlayer@0.3.4)(esbuild@0.18.11)(markdown-wasm@1.2.0)(next@13.4.7)(react-dom@18.2.0)(react@18.2.0)
   postcss-focus-visible:
-    specifier: 8.0.2
-    version: 8.0.2(postcss@8.4.24)
+    specifier: 9.0.0
+    version: 9.0.0(postcss@8.4.24)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -4672,8 +4672,8 @@ packages:
       playwright-core: 1.35.1
     dev: true
 
-  /postcss-focus-visible@8.0.2(postcss@8.4.24):
-    resolution: {integrity: sha512-f/Vd+EC/GaKElknU59esVcRYr/Y3t1ZAQyL4u2xSOgkDy4bMCmG7VP5cGvj3+BTLNE9ETfEuz2nnt4qkZwTTeA==}
+  /postcss-focus-visible@9.0.0(postcss@8.4.24):
+    resolution: {integrity: sha512-zA4TbVaIaT8npZBEROhZmlc+GBKE8AELPHXE7i4TmIUEQhw/P/mSJfY9t6tBzpQ1rABeGtEOHYrW4SboQeONMQ==}
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
       postcss: ^8.4
