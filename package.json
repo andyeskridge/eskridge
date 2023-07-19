@@ -49,7 +49,7 @@
     "eslint-config-turbo": "1.10.7",
     "markdown-wasm": "1.2.0",
     "playwright": "1.36.0",
-    "postcss": "8.4.25",
+    "postcss": "8.4.26",
     "prettier": "3.0.0",
     "prettier-plugin-tailwindcss": "0.4.0",
     "turbo": "1.10.7",
