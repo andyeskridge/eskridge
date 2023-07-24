@@ -77,8 +77,8 @@ dependencies:
 
 devDependencies:
   '@trivago/prettier-plugin-sort-imports':
-    specifier: 4.1.1
-    version: 4.1.1(prettier@3.0.0)
+    specifier: 4.2.0
+    version: 4.2.0(prettier@3.0.0)
   '@types/mapbox__rehype-prism':
     specifier: 0.8.0
     version: 0.8.0
@@ -114,7 +114,7 @@ devDependencies:
     version: 3.0.0
   prettier-plugin-tailwindcss:
     specifier: 0.4.1
-    version: 0.4.1(@trivago/prettier-plugin-sort-imports@4.1.1)(prettier@3.0.0)
+    version: 0.4.1(@trivago/prettier-plugin-sort-imports@4.2.0)(prettier@3.0.0)
   turbo:
     specifier: 1.10.9
     version: 1.10.9
@@ -145,7 +145,7 @@ packages:
     resolution: {integrity: sha512-oLcVCTeIFadUoArDTwpluncplrYBmTCCZZgXCbgNGvOBBiSDDK3eWO4b/+eOTli5tKv1lg+a5/NAXg+nTcei1w==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.17.0
+      '@babel/types': 7.22.5
       jsesc: 2.5.2
       source-map: 0.5.7
     dev: true
@@ -201,7 +201,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.17.0
+      '@babel/types': 7.22.5
     dev: true
 
   /@babel/runtime@7.22.6:
@@ -230,7 +230,7 @@ packages:
       '@babel/helper-hoist-variables': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
       '@babel/parser': 7.22.7
-      '@babel/types': 7.17.0
+      '@babel/types': 7.22.5
       debug: 4.3.4
       globals: 11.12.0
     transitivePeerDependencies:
@@ -1252,11 +1252,11 @@ packages:
       tailwindcss: 3.3.3
     dev: false
 
-  /@trivago/prettier-plugin-sort-imports@4.1.1(prettier@3.0.0):
-    resolution: {integrity: sha512-dQ2r2uzNr1x6pJsuh/8x0IRA3CBUB+pWEW3J/7N98axqt7SQSm+2fy0FLNXvXGg77xEDC7KHxJlHfLYyi7PDcw==}
+  /@trivago/prettier-plugin-sort-imports@4.2.0(prettier@3.0.0):
+    resolution: {integrity: sha512-YBepjbt+ZNBVmN3ev1amQH3lWCmHyt5qTbLCp/syXJRu/Kw2koXh44qayB1gMRxcL/gV8egmjN5xWSrYyfUtyw==}
     peerDependencies:
       '@vue/compiler-sfc': 3.x
-      prettier: 2.x
+      prettier: 2.x - 3.x
     peerDependenciesMeta:
       '@vue/compiler-sfc':
         optional: true
@@ -4838,7 +4838,7 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-tailwindcss@0.4.1(@trivago/prettier-plugin-sort-imports@4.1.1)(prettier@3.0.0):
+  /prettier-plugin-tailwindcss@0.4.1(@trivago/prettier-plugin-sort-imports@4.2.0)(prettier@3.0.0):
     resolution: {integrity: sha512-hwn2EiJmv8M+AW4YDkbjJ6HlZCTzLyz1QlySn9sMuKV/Px0fjwldlB7tol8GzdgqtkdPtzT3iJ4UzdnYXP25Ag==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
@@ -4890,7 +4890,7 @@ packages:
       prettier-plugin-twig-melody:
         optional: true
     dependencies:
-      '@trivago/prettier-plugin-sort-imports': 4.1.1(prettier@3.0.0)
+      '@trivago/prettier-plugin-sort-imports': 4.2.0(prettier@3.0.0)
       prettier: 3.0.0
     dev: true
 
