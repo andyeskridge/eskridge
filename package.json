@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "_dev": "next dev",
-    "_build": "next build",
+    "_dev": "concurrently \"contentlayer dev\" \"next dev\"",
+    "_build": "concurrently \"contentlayer build\" \"next build\"",
     "_start": "next start",
     "_lint": "next lint",
     "dev": "turbo _dev",
@@ -43,6 +43,7 @@
     "@types/mapbox__rehype-prism": "0.8.0",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
+    "concurrently": "^8.2.0",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
     "eslint-config-prettier": "8.8.0",
