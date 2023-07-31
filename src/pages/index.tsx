@@ -237,7 +237,7 @@ export default function Home({ articles }: { articles: ArticleType[] }) {
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             I’m Andy, a senior engineering manager based in Dallas, TX. I was
             raised in Florida, but I’ve lived in Texas for the last 10 years.
-            I’m a husband and father of two. One of my favorite hobbies is
+            I’m a husband and father of three. One of my favorite hobbies is
             running races.
           </p>
           <div className="mt-6 flex gap-6">
