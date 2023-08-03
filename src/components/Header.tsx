@@ -95,6 +95,7 @@ function NavItem({ href, children }: { href: string; children: ReactNode }) {
             ? 'text-teal-500 dark:text-teal-400'
             : 'hover:text-teal-500 dark:hover:text-teal-400',
         )}
+        legacyBehavior
       >
         {children}
         {isActive && (
@@ -191,6 +192,7 @@ function Avatar({
       aria-label="Home"
       className={clsx(className, 'pointer-events-auto')}
       {...props}
+      legacyBehavior
     >
       <Image
         src={avatarImage}
