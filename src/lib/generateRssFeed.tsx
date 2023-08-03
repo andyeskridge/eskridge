@@ -1,5 +1,6 @@
-import { getAllArticles } from './getAllArticles'
 import { Article } from 'contentlayer/generated'
+
+import { getAllArticles } from './getAllArticles'
 
 function addLeadingZero(num: string | number) {
   num = num.toString()
@@ -32,7 +33,7 @@ function buildRFC822Date(dateString: string) {
   const month = monthStrings[date.getMonth()]
   const year = date.getFullYear()
   const time = `${addLeadingZero(date.getHours())}:${addLeadingZero(
-    date.getMinutes()
+    date.getMinutes(),
   )}:00`
   const timezone = date.getTimezoneOffset() === 0 ? 'GMT' : 'BST'
 

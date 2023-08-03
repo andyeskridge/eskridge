@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const post = allArticles.find(
-    (post) => post._raw.flattenedPath === params.slug
+    (post) => post._raw.flattenedPath === params.slug,
   )
   return {
     props: {

@@ -8,7 +8,7 @@ const OuterContainer = forwardRef(function OuterContainer(
     children,
     ...props
   }: { className?: string; children: React.ReactNode },
-  ref: React.Ref<HTMLDivElement>
+  ref: React.Ref<HTMLDivElement>,
 ) {
   return (
     <div ref={ref} className={clsx('sm:px-8', className)} {...props}>
@@ -23,7 +23,7 @@ const InnerContainer = forwardRef(function InnerContainer(
     children,
     ...props
   }: { className?: string; children: React.ReactNode },
-  ref: React.Ref<HTMLDivElement>
+  ref: React.Ref<HTMLDivElement>,
 ) {
   return (
     <div
@@ -57,7 +57,7 @@ const _Container: ForwardRefExoticComponent<
   >
 } = forwardRef(function Container(
   { children, ...props }: { children: React.ReactNode },
-  ref: React.Ref<HTMLDivElement>
+  ref: React.Ref<HTMLDivElement>,
 ) {
   return (
     <OuterContainer ref={ref} {...props}>
