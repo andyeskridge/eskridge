@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from "next/legacy/image"
+import Image from 'next/image'
 import Link from 'next/link'
 
 import clsx from 'clsx'
@@ -59,8 +59,12 @@ export default function About() {
               <Image
                 src={portraitImage}
                 alt=""
-                sizes="(min-width: 1024px) 32rem, 20rem"
                 className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+                sizes="(min-width: 1024px) 32rem, 20rem"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </div>
           </div>

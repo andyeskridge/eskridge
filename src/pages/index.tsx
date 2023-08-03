@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from "next/legacy/image"
+import Image from 'next/image'
 import Link from 'next/link'
 
 import clsx from 'clsx'
@@ -156,6 +156,10 @@ function Resume() {
                 alt=""
                 className="h-7 w-7 rounded-full"
                 unoptimized
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </div>
             <dl className="flex flex-auto flex-wrap gap-x-2">
@@ -209,8 +213,12 @@ function Photos() {
             <Image
               src={image}
               alt=""
-              sizes="(min-width: 640px) 18rem, 11rem"
               className="absolute inset-0 h-full w-full object-cover"
+              sizes="(min-width: 640px) 18rem, 11rem"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
             />
           </div>
         ))}
