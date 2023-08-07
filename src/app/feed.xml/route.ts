@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio'
 import { Feed } from 'feed'
+import { getArticleIds } from '@/lib/getArticleIds'
 
 export const runtime = 'edge'
 
@@ -25,11 +26,7 @@ export async function GET(req: Request) {
     },
   })
 
-  let articleIds = require
-    .context('../articles', true, /\/page\.mdx$/)
-    .keys()
-    .filter((key: string) => key.startsWith('./'))
-    .map((key: string) => key.slice(2).replace(/\/page\.mdx$/, ''))
+  let articleIds = getArticleIds()
 
   for (let id of articleIds) {
     let url = String(new URL(`/articles/${id}`, req.url))
