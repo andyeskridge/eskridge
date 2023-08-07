@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "fetchReleaseNotes": "pr",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "recreateClosed": true,
+    "rebaseStalePrs": true,
+    "branchTopic": "lock-file-maintenance",
+    "commitMessageAction": "Lock file maintenance",
+    "schedule": ["before 5am on monday"],
+    "prBodyDefinitions": {
+      "Change": "All locks refreshed"
+    }
+  },
+  "prHourlyLimit": 0,
+  "rangeStrategy": "pin"
+}
