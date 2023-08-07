@@ -62,8 +62,10 @@ function SocialLink({
 function Newsletter() {
   return (
     <form
-      action="/thank-you"
+      action="https://buttondown.email/api/emails/embed-subscribe/andyeskridge"
       className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
+      method="post"
+      target="popupwindow"
     >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <MailIcon className="h-6 w-6 flex-none" />
@@ -73,8 +75,10 @@ function Newsletter() {
         Get notified when I publish something new, and unsubscribe at any time.
       </p>
       <div className="mt-6 flex">
+        <input type="hidden" value="1" name="embed" />
         <input
           type="email"
+          name="email"
           placeholder="Email address"
           aria-label="Email address"
           required
