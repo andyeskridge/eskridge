@@ -1,24 +1,23 @@
-import { CSSProperties, Fragment, ReactNode, useEffect, useRef } from 'react'
+'use client'
 
+import { Fragment, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-
+import { usePathname } from 'next/navigation'
+import { useTheme } from 'next-themes'
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
-
 import avatarImage from '@/images/avatar.jpg'
-
-import { ChevronDownIcon, CloseIcon, MoonIcon, SunIcon } from './Icons'
+import { ChevronDownIcon, CloseIcon, SunIcon, MoonIcon } from './Icons'
 
 function MobileNavItem({
   href,
   children,
 }: {
   href: string
-  children: ReactNode
+  children: React.ReactNode
 }) {
   return (
     <li>
@@ -82,8 +81,14 @@ function MobileNavigation(props: React.ComponentPropsWithoutRef<'div'>) {
   )
 }
 
-function NavItem({ href, children }: { href: string; children: ReactNode }) {
-  let isActive = useRouter().pathname === href
+function NavItem({
+  href,
+  children,
+}: {
+  href: string
+  children: React.ReactNode
+}) {
+  let isActive = usePathname() === href
 
   return (
     <li>
@@ -95,7 +100,6 @@ function NavItem({ href, children }: { href: string; children: ReactNode }) {
             ? 'text-teal-500 dark:text-teal-400'
             : 'hover:text-teal-500 dark:hover:text-teal-400',
         )}
-        legacyBehavior
       >
         {children}
         {isActive && (
@@ -117,34 +121,21 @@ function DesktopNavigation(props: React.ComponentProps<'nav'>) {
   )
 }
 
-function ModeToggle() {
-  function disableTransitionsTemporarily() {
-    document.documentElement.classList.add('[&_*]:!transition-none')
-    window.setTimeout(() => {
-      document.documentElement.classList.remove('[&_*]:!transition-none')
-    }, 0)
-  }
+function ThemeToggle() {
+  let { resolvedTheme, setTheme } = useTheme()
+  let otherTheme = resolvedTheme === 'dark' ? 'light' : 'dark'
+  let [mounted, setMounted] = useState(false)
 
-  function toggleMode() {
-    disableTransitionsTemporarily()
-
-    let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    let isSystemDarkMode = darkModeMediaQuery.matches
-    let isDarkMode = document.documentElement.classList.toggle('dark')
-
-    if (isDarkMode === isSystemDarkMode) {
-      delete window.localStorage.isDarkMode
-    } else {
-      window.localStorage.isDarkMode = isDarkMode
-    }
-  }
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <button
       type="button"
-      aria-label="Toggle dark mode"
+      aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
       className="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
-      onClick={toggleMode}
+      onClick={() => setTheme(otherTheme)}
     >
       <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600" />
       <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-teal-500" />
@@ -163,8 +154,8 @@ function AvatarContainer({
   ...props
 }: {
   className?: string
-  children?: ReactNode
-  style?: CSSProperties
+  children?: React.ReactNode
+  style?: React.CSSProperties
 }) {
   return (
     <div
@@ -184,7 +175,7 @@ function Avatar({
 }: {
   large?: boolean
   className?: string
-  style?: CSSProperties
+  style?: React.CSSProperties
 }) {
   return (
     <Link
@@ -192,28 +183,23 @@ function Avatar({
       aria-label="Home"
       className={clsx(className, 'pointer-events-auto')}
       {...props}
-      legacyBehavior
     >
       <Image
         src={avatarImage}
         alt=""
+        sizes={large ? '4rem' : '2.25rem'}
         className={clsx(
           'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
           large ? 'h-16 w-16' : 'h-9 w-9',
         )}
         priority
-        sizes={large ? '4rem' : '2.25rem'}
-        style={{
-          maxWidth: '100%',
-          height: 'auto',
-        }}
       />
     </Link>
   )
 }
 
 export function Header() {
-  let isHomePage = useRouter().pathname === '/'
+  let isHomePage = usePathname() === '/'
 
   let headerRef = useRef<HTMLDivElement>(null)
   let avatarRef = useRef<HTMLDivElement>(null)
@@ -225,6 +211,10 @@ export function Header() {
 
     function setProperty(property: string, value: any) {
       document.documentElement.style.setProperty(property, value)
+    }
+
+    function removeProperty(property: string) {
+      document.documentElement.style.removeProperty(property)
     }
 
     function updateHeaderStyles() {
@@ -251,6 +241,16 @@ export function Header() {
       } else if (top === 0) {
         setProperty('--header-height', `${scrollY + height}px`)
         setProperty('--header-mb', `${-scrollY}px`)
+      }
+
+      if (top === 0 && scrollY > 0 && scrollY >= downDelay) {
+        setProperty('--header-inner-position', 'fixed')
+        removeProperty('--header-top')
+        removeProperty('--avatar-top')
+      } else {
+        removeProperty('--header-inner-position')
+        setProperty('--header-top', '0px')
+        setProperty('--avatar-top', '0px')
       }
     }
 
@@ -296,8 +296,7 @@ export function Header() {
     window.addEventListener('resize', updateStyles)
 
     return () => {
-      // @ts-ignore
-      window.removeEventListener('scroll', updateStyles, { passive: true })
+      window.removeEventListener('scroll', updateStyles)
       window.removeEventListener('resize', updateStyles)
     }
   }, [isHomePage])
@@ -305,7 +304,7 @@ export function Header() {
   return (
     <>
       <header
-        className="pointer-events-none relative z-50 flex flex-col"
+        className="pointer-events-none relative z-50 flex flex-none flex-col"
         style={{
           height: 'var(--header-height)',
           marginBottom: 'var(--header-mb)',
@@ -321,29 +320,37 @@ export function Header() {
               className="top-0 order-last -mb-3 pt-3"
               style={{ position: 'var(--header-position)' }}
             >
-              <div className="relative">
-                <AvatarContainer
-                  className="absolute left-0 top-3 origin-left transition-opacity"
-                  style={{
-                    opacity: 'var(--avatar-border-opacity, 0)',
-                    transform: 'var(--avatar-border-transform)',
-                  }}
-                />
-                <Avatar
-                  large
-                  className="block h-16 w-16 origin-left"
-                  style={{ transform: 'var(--avatar-image-transform)' }}
-                />
+              <div
+                className="top-[var(--avatar-top,theme(spacing.3))] w-full"
+                style={{ position: 'var(--header-inner-position)' }}
+              >
+                <div className="relative">
+                  <AvatarContainer
+                    className="absolute left-0 top-3 origin-left transition-opacity"
+                    style={{
+                      opacity: 'var(--avatar-border-opacity, 0)',
+                      transform: 'var(--avatar-border-transform)',
+                    }}
+                  />
+                  <Avatar
+                    large
+                    className="block h-16 w-16 origin-left"
+                    style={{ transform: 'var(--avatar-image-transform)' }}
+                  />
+                </div>
               </div>
             </Container>
           </>
         )}
         <div
           ref={headerRef}
-          className="top-0 z-10 pt-6"
+          className="top-0 z-10 h-16 pt-6"
           style={{ position: 'var(--header-position)' }}
         >
-          <Container>
+          <Container
+            className="top-[var(--header-top,theme(spacing.6))] w-full"
+            style={{ position: 'var(--header-inner-position)' }}
+          >
             <div className="relative flex gap-4">
               <div className="flex flex-1">
                 {!isHomePage && (
@@ -358,14 +365,19 @@ export function Header() {
               </div>
               <div className="flex justify-end md:flex-1">
                 <div className="pointer-events-auto">
-                  <ModeToggle />
+                  <ThemeToggle />
                 </div>
               </div>
             </div>
           </Container>
         </div>
       </header>
-      {isHomePage && <div style={{ height: 'var(--content-offset)' }} />}
+      {isHomePage && (
+        <div
+          className="flex-none"
+          style={{ height: 'var(--content-offset)' }}
+        />
+      )}
     </>
   )
 }

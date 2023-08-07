@@ -1,5 +1,4 @@
 import Link from 'next/link'
-
 import clsx from 'clsx'
 
 const variantStyles = {
@@ -13,7 +12,6 @@ export function Button({
   variant = 'primary',
   className,
   href,
-  type,
   ...props
 }: {
   variant?: 'primary' | 'secondary'
@@ -29,7 +27,7 @@ export function Button({
   )
 
   return href ? (
-    <Link href={href} className={className} {...props} legacyBehavior />
+    <Link href={href} className={className} {...props} />
   ) : (
     <button className={className} {...props} />
   )
