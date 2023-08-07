@@ -6,22 +6,22 @@ settings:
 
 dependencies:
   '@headlessui/react':
-    specifier: ^1.7.16
+    specifier: 1.7.16
     version: 1.7.16(react-dom@18.2.0)(react@18.2.0)
   '@mapbox/rehype-prism':
-    specifier: ^0.8.0
+    specifier: 0.8.0
     version: 0.8.0
   '@mdx-js/loader':
-    specifier: ^2.3.0
+    specifier: 2.3.0
     version: 2.3.0(webpack@5.88.2)
   '@mdx-js/react':
-    specifier: ^2.3.0
+    specifier: 2.3.0
     version: 2.3.0(react@18.2.0)
   '@next/mdx':
-    specifier: ^13.4.13
+    specifier: 13.4.13
     version: 13.4.13(@mdx-js/loader@2.3.0)(@mdx-js/react@2.3.0)
   '@tailwindcss/typography':
-    specifier: ^0.5.9
+    specifier: 0.5.9
     version: 0.5.9(tailwindcss@3.3.3)
   '@types/node':
     specifier: 20.4.8
@@ -39,22 +39,22 @@ dependencies:
     specifier: 1.0.0-rc.12
     version: 1.0.0-rc.12
   clsx:
-    specifier: ^2.0.0
+    specifier: 2.0.0
     version: 2.0.0
   fast-glob:
-    specifier: ^3.3.1
+    specifier: 3.3.1
     version: 3.3.1
   feed:
-    specifier: ^4.2.2
+    specifier: 4.2.2
     version: 4.2.2
   next:
     specifier: 13.4.13
     version: 13.4.13(react-dom@18.2.0)(react@18.2.0)
   next-router-mock:
-    specifier: ^0.9.7
+    specifier: 0.9.7
     version: 0.9.7(next@13.4.13)(react@18.2.0)
   next-themes:
-    specifier: ^0.2.1
+    specifier: 0.2.1
     version: 0.2.1(next@13.4.13)(react-dom@18.2.0)(react@18.2.0)
   postcss:
     specifier: 8.4.27
@@ -66,10 +66,10 @@ dependencies:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
   remark-gfm:
-    specifier: ^3.0.1
+    specifier: 3.0.1
     version: 3.0.1
   stream:
-    specifier: ^0.0.2
+    specifier: 0.0.2
     version: 0.0.2
   tailwindcss:
     specifier: 3.3.3
@@ -80,7 +80,7 @@ dependencies:
 
 devDependencies:
   '@cloudflare/next-on-pages':
-    specifier: ^1.5.0
+    specifier: 1.5.0
     version: 1.5.0(vercel@31.2.2)(wrangler@3.4.0)
   eslint:
     specifier: 8.46.0
@@ -89,19 +89,19 @@ devDependencies:
     specifier: 13.4.13
     version: 13.4.13(eslint@8.46.0)(typescript@5.1.6)
   eslint-plugin-next-on-pages:
-    specifier: ^1.5.0
+    specifier: 1.5.0
     version: 1.5.0(eslint@8.46.0)
   prettier:
-    specifier: ^3.0.1
+    specifier: 3.0.1
     version: 3.0.1
   prettier-plugin-tailwindcss:
-    specifier: ^0.4.1
+    specifier: 0.4.1
     version: 0.4.1(prettier@3.0.1)
   vercel:
-    specifier: ^31.2.2
+    specifier: 31.2.2
     version: 31.2.2
   wrangler:
-    specifier: ^3.4.0
+    specifier: 3.4.0
     version: 3.4.0
 
 packages:
