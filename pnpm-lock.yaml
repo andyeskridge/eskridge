@@ -51,8 +51,8 @@ dependencies:
     specifier: 13.4.13
     version: 13.4.13(react-dom@18.2.0)(react@18.2.0)
   next-router-mock:
-    specifier: 0.9.7
-    version: 0.9.7(next@13.4.13)(react@18.2.0)
+    specifier: 0.9.9
+    version: 0.9.9(next@13.4.13)(react@18.2.0)
   next-themes:
     specifier: 0.2.1
     version: 0.2.1(next@13.4.13)(react-dom@18.2.0)(react@18.2.0)
@@ -5372,8 +5372,8 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: false
 
-  /next-router-mock@0.9.7(next@13.4.13)(react@18.2.0):
-    resolution: {integrity: sha512-y5ioLCIsdkJKwcoPnrUyocNEJT22RK4wKSg6LO0Q2XkBBvkYprEWy5FiCZt+CA8+qpfxpBlNca76F+glEohbRA==}
+  /next-router-mock@0.9.9(next@13.4.13)(react@18.2.0):
+    resolution: {integrity: sha512-2o50zr+5pWj0zzcvBEWNHDlmWmlDExPdX5OuXKW2aCxV85XUA6MlELr0n0f0wtXj5dUVZ8qspHj6YwF7KZHrbA==}
     peerDependencies:
       next: '>=10.0.0'
       react: '>=17.0.0'
