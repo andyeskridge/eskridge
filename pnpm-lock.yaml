@@ -24,8 +24,8 @@ dependencies:
     specifier: 0.5.9
     version: 0.5.9(tailwindcss@3.3.3)
   '@types/node':
-    specifier: 20.4.9
-    version: 20.4.9
+    specifier: 20.5.0
+    version: 20.5.0
   '@types/react':
     specifier: 18.2.19
     version: 18.2.19
@@ -903,7 +903,7 @@ packages:
   /@types/keyv@3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 20.4.9
+      '@types/node': 20.5.0
     dev: false
 
   /@types/mdast@3.0.12:
@@ -923,7 +923,7 @@ packages:
   /@types/node-fetch@2.6.3:
     resolution: {integrity: sha512-ETTL1mOEdq/sxUtgtOhKjyB2Irra4cjxksvcMUR5Zr4n+PxVhsCD9WS46oPbHL3et9Zde7CNRr+WUNlcHvsX+w==}
     dependencies:
-      '@types/node': 20.4.9
+      '@types/node': 20.5.0
       form-data: 3.0.1
     dev: true
 
@@ -931,8 +931,8 @@ packages:
     resolution: {integrity: sha512-qelS/Ra6sacc4loe/3MSjXNL1dNQ/GjxNHVzuChwMfmk7HuycRLVQN2qNY3XahK+fZc5E2szqQSKUyAF0E+2bg==}
     dev: true
 
-  /@types/node@20.4.9:
-    resolution: {integrity: sha512-8e2HYcg7ohnTUbHk8focoklEQYvemQmu9M/f43DZVx43kHn0tE3BY/6gSDxS7k0SprtS0NHvj+L80cGLnoOUcQ==}
+  /@types/node@20.5.0:
+    resolution: {integrity: sha512-Mgq7eCtoTjT89FqNoTzzXg2XvCi5VMhRV6+I2aYanc6kQCBImeNaAYRs/DyoVqk1YEUJK5gN9VO7HRIdz4Wo3Q==}
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -955,7 +955,7 @@ packages:
   /@types/responselike@1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 20.4.9
+      '@types/node': 20.5.0
     dev: false
 
   /@types/scheduler@0.16.3:
@@ -4369,7 +4369,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.4.9
+      '@types/node': 20.5.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: false
