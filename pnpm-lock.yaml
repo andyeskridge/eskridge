@@ -89,8 +89,8 @@ devDependencies:
     specifier: 13.4.13
     version: 13.4.13(eslint@8.47.0)(typescript@5.1.6)
   eslint-plugin-next-on-pages:
-    specifier: 1.5.0
-    version: 1.5.0(eslint@8.47.0)
+    specifier: 1.5.1
+    version: 1.5.1(eslint@8.47.0)
   prettier:
     specifier: 3.0.1
     version: 3.0.1
@@ -3070,8 +3070,8 @@ packages:
       semver: 6.3.1
     dev: true
 
-  /eslint-plugin-next-on-pages@1.5.0(eslint@8.47.0):
-    resolution: {integrity: sha512-JGaclxtAmXniWPNR0dMK+pXh03QYUHl2IkOtRGkriqBpjIBuSntFFu+23XUb6d/YIdUumHJhpgDubb/5bpStpQ==}
+  /eslint-plugin-next-on-pages@1.5.1(eslint@8.47.0):
+    resolution: {integrity: sha512-0zvuix2d0rK/8+7j8Vf51hyHAubPCG9LysV82Hke4IyFkq7IdeLNl8QWseO8eXrhXKFBaOe9J7HnyJ53uxBzEQ==}
     peerDependencies:
       eslint: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
