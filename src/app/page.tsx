@@ -23,7 +23,6 @@ import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import { formatDate } from '@/lib/formatDate'
-import { getAllArticles } from '@/lib/getAllArticles'
 
 import { ArrowDownIcon, BriefcaseIcon, MailIcon } from '@/components/Icons'
 import { Article } from './Article'
@@ -211,7 +210,7 @@ function Photos() {
 }
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 4)
+  let articles: any[] = []
 
   return (
     <>

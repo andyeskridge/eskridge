@@ -1,7 +1,6 @@
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { formatDate } from '@/lib/formatDate'
-import { getAllArticles } from '@/lib/getAllArticles'
 import { Article } from '@/app/Article'
 
 function Article({ article }: { article: Article }) {
@@ -40,7 +39,7 @@ export const metadata = {
 }
 
 export default async function ArticlesIndex() {
-  let articles = await getAllArticles()
+  let articles: any[] = []
 
   return (
     <SimpleLayout
