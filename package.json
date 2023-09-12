@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pages:build": "pnpm next-on-pages",
-    "pages:deploy": "pnpm run pages:build && wrangler pages deploy .vercel/output/static",
-    "pages:watch": "pnpm next-on-pages --watch",
-    "pages:dev": "pnpm wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat"
+    "pages:build": "bunx next-on-pages",
+    "pages:deploy": "bunx run pages:build && wrangler pages deploy .vercel/output/static",
+    "pages:watch": "bunx next-on-pages --watch",
+    "pages:dev": "bunx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat"
   },
   "dependencies": {
     "@headlessui/react": "1.7.17",
