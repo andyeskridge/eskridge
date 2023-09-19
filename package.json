@@ -17,7 +17,7 @@
     "@mapbox/rehype-prism": "0.8.0",
     "@mdx-js/loader": "2.3.0",
     "@mdx-js/react": "2.3.0",
-    "@next/mdx": "13.4.19",
+    "@next/mdx": "13.5.0",
     "@tailwindcss/typography": "0.5.10",
     "@types/node": "20.6.2",
     "@types/react": "18.2.22",
@@ -42,7 +42,7 @@
   "devDependencies": {
     "@cloudflare/next-on-pages": "1.6.1",
     "eslint": "8.49.0",
-    "eslint-config-next": "13.4.19",
+    "eslint-config-next": "13.5.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-next-on-pages": "1.6.1",
     "prettier": "3.0.3",
