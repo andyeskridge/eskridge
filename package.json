@@ -22,7 +22,7 @@
     "@types/node": "20.6.2",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
-    "autoprefixer": "10.4.15",
+    "autoprefixer": "10.4.16",
     "cheerio": "1.0.0-rc.12",
     "clsx": "2.0.0",
     "fast-glob": "3.3.1",
