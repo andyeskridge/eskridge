@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build",
+    "start": "tinacms build && next start",
     "lint": "next lint",
     "pages:build": "bunx next-on-pages",
     "pages:deploy": "bun run pages:build && wrangler pages deploy .vercel/output/static",
@@ -19,6 +19,7 @@
     "@mdx-js/react": "2.3.0",
     "@next/mdx": "13.5.6",
     "@tailwindcss/typography": "0.5.10",
+    "@tinacms/cli": "^1.5.31",
     "@types/node": "20.8.8",
     "@types/react": "18.2.31",
     "@types/react-dom": "18.2.14",
@@ -36,6 +37,7 @@
     "sharp": "0.32.6",
     "stream": "0.0.2",
     "tailwindcss": "3.3.3",
+    "tinacms": "^1.5.22",
     "typescript": "5.2.2"
   },
   "devDependencies": {
