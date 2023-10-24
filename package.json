@@ -19,8 +19,8 @@
     "@mdx-js/react": "2.3.0",
     "@next/mdx": "13.5.6",
     "@tailwindcss/typography": "0.5.10",
-    "@types/node": "20.8.7",
-    "@types/react": "18.2.30",
+    "@types/node": "20.8.8",
+    "@types/react": "18.2.31",
     "@types/react-dom": "18.2.14",
     "autoprefixer": "10.4.16",
     "cheerio": "1.0.0-rc.12",
@@ -39,14 +39,14 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "1.7.1",
-    "eslint": "8.51.0",
+    "@cloudflare/next-on-pages": "1.7.2",
+    "eslint": "8.52.0",
     "eslint-config-next": "13.5.6",
     "eslint-config-prettier": "9.0.0",
-    "eslint-plugin-next-on-pages": "1.7.1",
+    "eslint-plugin-next-on-pages": "1.7.2",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.6",
-    "vercel": "32.4.1",
+    "vercel": "32.5.0",
     "wrangler": "3.14.0"
   }
 }
