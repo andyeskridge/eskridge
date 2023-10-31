@@ -3,6 +3,8 @@ import { draftMode } from 'next/headers'
 import PageClient from './PageClient'
 import PageServer from './PageServer'
 
+export const runtime = 'edge'
+
 export default async function Page({
   params: { filename },
 }: {
