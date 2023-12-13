@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation'
 
 import { isUserAuthorized } from '@tinacms/auth'
 
+export const runtime = 'edge'
+
 export async function GET(request: Request) {
   // Parse query string parameters
   const { searchParams } = new URL(request.url)
