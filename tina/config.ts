@@ -1,49 +1,77 @@
-import { defineConfig } from "tinacms";
+import { defineConfig } from 'tinacms'
+import { TokenObject } from 'tinacms/dist/auth/authenticate'
 
 // Your hosting provider likely exposes this as an environment variable
-const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
+const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main'
 
 export default defineConfig({
   branch,
-  clientId: "df184e46-3a66-4aa7-8487-22b4f28947c3", // Get this from tina.io
-  token: "60b337e01be15731c05ded08bd93c9dbb25b735c", // Get this from tina.io
-
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID, // Get this from tina.io
+  token: process.env.TINA_TOKEN, // Get this from tina.io
+  admin: {
+    authHooks: {
+      onLogin: async ({ token }: { token: TokenObject }) => {
+        console.log('Welcome back!')
+        location.href =
+          `/api/preview/enter?token=${token.id_token}&slug=` +
+          location?.pathname
+      },
+      onLogout: async () => {
+        console.log('onLogout')
+        location.href = `/api/preview/exit?slug=` + location?.pathname
+      },
+    },
+  },
   build: {
-    outputFolder: "admin",
-    publicFolder: "public",
+    outputFolder: 'admin',
+    publicFolder: 'public',
   },
   media: {
     tina: {
-      mediaRoot: "",
-      publicFolder: "public",
+      mediaRoot: '',
+      publicFolder: 'public',
     },
   },
   schema: {
     collections: [
       {
-        name: "post",
-        label: "Posts",
-        path: "content/posts",
+        name: 'post',
+        label: 'Posts',
+        path: 'content/posts',
         fields: [
           {
-            type: "string",
-            name: "title",
-            label: "Title",
+            type: 'string',
+            name: 'title',
+            label: 'Title',
             isTitle: true,
             required: true,
           },
           {
-            type: "rich-text",
-            name: "body",
-            label: "Body",
+            type: 'rich-text',
+            name: 'body',
+            label: 'Body',
             isBody: true,
+          },
+          {
+            type: 'datetime',
+            name: 'date',
+            label: 'Date',
+            description: 'Date of publish',
+            required: true,
+          },
+          {
+            name: 'draft',
+            label: 'Draft',
+            type: 'boolean',
+            required: true,
+            description: 'If this is checked the post will not be published',
           },
         ],
         ui: {
           // This is an DEMO router. You can remove this to fit your site
-          router: ({ document }) => `/demo/blog/${document._sys.filename}`,
+          router: ({ document }) => `/articles/${document._sys.filename}`,
         },
       },
     ],
   },
-});
+})
