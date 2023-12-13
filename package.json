@@ -22,7 +22,7 @@
     "@tinacms/auth": "^1.0.4",
     "@tinacms/cli": "1.5.39",
     "@types/node": "20.10.4",
-    "@types/react": "18.2.43",
+    "@types/react": "18.2.45",
     "@types/react-dom": "18.2.17",
     "autoprefixer": "10.4.16",
     "cheerio": "1.0.0-rc.12",
@@ -49,7 +49,7 @@
     "eslint-plugin-next-on-pages": "1.8.2",
     "prettier": "3.1.1",
     "prettier-plugin-tailwindcss": "0.5.9",
-    "vercel": "32.7.0",
-    "wrangler": "3.19.0"
+    "vercel": "32.7.1",
+    "wrangler": "3.20.0"
   }
 }
