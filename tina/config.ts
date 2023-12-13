@@ -2,7 +2,11 @@ import { defineConfig } from 'tinacms'
 import { TokenObject } from 'tinacms/dist/auth/authenticate'
 
 // Your hosting provider likely exposes this as an environment variable
-const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main'
+const branch =
+  process.env.CF_PAGES_BRANCH ||
+  process.env.HEAD ||
+  process.env.VERCEL_GIT_COMMIT_REF ||
+  'main'
 
 export default defineConfig({
   branch,
