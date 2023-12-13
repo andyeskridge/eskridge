@@ -26,6 +26,11 @@ export default defineConfig({
       },
     },
   },
+  search: {
+    tina: {
+      indexerToken: process.env.TINA_INDEXER_TOKEN,
+    },
+  },
   build: {
     outputFolder: 'admin',
     publicFolder: 'public',
