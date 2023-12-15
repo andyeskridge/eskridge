@@ -1,4 +1,4 @@
-import client from '../../../../../tina/__generated__/client'
+import client from '@/tina/__generated__/client'
 import { draftMode } from 'next/headers'
 import PageClient from './PageClient'
 import PageServer from './PageServer'
