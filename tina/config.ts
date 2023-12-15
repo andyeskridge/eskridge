@@ -75,6 +75,13 @@ export default defineConfig({
             required: true,
             description: 'If this is checked the post will not be published',
           },
+          {
+            name: 'description',
+            label: 'Description',
+            type: 'string',
+            required: true,
+            description: 'Description of the post',
+          },
         ],
         ui: {
           // This is an DEMO router. You can remove this to fit your site

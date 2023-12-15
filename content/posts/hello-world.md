@@ -2,6 +2,7 @@
 title: 'Hello, World!'
 date: 2023-12-13T06:00:00.000Z
 draft: false
+description: 'Test post'
 ---
 
 ## Hello World!
