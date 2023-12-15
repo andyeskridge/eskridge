@@ -1,4 +1,4 @@
-import { getArticleIds } from '@/lib/getArticleIds'
+import { getAllArticles } from '@/lib/getAllArticles'
 
 export const runtime = 'edge'
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
@@ -35,7 +35,9 @@ function generateSitemap(articles: string[]) {
 }
 
 export async function GET(req: Request) {
-  let articleIds = getArticleIds()
+  let articleIds = (await getAllArticles()).map(
+    (article) => article._sys.filename,
+  )
 
   return new Response(generateSitemap(articleIds), {
     status: 200,

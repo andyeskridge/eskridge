@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio'
 import { Feed } from 'feed'
-import { getArticleIds } from '@/lib/getArticleIds'
+import { getAllArticles } from '@/lib/getAllArticles'
 
 export const runtime = 'edge'
 
@@ -26,18 +26,19 @@ export async function GET(req: Request) {
     },
   })
 
-  let articleIds = getArticleIds()
+  let articles = await getAllArticles()
 
-  for (let id of articleIds) {
-    let url = String(new URL(`/articles/${id}`, req.url))
+  for (let article of articles) {
+    let url = String(new URL(`/articles/${article._sys.filename}`, req.url))
     let html = await (await fetch(url)).text()
     let $ = cheerio.load(html)
 
-    let publicUrl = `${siteUrl}/articles/${id}`
-    let article = $('article').first()
-    let title = article.find('h1').first().text()
-    let date = article.find('time').first().attr('datetime') ?? ''
-    let content = article.find('[data-mdx-content]').first().html() ?? undefined
+    let publicUrl = `${siteUrl}/articles/${article._sys.filename}`
+    let articleDom = $('article').first()
+    let title = article.title
+    let date = article.date
+    let content =
+      articleDom.find('[data-mdx-content]').first().html() ?? undefined
 
     feed.addItem({
       title,

@@ -1,22 +1,10 @@
-import glob from 'fast-glob'
+import client from '@/tina/__generated__/client'
+import { Post } from '@/tina/__generated__/types'
 
-async function importArticle(articleFilename: string) {
-  let { article } = await import(`../app/articles/${articleFilename}`)
-
-  return {
-    slug: articleFilename.replace(/(\/page)?\.mdx$/, ''),
-    ...article,
-  }
-}
-
-export async function getAllArticles() {
-  let articleFilenames = await glob('*/page.mdx', {
-    cwd: './src/app/articles',
+export async function getAllArticles(): Promise<Post[]> {
+  let articlesRes = await client.queries.postConnection()
+  const articles = (articlesRes.data.postConnection.edges || []).map((edge) => {
+    return edge!.node
   })
-
-  let articles = await Promise.all(articleFilenames.map(importArticle))
-
-  return articles.sort(
-    (a, z) => new Date(z.date).valueOf() - new Date(a.date).valueOf(),
-  )
+  return articles as Post[]
 }

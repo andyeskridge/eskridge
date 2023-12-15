@@ -25,12 +25,13 @@ import image5 from '@/images/photos/image-5.jpg'
 import { formatDate } from '@/lib/formatDate'
 
 import { ArrowDownIcon, BriefcaseIcon, MailIcon } from '@/components/Icons'
-import { Article } from './Article'
+import { getAllArticles } from '@/lib/getAllArticles'
+import { Post } from '@/tina/__generated__/types'
 
-function Article({ article }: { article: Article }) {
+function Article({ article }: { article: Post }) {
   return (
     <Card as="article">
-      <Card.Title href={`/articles/${article.slug}`}>
+      <Card.Title href={`/articles/${article._sys.filename}`}>
         {article.title}
       </Card.Title>
       <Card.Eyebrow as="time" dateTime={article.date} decorate>
@@ -210,7 +211,7 @@ function Photos() {
 }
 
 export default async function Home() {
-  let articles: any[] = []
+  let articles = await getAllArticles()
 
   return (
     <>
@@ -255,7 +256,7 @@ export default async function Home() {
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
             {articles.map((article) => (
-              <Article key={article.slug} article={article} />
+              <Article key={article._sys.filename} article={article} />
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
