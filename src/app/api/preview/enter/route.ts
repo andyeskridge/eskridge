@@ -2,9 +2,32 @@
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import { isUserAuthorized } from '@tinacms/auth'
-
 export const runtime = 'edge'
+
+const isUserAuthorized = async (args: { clientID: string; token: string }) => {
+  const clientID = args.clientID
+  const token = args.token
+  try {
+    const tinaCloudRes = await fetch(
+      `https://identity.tinajs.io/v2/apps/${clientID}/currentUser`,
+      {
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          authorization: token,
+        }),
+        method: 'GET',
+      },
+    )
+    if (tinaCloudRes.ok) {
+      const user = await tinaCloudRes.json()
+      return user
+    }
+    return
+  } catch (e) {
+    console.error(e)
+    throw e
+  }
+}
 
 export async function GET(request: Request) {
   // Parse query string parameters
