@@ -15,6 +15,10 @@ jobs:
           bun-version: latest
       #Run your project's build step
       - name: Build
+        env:
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          TINA_INDEXER_TOKEN: ${{ secrets.TINA_INDEXER_TOKEN }}
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
         run: bun install && bun run pages:build
       - name: Publish
         uses: cloudflare/pages-action@1
