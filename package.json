@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
-    "build": "tinacms build && next build",
-    "start": "tinacms build && next start",
+    "build": "next build",
+    "start": "next start",
+    "tina:build": "tinacms build",
     "lint": "next lint",
     "pages:build": "bunx next-on-pages",
     "pages:deploy": "bun run pages:build && wrangler pages deploy .vercel/output/static",

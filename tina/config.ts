@@ -6,6 +6,7 @@ const branch =
   process.env.CF_PAGES_BRANCH ||
   process.env.HEAD ||
   process.env.VERCEL_GIT_COMMIT_REF ||
+  process.env.GITHUB_REF_NAME ||
   'main'
 
 export default defineConfig({
