@@ -1,7 +1,5 @@
 import client from '@/tina/__generated__/client'
-import { draftMode } from 'next/headers'
 import PageClient from './PageClient'
-import PageServer from './PageServer'
 
 export const runtime = 'edge'
 
@@ -14,9 +12,7 @@ export default async function Page({
     relativePath: `${filename}.md`,
   })
 
-  const { isEnabled } = draftMode()
-
-  return <>{isEnabled ? <PageClient {...res} /> : <PageServer {...res} />}</>
+  return <PageClient {...res} />
 }
 
 export async function generateStaticParams() {
