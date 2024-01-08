@@ -36,7 +36,7 @@
     "typescript": "5.3.3"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "1.8.3",
+    "@cloudflare/next-on-pages": "1.8.5",
     "eslint": "8.56.0",
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "9.1.0",
