@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
-    "build": "next build",
-    "start": "next start",
+    "build": "tinacms build && next build",
+    "start": "tinacms build && next start",
     "tina:build": "tinacms build",
     "lint": "next lint",
     "pages:build": "bunx next-on-pages",
