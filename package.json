@@ -40,7 +40,7 @@
     "eslint": "8.56.0",
     "eslint-config-next": "14.1.0",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-next-on-pages": "1.8.6",
+    "eslint-plugin-next-on-pages": "1.9.0",
     "prettier": "3.2.5",
     "prettier-plugin-tailwindcss": "0.5.11",
     "vercel": "33.5.1",
