@@ -1,7 +1,7 @@
 import { getAllArticles } from '@/lib/getAllArticles'
 
 export const runtime = 'edge'
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+const siteUrl = process.env.CF_PAGES_URL ?? 'http://localhost:3000'
 
 function addPage(page: string) {
   return `  <url>

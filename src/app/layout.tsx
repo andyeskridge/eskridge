@@ -12,7 +12,7 @@ export const metadata = {
   description: 'I’m Andy, a senior engineering manager based in Dallas, TX.',
   alternates: {
     types: {
-      'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
+      'application/rss+xml': `${process.env.CF_PAGES_URL}/feed.xml`,
     },
   },
 }
