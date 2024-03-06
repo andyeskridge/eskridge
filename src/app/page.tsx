@@ -15,7 +15,7 @@ import logoAllegro from '@/images/logos/allegro.jpg'
 import logoBeckTech from '@/images/logos/becktech.jpg'
 import logoCenergistic from '@/images/logos/cenergistic.jpg'
 import logoGwynnGroup from '@/images/logos/gwynngroup.jpg'
-import logoProjekt202 from '@/images/logos/projekt202.jpg'
+import logoStellarElements from '@/images/logos/SE_Star_BLK.svg'
 import logoProviderScience from '@/images/logos/providerscience.jpg'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
@@ -94,9 +94,9 @@ function Newsletter() {
 function Resume() {
   let resume = [
     {
-      company: 'projekt202',
-      title: 'Senior Solution Architect',
-      logo: logoProjekt202,
+      company: 'Stellar Elements',
+      title: 'Associate Director',
+      logo: logoStellarElements,
       start: '2022',
       end: 'Present',
     },
