@@ -12,7 +12,7 @@ export const metadata = {
   description: 'I’m Andy, a senior engineering manager based in Dallas, TX.',
   alternates: {
     types: {
-      'application/rss+xml': `${process.env.CF_PAGES_URL}/feed.xml`,
+      'application/rss+xml': `${process.env.CF_PAGES_BRANCH == 'main' ? 'https://eskridge.dev' : process.env.CF_PAGES_URL}/feed.xml`,
     },
   },
 }

@@ -5,7 +5,10 @@ import { getAllArticles } from '@/lib/getAllArticles'
 export const runtime = 'edge'
 
 export async function GET(req: Request) {
-  let siteUrl = process.env.CF_PAGES_URL ?? 'https://localhost:3000'
+  let siteUrl =
+    process.env.CF_PAGES_BRANCH == 'main'
+      ? 'https://eskridge.dev'
+      : process.env.CF_PAGES_URL ?? 'https://localhost:3000'
   let author = {
     name: 'Andy Eskridge',
     email: 'andy@eskridge.dev',
