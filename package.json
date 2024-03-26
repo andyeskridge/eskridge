@@ -18,7 +18,7 @@
     "@tailwindcss/typography": "0.5.11",
     "@tinacms/cli": "1.5.42",
     "@types/node": "20.11.30",
-    "@types/react": "18.2.71",
+    "@types/react": "18.2.72",
     "@types/react-dom": "18.2.22",
     "autoprefixer": "10.4.19",
     "cheerio": "1.0.0-rc.12",
