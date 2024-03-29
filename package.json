@@ -16,7 +16,7 @@
   "dependencies": {
     "@headlessui/react": "1.7.18",
     "@tailwindcss/typography": "0.5.12",
-    "@tinacms/cli": "1.5.42",
+    "@tinacms/cli": "1.5.43",
     "@types/node": "20.11.30",
     "@types/react": "18.2.73",
     "@types/react-dom": "18.2.23",
