@@ -14,7 +14,7 @@
     "pages:dev": "bunx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat"
   },
   "dependencies": {
-    "@headlessui/react": "1.7.18",
+    "@headlessui/react": "1.7.19",
     "@tailwindcss/typography": "0.5.12",
     "@tinacms/cli": "1.5.43",
     "@types/node": "20.12.7",
