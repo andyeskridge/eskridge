@@ -3,7 +3,6 @@ import { Post } from '@/tina/__generated__/types'
 
 export async function getAllArticles(): Promise<Post[]> {
   let articlesRes = await client.queries.postConnection({
-    filter: { draft: { eq: false } },
     sort: 'date',
   })
   const articles = (articlesRes.data.postConnection.edges || []).map((edge) => {
