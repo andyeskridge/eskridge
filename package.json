@@ -16,34 +16,34 @@
   "dependencies": {
     "@headlessui/react": "2.1.2",
     "@tailwindcss/typography": "0.5.13",
-    "@tinacms/cli": "1.5.45",
-    "@types/node": "20.14.10",
+    "@tinacms/cli": "1.5.52",
+    "@types/node": "22.0.0",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "autoprefixer": "10.4.19",
     "cheerio": "1.0.0-rc.12",
     "clsx": "2.1.1",
     "feed": "4.2.2",
-    "next": "14.2.4",
+    "next": "14.2.5",
     "next-themes": "0.3.0",
-    "postcss": "8.4.39",
+    "postcss": "8.4.40",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "sharp": "0.33.4",
     "stream": "0.0.3",
-    "tailwindcss": "3.4.4",
-    "tinacms": "1.6.5",
-    "typescript": "5.5.3"
+    "tailwindcss": "3.4.7",
+    "tinacms": "2.1.0",
+    "typescript": "5.5.4"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "1.12.0",
-    "eslint": "9.6.0",
-    "eslint-config-next": "14.2.4",
+    "@cloudflare/next-on-pages": "1.13.1",
+    "eslint": "9.8.0",
+    "eslint-config-next": "14.2.5",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-next-on-pages": "1.12.0",
-    "prettier": "3.3.2",
+    "eslint-plugin-next-on-pages": "1.13.1",
+    "prettier": "3.3.3",
     "prettier-plugin-tailwindcss": "0.6.5",
-    "vercel": "34.3.1",
-    "wrangler": "3.63.1"
+    "vercel": "35.2.2",
+    "wrangler": "3.67.1"
   }
 }
