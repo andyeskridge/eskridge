@@ -1,17 +1,17 @@
 import Link from 'next/link'
 import clsx from 'clsx'
+import { ChevronRightIcon } from './Icons'
 
-import { ChevronRightIcon } from '@/components/Icons'
-
-export function Card({
-  as: Component = 'div',
+export function Card<T extends React.ElementType = 'div'>({
+  as,
   className,
   children,
-}: {
-  as?: React.ElementType
+}: Omit<React.ComponentPropsWithoutRef<T>, 'as' | 'className'> & {
+  as?: T
   className?: string
-  children: React.ReactNode
 }) {
+  let Component = as ?? 'div'
+
   return (
     <Component
       className={clsx(className, 'group relative flex flex-col items-start')}
@@ -24,10 +24,7 @@ export function Card({
 Card.Link = function CardLink({
   children,
   ...props
-}: {
-  children: React.ReactNode
-  href: string
-}) {
+}: React.ComponentPropsWithoutRef<typeof Link>) {
   return (
     <>
       <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl" />
@@ -39,15 +36,16 @@ Card.Link = function CardLink({
   )
 }
 
-Card.Title = function CardTitle({
-  as: Component = 'h2',
+Card.Title = function CardTitle<T extends React.ElementType = 'h2'>({
+  as,
   href,
   children,
-}: {
-  as?: React.ElementType
+}: Omit<React.ComponentPropsWithoutRef<T>, 'as' | 'href'> & {
+  as?: T
   href?: string
-  children: React.ReactNode
 }) {
+  let Component = as ?? 'h2'
+
   return (
     <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
       {href ? <Card.Link href={href}>{children}</Card.Link> : children}
@@ -79,19 +77,18 @@ Card.Cta = function CardCta({ children }: { children: React.ReactNode }) {
   )
 }
 
-Card.Eyebrow = function CardEyebrow({
-  as: Component = 'p',
+Card.Eyebrow = function CardEyebrow<T extends React.ElementType = 'p'>({
+  as,
   decorate = false,
   className,
   children,
   ...props
-}: {
-  as?: React.ElementType
+}: Omit<React.ComponentPropsWithoutRef<T>, 'as' | 'decorate'> & {
+  as?: T
   decorate?: boolean
-  className?: string
-  children: React.ReactNode
-  dateTime?: string
 }) {
+  let Component = as ?? 'p'
+
   return (
     <Component
       className={clsx(

@@ -1,21 +1,22 @@
 'use client'
 
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { AppContext } from '@/app/providers'
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
 import { formatDate } from '@/lib/formatDate'
-import { ArrowLeftIcon } from '@/components/Icons'
+import { ArrowLeftIcon } from './Icons'
+import { Post } from '@/tina/__generated__/types'
 
 export function ArticleLayout({
-  children,
   article,
+  children,
   isRssFeed = false,
 }: {
+  article: Post
   children: React.ReactNode
-  article: any
   isRssFeed: boolean
 }) {
   let router = useRouter()

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { Container } from '@/components/Container'
+import { ContainerInner, ContainerOuter } from '@/components/Container'
 
 function NavLink({
   href,
@@ -22,22 +22,21 @@ function NavLink({
 export function Footer() {
   return (
     <footer className="mt-32 flex-none">
-      <Container.Outer>
+      <ContainerOuter>
         <div className="border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40">
-          <Container.Inner>
+          <ContainerInner>
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200">
                 <NavLink href="/about">About</NavLink>
-                <NavLink href="/articles">Articles</NavLink>
               </div>
               <p className="text-sm text-zinc-400 dark:text-zinc-500">
                 &copy; {new Date().getFullYear()} Andy Eskridge. All rights
                 reserved.
               </p>
             </div>
-          </Container.Inner>
+          </ContainerInner>
         </div>
-      </Container.Outer>
+      </ContainerOuter>
     </footer>
   )
 }

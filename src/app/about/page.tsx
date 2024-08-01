@@ -22,8 +22,8 @@ function SocialLink({
 }: {
   className?: string
   href: string
+  icon: React.ComponentType<{ className?: string }>
   children: React.ReactNode
-  icon: React.ElementType
   rel?: string
 }) {
   return (

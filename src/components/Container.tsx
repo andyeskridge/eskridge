@@ -1,30 +1,21 @@
-import { ForwardRefExoticComponent, RefAttributes, forwardRef } from 'react'
-
+import { forwardRef } from 'react'
 import clsx from 'clsx'
 
-const OuterContainer = forwardRef(function OuterContainer(
-  {
-    className,
-    children,
-    ...props
-  }: { className?: string; children: React.ReactNode },
-  ref: React.Ref<HTMLDivElement>,
-) {
+export const ContainerOuter = forwardRef<
+  React.ElementRef<'div'>,
+  React.ComponentPropsWithoutRef<'div'>
+>(function OuterContainer({ className, children, ...props }, ref) {
   return (
     <div ref={ref} className={clsx('sm:px-8', className)} {...props}>
-      <div className="mx-auto max-w-7xl lg:px-8">{children}</div>
+      <div className="mx-auto w-full max-w-7xl lg:px-8">{children}</div>
     </div>
   )
 })
 
-const InnerContainer = forwardRef(function InnerContainer(
-  {
-    className,
-    children,
-    ...props
-  }: { className?: string; children: React.ReactNode },
-  ref: React.Ref<HTMLDivElement>,
-) {
+export const ContainerInner = forwardRef<
+  React.ElementRef<'div'>,
+  React.ComponentPropsWithoutRef<'div'>
+>(function InnerContainer({ className, children, ...props }, ref) {
   return (
     <div
       ref={ref}
@@ -36,56 +27,13 @@ const InnerContainer = forwardRef(function InnerContainer(
   )
 })
 
-const _Container: ForwardRefExoticComponent<
-  {
-    children: React.ReactNode
-    className?: string
-    style?: React.CSSProperties
-  } & RefAttributes<HTMLDivElement>
-> & {
-  Outer?: ForwardRefExoticComponent<
-    {
-      className?: string
-      children: React.ReactNode
-    } & RefAttributes<HTMLDivElement>
-  >
-  Inner?: ForwardRefExoticComponent<
-    {
-      className?: string
-      children: React.ReactNode
-    } & RefAttributes<HTMLDivElement>
-  >
-} = forwardRef(function Container(
-  { children, ...props }: { children: React.ReactNode },
-  ref: React.Ref<HTMLDivElement>,
-) {
+export const Container = forwardRef<
+  React.ElementRef<typeof ContainerOuter>,
+  React.ComponentPropsWithoutRef<typeof ContainerOuter>
+>(function Container({ children, ...props }, ref) {
   return (
-    <OuterContainer ref={ref} {...props}>
-      <InnerContainer>{children}</InnerContainer>
-    </OuterContainer>
+    <ContainerOuter ref={ref} {...props}>
+      <ContainerInner>{children}</ContainerInner>
+    </ContainerOuter>
   )
 })
-
-_Container.Outer = OuterContainer
-_Container.Inner = InnerContainer
-
-export const Container = _Container as ForwardRefExoticComponent<
-  {
-    children: React.ReactNode
-    className?: string
-    style?: React.CSSProperties
-  } & RefAttributes<HTMLDivElement>
-> & {
-  Outer: ForwardRefExoticComponent<
-    {
-      className?: string
-      children: React.ReactNode
-    } & RefAttributes<HTMLDivElement>
-  >
-  Inner: ForwardRefExoticComponent<
-    {
-      className?: string
-      children: React.ReactNode
-    } & RefAttributes<HTMLDivElement>
-  >
-}

@@ -1,5 +1,5 @@
 'use client'
-export function CloseIcon(props: React.ComponentProps<'svg'>) {
+export function CloseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -13,7 +13,7 @@ export function CloseIcon(props: React.ComponentProps<'svg'>) {
     </svg>
   )
 }
-export function ChevronDownIcon(props: React.ComponentProps<'svg'>) {
+export function ChevronDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 8 6" aria-hidden="true" {...props}>
       <path
@@ -27,7 +27,7 @@ export function ChevronDownIcon(props: React.ComponentProps<'svg'>) {
   )
 }
 
-export function ChevronRightIcon(props: React.ComponentProps<'svg'>) {
+export function ChevronRightIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -40,7 +40,7 @@ export function ChevronRightIcon(props: React.ComponentProps<'svg'>) {
   )
 }
 
-export function ArrowLeftIcon(props: React.ComponentProps<'svg'>) {
+export function ArrowLeftIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -53,7 +53,7 @@ export function ArrowLeftIcon(props: React.ComponentProps<'svg'>) {
   )
 }
 
-export function MailIcon(props: React.ComponentProps<'svg'>) {
+export function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -76,7 +76,7 @@ export function MailIcon(props: React.ComponentProps<'svg'>) {
   )
 }
 
-export function BriefcaseIcon(props: React.ComponentProps<'svg'>) {
+export function BriefcaseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -99,7 +99,7 @@ export function BriefcaseIcon(props: React.ComponentProps<'svg'>) {
   )
 }
 
-export function LinkIcon(props: React.ComponentProps<'svg'>) {
+export function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -110,7 +110,7 @@ export function LinkIcon(props: React.ComponentProps<'svg'>) {
   )
 }
 
-export function ArrowDownIcon(props: React.ComponentProps<'svg'>) {
+export function ArrowDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -123,7 +123,7 @@ export function ArrowDownIcon(props: React.ComponentProps<'svg'>) {
   )
 }
 
-export function SunIcon(props: React.ComponentProps<'svg'>) {
+export function SunIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -141,7 +141,7 @@ export function SunIcon(props: React.ComponentProps<'svg'>) {
     </svg>
   )
 }
-export function MoonIcon(props: React.ComponentProps<'svg'>) {
+export function MoonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
