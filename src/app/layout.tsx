@@ -2,8 +2,9 @@ import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
 
 import '@/styles/tailwind.css'
+import { type Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     template: '%s - Andy Eskridge',
     default: 'Andy Eskridge - Senior Engineering Manager',
