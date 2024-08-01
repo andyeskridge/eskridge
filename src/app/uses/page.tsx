@@ -1,15 +1,11 @@
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import React from 'react'
 
 function ToolsSection({
   children,
   ...props
-}: {
-  children: React.ReactNode
-  title?: string
-}) {
+}: React.ComponentPropsWithoutRef<typeof Section>) {
   return (
     <Section {...props}>
       <ul role="list" className="space-y-16">
