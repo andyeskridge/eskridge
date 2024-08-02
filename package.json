@@ -20,7 +20,7 @@
     "@types/node": "22.1.0",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
-    "autoprefixer": "10.4.19",
+    "autoprefixer": "10.4.20",
     "cheerio": "1.0.0-rc.12",
     "clsx": "2.1.1",
     "feed": "4.2.2",
