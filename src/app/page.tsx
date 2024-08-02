@@ -79,7 +79,7 @@ function Newsletter() {
           placeholder="Email address"
           aria-label="Email address"
           required
-          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
+          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10"
         />
         <Button type="submit" className="ml-4 flex-none">
           Join
@@ -95,6 +95,7 @@ interface Role {
   logo: ImageProps['src']
   start: string | { label: string; dateTime: string }
   end: string | { label: string; dateTime: string }
+  link: string
 }
 
 function Role({ role }: { role: Role }) {
@@ -114,7 +115,7 @@ function Role({ role }: { role: Role }) {
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
         <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          {role.company}
+          <Link href={role.link}>{role.company}</Link>
         </dd>
         <dt className="sr-only">Role</dt>
         <dd className="text-xs text-zinc-500 dark:text-zinc-400">
@@ -145,6 +146,7 @@ function Resume() {
         label: 'Present',
         dateTime: new Date().getFullYear().toString(),
       },
+      link: 'https://stellarelements.com',
     },
     {
       company: 'Cenergistic',
@@ -152,6 +154,7 @@ function Resume() {
       logo: logoCenergistic,
       start: '2018',
       end: '2022',
+      link: 'https://cenergistic.com',
     },
     {
       company: 'Beck Technology',
@@ -159,6 +162,7 @@ function Resume() {
       logo: logoBeckTech,
       start: '2016',
       end: '2018',
+      link: 'https://beck-technology.com',
     },
     {
       company: 'ProviderScience',
@@ -166,6 +170,7 @@ function Resume() {
       logo: logoProviderScience,
       start: '2015',
       end: '2016',
+      link: 'https://providerscience.com',
     },
     {
       company: 'Gwynn Group',
@@ -173,6 +178,7 @@ function Resume() {
       logo: logoGwynnGroup,
       start: '2015',
       end: '2015',
+      link: 'https://gwynngroup.com',
     },
     {
       company: 'Allegro',
@@ -180,6 +186,7 @@ function Resume() {
       logo: logoAllegro,
       start: '2013',
       end: '2015',
+      link: 'https://iongroup.com/products/commodities/allegro/',
     },
   ]
 
@@ -212,7 +219,7 @@ function Photos() {
           <div
             key={image.src}
             className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
+              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800',
               rotations[imageIndex % rotations.length],
             )}
           >
@@ -236,7 +243,7 @@ export default async function Home() {
     <>
       <Container className="mt-9">
         <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
             Senior Engineering Manager
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
@@ -279,8 +286,8 @@ export default async function Home() {
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Newsletter />
             <Resume />
+            <Newsletter />
           </div>
         </div>
       </Container>
