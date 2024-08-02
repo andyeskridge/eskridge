@@ -1,14 +1,17 @@
 'use client'
 
-import { useContext } from 'react'
-import { useRouter } from 'next/navigation'
-
 import { AppContext } from '@/app/providers'
+import { useRouter } from 'next/navigation'
+import { useContext } from 'react'
+
+import { formatDate } from '@/lib/formatDate'
+
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
-import { formatDate } from '@/lib/formatDate'
-import { ArrowLeftIcon } from './Icons'
+
 import { Post } from '@/tina/__generated__/types'
+
+import { ArrowLeftIcon } from './Icons'
 
 export function ArticleLayout({
   article,

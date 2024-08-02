@@ -1,6 +1,7 @@
 'use client'
 
 import { useTina } from 'tinacms/dist/react'
+
 import PageServer from './PageServer'
 
 export default function PageClient({

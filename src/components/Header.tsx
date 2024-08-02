@@ -1,21 +1,23 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useTheme } from 'next-themes'
 import {
   Popover,
-  PopoverButton,
   PopoverBackdrop,
+  PopoverButton,
   PopoverPanel,
 } from '@headlessui/react'
 import clsx from 'clsx'
+import { useTheme } from 'next-themes'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 
 import { Container } from '@/components/Container'
+
 import avatarImage from '@/images/avatar.jpg'
-import { ChevronDownIcon, CloseIcon, SunIcon, MoonIcon } from './Icons'
+
+import { ChevronDownIcon, CloseIcon, MoonIcon, SunIcon } from './Icons'
 
 function MobileNavItem({
   href,

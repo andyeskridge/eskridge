@@ -1,4 +1,5 @@
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
+
 import { ArticleLayout } from '@/components/ArticleLayout'
 
 export default function PageServer({ data }: { data: any }) {

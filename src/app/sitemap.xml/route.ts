@@ -4,7 +4,7 @@ export const runtime = 'edge'
 const siteUrl =
   process.env.CF_PAGES_BRANCH == 'main'
     ? 'https://eskridge.dev'
-    : process.env.CF_PAGES_URL ?? 'https://localhost:3000'
+    : (process.env.CF_PAGES_URL ?? 'https://localhost:3000')
 
 function addPage(page: string) {
   return `  <url>

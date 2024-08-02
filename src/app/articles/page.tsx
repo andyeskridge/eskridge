@@ -1,7 +1,9 @@
-import { Card } from '@/components/Card'
-import { SimpleLayout } from '@/components/SimpleLayout'
 import { formatDate } from '@/lib/formatDate'
 import { getAllArticles } from '@/lib/getAllArticles'
+
+import { Card } from '@/components/Card'
+import { SimpleLayout } from '@/components/SimpleLayout'
+
 import { Post } from '@/tina/__generated__/types'
 
 function Article({ article }: { article: Post }) {

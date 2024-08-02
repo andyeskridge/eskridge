@@ -1,17 +1,18 @@
+import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx'
+import React from 'react'
 
 import { Container } from '@/components/Container'
+import { MailIcon } from '@/components/Icons'
 import {
   GitHubIcon,
   LinkedInIcon,
   MastodonIcon,
   TwitterIcon,
 } from '@/components/SocialIcons'
+
 import portraitImage from '@/images/portrait.jpg'
-import { MailIcon } from '@/components/Icons'
-import React from 'react'
 
 function SocialLink({
   className,

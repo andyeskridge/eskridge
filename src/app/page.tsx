@@ -1,32 +1,34 @@
+import clsx from 'clsx'
 import Image, { type ImageProps } from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx'
+
+import { formatDate } from '@/lib/formatDate'
+import { getAllArticles } from '@/lib/getAllArticles'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
+import { ArrowDownIcon, BriefcaseIcon, MailIcon } from '@/components/Icons'
 import {
   GitHubIcon,
   LinkedInIcon,
   MastodonIcon,
   TwitterIcon,
 } from '@/components/SocialIcons'
+
+import { Post } from '@/tina/__generated__/types'
+
 import logoAllegro from '@/images/logos/allegro.jpg'
 import logoBeckTech from '@/images/logos/becktech.jpg'
 import logoCenergistic from '@/images/logos/cenergistic.jpg'
 import logoGwynnGroup from '@/images/logos/gwynngroup.jpg'
-import logoStellarElements from '@/images/logos/SE_Star_BLK.svg'
 import logoProviderScience from '@/images/logos/providerscience.jpg'
+import logoStellarElements from '@/images/logos/SE_Star_BLK.svg'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
-import { formatDate } from '@/lib/formatDate'
-
-import { ArrowDownIcon, BriefcaseIcon, MailIcon } from '@/components/Icons'
-import { getAllArticles } from '@/lib/getAllArticles'
-import { Post } from '@/tina/__generated__/types'
 
 function Article({ article }: { article: Post }) {
   return (
