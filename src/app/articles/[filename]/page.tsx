@@ -20,7 +20,7 @@ export default async function Page({
 export async function generateStaticParams() {
   const posts = await client.queries.postConnection()
   const paths = posts.data?.postConnection?.edges?.map((edge) => ({
-    filename: edge?.node?._sys.breadcrumbs,
+    filename: edge?.node?._sys.breadcrumbs.join('/'),
   }))
 
   return paths || []
