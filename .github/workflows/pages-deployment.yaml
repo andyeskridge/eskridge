@@ -19,6 +19,7 @@ jobs:
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
           TINA_INDEXER_TOKEN: ${{ secrets.TINA_INDEXER_TOKEN }}
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+          NODE_ENV: production
         run: bun install && bun run pages:build
       - name: Publish
         uses: cloudflare/pages-action@1
