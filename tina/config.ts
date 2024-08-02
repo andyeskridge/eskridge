@@ -1,6 +1,8 @@
 import { defineConfig } from 'tinacms'
 import { TokenObject } from 'tinacms/dist/auth/authenticate'
 
+import Post from './collection/post'
+
 // Your hosting provider likely exposes this as an environment variable
 const branch = 'main'
 
@@ -38,52 +40,6 @@ export default defineConfig({
     },
   },
   schema: {
-    collections: [
-      {
-        name: 'post',
-        label: 'Posts',
-        path: 'content/posts',
-        fields: [
-          {
-            type: 'string',
-            name: 'title',
-            label: 'Title',
-            isTitle: true,
-            required: true,
-          },
-          {
-            type: 'rich-text',
-            name: 'body',
-            label: 'Body',
-            isBody: true,
-          },
-          {
-            type: 'datetime',
-            name: 'date',
-            label: 'Date',
-            description: 'Date of publish',
-            required: true,
-          },
-          {
-            name: 'draft',
-            label: 'Draft',
-            type: 'boolean',
-            required: true,
-            description: 'If this is checked the post will not be published',
-          },
-          {
-            name: 'description',
-            label: 'Description',
-            type: 'string',
-            required: true,
-            description: 'Description of the post',
-          },
-        ],
-        ui: {
-          // This is an DEMO router. You can remove this to fit your site
-          router: ({ document }) => `/articles/${document._sys.filename}`,
-        },
-      },
-    ],
+    collections: [Post],
   },
 })
