@@ -9,7 +9,7 @@ import { formatDate } from '@/lib/formatDate'
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
 
-import { Post } from '@/tina/__generated__/types'
+import { PostPartsFragment } from '@/tina/__generated__/types'
 
 import { ArrowLeftIcon } from './Icons'
 
@@ -18,7 +18,7 @@ export function ArticleLayout({
   children,
   isRssFeed = false,
 }: {
-  article: Post
+  article: PostPartsFragment
   children: React.ReactNode
   isRssFeed: boolean
 }) {

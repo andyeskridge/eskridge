@@ -2,17 +2,23 @@
 
 import { useTina } from 'tinacms/dist/react'
 
+import { PostQuery } from '@/tina/__generated__/types'
+
 import PageServer from './PageServer'
+
+interface ClientPageProps {
+  query: string
+  variables: {
+    relativePath: string
+  }
+  data: PostQuery
+}
 
 export default function PageClient({
   query,
   variables,
   data,
-}: {
-  query: any
-  variables: any
-  data: any
-}) {
+}: ClientPageProps) {
   const { data: tinaData } = useTina({
     query: query,
     variables: variables,
