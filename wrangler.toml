@@ -1,6 +1,16 @@
 name = "eskridge"
 
-compatibility_date  = "2024-07-31"
+compatibility_date  = "2024-09-02"
 compatibility_flags = ["nodejs_compat"]
 
 pages_build_output_dir = ".vercel/output/static"
+
+kv_namespaces = [
+    { binding = "__NEXT_ON_PAGES__KV_SUSPENSE_CACHE", id = "be657635cce74accaafefac2283aa252" },
+]
+
+[env.production]
+
+    kv_namespaces = [
+        { binding = "__NEXT_ON_PAGES__KV_SUSPENSE_CACHE", id = "860f0faba01a4370a643b9781191f529" },
+    ]
