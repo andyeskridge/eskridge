@@ -14,3 +14,6 @@ kv_namespaces = [
     kv_namespaces = [
         { binding = "__NEXT_ON_PAGES__KV_SUSPENSE_CACHE", id = "860f0faba01a4370a643b9781191f529" },
     ]
+
+[observability]
+    enabled = true
