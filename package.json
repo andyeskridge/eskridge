@@ -45,6 +45,6 @@
     "prettier": "3.3.3",
     "prettier-plugin-tailwindcss": "0.6.8",
     "vercel": "37.6.3",
-    "wrangler": "3.80.1"
+    "wrangler": "3.80.2"
   }
 }
