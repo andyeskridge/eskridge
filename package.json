@@ -33,7 +33,7 @@
     "stream": "0.0.3",
     "tailwindcss": "3.4.13",
     "tinacms": "2.2.9",
-    "typescript": "5.6.2"
+    "typescript": "5.6.3"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "1.13.5",
