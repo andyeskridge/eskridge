@@ -1,6 +1,5 @@
 import { getAllArticles } from '@/lib/getAllArticles'
 
-export const runtime = 'edge'
 const siteUrl =
   process.env.CF_PAGES_BRANCH == 'main'
     ? 'https://eskridge.dev'

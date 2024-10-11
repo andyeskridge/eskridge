@@ -1,5 +1,4 @@
 import { defineConfig } from 'tinacms'
-import { TokenObject } from 'tinacms/dist/auth/authenticate'
 
 import Post from './collection/post'
 
@@ -12,7 +11,7 @@ export default defineConfig({
   token: process.env.TINA_TOKEN, // Get this from tina.io
   admin: {
     authHooks: {
-      onLogin: async ({ token }: { token: TokenObject }) => {
+      onLogin: async ({ token }: { token: { id_token: string } }) => {
         console.log('Welcome back!')
         location.href =
           `/api/preview/enter?token=${token.id_token}&slug=` +

@@ -18,6 +18,7 @@ type ButtonProps = {
 export function Button({
   variant = 'primary',
   className,
+  type = 'button',
   ...props
 }: ButtonProps) {
   className = clsx(

@@ -3,19 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:worker": "tinacms build --no-client-build-cache && cloudflare",
+    "dev:worker": "wrangler dev --port 8771",
+    "preview:worker": "bun build:worker && bun dev:worker",
+    "e2e": "playwright test -c e2e/playwright.config.ts",
     "dev": "tinacms dev -c \"next dev\"",
     "build": "tinacms build --no-client-build-cache && next build",
     "start": "tinacms build && next start",
     "tina:build": "tinacms build",
-    "lint": "next lint",
-    "pages:build": "bunx next-on-pages",
-    "pages:deploy": "bun run pages:build && wrangler pages deploy .vercel/output/static",
-    "pages:watch": "bunx next-on-pages --watch",
-    "pages:dev": "bunx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat"
+    "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "2.1.8",
     "@tailwindcss/typography": "0.5.15",
+    "@tinacms/auth": "^1.0.8",
     "@tinacms/cli": "1.6.8",
     "@types/node": "22.7.4",
     "@types/react": "18.3.10",
@@ -36,15 +37,15 @@
     "typescript": "5.6.2"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "1.13.3",
     "@ianvs/prettier-plugin-sort-imports": "4.3.1",
+    "@opennextjs/cloudflare": "0.1.1",
+    "@playwright/test": "^1.47.2",
     "eslint": "8.57.1",
     "eslint-config-next": "14.2.14",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-next-on-pages": "1.13.3",
     "prettier": "3.3.3",
     "prettier-plugin-tailwindcss": "0.6.8",
-    "vercel": "37.6.0",
-    "wrangler": "3.79.0"
+    "wrangler": "^3.79.0"
   }
 }

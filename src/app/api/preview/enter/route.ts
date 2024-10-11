@@ -2,8 +2,6 @@
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-export const runtime = 'edge'
-
 const isUserAuthorized = async (args: { clientID: string; token: string }) => {
   const clientID = args.clientID
   const token = args.token

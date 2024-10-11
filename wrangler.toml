@@ -1,19 +1,15 @@
+#:schema node_modules/wrangler/config-schema.json
+main = ".worker-next/index.mjs"
 name = "eskridge"
 
 compatibility_date  = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
-pages_build_output_dir = ".vercel/output/static"
+# Use the new Workers + Assets to host the static frontend files
+assets = { directory = ".worker-next/assets", binding = "ASSETS" }
 
-kv_namespaces = [
-    { binding = "__NEXT_ON_PAGES__KV_SUSPENSE_CACHE", id = "be657635cce74accaafefac2283aa252" },
-]
+observability = { enabled = true }
 
-[env.production]
-
-    kv_namespaces = [
-        { binding = "__NEXT_ON_PAGES__KV_SUSPENSE_CACHE", id = "860f0faba01a4370a643b9781191f529" },
-    ]
-
-[observability]
-    enabled = true
+[[kv_namespaces]]
+    binding = "NEXT_CACHE_WORKERS_KV"
+    id      = "bc210279e0de4336a888e36976c13ea7"
