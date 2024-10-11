@@ -14,18 +14,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "2.1.8",
+    "@headlessui/react": "2.1.10",
     "@tailwindcss/typography": "0.5.15",
     "@tinacms/auth": "^1.0.8",
-    "@tinacms/cli": "1.6.8",
-    "@types/node": "22.7.4",
-    "@types/react": "18.3.10",
+    "@tinacms/cli": "1.6.9",
+    "@types/node": "22.7.5",
+    "@types/react": "18.3.11",
     "@types/react-dom": "18.3.0",
     "autoprefixer": "10.4.20",
     "cheerio": "1.0.0",
     "clsx": "2.1.1",
     "feed": "4.2.2",
-    "next": "14.2.14",
+    "next": "14.2.15",
     "next-themes": "0.3.0",
     "postcss": "8.4.47",
     "react": "18.3.1",
@@ -33,19 +33,19 @@
     "sharp": "0.33.5",
     "stream": "0.0.3",
     "tailwindcss": "3.4.13",
-    "tinacms": "2.2.8",
-    "typescript": "5.6.2"
+    "tinacms": "2.2.9",
+    "typescript": "5.6.3"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.3.1",
     "@opennextjs/cloudflare": "0.1.1",
     "@playwright/test": "^1.47.2",
     "eslint": "8.57.1",
-    "eslint-config-next": "14.2.14",
+    "eslint-config-next": "14.2.15",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-next-on-pages": "1.13.3",
+    "eslint-plugin-next-on-pages": "1.13.5",
     "prettier": "3.3.3",
     "prettier-plugin-tailwindcss": "0.6.8",
-    "wrangler": "^3.79.0"
+    "wrangler": "3.80.3"
   }
 }
