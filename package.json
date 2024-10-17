@@ -17,7 +17,7 @@
     "@headlessui/react": "2.1.10",
     "@tailwindcss/typography": "0.5.15",
     "@tinacms/cli": "1.6.9",
-    "@types/node": "22.7.5",
+    "@types/node": "22.7.6",
     "@types/react": "18.3.11",
     "@types/react-dom": "18.3.1",
     "autoprefixer": "10.4.20",
