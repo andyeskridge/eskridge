@@ -46,7 +46,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'bun preview:worker',
+    command: 'npm run preview:worker',
     url: 'http://localhost:8771',
     reuseExistingServer: !process.env.CI,
   },

@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build:worker": "tinacms build --no-client-build-cache && cloudflare",
+    "build:worker": "tinacms build && cloudflare",
     "dev:worker": "wrangler dev --port 8771",
     "preview:worker": "bun build:worker && bun dev:worker",
     "e2e": "playwright test -c e2e/playwright.config.ts",
     "dev": "tinacms dev -c \"next dev\"",
-    "build": "tinacms build --no-client-build-cache && next build",
+    "build": "tinacms build && next build",
     "start": "tinacms build && next start",
     "tina:build": "tinacms build",
     "lint": "next lint"
