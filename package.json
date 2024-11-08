@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build:worker": "tinacms build && cloudflare",
+    "build:worker": "cloudflare",
     "dev:worker": "wrangler dev --port 8771",
     "preview:worker": "bun build:worker && bun dev:worker",
     "e2e": "playwright test -c e2e/playwright.config.ts",
