@@ -44,7 +44,7 @@
     "eslint-plugin-next-on-pages": "1.13.6",
     "prettier": "3.4.1",
     "prettier-plugin-tailwindcss": "0.6.9",
-    "vercel": "39.1.1",
+    "vercel": "39.1.2",
     "wrangler": "3.91.0"
   }
 }
