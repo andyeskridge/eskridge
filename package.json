@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build:worker": "cloudflare",
+    "build:worker": "opennextjs-cloudflare",
     "dev:worker": "wrangler dev --port 8771",
     "preview:worker": "bun build:worker && bun dev:worker",
     "e2e": "playwright test -c e2e/playwright.config.ts",
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.4.0",
     "@opennextjs/cloudflare": "https://pkg.pr.new/@opennextjs/cloudflare@experimental",
-    "@playwright/test": "^1.48.2",
+    "@playwright/test": "^1.49.1",
     "eslint": "8.57.1",
     "eslint-config-next": "14.2.20",
     "eslint-config-prettier": "9.1.0",
