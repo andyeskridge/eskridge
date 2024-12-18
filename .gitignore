@@ -35,7 +35,7 @@ yarn-error.log*
 next-env.d.ts
 .wrangler/state/
 .env
-.worker-next/
+.open-next/
 .wrangler/
 playwright-report/
 test-results/

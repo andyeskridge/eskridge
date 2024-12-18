@@ -1,11 +1,11 @@
 #:schema node_modules/wrangler/config-schema.json
-main = ".worker-next/index.mjs"
+main = ".open-next/worker.ts"
 name = "eskridge"
 
 compatibility_date  = "2024-11-06"
 compatibility_flags = ["nodejs_compat"]
 
 # Use the new Workers + Assets to host the static frontend files
-assets = { directory = ".worker-next/assets", binding = "ASSETS" }
+assets = { directory = ".open-next/assets", binding = "ASSETS" }
 
 observability = { enabled = true }
