@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
 
-declare const process: { env: Record<string, string> }
+declare const process: { env: Record<string, string>; cwd: () => string }
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -46,8 +46,9 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run preview:worker',
+    command: 'bun run preview:worker',
     url: 'http://localhost:8771',
     reuseExistingServer: !process.env.CI,
+    cwd: process.cwd(),
   },
 })

@@ -18,13 +18,13 @@
     "@tailwindcss/typography": "0.5.15",
     "@tinacms/cli": "1.6.11",
     "@types/node": "22.10.2",
-    "@types/react": "18.3.17",
+    "@types/react": "18.3.18",
     "@types/react-dom": "18.3.5",
     "autoprefixer": "10.4.20",
     "cheerio": "1.0.0",
     "clsx": "2.1.1",
     "feed": "4.2.2",
-    "next": "14.2.20",
+    "next": "14.2.22",
     "next-themes": "0.4.4",
     "postcss": "8.4.49",
     "react": "18.3.1",
@@ -37,13 +37,13 @@
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.4.0",
-    "@opennextjs/cloudflare": "https://pkg.pr.new/@opennextjs/cloudflare@experimental",
+    "@opennextjs/cloudflare": "0.3.3",
     "@playwright/test": "^1.49.1",
     "eslint": "8.57.1",
     "eslint-config-next": "14.2.20",
     "eslint-config-prettier": "9.1.0",
     "prettier": "3.4.2",
     "prettier-plugin-tailwindcss": "0.6.9",
-    "wrangler": "3.97.0"
+    "wrangler": "3.99.0"
   }
 }
