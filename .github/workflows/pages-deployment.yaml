@@ -23,6 +23,10 @@ jobs:
         run: bun install && bun run build:worker
       - name: e2e
         run: bun run e2e
+        env:
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          TINA_INDEXER_TOKEN: ${{ secrets.TINA_INDEXER_TOKEN }}
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
       - name: Publish
         uses: cloudflare/wrangler-action@v3
         with:
