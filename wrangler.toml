@@ -8,6 +8,10 @@ compatibility_flags = ["nodejs_compat"]
 # Use the new Workers + Assets to host the static frontend files
 assets = { directory = ".open-next/assets", binding = "ASSETS" }
 
+kv_namespaces = [
+    { binding = "NEXT_CACHE_WORKERS_KV", id = "13f796e809e642619f97b90fd9dacfbd" },
+]
+
 routes = [{ pattern = "eskridge.dev", custom_domain = true }]
 
 observability = { enabled = true }
