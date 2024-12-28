@@ -20,13 +20,18 @@ jobs:
           TINA_INDEXER_TOKEN: ${{ secrets.TINA_INDEXER_TOKEN }}
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
           NODE_ENV: production
-        run: bun install && bun run pages:build
+        run: bun install && bun run build:worker
+      - name: Install Playwright Browsers
+        run: bun x playwright install --with-deps
+      - name: e2e
+        run: bun run e2e
+        env:
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          TINA_INDEXER_TOKEN: ${{ secrets.TINA_INDEXER_TOKEN }}
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
       - name: Publish
-        uses: cloudflare/pages-action@1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: eskridge # e.g. 'my-project'
-          directory: .vercel/output/static # e.g. 'dist'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          wranglerVersion: '3'

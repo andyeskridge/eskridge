@@ -3,8 +3,6 @@ import { Feed } from 'feed'
 
 import { getAllArticles } from '@/lib/getAllArticles'
 
-export const runtime = 'edge'
-
 export async function GET(req: Request) {
   let siteUrl =
     process.env.CF_PAGES_BRANCH == 'main'

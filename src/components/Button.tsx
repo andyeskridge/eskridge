@@ -8,16 +8,18 @@ const variantStyles = {
     'bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70',
 }
 
-type ButtonProps = {
-  variant?: keyof typeof variantStyles
-} & (
-  | (React.ComponentPropsWithoutRef<'button'> & { href?: undefined })
-  | React.ComponentPropsWithoutRef<typeof Link>
-)
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: 'primary' | 'secondary'
+  href?: string
+  target?: string
+}
 
 export function Button({
   variant = 'primary',
   className,
+  type = 'button',
+  href,
+  target,
   ...props
 }: ButtonProps) {
   className = clsx(
@@ -26,9 +28,9 @@ export function Button({
     className,
   )
 
-  return typeof props.href === 'undefined' ? (
-    <button className={className} {...props} />
-  ) : (
-    <Link className={className} {...props} />
-  )
+  if (href) {
+    return <Link className={className} href={href} />
+  }
+
+  return <button className={className} type={type} {...props} />
 }
