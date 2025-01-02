@@ -29,7 +29,11 @@ export function Button({
   )
 
   if (href) {
-    return <Link className={className} href={href} />
+    return (
+      <Link className={className} href={href}>
+        {props.children}
+      </Link>
+    )
   }
 
   return <button className={className} type={type} {...props} />
