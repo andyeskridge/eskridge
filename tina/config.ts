@@ -3,7 +3,7 @@ import { defineConfig } from 'tinacms'
 import Post from './collection/post'
 
 // Your hosting provider likely exposes this as an environment variable
-const branch = 'main'
+const branch = process.env.GITHUB_BRANCH || process.env.HEAD || 'main'
 
 export default defineConfig({
   branch,
