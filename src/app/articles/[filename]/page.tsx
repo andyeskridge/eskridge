@@ -2,6 +2,8 @@ import client from '@/tina/__generated__/client'
 
 import PageClient from './PageClient'
 
+export const dynamicParams = false
+
 export default async function Page({
   params: { filename },
 }: {
