@@ -5,7 +5,7 @@ jobs:
     permissions:
       contents: read
       deployments: write
-    name: Deploy to Cloudflare Pages
+    name: Deploy to Cloudflare
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,8 +40,9 @@ jobs:
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
           TINA_INDEXER_TOKEN: ${{ secrets.TINA_INDEXER_TOKEN }}
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
-      - name: Publish
+      - name: Publish version
         uses: cloudflare/wrangler-action@v3
+        if: github.ref == 'refs/heads/main'
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
