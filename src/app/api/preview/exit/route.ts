@@ -13,7 +13,7 @@ export async function GET(request: Request) {
 
   // Enter preview mode in local development
   // Enable Draft Mode by setting the cookie
-  draftMode().disable()
+  (await draftMode()).disable()
 
   // Redirect to the path from the fetched post
   // We don't redirect to searchParams.slug as that might lead to open redirect vulnerabilities

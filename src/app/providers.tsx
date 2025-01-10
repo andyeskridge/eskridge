@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { createContext, useEffect, useRef } from 'react'
 
 function usePrevious<T>(value: T) {
-  let ref = useRef<T>()
+  let ref = useRef<T | undefined>(undefined)
 
   useEffect(() => {
     ref.current = value
