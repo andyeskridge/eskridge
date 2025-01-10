@@ -44,7 +44,7 @@ export async function GET(request: Request) {
   if (process.env.IS_LOCAL === 'true') {
     // Enter preview mode in local development
     // Enable Draft Mode by setting the cookie
-    draftMode().enable()
+    (await draftMode()).enable()
 
     // Redirect to the path from the fetched post
     // We don't redirect to searchParams.slug as that might lead to open redirect vulnerabilities
@@ -59,7 +59,7 @@ export async function GET(request: Request) {
 
   if (isAuthorizedRes) {
     // Enable Draft Mode by setting the cookie
-    draftMode().enable()
+    (await draftMode()).enable()
 
     // Redirect to the path from the fetched post
     // We don't redirect to searchParams.slug as that might lead to open redirect vulnerabilities

@@ -4,11 +4,17 @@ import PageClient from './PageClient'
 
 export const dynamicParams = false
 
-export default async function Page({
-  params: { filename },
-}: {
-  params: { filename: string }
-}) {
+export default async function Page(
+  props: {
+    params: Promise<{ filename: string }>
+  }
+) {
+  const params = await props.params;
+
+  const {
+    filename
+  } = params;
+
   const res = await client.queries.post({
     relativePath: `${filename}.md`,
   })
