@@ -11,7 +11,8 @@
     "build": "tinacms build && next build",
     "start": "tinacms build && next start",
     "tina:build": "tinacms build",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cf-typegen": "wrangler types --experimental-include-runtime --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@headlessui/react": "2.2.0",
