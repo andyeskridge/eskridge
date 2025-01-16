@@ -45,7 +45,7 @@
     "eslint-config-prettier": "10.0.1",
     "prettier": "3.4.2",
     "prettier-plugin-tailwindcss": "0.6.10",
-    "wrangler": "3.102.0"
+    "wrangler": "3.103.0"
   },
   "overrides": {
     "@types/react": "19.0.7",
