@@ -19,7 +19,7 @@
     "@tailwindcss/typography": "0.5.16",
     "@tinacms/cli": "1.8.1",
     "@types/node": "22.10.9",
-    "@types/react": "19.0.7",
+    "@types/react": "19.0.8",
     "@types/react-dom": "19.0.3",
     "autoprefixer": "10.4.20",
     "cheerio": "1.0.0",
@@ -48,7 +48,7 @@
     "wrangler": "3.105.0"
   },
   "overrides": {
-    "@types/react": "19.0.7",
+    "@types/react": "19.0.8",
     "@types/react-dom": "19.0.3"
   }
 }
