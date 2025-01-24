@@ -39,3 +39,6 @@ next-env.d.ts
 .wrangler/
 playwright-report/
 test-results/
+
+public/admin
+tina/__generated__

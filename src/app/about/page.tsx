@@ -1,18 +1,18 @@
-import clsx from 'clsx'
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import clsx from 'clsx';
+import Image from 'next/image';
+import Link from 'next/link';
+import type React from 'react';
 
-import { Container } from '@/components/Container'
-import { MailIcon } from '@/components/Icons'
+import { Container } from '@/components/container';
+import { MailIcon } from '@/components/icons';
 import {
   GitHubIcon,
   LinkedInIcon,
   MastodonIcon,
   TwitterIcon,
-} from '@/components/SocialIcons'
+} from '@/components/social-icons';
 
-import portraitImage from '@/images/portrait.jpg'
+import portraitImage from '@/images/portrait.jpg';
 
 function SocialLink({
   className,
@@ -21,30 +21,30 @@ function SocialLink({
   icon: Icon,
   rel,
 }: {
-  className?: string
-  href: string
-  icon: React.ComponentType<{ className?: string }>
-  children: React.ReactNode
-  rel?: string
+  className?: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  children: React.ReactNode;
+  rel?: string;
 }) {
   return (
     <li className={clsx(className, 'flex')}>
       <Link
         href={href}
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+        className="group flex font-medium text-sm text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
         rel={rel}
       >
         <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
         <span className="ml-4">{children}</span>
       </Link>
     </li>
-  )
+  );
 }
 
 export const metadata = {
   title: 'About',
   description: 'I’m Andy, a senior engineering manager based in Dallas, TX.',
-}
+};
 
 export default function About() {
   return (
@@ -61,7 +61,7 @@ export default function About() {
           </div>
         </div>
         <div className="lg:order-first lg:row-span-2">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+          <h1 className="font-bold text-4xl text-zinc-800 tracking-tight sm:text-5xl dark:text-zinc-100">
             I’m Andy, a senior engineering manager based in Dallas, TX.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
@@ -80,7 +80,7 @@ export default function About() {
           </div>
         </div>
         <div className="lg:pl-20">
-          <ul role="list">
+          <ul>
             <SocialLink
               href="https://twitter.com/andyeskridge"
               icon={TwitterIcon}
@@ -112,7 +112,7 @@ export default function About() {
             <SocialLink
               href="mailto:andy@eskridge.dev"
               icon={MailIcon}
-              className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
+              className="mt-8 border-zinc-100 border-t pt-8 dark:border-zinc-700/40"
             >
               andy@eskridge.dev
             </SocialLink>
@@ -120,5 +120,5 @@ export default function About() {
         </div>
       </div>
     </Container>
-  )
+  );
 }

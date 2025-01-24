@@ -1,17 +1,17 @@
-'use client'
+'use client';
 
-import { useTina } from 'tinacms/dist/react'
+import { useTina } from 'tinacms/dist/react';
 
-import { PostQuery } from '@/tina/__generated__/types'
+import type { PostQuery } from '@/tina/__generated__/types';
 
-import PageServer from './PageServer'
+import PageServer from './page-server';
 
 interface ClientPageProps {
-  query: string
+  query: string;
   variables: {
-    relativePath: string
-  }
-  data: PostQuery
+    relativePath: string;
+  };
+  data: PostQuery;
 }
 
 export default function PageClient({
@@ -23,11 +23,11 @@ export default function PageClient({
     query: query,
     variables: variables,
     data: data,
-  })
+  });
 
   return (
     <>
       <PageServer data={tinaData} />
     </>
-  )
+  );
 }

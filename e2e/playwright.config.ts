@@ -1,6 +1,6 @@
-import { defineConfig, devices } from '@playwright/test'
+import { defineConfig, devices } from '@playwright/test';
 
-declare const process: { env: Record<string, string>; cwd: () => string }
+declare const process: { env: Record<string, string>; cwd: () => string };
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -51,4 +51,4 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     cwd: process.cwd(),
   },
-})
+});
