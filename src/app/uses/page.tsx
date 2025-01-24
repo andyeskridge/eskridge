@@ -1,18 +1,17 @@
-import { Card } from '@/components/Card'
-import { Section } from '@/components/Section'
-import { SimpleLayout } from '@/components/SimpleLayout'
+import { Card } from '@/components/card';
+import { Section } from '@/components/section';
+import { SimpleLayout } from '@/components/simple-layout';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 function ToolsSection({
   children,
   ...props
-}: React.ComponentPropsWithoutRef<typeof Section>) {
+}: ComponentPropsWithoutRef<typeof Section>) {
   return (
     <Section {...props}>
-      <ul role="list" className="space-y-16">
-        {children}
-      </ul>
+      <ul className="space-y-16">{children}</ul>
     </Section>
-  )
+  );
 }
 
 function Tool({
@@ -20,9 +19,9 @@ function Tool({
   href,
   children,
 }: {
-  title: string
-  href?: string
-  children: React.ReactNode
+  title: string;
+  href?: string;
+  children: ReactNode;
 }) {
   return (
     <Card as="li">
@@ -31,13 +30,13 @@ function Tool({
       </Card.Title>
       <Card.Description>{children}</Card.Description>
     </Card>
-  )
+  );
 }
 
 export const metadata = {
   title: 'Uses',
   description: 'Software I use, gadgets I love, and other things I recommend.',
-}
+};
 
 export default function Uses() {
   return (
@@ -119,5 +118,5 @@ export default function Uses() {
         </ToolsSection>
       </div>
     </SimpleLayout>
-  )
+  );
 }

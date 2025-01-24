@@ -1,4 +1,4 @@
-import type { Collection } from 'tinacms'
+import type { Collection } from 'tinacms';
 
 const Post: Collection = {
   name: 'post',
@@ -44,6 +44,6 @@ const Post: Collection = {
     router: ({ document }) =>
       `/articles/${document._sys.breadcrumbs.join('/')}`,
   },
-}
+};
 
-export default Post
+export default Post;

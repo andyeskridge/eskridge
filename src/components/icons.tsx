@@ -1,5 +1,7 @@
-'use client'
-export function CloseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+'use client';
+import type { ComponentPropsWithoutRef } from 'react';
+
+export function CloseIcon(props: ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -11,9 +13,9 @@ export function CloseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
-export function ChevronDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+export function ChevronDownIcon(props: ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 8 6" aria-hidden="true" {...props}>
       <path
@@ -24,10 +26,10 @@ export function ChevronDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-export function ChevronRightIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+export function ChevronRightIcon(props: ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -37,10 +39,10 @@ export function ChevronRightIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-export function ArrowLeftIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+export function ArrowLeftIcon(props: ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -50,10 +52,10 @@ export function ArrowLeftIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-export function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+export function MailIcon(props: ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -73,10 +75,10 @@ export function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
         className="stroke-zinc-400 dark:stroke-zinc-500"
       />
     </svg>
-  )
+  );
 }
 
-export function BriefcaseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+export function BriefcaseIcon(props: ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -96,10 +98,10 @@ export function BriefcaseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
         className="stroke-zinc-400 dark:stroke-zinc-500"
       />
     </svg>
-  )
+  );
 }
 
-export function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+export function LinkIcon(props: ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -107,10 +109,10 @@ export function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
         fill="currentColor"
       />
     </svg>
-  )
+  );
 }
 
-export function ArrowDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+export function ArrowDownIcon(props: ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -120,10 +122,10 @@ export function ArrowDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-export function SunIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+export function SunIcon(props: ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -139,9 +141,9 @@ export function SunIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
         fill="none"
       />
     </svg>
-  )
+  );
 }
-export function MoonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+export function MoonIcon(props: ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -151,5 +153,5 @@ export function MoonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }

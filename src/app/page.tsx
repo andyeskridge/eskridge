@@ -1,34 +1,31 @@
-import clsx from 'clsx'
-import Image, { type ImageProps } from 'next/image'
-import Link from 'next/link'
-
-import { formatDate } from '@/lib/formatDate'
-import { getAllArticles } from '@/lib/getAllArticles'
-
-import { Button } from '@/components/Button'
-import { Card } from '@/components/Card'
-import { Container } from '@/components/Container'
-import { ArrowDownIcon, BriefcaseIcon, MailIcon } from '@/components/Icons'
+import { Button } from '@/components/button';
+import { Card } from '@/components/card';
+import { Container } from '@/components/container';
+import { ArrowDownIcon, BriefcaseIcon, MailIcon } from '@/components/icons';
 import {
   GitHubIcon,
   LinkedInIcon,
   MastodonIcon,
   TwitterIcon,
-} from '@/components/SocialIcons'
-
-import { Post } from '@/tina/__generated__/types'
-
-import logoAllegro from '@/images/logos/allegro.jpg'
-import logoBeckTech from '@/images/logos/becktech.jpg'
-import logoCenergistic from '@/images/logos/cenergistic.jpg'
-import logoGwynnGroup from '@/images/logos/gwynngroup.jpg'
-import logoProviderScience from '@/images/logos/providerscience.jpg'
-import logoStellarElements from '@/images/logos/SE_Star_BLK.svg'
-import image1 from '@/images/photos/image-1.jpg'
-import image2 from '@/images/photos/image-2.jpg'
-import image3 from '@/images/photos/image-3.jpg'
-import image4 from '@/images/photos/image-4.jpg'
-import image5 from '@/images/photos/image-5.jpg'
+} from '@/components/social-icons';
+import logoStellarElements from '@/images/logos/SE_Star_BLK.svg';
+import logoAllegro from '@/images/logos/allegro.jpg';
+import logoBeckTech from '@/images/logos/becktech.jpg';
+import logoCenergistic from '@/images/logos/cenergistic.jpg';
+import logoGwynnGroup from '@/images/logos/gwynngroup.jpg';
+import logoProviderScience from '@/images/logos/providerscience.jpg';
+import image1 from '@/images/photos/image-1.jpg';
+import image2 from '@/images/photos/image-2.jpg';
+import image3 from '@/images/photos/image-3.jpg';
+import image4 from '@/images/photos/image-4.jpg';
+import image5 from '@/images/photos/image-5.jpg';
+import { formatDate } from '@/lib/format-date';
+import { getAllArticles } from '@/lib/get-all-articles';
+import type { Post } from '@/tina/__generated__/types';
+import clsx from 'clsx';
+import Image, { type ImageProps } from 'next/image';
+import Link from 'next/link';
+import type { ComponentPropsWithoutRef, ComponentType } from 'react';
 
 function Article({ article }: { article: Post }) {
   return (
@@ -42,20 +39,20 @@ function Article({ article }: { article: Post }) {
       <Card.Description>{article.description}</Card.Description>
       <Card.Cta>Read article</Card.Cta>
     </Card>
-  )
+  );
 }
 
 function SocialLink({
   icon: Icon,
   ...props
-}: React.ComponentPropsWithoutRef<typeof Link> & {
-  icon: React.ComponentType<{ className?: string }>
+}: ComponentPropsWithoutRef<typeof Link> & {
+  icon: ComponentType<{ className?: string }>;
 }) {
   return (
     <Link className="group -m-1 p-1" {...props}>
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </Link>
-  )
+  );
 }
 
 function Newsletter() {
@@ -66,7 +63,7 @@ function Newsletter() {
       method="post"
       target="popupwindow"
     >
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+      <h2 className="flex font-semibold text-sm text-zinc-900 dark:text-zinc-100">
         <MailIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Stay up to date</span>
       </h2>
@@ -81,33 +78,33 @@ function Newsletter() {
           placeholder="Email address"
           aria-label="Email address"
           required
-          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10"
+          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 dark:placeholder:text-zinc-500"
         />
         <Button type="submit" className="ml-4 flex-none">
           Join
         </Button>
       </div>
     </form>
-  )
+  );
 }
 
 interface Role {
-  company: string
-  title: string
-  logo: ImageProps['src']
-  start: string | { label: string; dateTime: string }
-  end: string | { label: string; dateTime: string }
-  link: string
+  company: string;
+  title: string;
+  logo: ImageProps['src'];
+  start: string | { label: string; dateTime: string };
+  end: string | { label: string; dateTime: string };
+  link: string;
 }
 
 function Role({ role }: { role: Role }) {
-  let startLabel =
-    typeof role.start === 'string' ? role.start : role.start.label
-  let startDate =
-    typeof role.start === 'string' ? role.start : role.start.dateTime
+  const startLabel =
+    typeof role.start === 'string' ? role.start : role.start.label;
+  const startDate =
+    typeof role.start === 'string' ? role.start : role.start.dateTime;
 
-  let endLabel = typeof role.end === 'string' ? role.end : role.end.label
-  let endDate = typeof role.end === 'string' ? role.end : role.end.dateTime
+  const endLabel = typeof role.end === 'string' ? role.end : role.end.label;
+  const endDate = typeof role.end === 'string' ? role.end : role.end.dateTime;
 
   return (
     <li className="flex gap-4">
@@ -116,7 +113,7 @@ function Role({ role }: { role: Role }) {
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
-        <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+        <dd className="w-full flex-none font-medium text-sm text-zinc-900 dark:text-zinc-100">
           <Link href={role.link}>{role.company}</Link>
         </dd>
         <dt className="sr-only">Role</dt>
@@ -134,11 +131,11 @@ function Role({ role }: { role: Role }) {
         </dd>
       </dl>
     </li>
-  )
+  );
 }
 
 function Resume() {
-  let resume: Array<Role> = [
+  const resume: Role[] = [
     {
       company: 'Stellar Elements',
       title: 'Associate Director',
@@ -190,11 +187,11 @@ function Resume() {
       end: '2015',
       link: 'https://iongroup.com/products/commodities/allegro/',
     },
-  ]
+  ];
 
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+      <h2 className="flex font-semibold text-sm text-zinc-900 dark:text-zinc-100">
         <BriefcaseIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Work</span>
       </h2>
@@ -210,14 +207,20 @@ function Resume() {
         target="_blank"
       >
         Download CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-active:stroke-zinc-50 dark:group-hover:stroke-zinc-50" />
       </Button>
     </div>
-  )
+  );
 }
 
 function Photos() {
-  let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
+  const rotations = [
+    'rotate-2',
+    '-rotate-2',
+    'rotate-2',
+    'rotate-2',
+    '-rotate-2',
+  ];
 
   return (
     <div className="mt-16 sm:mt-20">
@@ -227,7 +230,7 @@ function Photos() {
             key={image.src}
             className={clsx(
               'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800',
-              rotations[imageIndex % rotations.length],
+              rotations[imageIndex % rotations.length]
             )}
           >
             <Image
@@ -240,17 +243,17 @@ function Photos() {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 4)
+  const articles = (await getAllArticles()).slice(0, 4);
 
   return (
     <>
       <Container className="mt-9">
         <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+          <h1 className="font-bold text-4xl text-zinc-800 tracking-tight sm:text-5xl dark:text-zinc-100">
             Senior Engineering Manager
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
@@ -299,5 +302,5 @@ export default async function Home() {
         </div>
       </Container>
     </>
-  )
+  );
 }

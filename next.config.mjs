@@ -3,7 +3,7 @@ const nextConfig = {
   pageExtensions: ['ts', 'tsx'],
   images: {
     loader: 'custom',
-    loaderFile: './src/lib/imageLoader.ts',
+    loaderFile: './src/lib/image-loader.ts',
     remotePatterns: [
       {
         protocol: 'https',
@@ -13,6 +13,6 @@ const nextConfig = {
       },
     ],
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;

@@ -1,9 +1,9 @@
-import { defineConfig } from 'tinacms'
+import { defineConfig } from 'tinacms';
 
-import Post from './collection/post'
+import Post from './collection/post';
 
 // Your hosting provider likely exposes this as an environment variable
-const branch = process.env.GITHUB_BRANCH || process.env.HEAD || 'main'
+const branch = process.env.GITHUB_BRANCH || process.env.HEAD || 'main';
 
 export default defineConfig({
   branch,
@@ -11,15 +11,13 @@ export default defineConfig({
   token: process.env.TINA_TOKEN, // Get this from tina.io
   admin: {
     authHooks: {
+      // biome-ignore lint/suspicious/useAwait: <explanation>
       onLogin: async ({ token }: { token: { id_token: string } }) => {
-        console.log('Welcome back!')
-        location.href =
-          `/api/preview/enter?token=${token.id_token}&slug=` +
-          location?.pathname
+        location.href = `/api/preview/enter?token=${token.id_token}&slug=${location?.pathname}`;
       },
+      // biome-ignore lint/suspicious/useAwait: <explanation>
       onLogout: async () => {
-        console.log('onLogout')
-        location.href = `/api/preview/exit?slug=` + location?.pathname
+        location.href = `/api/preview/exit?slug=${location?.pathname}`;
       },
     },
   },
@@ -45,4 +43,4 @@ export default defineConfig({
   schema: {
     collections: [Post],
   },
-})
+});

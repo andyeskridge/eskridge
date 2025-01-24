@@ -1,5 +1,5 @@
-import type { OpenNextConfig } from '@opennextjs/aws/types/open-next.js'
-import cache from '@opennextjs/cloudflare/kvCache'
+import type { OpenNextConfig } from '@opennextjs/aws/types/open-next.js';
+import cache from '@opennextjs/cloudflare/kvCache';
 
 const config: OpenNextConfig = {
   default: {
@@ -21,6 +21,6 @@ const config: OpenNextConfig = {
       proxyExternalRequest: 'fetch',
     },
   },
-}
+};
 
-export default config
+export default config;
