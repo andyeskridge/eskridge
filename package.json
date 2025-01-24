@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@headlessui/react": "2.2.0",
+    "@tailwindcss/postcss": "^4.0.0",
     "@tailwindcss/typography": "0.5.16",
     "@tinacms/cli": "1.8.1",
     "cheerio": "1.0.0",
