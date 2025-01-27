@@ -24,7 +24,7 @@
       },
       "devDependencies": {
         "@biomejs/biome": "1.9.4",
-        "@opennextjs/cloudflare": "0.3.10",
+        "@opennextjs/cloudflare": "0.4.0",
         "@playwright/test": "1.50.0",
         "@types/node": "22.10.10",
         "@types/react": "19.0.8",
@@ -51,25 +51,25 @@
 
     "@ariakit/react-core": ["@ariakit/react-core@0.4.15", "", { "dependencies": { "@ariakit/core": "0.4.14", "@floating-ui/dom": "^1.0.0", "use-sync-external-store": "^1.2.0" }, "peerDependencies": { "react": "^17.0.0 || ^18.0.0 || ^19.0.0", "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0" } }, "sha512-Up8+U97nAPJdyUh9E8BCEhJYTA+eVztWpHoo1R9zZfHd4cnBWAg5RHxEmMH+MamlvuRxBQA71hFKY/735fDg+A=="],
 
-    "@ast-grep/napi": ["@ast-grep/napi@0.33.1", "", { "optionalDependencies": { "@ast-grep/napi-darwin-arm64": "0.33.1", "@ast-grep/napi-darwin-x64": "0.33.1", "@ast-grep/napi-linux-arm64-gnu": "0.33.1", "@ast-grep/napi-linux-arm64-musl": "0.33.1", "@ast-grep/napi-linux-x64-gnu": "0.33.1", "@ast-grep/napi-linux-x64-musl": "0.33.1", "@ast-grep/napi-win32-arm64-msvc": "0.33.1", "@ast-grep/napi-win32-ia32-msvc": "0.33.1", "@ast-grep/napi-win32-x64-msvc": "0.33.1" } }, "sha512-AfUsqmEa8NoYq1QhY2LWKCgKRBrCW89WB2D7t4hhTwXcfBB+CWRtY11vUughpfGLrdyziPst7kpdFzI9TC9Efw=="],
+    "@ast-grep/napi": ["@ast-grep/napi@0.34.1", "", { "optionalDependencies": { "@ast-grep/napi-darwin-arm64": "0.34.1", "@ast-grep/napi-darwin-x64": "0.34.1", "@ast-grep/napi-linux-arm64-gnu": "0.34.1", "@ast-grep/napi-linux-arm64-musl": "0.34.1", "@ast-grep/napi-linux-x64-gnu": "0.34.1", "@ast-grep/napi-linux-x64-musl": "0.34.1", "@ast-grep/napi-win32-arm64-msvc": "0.34.1", "@ast-grep/napi-win32-ia32-msvc": "0.34.1", "@ast-grep/napi-win32-x64-msvc": "0.34.1" } }, "sha512-SZAXFjgSqr7TfdW+ZJZ5LMkC226vJCAHAU5VvaluG2maT/LdkaUN3RwV+emdcEXIrUOqKB98+WSobhqOsKYuNw=="],
 
-    "@ast-grep/napi-darwin-arm64": ["@ast-grep/napi-darwin-arm64@0.33.1", "", { "os": "darwin", "cpu": "arm64" }, "sha512-HJcjxDhF1THn6VlUMpYFQoZBWWMk3flBJpLEDWLjH3Umk7/4tQvaJeKwhl32Snegj35p9SHGz1cS8D2k1nDsEg=="],
+    "@ast-grep/napi-darwin-arm64": ["@ast-grep/napi-darwin-arm64@0.34.1", "", { "os": "darwin", "cpu": "arm64" }, "sha512-SzXXx2ya6xDKBaHZv20P9Qza5FaWE6lMBu00yegJVYRs7+0feBJ+10dvbv9fm+7RJ91Tw0V0G92Sgdg9lysBwA=="],
 
-    "@ast-grep/napi-darwin-x64": ["@ast-grep/napi-darwin-x64@0.33.1", "", { "os": "darwin", "cpu": "x64" }, "sha512-Gu3dd+7RZcLyte/xwBX4ErT12GYgGeQGQh6743NffChyVnpwZpj2aWmdkD8gHRKswXz2dp5R01QMCV0G5o8rDQ=="],
+    "@ast-grep/napi-darwin-x64": ["@ast-grep/napi-darwin-x64@0.34.1", "", { "os": "darwin", "cpu": "x64" }, "sha512-LIeTaB0IgNGyyU5sMW2cUHjWWW/sNjEqseMmpHLft7+LEXK7ojr4NDUN33cKtrRgEfwpvVXjXh5sgLqm343ecg=="],
 
-    "@ast-grep/napi-linux-arm64-gnu": ["@ast-grep/napi-linux-arm64-gnu@0.33.1", "", { "os": "linux", "cpu": "arm64" }, "sha512-4rvHBtq/0Ziwr93Mp86GQPMMySNHCMXnSIdJqJjTikt/LhJNdxmXtEVadashwxbBGWvcIy8dL6OCBHblzY/3ZQ=="],
+    "@ast-grep/napi-linux-arm64-gnu": ["@ast-grep/napi-linux-arm64-gnu@0.34.1", "", { "os": "linux", "cpu": "arm64" }, "sha512-zi/JKIYDsucSfMHhb2W33AVw8Q6bF9MBV6FrYF98UWpJJoWXUPzPqVM09NANyWM0lypGiWuHk//JCwHndeCiSA=="],
 
-    "@ast-grep/napi-linux-arm64-musl": ["@ast-grep/napi-linux-arm64-musl@0.33.1", "", { "os": "linux", "cpu": "arm64" }, "sha512-+vTHYYP8iRG9lZHhcpQRxAuD8CBYXJHFXgsevmnurS/R53r0YjNtrtj6W33e7RYXY5hehmey2Cz/5h6OhdLcJw=="],
+    "@ast-grep/napi-linux-arm64-musl": ["@ast-grep/napi-linux-arm64-musl@0.34.1", "", { "os": "linux", "cpu": "arm64" }, "sha512-IXdqwTbkdqHrcuQb448Qzd82QdTqVFe/f0sSkFYQTic8P2qNzmiHsVnxgEFsQPPbe09BVAoZ885j3OnaNfcDYA=="],
 
-    "@ast-grep/napi-linux-x64-gnu": ["@ast-grep/napi-linux-x64-gnu@0.33.1", "", { "os": "linux", "cpu": "x64" }, "sha512-Qm42//ZHIi2XvyvHboRPaNt32v143feG2aCqxZ2qhKJCI33abtH8pW8MF90Ix85d927xYtTwZX/ovOmJ4bghFQ=="],
+    "@ast-grep/napi-linux-x64-gnu": ["@ast-grep/napi-linux-x64-gnu@0.34.1", "", { "os": "linux", "cpu": "x64" }, "sha512-on4LyIeN/zN7SIh8zr5v+NTzVu3kXm2mG28ib1Qe9GVcf35dz52ckf7bilulayKSa2MHZWAXMjuc6NYMiNEw+w=="],
 
-    "@ast-grep/napi-linux-x64-musl": ["@ast-grep/napi-linux-x64-musl@0.33.1", "", { "os": "linux", "cpu": "x64" }, "sha512-+ye9d8nwgi+f9yhA0NEv5lDcpfIF7xhCcF9FerIKpksX57oI68QWNz1bOWHOuebaf9Wc0hgEtfai7lzcDWcsnA=="],
+    "@ast-grep/napi-linux-x64-musl": ["@ast-grep/napi-linux-x64-musl@0.34.1", "", { "os": "linux", "cpu": "x64" }, "sha512-l1R5L9LOp0jTPjs8C+LUndZOA8cRw7PFlvoVxVbi2jCfcns00dqatSYc4yA/ke6ng2K0LSxjoV/jS8tefve0sA=="],
 
-    "@ast-grep/napi-win32-arm64-msvc": ["@ast-grep/napi-win32-arm64-msvc@0.33.1", "", { "os": "win32", "cpu": "arm64" }, "sha512-0IrPtvqMUJmvmbBN3JcAmUoKUxsWMmrp0VAoJ+zUBHcz3GeWDISgxrUcx1z6edMeF+Ktm0SUG2LfqrzFhUqMyw=="],
+    "@ast-grep/napi-win32-arm64-msvc": ["@ast-grep/napi-win32-arm64-msvc@0.34.1", "", { "os": "win32", "cpu": "arm64" }, "sha512-eVsdMtnY7jmN2xQjYY9gaqIxRHA44+QYivlP1uLbg8w3P4YlZWTFgOJ7aa357Hg/257mjeQCpodCkr0lGRsSYQ=="],
 
-    "@ast-grep/napi-win32-ia32-msvc": ["@ast-grep/napi-win32-ia32-msvc@0.33.1", "", { "os": "win32", "cpu": "ia32" }, "sha512-rM6kK19Z9mknXQLZYvIGW1vR472n0dzhexWRM4O8BAL33B4NXA0qa7lX7I3ioHBTOUx0dGW10oNRm3yindUohg=="],
+    "@ast-grep/napi-win32-ia32-msvc": ["@ast-grep/napi-win32-ia32-msvc@0.34.1", "", { "os": "win32", "cpu": "ia32" }, "sha512-jDW6jfoxEeYMM8hrPSiOz4iUIN+O7VTTlqU5TWDdlFX8HJYLF4SrNFEZl+Gz5B0Ph5LTjKPZFk6sd+DC1zt9+A=="],
 
-    "@ast-grep/napi-win32-x64-msvc": ["@ast-grep/napi-win32-x64-msvc@0.33.1", "", { "os": "win32", "cpu": "x64" }, "sha512-8ATNhuU28PoUBxSgsPQnPpY+rl8DPEQCuUS55X0BLAvNQwR+Tc4MHHHX1FwjQxLLSAPfd5weiG4XQA+l7sIr0w=="],
+    "@ast-grep/napi-win32-x64-msvc": ["@ast-grep/napi-win32-x64-msvc@0.34.1", "", { "os": "win32", "cpu": "x64" }, "sha512-ttBFcTugjzEbYRPBo400NfPU+3ukBxeOxpeYLBZ1yIYqbgekPnD4WItiowsX5/hd0wHcX3T50FdthlJRmOXubQ=="],
 
     "@aws-crypto/crc32": ["@aws-crypto/crc32@5.2.0", "", { "dependencies": { "@aws-crypto/util": "^5.2.0", "@aws-sdk/types": "^3.222.0", "tslib": "^2.6.2" } }, "sha512-nLbCWqQNgUiwwtFsen1AdzAtvuLRsQS8rYgMuxCrdKf9kOssamGLuPwyTY9wyYblNr9+1XM8v6zoDTPPSIeANg=="],
 
@@ -555,9 +555,9 @@
 
     "@nodelib/fs.walk": ["@nodelib/fs.walk@1.2.8", "", { "dependencies": { "@nodelib/fs.scandir": "2.1.5", "fastq": "^1.6.0" } }, "sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg=="],
 
-    "@opennextjs/aws": ["@opennextjs/aws@https://pkg.pr.new/@opennextjs/aws@704", { "dependencies": { "@aws-sdk/client-cloudfront": "3.398.0", "@aws-sdk/client-dynamodb": "^3.398.0", "@aws-sdk/client-lambda": "^3.398.0", "@aws-sdk/client-s3": "^3.398.0", "@aws-sdk/client-sqs": "^3.398.0", "@esbuild-plugins/node-resolve": "0.2.2", "@node-minify/core": "^8.0.6", "@node-minify/terser": "^8.0.6", "@tsconfig/node18": "^1.0.1", "aws4fetch": "^1.0.18", "chalk": "^5.3.0", "esbuild": "0.19.2", "express": "5.0.1", "path-to-regexp": "^6.3.0", "promise.series": "^0.2.0", "urlpattern-polyfill": "^10.0.0" }, "bin": { "open-next": "./dist/index.js" } }],
+    "@opennextjs/aws": ["@opennextjs/aws@https://pkg.pr.new/@opennextjs/aws@712", { "dependencies": { "@aws-sdk/client-cloudfront": "3.398.0", "@aws-sdk/client-dynamodb": "^3.398.0", "@aws-sdk/client-lambda": "^3.398.0", "@aws-sdk/client-s3": "^3.398.0", "@aws-sdk/client-sqs": "^3.398.0", "@esbuild-plugins/node-resolve": "0.2.2", "@node-minify/core": "^8.0.6", "@node-minify/terser": "^8.0.6", "@tsconfig/node18": "^1.0.1", "aws4fetch": "^1.0.18", "chalk": "^5.3.0", "esbuild": "0.19.2", "express": "5.0.1", "path-to-regexp": "^6.3.0", "promise.series": "^0.2.0", "urlpattern-polyfill": "^10.0.0" }, "bin": { "open-next": "./dist/index.js" } }],
 
-    "@opennextjs/cloudflare": ["@opennextjs/cloudflare@0.3.10", "", { "dependencies": { "@ast-grep/napi": "^0.33.1", "@dotenvx/dotenvx": "1.31.0", "@opennextjs/aws": "https://pkg.pr.new/@opennextjs/aws@704", "enquirer": "^2.4.1", "glob": "^11.0.0", "ts-morph": "^23.0.0", "yaml": "^2.7.0" }, "peerDependencies": { "wrangler": "^3.103.0" }, "bin": { "opennextjs-cloudflare": "dist/cli/index.js" } }, "sha512-jMBYLT7gshfnpxweWwDcZODX5glTmVcTTWvZd4Hbcw1/2ZtpmhwmyM9wnGTHzfnvL3LjOxkN1b+UVcKJrnuhfA=="],
+    "@opennextjs/cloudflare": ["@opennextjs/cloudflare@0.4.0", "", { "dependencies": { "@ast-grep/napi": "^0.34.1", "@dotenvx/dotenvx": "1.31.0", "@opennextjs/aws": "https://pkg.pr.new/@opennextjs/aws@712", "enquirer": "^2.4.1", "glob": "^11.0.0", "ts-morph": "^23.0.0", "yaml": "^2.7.0" }, "peerDependencies": { "wrangler": "^3.105.0" }, "bin": { "opennextjs-cloudflare": "dist/cli/index.js" } }, "sha512-eN/PU07DKd1UA67Q2HfO30Ni7jSgDrPB5pJbDSx63bJ2uHlE83gyd1MKDnPEK+5mJpcGWFYQFTV5iMkanZAy1w=="],
 
     "@pkgjs/parseargs": ["@pkgjs/parseargs@0.11.0", "", {}, "sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg=="],
 
