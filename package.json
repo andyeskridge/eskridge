@@ -41,7 +41,7 @@
     "@opennextjs/cloudflare": "0.4.3",
     "@playwright/test": "1.50.1",
     "ultracite": "4.1.18",
-    "wrangler": "3.107.0"
+    "wrangler": "3.107.2"
   },
   "overrides": {
     "@types/react": "19.0.8",
