@@ -40,7 +40,7 @@
     "@biomejs/biome": "1.9.4",
     "@opennextjs/cloudflare": "0.4.3",
     "@playwright/test": "1.50.1",
-    "ultracite": "4.1.17",
+    "ultracite": "4.1.18",
     "wrangler": "3.107.0"
   },
   "overrides": {
