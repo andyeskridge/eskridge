@@ -42,7 +42,7 @@
     "@types/node": "22.13.1",
     "@types/react": "19.0.8",
     "@types/react-dom": "19.0.3",
-    "ultracite": "4.1.18",
+    "ultracite": "4.1.19",
     "wrangler": "3.108.1"
   },
   "overrides": {
