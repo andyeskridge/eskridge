@@ -31,7 +31,7 @@
         "@types/react": "19.0.10",
         "@types/react-dom": "19.0.4",
         "ultracite": "4.1.20",
-        "wrangler": "3.109.2",
+        "wrangler": "3.109.3",
       },
     },
   },
@@ -2556,7 +2556,7 @@
 
     "workerd": ["workerd@1.20250214.0", "", { "optionalDependencies": { "@cloudflare/workerd-darwin-64": "1.20250214.0", "@cloudflare/workerd-darwin-arm64": "1.20250214.0", "@cloudflare/workerd-linux-64": "1.20250214.0", "@cloudflare/workerd-linux-arm64": "1.20250214.0", "@cloudflare/workerd-windows-64": "1.20250214.0" }, "bin": { "workerd": "bin/workerd" } }, "sha512-QWcqXZLiMpV12wiaVnb3nLmfs/g4ZsFQq2mX85z546r3AX4CTIkXl0VP50W3CwqLADej3PGYiRDOTelDOwVG1g=="],
 
-    "wrangler": ["wrangler@3.109.2", "", { "dependencies": { "@cloudflare/kv-asset-handler": "0.3.4", "@esbuild-plugins/node-globals-polyfill": "0.2.3", "@esbuild-plugins/node-modules-polyfill": "0.2.2", "blake3-wasm": "2.1.5", "esbuild": "0.17.19", "miniflare": "3.20250214.0", "path-to-regexp": "6.3.0", "unenv": "2.0.0-rc.1", "workerd": "1.20250214.0" }, "optionalDependencies": { "fsevents": "~2.3.2", "sharp": "^0.33.5" }, "peerDependencies": { "@cloudflare/workers-types": "^4.20250214.0" }, "optionalPeers": ["@cloudflare/workers-types"], "bin": { "wrangler": "bin/wrangler.js", "wrangler2": "bin/wrangler.js" } }, "sha512-CT8izugPBth5o1o4gLNcQrDkHKSX2Jthy6gkyhaWiy2pFrx+536NMn/atWilLA1t1uhIgddEI5BXDNudIkPPHA=="],
+    "wrangler": ["wrangler@3.109.3", "", { "dependencies": { "@cloudflare/kv-asset-handler": "0.3.4", "@esbuild-plugins/node-globals-polyfill": "0.2.3", "@esbuild-plugins/node-modules-polyfill": "0.2.2", "blake3-wasm": "2.1.5", "esbuild": "0.17.19", "miniflare": "3.20250214.0", "path-to-regexp": "6.3.0", "unenv": "2.0.0-rc.1", "workerd": "1.20250214.0" }, "optionalDependencies": { "fsevents": "~2.3.2", "sharp": "^0.33.5" }, "peerDependencies": { "@cloudflare/workers-types": "^4.20250214.0" }, "optionalPeers": ["@cloudflare/workers-types"], "bin": { "wrangler": "bin/wrangler.js", "wrangler2": "bin/wrangler.js" } }, "sha512-T+SfFYEbkWDzf8WRR1JzaVKPH7wAzyciRIua8qszT+UqPqFNb6M5beCHHK/de7Zk5z6W5lvLly9SHToC11maDQ=="],
 
     "wrap-ansi": ["wrap-ansi@8.1.0", "", { "dependencies": { "ansi-styles": "^6.1.0", "string-width": "^5.0.1", "strip-ansi": "^7.0.1" } }, "sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ=="],
 
