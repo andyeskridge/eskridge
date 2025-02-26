@@ -37,7 +37,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@opennextjs/aws": "3.4.2",
-    "@opennextjs/cloudflare": "0.5.3",
+    "@opennextjs/cloudflare": "0.5.4",
     "@playwright/test": "1.50.1",
     "@types/node": "22.13.5",
     "@types/react": "19.0.10",
