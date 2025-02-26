@@ -25,7 +25,7 @@
       "devDependencies": {
         "@biomejs/biome": "1.9.4",
         "@opennextjs/aws": "3.4.2",
-        "@opennextjs/cloudflare": "0.5.4",
+        "@opennextjs/cloudflare": "0.5.5",
         "@playwright/test": "1.50.1",
         "@types/node": "22.13.5",
         "@types/react": "19.0.10",
@@ -558,7 +558,7 @@
 
     "@opennextjs/aws": ["@opennextjs/aws@3.4.2", "", { "dependencies": { "@aws-sdk/client-cloudfront": "3.398.0", "@aws-sdk/client-dynamodb": "^3.398.0", "@aws-sdk/client-lambda": "^3.398.0", "@aws-sdk/client-s3": "^3.398.0", "@aws-sdk/client-sqs": "^3.398.0", "@esbuild-plugins/node-resolve": "0.2.2", "@node-minify/core": "^8.0.6", "@node-minify/terser": "^8.0.6", "@tsconfig/node18": "^1.0.1", "aws4fetch": "^1.0.18", "chalk": "^5.3.0", "esbuild": "0.19.2", "express": "5.0.1", "path-to-regexp": "^6.3.0", "promise.series": "^0.2.0", "urlpattern-polyfill": "^10.0.0" }, "bin": { "open-next": "dist/index.js" } }, "sha512-f5HWNp3a8zxFT9rJmefh9yw0CrzaXwXjg0gKZjYuQh3pdM9utgZApIrcpWUYyQNH2rSfKyXafHQFm8NkRukptw=="],
 
-    "@opennextjs/cloudflare": ["@opennextjs/cloudflare@0.5.4", "", { "dependencies": { "@ast-grep/napi": "^0.34.1", "@dotenvx/dotenvx": "1.31.0", "@opennextjs/aws": "https://pkg.pr.new/@opennextjs/aws@748", "enquirer": "^2.4.1", "glob": "^11.0.0", "yaml": "^2.7.0" }, "peerDependencies": { "wrangler": "^3.107.3" }, "bin": { "opennextjs-cloudflare": "dist/cli/index.js" } }, "sha512-E70jf5tHOq7XxcMZIWl6Pm1wPhfNqX80mKlIJ9uJdNaQqC2pWH9ua/WyDSrXOu4vnvXJ/PjDlFzyUR72AxwNpQ=="],
+    "@opennextjs/cloudflare": ["@opennextjs/cloudflare@0.5.5", "", { "dependencies": { "@ast-grep/napi": "^0.34.1", "@dotenvx/dotenvx": "1.31.0", "@opennextjs/aws": "https://pkg.pr.new/@opennextjs/aws@748", "enquirer": "^2.4.1", "glob": "^11.0.0", "yaml": "^2.7.0" }, "peerDependencies": { "wrangler": "^3.107.3" }, "bin": { "opennextjs-cloudflare": "dist/cli/index.js" } }, "sha512-xw1o0e3CvaSdF3rsErkNaClVKMIkZut8je04pDMwm2pleuDjiqE58ZzItcFoDwHPBicy2AScjG3+qp1MgyR66A=="],
 
     "@pkgjs/parseargs": ["@pkgjs/parseargs@0.11.0", "", {}, "sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg=="],
 
