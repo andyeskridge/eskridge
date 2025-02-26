@@ -43,7 +43,7 @@
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "ultracite": "4.1.20",
-    "wrangler": "3.109.3"
+    "wrangler": "3.110.0"
   },
   "overrides": {
     "@types/react": "19.0.10",
