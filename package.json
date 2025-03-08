@@ -39,7 +39,7 @@
     "@opennextjs/aws": "3.5.1",
     "@opennextjs/cloudflare": "0.5.8",
     "@playwright/test": "1.51.0",
-    "@types/node": "22.13.9",
+    "@types/node": "22.13.10",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "ultracite": "4.1.20",
