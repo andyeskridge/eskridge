@@ -25,7 +25,7 @@
       "devDependencies": {
         "@biomejs/biome": "1.9.4",
         "@opennextjs/aws": "3.5.1",
-        "@opennextjs/cloudflare": "0.5.9",
+        "@opennextjs/cloudflare": "0.5.10",
         "@playwright/test": "1.51.0",
         "@types/node": "22.13.10",
         "@types/react": "19.0.10",
@@ -556,7 +556,7 @@
 
     "@opennextjs/aws": ["@opennextjs/aws@3.5.1", "", { "dependencies": { "@aws-sdk/client-cloudfront": "3.398.0", "@aws-sdk/client-dynamodb": "^3.398.0", "@aws-sdk/client-lambda": "^3.398.0", "@aws-sdk/client-s3": "^3.398.0", "@aws-sdk/client-sqs": "^3.398.0", "@node-minify/core": "^8.0.6", "@node-minify/terser": "^8.0.6", "@tsconfig/node18": "^1.0.1", "aws4fetch": "^1.0.18", "chalk": "^5.3.0", "esbuild": "0.19.2", "express": "5.0.1", "path-to-regexp": "^6.3.0", "urlpattern-polyfill": "^10.0.0" }, "bin": { "open-next": "dist/index.js" } }, "sha512-hc+LebNIwCgpWO9jnLTnGyf0YuN4bNksFJ+a5W12RzytS9CyYIVjlzB02XS4EzlR+5wQxHpwYMUQ/MSY4gAxhw=="],
 
-    "@opennextjs/cloudflare": ["@opennextjs/cloudflare@0.5.9", "", { "dependencies": { "@ast-grep/napi": "^0.34.1", "@dotenvx/dotenvx": "1.31.0", "@opennextjs/aws": "https://pkg.pr.new/@opennextjs/aws@756", "enquirer": "^2.4.1", "glob": "^11.0.0", "yaml": "^2.7.0" }, "peerDependencies": { "wrangler": "^3.111.0" }, "bin": { "opennextjs-cloudflare": "dist/cli/index.js" } }, "sha512-1JHKLh6a5x1EtoBAm6u5uv6zje9YuFztRI/0Lr6n3xbEVQFrfxZ42e8gJzQLV6os/BTlryQa+ANSZH6srEiPlg=="],
+    "@opennextjs/cloudflare": ["@opennextjs/cloudflare@0.5.10", "", { "dependencies": { "@ast-grep/napi": "^0.34.1", "@dotenvx/dotenvx": "1.31.0", "@opennextjs/aws": "https://pkg.pr.new/@opennextjs/aws@756", "enquirer": "^2.4.1", "glob": "^11.0.0", "yaml": "^2.7.0" }, "peerDependencies": { "wrangler": "^3.111.0" }, "bin": { "opennextjs-cloudflare": "dist/cli/index.js" } }, "sha512-L/D472YT5OW1LwpFtD/aVXHJYcVPbFVX7XdphlUjCR4+2osSQIDnsuNgfDRydHMDJZMKxeZDc251ZBzUVKpCqw=="],
 
     "@pkgjs/parseargs": ["@pkgjs/parseargs@0.11.0", "", {}, "sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg=="],
 
