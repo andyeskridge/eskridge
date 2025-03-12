@@ -24,7 +24,7 @@
       },
       "devDependencies": {
         "@biomejs/biome": "1.9.4",
-        "@opennextjs/aws": "3.5.1",
+        "@opennextjs/aws": "3.5.2",
         "@opennextjs/cloudflare": "0.5.10",
         "@playwright/test": "1.51.0",
         "@types/node": "22.13.10",
@@ -556,7 +556,7 @@
 
     "@nodelib/fs.walk": ["@nodelib/fs.walk@1.2.8", "", { "dependencies": { "@nodelib/fs.scandir": "2.1.5", "fastq": "^1.6.0" } }, "sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg=="],
 
-    "@opennextjs/aws": ["@opennextjs/aws@3.5.1", "", { "dependencies": { "@aws-sdk/client-cloudfront": "3.398.0", "@aws-sdk/client-dynamodb": "^3.398.0", "@aws-sdk/client-lambda": "^3.398.0", "@aws-sdk/client-s3": "^3.398.0", "@aws-sdk/client-sqs": "^3.398.0", "@node-minify/core": "^8.0.6", "@node-minify/terser": "^8.0.6", "@tsconfig/node18": "^1.0.1", "aws4fetch": "^1.0.18", "chalk": "^5.3.0", "esbuild": "0.19.2", "express": "5.0.1", "path-to-regexp": "^6.3.0", "urlpattern-polyfill": "^10.0.0" }, "bin": { "open-next": "dist/index.js" } }, "sha512-hc+LebNIwCgpWO9jnLTnGyf0YuN4bNksFJ+a5W12RzytS9CyYIVjlzB02XS4EzlR+5wQxHpwYMUQ/MSY4gAxhw=="],
+    "@opennextjs/aws": ["@opennextjs/aws@3.5.2", "", { "dependencies": { "@aws-sdk/client-cloudfront": "3.398.0", "@aws-sdk/client-dynamodb": "^3.398.0", "@aws-sdk/client-lambda": "^3.398.0", "@aws-sdk/client-s3": "^3.398.0", "@aws-sdk/client-sqs": "^3.398.0", "@node-minify/core": "^8.0.6", "@node-minify/terser": "^8.0.6", "@tsconfig/node18": "^1.0.1", "aws4fetch": "^1.0.18", "chalk": "^5.3.0", "esbuild": "0.19.2", "express": "5.0.1", "path-to-regexp": "^6.3.0", "urlpattern-polyfill": "^10.0.0" }, "bin": { "open-next": "dist/index.js" } }, "sha512-zxB+50ycFwwt+6mWXOmId6aTwOxFTECEnSZoV4KYNyIQTUU7I3kWNR1ELVWCA18c+SF0R93iiK7T9pNDRcQm4w=="],
 
     "@opennextjs/cloudflare": ["@opennextjs/cloudflare@0.5.10", "", { "dependencies": { "@ast-grep/napi": "^0.34.1", "@dotenvx/dotenvx": "1.31.0", "@opennextjs/aws": "https://pkg.pr.new/@opennextjs/aws@756", "enquirer": "^2.4.1", "glob": "^11.0.0", "yaml": "^2.7.0" }, "peerDependencies": { "wrangler": "^3.111.0" }, "bin": { "opennextjs-cloudflare": "dist/cli/index.js" } }, "sha512-L/D472YT5OW1LwpFtD/aVXHJYcVPbFVX7XdphlUjCR4+2osSQIDnsuNgfDRydHMDJZMKxeZDc251ZBzUVKpCqw=="],
 
