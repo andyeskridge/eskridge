@@ -13,7 +13,7 @@
     "tina:build": "tinacms build",
     "lint": "biome check",
     "lint:ci": "biome ci",
-    "cf-typegen": "wrangler types --experimental-include-runtime --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@headlessui/react": "2.2.0",

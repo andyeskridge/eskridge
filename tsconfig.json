@@ -29,7 +29,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "./.wrangler/types/runtime.d.ts",
     "cloudflare-env.d.ts"
   ],
   "exclude": ["node_modules"]
