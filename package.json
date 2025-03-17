@@ -38,7 +38,7 @@
     "@biomejs/biome": "1.9.4",
     "@opennextjs/aws": "3.5.2",
     "@opennextjs/cloudflare": "0.5.12",
-    "@playwright/test": "1.51.0",
+    "@playwright/test": "1.51.1",
     "@types/node": "22.13.10",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
