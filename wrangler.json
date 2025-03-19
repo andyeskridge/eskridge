@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "compatibility_date": "2024-12-30",
+  "compatibility_date": "2025-04-01",
   "compatibility_flags": ["nodejs_compat"],
   "name": "eskridge",
   "main": ".open-next/worker.js",
@@ -12,6 +12,19 @@
     {
       "binding": "NEXT_CACHE_WORKERS_KV",
       "id": "13f796e809e642619f97b90fd9dacfbd"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "NEXT_CACHE_D1",
+      "database_name": "eskridge_cache_prod",
+      "database_id": "6af4ee9d-eed6-425a-b11e-fc2957746916"
+    }
+  ],
+  "services": [
+    {
+      "binding": "NEXT_CACHE_REVALIDATION_WORKER",
+      "service": "eskridge"
     }
   ],
   "routes": [
