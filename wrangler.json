@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "compatibility_date": "2025-04-01",
+  "compatibility_date": "2025-03-19",
   "compatibility_flags": ["nodejs_compat"],
   "name": "eskridge",
   "main": ".open-next/worker.js",
