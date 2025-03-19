@@ -38,6 +38,14 @@ jobs:
         run: bun install && bun run build:worker
       - name: Install Playwright Browsers
         run: bun x playwright install --with-deps
+      - name: Run e2e Migrations
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: latest
+          command: 'd1 execute NEXT_CACHE_D1 --file .open-next/cloudflare/cache-assets-manifest.sql'
       - name: e2e
         run: bun run e2e
         env:
