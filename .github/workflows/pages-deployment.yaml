@@ -60,4 +60,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: latest
-          command: 'd1 execute NEXT_CACHE_D1 --file .open-next/cloudflare/cache-assets-manifest.sql'
+          command: 'd1 execute NEXT_CACHE_D1 --file .open-next/cloudflare/cache-assets-manifest.sql --remote'
