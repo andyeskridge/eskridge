@@ -5,31 +5,30 @@
       "name": "eskridge",
       "dependencies": {
         "@headlessui/react": "2.2.0",
-        "@tailwindcss/postcss": "4.0.14",
-        "@tailwindcss/typography": "0.5.16",
-        "@tinacms/cli": "1.9.3",
         "cheerio": "1.0.0",
         "clsx": "2.1.1",
         "feed": "4.2.2",
         "next": "15.2.3",
         "next-themes": "0.4.6",
-        "postcss": "8.5.3",
         "react": "19.0.0",
         "react-dom": "19.0.0",
         "sharp": "0.33.5",
-        "stream": "0.0.3",
-        "tailwindcss": "4.0.14",
         "tinacms": "2.7.3",
-        "typescript": "5.8.2",
       },
       "devDependencies": {
         "@biomejs/biome": "1.9.4",
         "@opennextjs/aws": "3.5.2",
         "@opennextjs/cloudflare": "0.5.12",
         "@playwright/test": "1.51.1",
+        "@tailwindcss/postcss": "4.0.14",
+        "@tailwindcss/typography": "0.5.16",
+        "@tinacms/cli": "1.9.3",
         "@types/node": "22.13.10",
         "@types/react": "19.0.12",
         "@types/react-dom": "19.0.4",
+        "postcss": "8.5.3",
+        "tailwindcss": "4.0.14",
+        "typescript": "5.8.2",
         "ultracite": "4.1.21",
         "wrangler": "4.2.0",
       },
@@ -1163,8 +1162,6 @@
     "commander": ["commander@12.1.0", "", {}, "sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA=="],
 
     "common-tags": ["common-tags@1.8.2", "", {}, "sha512-gk/Z852D2Wtb//0I+kRFNKKE9dIIVirjoqPoA1wJU+XePVXZfGeBpk45+A1rKO4Q43prqWBNY/MiIeRLbPWUaA=="],
-
-    "component-emitter": ["component-emitter@2.0.0", "", {}, "sha512-4m5s3Me2xxlVKG9PkZpQqHQR7bgpnN7joDMJ4yvVkVXngjoITG76IaZmzmywSeRTeTpc6N6r3H3+KyUurV8OYw=="],
 
     "compute-scroll-into-view": ["compute-scroll-into-view@1.0.20", "", {}, "sha512-UCB0ioiyj8CRjtrvaceBLqqhZCVP+1B8+NWQhmdsm0VXOJtobBCf1dBQmebCCo34qZmUwZfIH2MZLqNHazrfjg=="],
 
@@ -2319,8 +2316,6 @@
     "stoppable": ["stoppable@1.1.0", "", {}, "sha512-KXDYZ9dszj6bzvnEMRYvxgeTHU74QBFL54XKtP3nyMuJ81CFYtABZ3bAzL2EdFUaEwJOBOgENyFj3R7oTzDyyw=="],
 
     "stopword": ["stopword@3.1.4", "", {}, "sha512-RiyU12FwHWX1i42gxhn5sywgpV5mptZTzbHKqKh5wVDWC2Uu+8vKbLv8xxeNa0p29vECbYGLXpDayo54n9+dsg=="],
-
-    "stream": ["stream@0.0.3", "", { "dependencies": { "component-emitter": "^2.0.0" } }, "sha512-aMsbn7VKrl4A2T7QAQQbzgN7NVc70vgF5INQrBXqn4dCXN1zy3L9HGgLO5s7PExmdrzTJ8uR/27aviW8or8/+A=="],
 
     "streamroller": ["streamroller@3.1.5", "", { "dependencies": { "date-format": "^4.0.14", "debug": "^4.3.4", "fs-extra": "^8.1.0" } }, "sha512-KFxaM7XT+irxvdqSP1LGLgNWbYN7ay5owZ3r/8t77p+EtSUAfUgtl7be3xtqtOmGUl9K9YPO2ca8133RlTjvKw=="],
 
