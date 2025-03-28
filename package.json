@@ -3,17 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build:worker": "opennextjs-cloudflare",
-    "dev:worker": "wrangler dev --port 8771",
-    "preview:worker": "bun build:worker && bun dev:worker",
-    "e2e": "playwright test -c e2e/playwright.config.ts",
-    "dev": "tinacms dev -c \"next dev\"",
+    "build:worker": "opennextjs-cloudflare build",
     "build": "tinacms build && next build",
-    "start": "tinacms build && next start",
-    "tina:build": "tinacms build",
-    "lint": "biome check",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "dev:worker": "opennextjs-cloudflare preview -- --port 8771",
+    "dev": "tinacms dev -c \"next dev\"",
+    "e2e": "playwright test -c e2e/playwright.config.ts",
     "lint:ci": "biome ci",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "lint": "biome check",
+    "populate:local": "opennextjs-cloudflare populateCache local",
+    "populate:remote": "opennextjs-cloudflare populateCache remote",
+    "preview:worker": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "start": "tinacms build && next start",
+    "tina:build": "tinacms build"
   },
   "dependencies": {
     "@headlessui/react": "2.2.0",
@@ -30,7 +33,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@opennextjs/aws": "3.5.3",
-    "@opennextjs/cloudflare": "0.5.12",
+    "@opennextjs/cloudflare": "0.6.3",
     "@playwright/test": "1.51.1",
     "@tailwindcss/postcss": "4.0.17",
     "@tailwindcss/typography": "0.5.16",
