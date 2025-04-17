@@ -19,7 +19,7 @@
     "tina:build": "tinacms build"
   },
   "dependencies": {
-    "@headlessui/react": "2.2.1",
+    "@headlessui/react": "2.2.2",
     "cheerio": "1.0.0",
     "clsx": "2.1.1",
     "feed": "4.2.2",
