@@ -29,7 +29,7 @@
         "postcss": "8.5.3",
         "tailwindcss": "4.1.5",
         "typescript": "5.8.3",
-        "ultracite": "4.2.3",
+        "ultracite": "4.2.4",
         "wrangler": "4.14.1",
       },
     },
@@ -2435,7 +2435,7 @@
 
     "ufo": ["ufo@1.5.4", "", {}, "sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ=="],
 
-    "ultracite": ["ultracite@4.2.3", "", { "dependencies": { "commander": "^12.1.0" }, "bin": { "ultracite": "scripts/run.mjs" } }, "sha512-MssBck84c0Q4nxcjGf0vZYpRsgCyltizrdQvcfcbAqhEkde89VEnItEDnT6nBegEzg1G9Vmkm6PqNXTpTOPHKQ=="],
+    "ultracite": ["ultracite@4.2.4", "", { "dependencies": { "commander": "^12.1.0" }, "bin": { "ultracite": "scripts/run.mjs" } }, "sha512-1dJfklnn8jGdzNAY770ogUN7rKqjFD/Rz6MYINYXMSuOdX5AXk8lI7ay8zCP3IYg4gX9gCkvuPE3XPaU/nD6bw=="],
 
     "unc-path-regex": ["unc-path-regex@0.1.2", "", {}, "sha512-eXL4nmJT7oCpkZsHZUOJo8hcX3GbsiDOa0Qu9F646fi8dT3XuSVopVqAcEiVzSKKH7UoDti23wNX3qGFxcW5Qg=="],
 
