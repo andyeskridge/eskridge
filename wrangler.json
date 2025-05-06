@@ -23,7 +23,7 @@
   ],
   "services": [
     {
-      "binding": "NEXT_SELF_REFERENCE",
+      "binding": "WORKER_SELF_REFERENCE",
       "service": "eskridge"
     }
   ],
