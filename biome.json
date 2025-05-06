@@ -2,7 +2,12 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "extends": ["ultracite"],
   "files": {
-    "ignore": ["tina/tina-lock.json", "cloudflare-env.d.ts", "bun.lock"]
+    "ignore": [
+      "tina/tina-lock.json",
+      "cloudflare-env.d.ts",
+      "bun.lock",
+      "renovate.json"
+    ]
   },
   "javascript": {
     "globals": ["KVNamespace", "Fetcher"]
