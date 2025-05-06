@@ -1,14 +1,18 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
-  "fetchReleaseNotes": "pr",
+  "extends": [
+    "config:recommended"
+  ],
+  "fetchChangeLogs": "pr",
   "lockFileMaintenance": {
     "enabled": true,
-    "recreateClosed": true,
-    "rebaseStalePrs": true,
+    "recreateWhen": "always",
+    "rebaseWhen": "behind-base-branch",
     "branchTopic": "lock-file-maintenance",
     "commitMessageAction": "Lock file maintenance",
-    "schedule": ["before 5am on monday"],
+    "schedule": [
+      "before 5am on monday"
+    ],
     "prBodyDefinitions": {
       "Change": "All locks refreshed"
     }
@@ -17,7 +21,12 @@
   "rangeStrategy": "pin",
   "packageRules": [
     {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
       "automerge": true
     }
   ]
