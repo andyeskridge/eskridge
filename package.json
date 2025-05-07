@@ -33,7 +33,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@opennextjs/aws": "3.6.0",
-    "@opennextjs/cloudflare": "1.0.0",
+    "@opennextjs/cloudflare": "1.0.1",
     "@playwright/test": "1.52.0",
     "@tailwindcss/postcss": "4.1.5",
     "@tailwindcss/typography": "0.5.16",
