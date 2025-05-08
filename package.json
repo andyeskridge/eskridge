@@ -28,7 +28,7 @@
     "react-dom": "19.1.0",
     "react": "19.1.0",
     "sharp": "0.34.1",
-    "tinacms": "2.7.5"
+    "tinacms": "2.7.6"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
