@@ -21,6 +21,10 @@
   "rangeStrategy": "pin",
   "packageRules": [
     {
+      "matchPackagePrefixes": ["tinacms", "@tinacms"],
+      "groupName": "tinacms packages"
+    },
+    {
       "matchUpdateTypes": [
         "minor",
         "patch",
