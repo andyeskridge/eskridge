@@ -37,7 +37,8 @@ const Category: Collection = {
     },
   ],
   ui: {
-    router: ({ document }) => `/categories/${document._sys.breadcrumbs.join('/')}`,
+    router: ({ document }) =>
+      `/categories/${document._sys.breadcrumbs.join('/')}`,
     filename: {
       readonly: false,
       slugify: (values) => {

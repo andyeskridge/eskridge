@@ -1,8 +1,8 @@
-import { getAllArticles } from '@/lib/get-all-articles';
-import { getAllTags } from '@/lib/get-all-tags';
-import { formatDate } from '@/lib/format-date';
 import { Card } from '@/components/card';
 import { SimpleLayout } from '@/components/simple-layout';
+import { formatDate } from '@/lib/format-date';
+import { getAllArticles } from '@/lib/get-all-articles';
+import { getAllTags } from '@/lib/get-all-tags';
 import type { Post } from '@/tina/__generated__/types';
 import { notFound } from 'next/navigation';
 
@@ -52,8 +52,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: TagPageProps) {
   const { slug } = await params;
   const tags = await getAllTags();
-  const tag = tags.find(t => t.slug === slug);
-  
+  const tag = tags.find((t) => t.slug === slug);
+
   if (!tag) {
     return {
       title: 'Tag Not Found',
@@ -68,13 +68,10 @@ export async function generateMetadata({ params }: TagPageProps) {
 
 export default async function TagPage({ params }: TagPageProps) {
   const { slug } = await params;
-  const [articles, tags] = await Promise.all([
-    getAllArticles(),
-    getAllTags(),
-  ]);
+  const [articles, tags] = await Promise.all([getAllArticles(), getAllTags()]);
 
-  const tag = tags.find(t => t.slug === slug);
-  
+  const tag = tags.find((t) => t.slug === slug);
+
   if (!tag) {
     notFound();
   }

@@ -1,8 +1,8 @@
-import { getAllArticles } from '@/lib/get-all-articles';
-import { getAllCategories } from '@/lib/get-all-categories';
-import { formatDate } from '@/lib/format-date';
 import { Card } from '@/components/card';
 import { SimpleLayout } from '@/components/simple-layout';
+import { formatDate } from '@/lib/format-date';
+import { getAllArticles } from '@/lib/get-all-articles';
+import { getAllCategories } from '@/lib/get-all-categories';
 import type { Post } from '@/tina/__generated__/types';
 import { notFound } from 'next/navigation';
 
@@ -52,8 +52,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: CategoryPageProps) {
   const { slug } = await params;
   const categories = await getAllCategories();
-  const category = categories.find(cat => cat.slug === slug);
-  
+  const category = categories.find((cat) => cat.slug === slug);
+
   if (!category) {
     return {
       title: 'Category Not Found',
@@ -62,7 +62,8 @@ export async function generateMetadata({ params }: CategoryPageProps) {
 
   return {
     title: `${category.name} Articles`,
-    description: category.description || `Articles in the ${category.name} category.`,
+    description:
+      category.description || `Articles in the ${category.name} category.`,
   };
 }
 
@@ -73,8 +74,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     getAllCategories(),
   ]);
 
-  const category = categories.find(cat => cat.slug === slug);
-  
+  const category = categories.find((cat) => cat.slug === slug);
+
   if (!category) {
     notFound();
   }

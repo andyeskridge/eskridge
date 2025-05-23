@@ -11,8 +11,8 @@ import { Prose } from '@/components/prose';
 
 import type { PostPartsFragment } from '@/tina/__generated__/types';
 
-import { ArrowLeftIcon } from './icons';
 import { Badge } from './badge';
+import { ArrowLeftIcon } from './icons';
 
 export function ArticleLayout({
   article,
@@ -56,7 +56,7 @@ export function ArticleLayout({
                 <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
                 <span className="ml-3">{formatDate(article.date)}</span>
               </time>
-              
+
               {/* Tags and Categories */}
               <div className="mt-4 flex flex-wrap gap-2">
                 {article.category && (

@@ -8,5 +8,5 @@ export async function getAllArticles(): Promise<Post[]> {
   const articles = (articlesRes.data.postConnection.edges || []).map((edge) => {
     return edge?.node;
   });
-  return articles.filter(article => !article?.draft) as Post[];
+  return articles.filter((article) => !article?.draft) as Post[];
 }

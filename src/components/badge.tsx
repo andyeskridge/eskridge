@@ -17,7 +17,7 @@ export function Badge({
   ...props
 }: BadgeProps) {
   const baseClasses = clsx(
-    'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium',
+    'inline-flex items-center rounded-full px-2.5 py-0.5 font-medium text-xs',
     variant === 'category'
       ? 'border border-current'
       : 'bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200',

@@ -5,8 +5,10 @@ export async function getAllCategories(): Promise<Category[]> {
   const categoriesRes = await client.queries.categoryConnection({
     sort: 'name',
   });
-  const categories = (categoriesRes.data.categoryConnection.edges || []).map((edge) => {
-    return edge?.node;
-  });
+  const categories = (categoriesRes.data.categoryConnection.edges || []).map(
+    (edge) => {
+      return edge?.node;
+    }
+  );
   return categories as Category[];
 }

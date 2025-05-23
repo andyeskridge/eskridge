@@ -1,9 +1,9 @@
+import type { Post } from '@/tina/__generated__/types';
 import clsx from 'clsx';
 import Link from 'next/link';
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react';
 import { Badge } from './badge';
 import { ChevronRightIcon } from './icons';
-import type { Post } from '@/tina/__generated__/types';
 
 export function Card<T extends ElementType = 'div'>({
   as,
@@ -143,11 +143,11 @@ Card.Meta = function CardMeta({
           const name = tagObj?.tag?.name;
           const slug = tagObj?.tag?.slug;
           const color = tagObj?.tag?.color;
-          
+
           if (!name || !slug) {
             return null;
           }
-          
+
           return (
             <Badge
               key={index}
