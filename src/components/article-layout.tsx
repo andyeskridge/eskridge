@@ -62,7 +62,7 @@ export function ArticleLayout({
                 {article.category && (
                   <Badge
                     variant="category"
-                    color={article.category?.color}
+                    color={article.category?.color ?? undefined}
                     href={`/categories/${article.category?.slug}`}
                   >
                     {article.category?.name}
@@ -72,7 +72,7 @@ export function ArticleLayout({
                   <Badge
                     key={tagItem?.tag?.slug}
                     variant="tag"
-                    color={tagItem?.tag?.color}
+                    color={tagItem?.tag?.color ?? undefined}
                     href={`/tags/${tagItem?.tag?.slug}`}
                   >
                     {tagItem?.tag?.name}
