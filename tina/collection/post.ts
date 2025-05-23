@@ -39,6 +39,28 @@ const Post: Collection = {
       required: true,
       description: 'Description of the post',
     },
+    {
+      name: 'category',
+      label: 'Category',
+      type: 'reference',
+      collections: ['category'],
+      description: 'Select a category for this post',
+    },
+    {
+      name: 'tags',
+      label: 'Tags',
+      type: 'object',
+      list: true,
+      fields: [
+        {
+          name: 'tag',
+          label: 'Tag',
+          type: 'reference',
+          collections: ['tag'],
+        },
+      ],
+      description: 'Select tags for this post',
+    },
   ],
   ui: {
     router: ({ document }) =>
