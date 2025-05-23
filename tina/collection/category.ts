@@ -30,6 +30,7 @@ const Category: Collection = {
       name: 'color',
       label: 'Color',
       description: 'Hex color code for the category badge',
+      required: false,
       ui: {
         component: 'color',
       },

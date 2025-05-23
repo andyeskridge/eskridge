@@ -1,7 +1,9 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react';
+import { Badge } from './badge';
 import { ChevronRightIcon } from './icons';
+import type { Post } from '@/tina/__generated__/types';
 
 export function Card<T extends ElementType = 'div'>({
   as,
@@ -109,5 +111,54 @@ Card.Eyebrow = function CardEyebrow<T extends ElementType = 'p'>({
       )}
       {children}
     </Component>
+  );
+};
+
+Card.Meta = function CardMeta({
+  category,
+  tags,
+}: {
+  category?: Post['category'] | null;
+  tags?: Post['tags'];
+}) {
+  if (!category && (!tags || tags.length === 0)) {
+    return null;
+  }
+
+  return (
+    <div className="relative z-10 mt-2 flex flex-wrap items-center gap-2">
+      {category?.name && category?.slug && (
+        <Badge
+          variant="category"
+          color={category.color ?? undefined}
+          href={`/categories/${category.slug}`}
+        >
+          {category.name}
+        </Badge>
+      )}
+      {tags
+        ?.filter((tagObj) => tagObj?.tag?.name && tagObj?.tag?.slug)
+        .map((tagObj, index) => {
+          // Safely access tag properties with optional chaining
+          const name = tagObj?.tag?.name;
+          const slug = tagObj?.tag?.slug;
+          const color = tagObj?.tag?.color;
+          
+          if (!name || !slug) {
+            return null;
+          }
+          
+          return (
+            <Badge
+              key={index}
+              variant="tag"
+              color={color || undefined}
+              href={`/tags/${slug}`}
+            >
+              {name}
+            </Badge>
+          );
+        })}
+    </div>
   );
 };

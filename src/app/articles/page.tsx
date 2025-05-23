@@ -22,6 +22,7 @@ function Article({ article }: { article: Post }) {
           {formatDate(article.date)}
         </Card.Eyebrow>
         <Card.Description>{article.description}</Card.Description>
+        <Card.Meta category={article.category} tags={article.tags} />
         <Card.Cta>Read article</Card.Cta>
       </Card>
       <Card.Eyebrow
