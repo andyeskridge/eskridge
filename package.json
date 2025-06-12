@@ -40,7 +40,7 @@
     "@types/node": "24.0.1",
     "@types/react-dom": "19.1.6",
     "@types/react": "19.1.8",
-    "postcss": "8.5.4",
+    "postcss": "8.5.5",
     "tailwindcss": "4.1.9",
     "typescript": "5.8.3",
     "ultracite": "4.2.10",
