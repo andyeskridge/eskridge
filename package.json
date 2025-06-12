@@ -2,6 +2,7 @@
   "name": "eskridge",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build:worker": "opennextjs-cloudflare build",
     "build": "tinacms build && next build",
@@ -49,5 +50,6 @@
   "overrides": {
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6"
-  }
+  },
+  "trustedDependencies": ["@biomejs/biome", "@tailwindcss/oxide"]
 }
