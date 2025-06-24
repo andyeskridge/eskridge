@@ -1,5 +1,5 @@
+import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
-import Link from 'next/link';
 import type { ButtonHTMLAttributes } from 'react';
 
 const variantStyles = {
@@ -31,7 +31,7 @@ export function Button({
 
   if (href) {
     return (
-      <Link className={className} href={href}>
+      <Link className={className} to={href}>
         {props.children}
       </Link>
     );

@@ -1,4 +1,5 @@
-import { getAllArticles } from '@/lib/get-all-articles';
+import { createServerFileRoute } from '@tanstack/react-start/server';
+import { allArticles } from 'content-collections';
 
 const siteUrl =
   process.env.CF_PAGES_BRANCH === 'main'
@@ -36,16 +37,16 @@ function generateSitemap(articles: string[]) {
   return sitemap;
 }
 
-export async function GET(_req: Request) {
-  const articleIds = (await getAllArticles()).map(
-    (article) => article._sys.filename
-  );
+export const ServerRoute = createServerFileRoute('/feed.xml').methods({
+  GET: async () => {
+    const articleIds = allArticles.map((article) => article._sys.filename);
 
-  return new Response(generateSitemap(articleIds), {
-    status: 200,
-    headers: {
-      'content-type': 'application/xml',
-      'cache-control': 's-maxage=31556952',
-    },
-  });
-}
+    return new Response(generateSitemap(articleIds), {
+      status: 200,
+      headers: {
+        'content-type': 'application/xml',
+        'cache-control': 's-maxage=31556952',
+      },
+    });
+  },
+});

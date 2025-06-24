@@ -40,5 +40,5 @@ next-env.d.ts
 playwright-report/
 test-results/
 
-public/admin
-tina/__generated__
+.content-collections
+.tanstack

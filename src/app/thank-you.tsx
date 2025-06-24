@@ -1,11 +1,11 @@
 import { SimpleLayout } from '@/components/simple-layout';
+import { createFileRoute } from '@tanstack/react-router';
 
-export const metadata = {
-  title: 'You’re subscribed',
-  description: 'Thanks for subscribing to my newsletter.',
-};
+export const Route = createFileRoute('/thank-you')({
+  component: ThankYou,
+});
 
-export default function ThankYou() {
+function ThankYou() {
   return (
     <SimpleLayout
       title="Thanks for subscribing."

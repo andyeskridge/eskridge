@@ -1,6 +1,5 @@
+import { Link, createFileRoute } from '@tanstack/react-router';
 import clsx from 'clsx';
-import Image from 'next/image';
-import Link from 'next/link';
 import type React from 'react';
 
 import { Container } from '@/components/container';
@@ -30,7 +29,7 @@ function SocialLink({
   return (
     <li className={clsx(className, 'flex')}>
       <Link
-        href={href}
+        to={href}
         className="group flex font-medium text-sm text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
         rel={rel}
       >
@@ -41,10 +40,9 @@ function SocialLink({
   );
 }
 
-export const metadata = {
-  title: 'About',
-  description: 'I’m Andy, a senior engineering manager based in Dallas, TX.',
-};
+export const Route = createFileRoute('/about')({
+  component: About,
+});
 
 export default function About() {
   return (
@@ -52,7 +50,7 @@ export default function About() {
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
-            <Image
+            <img
               src={portraitImage}
               alt=""
               sizes="(min-width: 1024px) 32rem, 20rem"

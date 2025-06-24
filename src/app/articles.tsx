@@ -3,10 +3,13 @@ import { getAllArticles } from '@/lib/get-all-articles';
 
 import { Card } from '@/components/card';
 import { SimpleLayout } from '@/components/simple-layout';
+import { createFileRoute } from '@tanstack/react-router';
 
-import type { Post } from '@/tina/__generated__/types';
+export const Route = createFileRoute('/articles')({
+  component: ArticlesIndex,
+});
 
-function Article({ article }: { article: Post }) {
+function Article({ article }: { article: any }) {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
@@ -36,13 +39,7 @@ function Article({ article }: { article: Post }) {
   );
 }
 
-export const metadata = {
-  title: 'Articles',
-  description:
-    'All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order.',
-};
-
-export default async function ArticlesIndex() {
+async function ArticlesIndex() {
   const articles = await getAllArticles();
 
   return (

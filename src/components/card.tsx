@@ -1,6 +1,6 @@
+import Link from '';
 import type { Post } from '@/tina/__generated__/types';
 import clsx from 'clsx';
-import Link from 'next/link';
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react';
 import { Badge } from './badge';
 import { ChevronRightIcon } from './icons';

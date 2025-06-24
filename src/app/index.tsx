@@ -20,14 +20,16 @@ import image3 from '@/images/photos/image-3.jpg';
 import image4 from '@/images/photos/image-4.jpg';
 import image5 from '@/images/photos/image-5.jpg';
 import { formatDate } from '@/lib/format-date';
-import { getAllArticles } from '@/lib/get-all-articles';
-import type { Post } from '@/tina/__generated__/types';
+import { Link, createFileRoute } from '@tanstack/react-router';
 import clsx from 'clsx';
-import Image, { type ImageProps } from 'next/image';
-import Link from 'next/link';
 import type { ComponentPropsWithoutRef, ComponentType } from 'react';
 
-function Article({ article }: { article: Post }) {
+export const Route = createFileRoute('/')({
+  component: Home,
+});
+
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+function Article({ article }: { article: any }) {
   return (
     <Card as="article">
       <Card.Title href={`/articles/${article._sys.filename}`}>
@@ -92,7 +94,7 @@ function Newsletter() {
 interface Role {
   company: string;
   title: string;
-  logo: ImageProps['src'];
+  logo: string;
   start: string | { label: string; dateTime: string };
   end: string | { label: string; dateTime: string };
   link: string;
@@ -110,12 +112,12 @@ function Role({ role }: { role: Role }) {
   return (
     <li className="flex gap-4">
       <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+        <img src={role.logo} alt="" className="h-7 w-7" />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
         <dd className="w-full flex-none font-medium text-sm text-zinc-900 dark:text-zinc-100">
-          <Link href={role.link}>{role.company}</Link>
+          <Link to={role.link}>{role.company}</Link>
         </dd>
         <dt className="sr-only">Role</dt>
         <dd className="text-xs text-zinc-500 dark:text-zinc-400">
@@ -234,7 +236,7 @@ function Photos() {
               rotations[imageIndex % rotations.length]
             )}
           >
-            <Image
+            <img
               src={image}
               alt=""
               sizes="(min-width: 640px) 18rem, 11rem"
@@ -247,8 +249,9 @@ function Photos() {
   );
 }
 
-export default async function Home() {
-  const articles = (await getAllArticles()).slice(0, 4);
+function Home() {
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  const articles: any[] = [];
 
   return (
     <>

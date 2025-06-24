@@ -1,5 +1,5 @@
+import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
-import Link from 'next/link';
 import type { ComponentPropsWithoutRef } from 'react';
 
 interface BadgeProps extends ComponentPropsWithoutRef<'span'> {
@@ -35,7 +35,7 @@ export function Badge({
   if (href) {
     return (
       <Link
-        href={href}
+        to={href}
         className={clsx(
           baseClasses,
           'transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700'

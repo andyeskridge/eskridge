@@ -6,11 +6,9 @@ import {
   PopoverButton,
   PopoverPanel,
 } from '@headlessui/react';
+import { Link, parsePathname } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import {
   type CSSProperties,
   type ComponentPropsWithoutRef,
@@ -36,7 +34,7 @@ function MobileNavItem({
 }) {
   return (
     <li>
-      <PopoverButton as={Link} href={href} className="block py-2">
+      <PopoverButton as={Link} to={href} className="block py-2">
         {children}
       </PopoverButton>
     </li>
@@ -85,12 +83,12 @@ function NavItem({
   href: string;
   children: ReactNode;
 }) {
-  const isActive = usePathname() === href;
+  const isActive = parsePathname().join('') === href;
 
   return (
     <li>
       <Link
-        href={href}
+        to={href}
         className={clsx(
           'relative block px-3 py-2 transition',
           isActive
@@ -175,7 +173,7 @@ function Avatar({
       className={clsx(className, 'pointer-events-auto')}
       {...props}
     >
-      <Image
+      <img
         src={avatarImage}
         alt=""
         sizes={large ? '4rem' : '2.25rem'}
@@ -183,14 +181,13 @@ function Avatar({
           'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
           large ? 'h-16 w-16' : 'h-9 w-9'
         )}
-        priority
       />
     </Link>
   );
 }
 
 export function Header() {
-  const isHomePage = usePathname() === '/';
+  const isHomePage = parsePathname().join('') === '/';
 
   const headerRef = useRef<ElementRef<'div'>>(null);
   const avatarRef = useRef<ElementRef<'div'>>(null);

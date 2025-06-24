@@ -1,5 +1,5 @@
 import { ContainerInner, ContainerOuter } from '@/components/container';
-import Link from 'next/link';
+import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 
 function NavLink({
@@ -11,7 +11,7 @@ function NavLink({
 }) {
   return (
     <Link
-      href={href}
+      to={href}
       className="transition hover:text-teal-500 dark:hover:text-teal-400"
     >
       {children}
