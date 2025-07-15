@@ -13,6 +13,10 @@ jobs:
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
+      - name: Setup build tools for native modules
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-dev build-essential
       - name: Cache
         uses: actions/cache@v4
         with:
@@ -25,7 +29,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lock') }}-
       - name: Install dependencies
-        run: bun install
+        run: |
+          bun install
+          # Rebuild native modules to ensure proper bindings
+          cd node_modules/better-sqlite3 && bunx prebuild-install --runtime=node --target=$(node -v | cut -d'v' -f2) || bunx node-gyp rebuild
       - name: Lint
         run: bun run lint:ci
       #Run your project's build step
