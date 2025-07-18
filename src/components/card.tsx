@@ -138,7 +138,7 @@ Card.Meta = function CardMeta({
       )}
       {tags
         ?.filter((tagObj) => tagObj?.tag?.name && tagObj?.tag?.slug)
-        .map((tagObj, index) => {
+        .map((tagObj) => {
           // Safely access tag properties with optional chaining
           const name = tagObj?.tag?.name;
           const slug = tagObj?.tag?.slug;
@@ -152,7 +152,7 @@ Card.Meta = function CardMeta({
             <Badge
               color={color || undefined}
               href={`/tags/${slug}`}
-              key={index}
+              key={slug}
               variant="tag"
             >
               {name}

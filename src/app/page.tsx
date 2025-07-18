@@ -122,10 +122,7 @@ function Role({ role }: { role: Role }) {
           {role.title}
         </dd>
         <dt className="sr-only">Date</dt>
-        <dd
-          aria-label={`${startLabel} until ${endLabel}`}
-          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-        >
+        <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500">
           <time dateTime={startDate}>{startLabel}</time>{' '}
           <span aria-hidden="true">—</span>{' '}
           <time dateTime={endDate}>{endLabel}</time>
@@ -197,8 +194,8 @@ function Resume() {
         <span className="ml-3">Work</span>
       </h2>
       <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <Role key={roleIndex} role={role} />
+        {resume.map((role) => (
+          <Role key={role.company} role={role} />
         ))}
       </ol>
       <Button

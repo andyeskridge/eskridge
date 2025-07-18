@@ -34,7 +34,7 @@ export const ContainerInner = forwardRef<
 export const Container = forwardRef<
   ElementRef<typeof ContainerOuter>,
   ComponentPropsWithoutRef<typeof ContainerOuter>
->(function Container({ children, ...props }, ref) {
+>(function ContainerComponent({ children, ...props }, ref) {
   return (
     <ContainerOuter ref={ref} {...props}>
       <ContainerInner>{children}</ContainerInner>
