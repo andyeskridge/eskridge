@@ -5,21 +5,28 @@ import { redirect } from 'next/navigation';
 const isUserAuthorized = async (args: { clientID: string; token: string }) => {
   const clientID = args.clientID;
   const token = args.token;
-  const tinaCloudRes = await fetch(
-    `https://identity.tinajs.io/v2/apps/${clientID}/currentUser`,
-    {
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        authorization: token,
-      }),
-      method: 'GET',
+
+  try {
+    const tinaCloudRes = await fetch(
+      `https://identity.tinajs.io/v2/apps/${clientID}/currentUser`,
+      {
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          authorization: token,
+        }),
+        method: 'GET',
+      }
+    );
+
+    if (tinaCloudRes.ok) {
+      const user = await tinaCloudRes.json();
+      return user;
     }
-  );
-  if (tinaCloudRes.ok) {
-    const user = await tinaCloudRes.json();
-    return user;
+
+    return null;
+  } catch (_error) {
+    return null;
   }
-  return;
 };
 
 export async function GET(request: Request) {
@@ -34,6 +41,12 @@ export async function GET(request: Request) {
 
   if (slug === null) {
     return new Response('Slug is not defined', { status: 401 });
+  }
+
+  // Validate slug to prevent open redirect vulnerabilities
+  // Only allow paths that start with / and don't contain protocol or domain
+  if (!slug.startsWith('/') || slug.includes('://') || slug.includes('..')) {
+    return new Response('Invalid slug format', { status: 400 });
   }
 
   if (process.env.IS_LOCAL === 'true') {
