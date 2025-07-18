@@ -30,8 +30,8 @@ function SocialLink({
   return (
     <li className={clsx(className, 'flex')}>
       <Link
-        href={href}
         className="group flex font-medium text-sm text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+        href={href}
         rel={rel}
       >
         <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
@@ -53,10 +53,10 @@ export default function About() {
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <Image
-              src={portraitImage}
               alt=""
-              sizes="(min-width: 1024px) 32rem, 20rem"
               className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+              sizes="(min-width: 1024px) 32rem, 20rem"
+              src={portraitImage}
             />
           </div>
         </div>
@@ -88,31 +88,31 @@ export default function About() {
               Follow on Twitter
             </SocialLink>
             <SocialLink
+              className="mt-4"
               href="https://github.com/andyeskridge"
               icon={GitHubIcon}
-              className="mt-4"
             >
               Follow on GitHub
             </SocialLink>
             <SocialLink
+              className="mt-4"
               href="https://linkedin.com/in/andyeskridge"
               icon={LinkedInIcon}
-              className="mt-4"
             >
               Follow on LinkedIn
             </SocialLink>
             <SocialLink
+              className="mt-4"
               href="https://mastodon.social/@andy"
               icon={MastodonIcon}
-              className="mt-4"
               rel="me"
             >
               Follow on Mastodon
             </SocialLink>
             <SocialLink
+              className="mt-8 border-zinc-100 border-t pt-8 dark:border-zinc-700/40"
               href="mailto:andy@eskridge.dev"
               icon={MailIcon}
-              className="mt-8 border-zinc-100 border-t pt-8 dark:border-zinc-700/40"
             >
               andy@eskridge.dev
             </SocialLink>

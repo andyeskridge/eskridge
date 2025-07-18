@@ -1,14 +1,27 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
   "extends": ["ultracite"],
   "files": {
-    "ignore": [
-      "tina/tina-lock.json",
-      "cloudflare-env.d.ts",
-      "bun.lock",
-      "renovate.json"
+    "includes": [
+      "**",
+      "!**/tina/tina-lock.json",
+      "!**/cloudflare-env.d.ts",
+      "!**/bun.lock",
+      "!**/renovate.json"
     ]
   },
+  "overrides": [
+    {
+      "includes": ["src/styles/tailwind.css"],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "noUnknownAtRule": "off"
+          }
+        }
+      }
+    }
+  ],
   "javascript": {
     "globals": ["KVNamespace", "Fetcher"]
   }

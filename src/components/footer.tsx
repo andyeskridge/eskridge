@@ -1,18 +1,12 @@
-import { ContainerInner, ContainerOuter } from '@/components/container';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { ContainerInner, ContainerOuter } from '@/components/container';
 
-function NavLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: ReactNode;
-}) {
+function NavLink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <Link
-      href={href}
       className="transition hover:text-teal-500 dark:hover:text-teal-400"
+      href={href}
     >
       {children}
     </Link>
