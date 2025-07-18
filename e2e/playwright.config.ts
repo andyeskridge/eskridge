@@ -49,7 +49,7 @@ export default defineConfig({
     command: 'npm run e2e:worker',
     url: 'http://localhost:8771',
     reuseExistingServer: !process.env.CI,
-    timeout: 300000, // 5 minutes timeout for build + server start
+    timeout: 300_000, // 5 minutes timeout for build + server start
     cwd: process.cwd(),
   },
 });
