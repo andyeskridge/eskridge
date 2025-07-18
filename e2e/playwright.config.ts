@@ -46,9 +46,10 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'bun run dev:worker',
+    command: 'npm run e2e:worker',
     url: 'http://localhost:8771',
     reuseExistingServer: !process.env.CI,
+    timeout: 300_000, // 5 minutes timeout for build + server start
     cwd: process.cwd(),
   },
 });
