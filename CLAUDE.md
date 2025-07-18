@@ -17,32 +17,33 @@ This is a Next.js blog/portfolio site for Andy Eskridge, deployed on Cloudflare 
 ## Development Commands
 
 ### Core Development
-- `npm run dev` - Start development server with TinaCMS
-- `npm run build` - Build TinaCMS content and Next.js app
-- `npm run start` - Start production server locally
+- `bun run dev` - Start development server with TinaCMS
+- `bun run build` - Build TinaCMS content and Next.js app
+- `bun run start` - Start production server locally
 
 ### Cloudflare Worker Development
-- `npm run dev:worker` - Preview worker locally on port 8771
-- `npm run build:worker` - Build worker for Cloudflare using OpenNext
-- `npm run preview:worker` - Build and preview worker locally
-- `npm run deploy` - Build and deploy to Cloudflare Pages
-- `npm run cf-typegen` - Generate Cloudflare environment types
+- `bun run dev:worker` - Preview worker locally on port 8771
+- `bun run build:worker` - Build worker for Cloudflare using OpenNext
+- `bun run preview:worker` - Build and preview worker locally
+- `bun run deploy` - Build and deploy to Cloudflare Pages
+- `bun run cf-typegen` - Generate Cloudflare environment types
 
 ### Linting and Type Checking
-- `npm run lint` - Run Biome linter
-- `npm run lint:ci` - Run Biome in CI mode
-- Run TypeScript compiler with `npx tsc --noEmit` for type checking
+- `bun run lint` - Run Biome linter
+- `bun run lint:ci` - Run Biome in CI mode
+- Run TypeScript compiler with `bunx tsc --noEmit` for type checking
+- **ALWAYS run `bun run lint` before pushing code to ensure code quality**
 
 ### TinaCMS
-- `npm run tina:build` - Build TinaCMS schema
+- `bun run tina:build` - Build TinaCMS schema
 - TinaCMS admin interface available at `/admin` when dev server is running
 
 ### Testing
-- `npm run e2e` - Run Playwright end-to-end tests
+- `bun run e2e` - Run Playwright end-to-end tests
 
 ### Cache Management
-- `npm run populate:local` - Populate local cache
-- `npm run populate:remote` - Populate remote cache
+- `bun run populate:local` - Populate local cache
+- `bun run populate:remote` - Populate remote cache
 
 ## Code Architecture
 
@@ -103,7 +104,7 @@ This is a Next.js blog/portfolio site for Andy Eskridge, deployed on Cloudflare 
 - TypeScript 5.8.3 with strict mode enabled
 - ESNext target with bundler module resolution
 - Includes Next.js plugin for enhanced type checking
-- Cloudflare environment types generated via `npm run cf-typegen`
+- Cloudflare environment types generated via `bun run cf-typegen`
 
 ## Important Notes
 
@@ -126,10 +127,13 @@ This is a Next.js blog/portfolio site for Andy Eskridge, deployed on Cloudflare 
 ### Testing
 - E2E tests with Playwright 1.54.1 in `e2e/` directory
 - Test configuration in `e2e/playwright.config.ts`
-- Run tests with `npm run e2e`
+- Run tests with `bun run e2e`
 
 ### Package Management
+- **ALWAYS use `bun` for package management** - never use npm or yarn
 - Uses `bun.lock` for dependency locking
+- Install dependencies with `bun install`
+- Add dependencies with `bun add <package>`
 - Includes `trustedDependencies` for Biome and Tailwind CSS
 - React types overrides for version 19.1.8 compatibility
 - Renovate configuration for automated dependency updates
