@@ -11,6 +11,7 @@
     "dev:worker": "opennextjs-cloudflare preview -- --port 8771",
     "dev": "tinacms dev -c \"next dev\"",
     "e2e": "playwright test -c e2e/playwright.config.ts",
+    "e2e:worker": "test -d .open-next && opennextjs-cloudflare preview -- --port 8771 || (opennextjs-cloudflare build && opennextjs-cloudflare preview -- --port 8771)",
     "lint:ci": "biome ci",
     "lint": "biome check",
     "populate:local": "opennextjs-cloudflare populateCache local",
