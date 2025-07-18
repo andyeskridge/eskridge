@@ -20,14 +20,10 @@ export default function PageClient({
   data,
 }: ClientPageProps) {
   const { data: tinaData } = useTina({
-    query: query,
-    variables: variables,
-    data: data,
+    query,
+    variables,
+    data,
   });
 
-  return (
-    <>
-      <PageServer data={tinaData} />
-    </>
-  );
+  return <PageServer data={tinaData} />;
 }

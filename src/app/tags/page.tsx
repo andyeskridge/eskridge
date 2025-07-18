@@ -12,17 +12,17 @@ export default async function TagsPage() {
 
   return (
     <SimpleLayout
-      title="Browse by tags"
       intro="Explore articles organized by specific topics and technologies."
+      title="Browse by tags"
     >
       <div className="flex flex-wrap gap-3">
         {tags.map((tag) => (
-          <div key={tag._sys.filename} className="group">
+          <div className="group" key={tag._sys.filename}>
             <Badge
-              variant="tag"
+              className="px-4 py-2 text-base transition-transform group-hover:scale-105"
               color={tag.color ?? undefined}
               href={`/tags/${tag.slug}`}
-              className="px-4 py-2 text-base transition-transform group-hover:scale-105"
+              variant="tag"
             >
               {tag.name}
             </Badge>

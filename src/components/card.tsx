@@ -1,7 +1,7 @@
-import type { Post } from '@/tina/__generated__/types';
 import clsx from 'clsx';
 import Link from 'next/link';
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react';
+import type { Post } from '@/tina/__generated__/types';
 import { Badge } from './badge';
 import { ChevronRightIcon } from './icons';
 
@@ -103,8 +103,8 @@ Card.Eyebrow = function CardEyebrow<T extends ElementType = 'p'>({
     >
       {decorate && (
         <span
-          className="absolute inset-y-0 left-0 flex items-center"
           aria-hidden="true"
+          className="absolute inset-y-0 left-0 flex items-center"
         >
           <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
         </span>
@@ -129,31 +129,31 @@ Card.Meta = function CardMeta({
     <div className="relative z-10 mt-2 flex flex-wrap items-center gap-2">
       {category?.name && category?.slug && (
         <Badge
-          variant="category"
           color={category.color ?? undefined}
           href={`/categories/${category.slug}`}
+          variant="category"
         >
           {category.name}
         </Badge>
       )}
       {tags
         ?.filter((tagObj) => tagObj?.tag?.name && tagObj?.tag?.slug)
-        .map((tagObj, index) => {
+        .map((tagObj) => {
           // Safely access tag properties with optional chaining
           const name = tagObj?.tag?.name;
           const slug = tagObj?.tag?.slug;
           const color = tagObj?.tag?.color;
 
-          if (!name || !slug) {
+          if (!(name && slug)) {
             return null;
           }
 
           return (
             <Badge
-              key={index}
-              variant="tag"
               color={color || undefined}
               href={`/tags/${slug}`}
+              key={slug}
+              variant="tag"
             >
               {name}
             </Badge>

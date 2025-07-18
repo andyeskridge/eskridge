@@ -7,13 +7,13 @@ import {
   PopoverPanel,
 } from '@headlessui/react';
 import clsx from 'clsx';
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTheme } from 'next-themes';
 import {
-  type CSSProperties,
   type ComponentPropsWithoutRef,
+  type CSSProperties,
   type ElementRef,
   type ReactNode,
   useEffect,
@@ -36,7 +36,7 @@ function MobileNavItem({
 }) {
   return (
     <li>
-      <PopoverButton as={Link} href={href} className="block py-2">
+      <PopoverButton as={Link} className="block py-2" href={href}>
         {children}
       </PopoverButton>
     </li>
@@ -51,13 +51,13 @@ function MobileNavigation(props: ComponentPropsWithoutRef<typeof Popover>) {
         <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
       </PopoverButton>
       <PopoverBackdrop
-        transition
         className="fixed inset-0 z-50 bg-zinc-800/40 backdrop-blur-sm duration-150 data-[closed]:opacity-0 data-[enter]:ease-out data-[leave]:ease-in dark:bg-black/80"
+        transition
       />
       <PopoverPanel
+        className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 duration-150 data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:ease-out data-[leave]:ease-in dark:bg-zinc-900 dark:ring-zinc-800"
         focus
         transition
-        className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 duration-150 data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:ease-out data-[leave]:ease-in dark:bg-zinc-900 dark:ring-zinc-800"
       >
         <div className="flex flex-row-reverse items-center justify-between">
           <PopoverButton aria-label="Close menu" className="-m-1 p-1">
@@ -78,25 +78,19 @@ function MobileNavigation(props: ComponentPropsWithoutRef<typeof Popover>) {
   );
 }
 
-function NavItem({
-  href,
-  children,
-}: {
-  href: string;
-  children: ReactNode;
-}) {
+function NavItem({ href, children }: { href: string; children: ReactNode }) {
   const isActive = usePathname() === href;
 
   return (
     <li>
       <Link
-        href={href}
         className={clsx(
           'relative block px-3 py-2 transition',
           isActive
             ? 'text-teal-500 dark:text-teal-400'
             : 'hover:text-teal-500 dark:hover:text-teal-400'
         )}
+        href={href}
       >
         {children}
         {isActive && (
@@ -129,10 +123,10 @@ function ThemeToggle() {
 
   return (
     <button
-      type="button"
       aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
       className="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
       onClick={() => setTheme(otherTheme)}
+      type="button"
     >
       <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600" />
       <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-teal-500" />
@@ -170,20 +164,20 @@ function Avatar({
 }) {
   return (
     <Link
-      href="/"
       aria-label="Home"
       className={clsx(className, 'pointer-events-auto')}
+      href="/"
       {...props}
     >
       <Image
-        src={avatarImage}
         alt=""
-        sizes={large ? '4rem' : '2.25rem'}
         className={clsx(
           'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
           large ? 'h-16 w-16' : 'h-9 w-9'
         )}
         priority
+        sizes={large ? '4rem' : '2.25rem'}
+        src={avatarImage}
       />
     </Link>
   );
@@ -319,8 +313,8 @@ export function Header() {
         {isHomePage && (
           <>
             <div
-              ref={avatarRef}
               className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"
+              ref={avatarRef}
             />
             <Container
               className="-mb-3 top-0 order-last pt-3"
@@ -344,8 +338,8 @@ export function Header() {
                     }}
                   />
                   <Avatar
-                    large
                     className="block h-16 w-16 origin-left"
+                    large
                     style={{ transform: 'var(--avatar-image-transform)' }}
                   />
                 </div>
@@ -354,8 +348,8 @@ export function Header() {
           </>
         )}
         <div
-          ref={headerRef}
           className="top-0 z-10 h-16 pt-6"
+          ref={headerRef}
           style={{
             position: 'var(--header-position)' as CSSProperties['position'],
           }}

@@ -35,11 +35,11 @@ export function Badge({
   if (href) {
     return (
       <Link
-        href={href}
         className={clsx(
           baseClasses,
           'transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700'
         )}
+        href={href}
         style={style}
         {...props}
       >

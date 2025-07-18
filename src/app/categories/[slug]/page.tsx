@@ -1,10 +1,10 @@
+import { notFound } from 'next/navigation';
 import { Card } from '@/components/card';
 import { SimpleLayout } from '@/components/simple-layout';
 import { formatDate } from '@/lib/format-date';
 import { getAllArticles } from '@/lib/get-all-articles';
 import { getAllCategories } from '@/lib/get-all-categories';
 import type { Post } from '@/tina/__generated__/types';
-import { notFound } from 'next/navigation';
 
 interface CategoryPageProps {
   params: Promise<{
@@ -21,8 +21,8 @@ function Article({ article }: { article: Post }) {
         </Card.Title>
         <Card.Eyebrow
           as="time"
-          dateTime={article.date}
           className="md:hidden"
+          dateTime={article.date}
           decorate
         >
           {formatDate(article.date)}
@@ -33,8 +33,8 @@ function Article({ article }: { article: Post }) {
       </Card>
       <Card.Eyebrow
         as="time"
-        dateTime={article.date}
         className="mt-1 hidden md:block"
+        dateTime={article.date}
       >
         {formatDate(article.date)}
       </Card.Eyebrow>
@@ -86,17 +86,17 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <SimpleLayout
-      title={`${category.name} Articles`}
       intro={
         category.description ||
         `All articles in the ${category.name} category, sorted by date.`
       }
+      title={`${category.name} Articles`}
     >
       <div className="md:border-zinc-100 md:border-l md:pl-6 md:dark:border-zinc-700/40">
         <div className="flex max-w-3xl flex-col space-y-16">
           {categoryArticles.length > 0 ? (
             categoryArticles.map((article) => (
-              <Article key={article._sys.filename} article={article} />
+              <Article article={article} key={article._sys.filename} />
             ))
           ) : (
             <p className="text-zinc-600 dark:text-zinc-400">

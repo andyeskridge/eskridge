@@ -1,3 +1,7 @@
+import clsx from 'clsx';
+import Image, { type ImageProps } from 'next/image';
+import Link from 'next/link';
+import type { ComponentPropsWithoutRef, ComponentType } from 'react';
 import { Button } from '@/components/button';
 import { Card } from '@/components/card';
 import { Container } from '@/components/container';
@@ -8,12 +12,12 @@ import {
   MastodonIcon,
   TwitterIcon,
 } from '@/components/social-icons';
-import logoStellarElements from '@/images/logos/SE_Star_BLK.svg';
 import logoAllegro from '@/images/logos/allegro.jpg';
 import logoBeckTech from '@/images/logos/becktech.jpg';
 import logoCenergistic from '@/images/logos/cenergistic.jpg';
 import logoGwynnGroup from '@/images/logos/gwynngroup.jpg';
 import logoProviderScience from '@/images/logos/providerscience.jpg';
+import logoStellarElements from '@/images/logos/SE_Star_BLK.svg';
 import image1 from '@/images/photos/image-1.jpg';
 import image2 from '@/images/photos/image-2.jpg';
 import image3 from '@/images/photos/image-3.jpg';
@@ -22,10 +26,6 @@ import image5 from '@/images/photos/image-5.jpg';
 import { formatDate } from '@/lib/format-date';
 import { getAllArticles } from '@/lib/get-all-articles';
 import type { Post } from '@/tina/__generated__/types';
-import clsx from 'clsx';
-import Image, { type ImageProps } from 'next/image';
-import Link from 'next/link';
-import type { ComponentPropsWithoutRef, ComponentType } from 'react';
 
 function Article({ article }: { article: Post }) {
   return (
@@ -72,16 +72,16 @@ function Newsletter() {
         Get notified when I publish something new, and unsubscribe at any time.
       </p>
       <div className="mt-6 flex">
-        <input type="hidden" value="1" name="embed" />
+        <input name="embed" type="hidden" value="1" />
         <input
-          type="email"
+          aria-label="Email address"
+          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 dark:placeholder:text-zinc-500"
           name="email"
           placeholder="Email address"
-          aria-label="Email address"
           required
-          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 dark:placeholder:text-zinc-500"
+          type="email"
         />
-        <Button type="submit" className="ml-4 flex-none">
+        <Button className="ml-4 flex-none" type="submit">
           Join
         </Button>
       </div>
@@ -110,7 +110,7 @@ function Role({ role }: { role: Role }) {
   return (
     <li className="flex gap-4">
       <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+        <Image alt="" className="h-7 w-7" src={role.logo} unoptimized />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
@@ -122,10 +122,7 @@ function Role({ role }: { role: Role }) {
           {role.title}
         </dd>
         <dt className="sr-only">Date</dt>
-        <dd
-          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-          aria-label={`${startLabel} until ${endLabel}`}
-        >
+        <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500">
           <time dateTime={startDate}>{startLabel}</time>{' '}
           <span aria-hidden="true">—</span>{' '}
           <time dateTime={endDate}>{endLabel}</time>
@@ -197,15 +194,15 @@ function Resume() {
         <span className="ml-3">Work</span>
       </h2>
       <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <Role key={roleIndex} role={role} />
+        {resume.map((role) => (
+          <Role key={role.company} role={role} />
         ))}
       </ol>
       <Button
-        href="/AndyEskridgeResume.pdf"
-        variant="secondary"
         className="group mt-6 w-full"
+        href="/AndyEskridgeResume.pdf"
         target="_blank"
+        variant="secondary"
       >
         Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-active:stroke-zinc-50 dark:group-hover:stroke-zinc-50" />
@@ -228,17 +225,17 @@ function Photos() {
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
         {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
           <div
-            key={image.src}
             className={clsx(
               'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800',
               rotations[imageIndex % rotations.length]
             )}
+            key={image.src}
           >
             <Image
-              src={image}
               alt=""
-              sizes="(min-width: 640px) 18rem, 11rem"
               className="absolute inset-0 h-full w-full object-cover"
+              sizes="(min-width: 640px) 18rem, 11rem"
+              src={image}
             />
           </div>
         ))}
@@ -265,23 +262,23 @@ export default async function Home() {
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
-              href="https://twitter.com/andyeskridge"
               aria-label="Follow on Twitter"
+              href="https://twitter.com/andyeskridge"
               icon={TwitterIcon}
             />
             <SocialLink
-              href="https://github.com/andyeskridge"
               aria-label="Follow on GitHub"
+              href="https://github.com/andyeskridge"
               icon={GitHubIcon}
             />
             <SocialLink
-              href="https://linkedin.com/in/andyeskridge"
               aria-label="Follow on LinkedIn"
+              href="https://linkedin.com/in/andyeskridge"
               icon={LinkedInIcon}
             />
             <SocialLink
-              href="https://mastodon.social/@andy"
               aria-label="Follow on Mastodon"
+              href="https://mastodon.social/@andy"
               icon={MastodonIcon}
               rel="me"
             />
@@ -293,7 +290,7 @@ export default async function Home() {
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
             {articles.map((article) => (
-              <Article key={article._sys.filename} article={article} />
+              <Article article={article} key={article._sys.filename} />
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">

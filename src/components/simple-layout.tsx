@@ -1,5 +1,5 @@
-import { Container } from '@/components/container';
 import type { ReactNode } from 'react';
+import { Container } from '@/components/container';
 
 export function SimpleLayout({
   title,
