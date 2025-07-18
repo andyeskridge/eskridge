@@ -32,28 +32,38 @@ export async function GET(req: Request) {
 
   await Promise.all(
     articles.map(async (article) => {
-      const url = String(
-        new URL(`/articles/${article._sys.filename}`, req.url)
-      );
-      const html = await (await fetch(url)).text();
-      const $ = load(html);
+      try {
+        const url = String(
+          new URL(`/articles/${article._sys.filename}`, req.url)
+        );
+        const response = await fetch(url);
 
-      const publicUrl = `${siteUrl}/articles/${article._sys.filename}`;
-      const articleDom = $('article').first();
-      const title = article.title;
-      const date = article.date;
-      const content =
-        articleDom.find('[data-mdx-content]').first().html() ?? undefined;
+        if (!response.ok) {
+          return;
+        }
 
-      feed.addItem({
-        title,
-        id: publicUrl,
-        link: publicUrl,
-        content,
-        author: [author],
-        contributor: [author],
-        date: new Date(date),
-      });
+        const html = await response.text();
+        const $ = load(html);
+
+        const publicUrl = `${siteUrl}/articles/${article._sys.filename}`;
+        const articleDom = $('article').first();
+        const title = article.title;
+        const date = article.date;
+        const content =
+          articleDom.find('[data-mdx-content]').first().html() ?? '';
+
+        feed.addItem({
+          title,
+          id: publicUrl,
+          link: publicUrl,
+          content,
+          author: [author],
+          contributor: [author],
+          date: new Date(date),
+        });
+      } catch (_error) {
+        // Continue processing other articles even if one fails
+      }
     })
   );
 
