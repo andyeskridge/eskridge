@@ -45,7 +45,7 @@
     "tailwindcss": "4.1.12",
     "typescript": "5.9.2",
     "ultracite": "5.1.2",
-    "wrangler": "4.33.2"
+    "wrangler": "4.34.0"
   },
   "overrides": {
     "@types/react": "19.1.12",
