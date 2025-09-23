@@ -34,7 +34,7 @@
     "@biomejs/biome": "2.1.4",
     "@opennextjs/aws": "3.7.7",
     "@opennextjs/cloudflare": "1.8.4",
-    "@playwright/test": "1.55.0",
+    "@playwright/test": "1.55.1",
     "@tailwindcss/postcss": "4.1.13",
     "@tailwindcss/typography": "0.5.18",
     "@tinacms/cli": "1.10.3",
