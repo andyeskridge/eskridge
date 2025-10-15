@@ -43,8 +43,6 @@ jobs:
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
           NODE_ENV: production
         run: bun install && bun run build:worker
-      - name: Install Playwright Browsers
-        uses: ./.github/actions/setup-playwright
       - name: e2e
         run: bun run e2e
         env:
