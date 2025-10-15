@@ -2,6 +2,35 @@ import { defineConfig, devices } from "@playwright/test";
 
 declare const process: { env: Record<string, string>; cwd: () => string };
 
+const dockerHost = process.env.PLAYWRIGHT_DOCKER_HOST ?? '127.0.0.1';
+const dockerPort = process.env.PLAYWRIGHT_DOCKER_PORT ?? '9323';
+
+let dockerPath = process.env.PLAYWRIGHT_DOCKER_PATH ?? '/';
+if (!dockerPath.startsWith('/')) {
+  dockerPath = `/${dockerPath}`;
+}
+if (dockerPath !== '/' && dockerPath.endsWith('/')) {
+  dockerPath = dockerPath.replace(/\/+$/, '');
+}
+
+const defaultWsEndpoint = `ws://${dockerHost}:${dockerPort}${dockerPath}`;
+const useDockerServer = (process.env.PLAYWRIGHT_USE_DOCKER ?? 'true') !== 'false';
+const parsedTimeout = Number.parseInt(process.env.PLAYWRIGHT_CONNECT_TIMEOUT ?? '', 10);
+const connectTimeout = Number.isNaN(parsedTimeout) ? 30_000 : parsedTimeout;
+const wsEndpoint = process.env.PLAYWRIGHT_WS_ENDPOINT ?? defaultWsEndpoint;
+const baseURL =
+  process.env.PLAYWRIGHT_BASE_URL ??
+  (useDockerServer ? 'http://host.docker.internal:8771' : 'http://localhost:8771');
+
+const remoteConnectOptions = useDockerServer
+  ? {
+      connectOptions: {
+        wsEndpoint,
+        timeout: connectTimeout,
+      },
+    }
+  : undefined;
+
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -20,7 +49,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: "http://localhost:8771",
+    baseURL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
@@ -29,18 +58,30 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        browserName: 'chromium',
+        ...(remoteConnectOptions ?? {}),
+      },
     },
 
     {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
+      name: 'firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        browserName: 'firefox',
+        ...(remoteConnectOptions ?? {}),
+      },
     },
 
     {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      name: 'webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        browserName: 'webkit',
+        ...(remoteConnectOptions ?? {}),
+      },
     },
   ],
 
