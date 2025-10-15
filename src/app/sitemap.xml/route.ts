@@ -1,9 +1,9 @@
-import { getAllArticles } from '@/lib/get-all-articles';
+import { getAllArticles } from "@/lib/get-all-articles";
 
 const siteUrl =
-  process.env.CF_PAGES_BRANCH === 'main'
-    ? 'https://eskridge.dev'
-    : (process.env.CF_PAGES_URL ?? 'https://localhost:3000');
+  process.env.CF_PAGES_BRANCH === "main"
+    ? "https://eskridge.dev"
+    : (process.env.CF_PAGES_URL ?? "https://localhost:3000");
 
 function addPage(page: string) {
   return `  <url>
@@ -30,7 +30,7 @@ function generateSitemap(articles: string[]) {
       <loc>${siteUrl}/articles</loc>
       <changefreq>hourly</changefreq>
     </url>
-    ${articles.map((article) => addPage(`/articles/${article}`)).join('')}
+    ${articles.map((article) => addPage(`/articles/${article}`)).join("")}
   </urlset>`;
 
   return sitemap;
@@ -44,8 +44,8 @@ export async function GET(_req: Request) {
   return new Response(generateSitemap(articleIds), {
     status: 200,
     headers: {
-      'content-type': 'application/xml',
-      'cache-control': 's-maxage=31556952',
+      "content-type": "application/xml",
+      "cache-control": "s-maxage=31556952",
     },
   });
 }

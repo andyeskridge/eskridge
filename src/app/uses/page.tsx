@@ -1,7 +1,7 @@
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
-import { Card } from '@/components/card';
-import { Section } from '@/components/section';
-import { SimpleLayout } from '@/components/simple-layout';
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { Card } from "@/components/card";
+import { Section } from "@/components/section";
+import { SimpleLayout } from "@/components/simple-layout";
 
 function ToolsSection({
   children,
@@ -34,8 +34,8 @@ function Tool({
 }
 
 export const metadata = {
-  title: 'Uses',
-  description: 'Software I use, gadgets I love, and other things I recommend.',
+  title: "Uses",
+  description: "Software I use, gadgets I love, and other things I recommend.",
 };
 
 export default function Uses() {

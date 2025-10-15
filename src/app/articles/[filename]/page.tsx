@@ -1,6 +1,6 @@
-import client from '@/tina/__generated__/client';
+import client from "@/tina/__generated__/client";
 
-import PageClient from './page-client';
+import PageClient from "./page-client";
 
 export const dynamicParams = false;
 
@@ -21,7 +21,7 @@ export default async function Page(props: {
 export async function generateStaticParams() {
   const posts = await client.queries.postConnection();
   const paths = posts.data?.postConnection?.edges?.map((edge) => ({
-    filename: edge?.node?._sys.breadcrumbs.join('/'),
+    filename: edge?.node?._sys.breadcrumbs.join("/"),
   }));
 
   return paths || [];

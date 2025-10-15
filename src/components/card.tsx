@@ -1,23 +1,23 @@
-import clsx from 'clsx';
-import Link from 'next/link';
-import type { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react';
-import type { Post } from '@/tina/__generated__/types';
-import { Badge } from './badge';
-import { ChevronRightIcon } from './icons';
+import clsx from "clsx";
+import Link from "next/link";
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
+import type { Post } from "@/tina/__generated__/types";
+import { Badge } from "./badge";
+import { ChevronRightIcon } from "./icons";
 
-export function Card<T extends ElementType = 'div'>({
+export function Card<T extends ElementType = "div">({
   as,
   className,
   children,
-}: Omit<ComponentPropsWithoutRef<T>, 'as' | 'className'> & {
+}: Omit<ComponentPropsWithoutRef<T>, "as" | "className"> & {
   as?: T;
   className?: string;
 }) {
-  const Component = as ?? 'div';
+  const Component = as ?? "div";
 
   return (
     <Component
-      className={clsx(className, 'group relative flex flex-col items-start')}
+      className={clsx(className, "group relative flex flex-col items-start")}
     >
       {children}
     </Component>
@@ -39,15 +39,15 @@ Card.Link = function CardLink({
   );
 };
 
-Card.Title = function CardTitle<T extends ElementType = 'h2'>({
+Card.Title = function CardTitle<T extends ElementType = "h2">({
   as,
   href,
   children,
-}: Omit<ComponentPropsWithoutRef<T>, 'as' | 'href'> & {
+}: Omit<ComponentPropsWithoutRef<T>, "as" | "href"> & {
   as?: T;
   href?: string;
 }) {
-  const Component = as ?? 'h2';
+  const Component = as ?? "h2";
 
   return (
     <Component className="font-semibold text-base text-zinc-800 tracking-tight dark:text-zinc-100">
@@ -80,24 +80,24 @@ Card.Cta = function CardCta({ children }: { children: ReactNode }) {
   );
 };
 
-Card.Eyebrow = function CardEyebrow<T extends ElementType = 'p'>({
+Card.Eyebrow = function CardEyebrow<T extends ElementType = "p">({
   as,
   decorate = false,
   className,
   children,
   ...props
-}: Omit<ComponentPropsWithoutRef<T>, 'as' | 'decorate'> & {
+}: Omit<ComponentPropsWithoutRef<T>, "as" | "decorate"> & {
   as?: T;
   decorate?: boolean;
 }) {
-  const Component = as ?? 'p';
+  const Component = as ?? "p";
 
   return (
     <Component
       className={clsx(
         className,
-        'relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500',
-        decorate && 'pl-3.5'
+        "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500",
+        decorate && "pl-3.5"
       )}
       {...props}
     >
@@ -118,8 +118,8 @@ Card.Meta = function CardMeta({
   category,
   tags,
 }: {
-  category?: Post['category'] | null;
-  tags?: Post['tags'];
+  category?: Post["category"] | null;
+  tags?: Post["tags"];
 }) {
   if (!category && (!tags || tags.length === 0)) {
     return null;

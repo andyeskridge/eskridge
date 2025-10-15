@@ -1,31 +1,33 @@
-import clsx from 'clsx';
-import Image, { type ImageProps } from 'next/image';
-import Link from 'next/link';
-import type { ComponentPropsWithoutRef, ComponentType } from 'react';
-import { Button } from '@/components/button';
-import { Card } from '@/components/card';
-import { Container } from '@/components/container';
-import { ArrowDownIcon, BriefcaseIcon, MailIcon } from '@/components/icons';
+import clsx from "clsx";
+import Image, { type ImageProps } from "next/image";
+import Link from "next/link";
+import type { ComponentPropsWithoutRef, ComponentType } from "react";
+import { Button } from "@/components/button";
+import { Card } from "@/components/card";
+import { Container } from "@/components/container";
+import { ArrowDownIcon, BriefcaseIcon, MailIcon } from "@/components/icons";
 import {
   GitHubIcon,
   LinkedInIcon,
   MastodonIcon,
   TwitterIcon,
-} from '@/components/social-icons';
-import logoAllegro from '@/images/logos/allegro.jpg';
-import logoBeckTech from '@/images/logos/becktech.jpg';
-import logoCenergistic from '@/images/logos/cenergistic.jpg';
-import logoGwynnGroup from '@/images/logos/gwynngroup.jpg';
-import logoProviderScience from '@/images/logos/providerscience.jpg';
-import logoStellarElements from '@/images/logos/SE_Star_BLK.svg';
-import image1 from '@/images/photos/image-1.jpg';
-import image2 from '@/images/photos/image-2.jpg';
-import image3 from '@/images/photos/image-3.jpg';
-import image4 from '@/images/photos/image-4.jpg';
-import image5 from '@/images/photos/image-5.jpg';
-import { formatDate } from '@/lib/format-date';
-import { getAllArticles } from '@/lib/get-all-articles';
-import type { Post } from '@/tina/__generated__/types';
+} from "@/components/social-icons";
+import logoAllegro from "@/images/logos/allegro.jpg";
+import logoBeckTech from "@/images/logos/becktech.jpg";
+import logoCenergistic from "@/images/logos/cenergistic.jpg";
+import logoGwynnGroup from "@/images/logos/gwynngroup.jpg";
+import logoProviderScience from "@/images/logos/providerscience.jpg";
+import logoStellarElements from "@/images/logos/SE_Star_BLK.svg";
+import image1 from "@/images/photos/image-1.jpg";
+import image2 from "@/images/photos/image-2.jpg";
+import image3 from "@/images/photos/image-3.jpg";
+import image4 from "@/images/photos/image-4.jpg";
+import image5 from "@/images/photos/image-5.jpg";
+import { formatDate } from "@/lib/format-date";
+import { getAllArticles } from "@/lib/get-all-articles";
+import type { Post } from "@/tina/__generated__/types";
+
+const FEATURED_ARTICLE_LIMIT = 4;
 
 function Article({ article }: { article: Post }) {
   return (
@@ -89,23 +91,23 @@ function Newsletter() {
   );
 }
 
-interface Role {
+type Role = {
   company: string;
   title: string;
-  logo: ImageProps['src'];
+  logo: ImageProps["src"];
   start: string | { label: string; dateTime: string };
   end: string | { label: string; dateTime: string };
   link: string;
-}
+};
 
 function Role({ role }: { role: Role }) {
   const startLabel =
-    typeof role.start === 'string' ? role.start : role.start.label;
+    typeof role.start === "string" ? role.start : role.start.label;
   const startDate =
-    typeof role.start === 'string' ? role.start : role.start.dateTime;
+    typeof role.start === "string" ? role.start : role.start.dateTime;
 
-  const endLabel = typeof role.end === 'string' ? role.end : role.end.label;
-  const endDate = typeof role.end === 'string' ? role.end : role.end.dateTime;
+  const endLabel = typeof role.end === "string" ? role.end : role.end.label;
+  const endDate = typeof role.end === "string" ? role.end : role.end.dateTime;
 
   return (
     <li className="flex gap-4">
@@ -123,8 +125,8 @@ function Role({ role }: { role: Role }) {
         </dd>
         <dt className="sr-only">Date</dt>
         <dd className="ml-auto text-xs text-zinc-400 dark:text-zinc-500">
-          <time dateTime={startDate}>{startLabel}</time>{' '}
-          <span aria-hidden="true">—</span>{' '}
+          <time dateTime={startDate}>{startLabel}</time>{" "}
+          <span aria-hidden="true">—</span>{" "}
           <time dateTime={endDate}>{endLabel}</time>
         </dd>
       </dl>
@@ -135,55 +137,55 @@ function Role({ role }: { role: Role }) {
 function Resume() {
   const resume: Role[] = [
     {
-      company: 'Stellar Elements',
-      title: 'Associate Director',
+      company: "Stellar Elements",
+      title: "Associate Director",
       logo: logoStellarElements,
-      start: '2022',
+      start: "2022",
       end: {
-        label: 'Present',
+        label: "Present",
         dateTime: new Date().getFullYear().toString(),
       },
-      link: 'https://stellarelements.com',
+      link: "https://stellarelements.com",
     },
     {
-      company: 'Cenergistic',
-      title: 'CTO',
+      company: "Cenergistic",
+      title: "CTO",
       logo: logoCenergistic,
-      start: '2018',
-      end: '2022',
-      link: 'https://cenergistic.com',
+      start: "2018",
+      end: "2022",
+      link: "https://cenergistic.com",
     },
     {
-      company: 'Beck Technology',
-      title: 'Project Leader',
+      company: "Beck Technology",
+      title: "Project Leader",
       logo: logoBeckTech,
-      start: '2016',
-      end: '2018',
-      link: 'https://beck-technology.com',
+      start: "2016",
+      end: "2018",
+      link: "https://beck-technology.com",
     },
     {
-      company: 'ProviderScience',
-      title: 'Senior Software Engineer',
+      company: "ProviderScience",
+      title: "Senior Software Engineer",
       logo: logoProviderScience,
-      start: '2015',
-      end: '2016',
-      link: 'https://providerscience.com',
+      start: "2015",
+      end: "2016",
+      link: "https://providerscience.com",
     },
     {
-      company: 'Gwynn Group',
-      title: 'Senior Software Engineer',
+      company: "Gwynn Group",
+      title: "Senior Software Engineer",
       logo: logoGwynnGroup,
-      start: '2015',
-      end: '2015',
-      link: 'https://gwynngroup.com',
+      start: "2015",
+      end: "2015",
+      link: "https://gwynngroup.com",
     },
     {
-      company: 'Allegro',
-      title: 'Software Developer',
+      company: "Allegro",
+      title: "Software Developer",
       logo: logoAllegro,
-      start: '2013',
-      end: '2015',
-      link: 'https://iongroup.com/products/commodities/allegro/',
+      start: "2013",
+      end: "2015",
+      link: "https://iongroup.com/products/commodities/allegro/",
     },
   ];
 
@@ -213,11 +215,11 @@ function Resume() {
 
 function Photos() {
   const rotations = [
-    'rotate-2',
-    '-rotate-2',
-    'rotate-2',
-    'rotate-2',
-    '-rotate-2',
+    "rotate-2",
+    "-rotate-2",
+    "rotate-2",
+    "rotate-2",
+    "-rotate-2",
   ];
 
   return (
@@ -226,7 +228,7 @@ function Photos() {
         {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
           <div
             className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800',
+              "relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800",
               rotations[imageIndex % rotations.length]
             )}
             key={image.src}
@@ -245,7 +247,7 @@ function Photos() {
 }
 
 export default async function Home() {
-  const articles = (await getAllArticles()).slice(0, 4);
+  const articles = (await getAllArticles()).slice(0, FEATURED_ARTICLE_LIMIT);
 
   return (
     <>

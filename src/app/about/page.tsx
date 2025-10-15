@@ -1,18 +1,18 @@
-import clsx from 'clsx';
-import Image from 'next/image';
-import Link from 'next/link';
-import type React from 'react';
+import clsx from "clsx";
+import Image from "next/image";
+import Link from "next/link";
+import type React from "react";
 
-import { Container } from '@/components/container';
-import { MailIcon } from '@/components/icons';
+import { Container } from "@/components/container";
+import { MailIcon } from "@/components/icons";
 import {
   GitHubIcon,
   LinkedInIcon,
   MastodonIcon,
   TwitterIcon,
-} from '@/components/social-icons';
+} from "@/components/social-icons";
 
-import portraitImage from '@/images/portrait.jpg';
+import portraitImage from "@/images/portrait.jpg";
 
 function SocialLink({
   className,
@@ -28,7 +28,7 @@ function SocialLink({
   rel?: string;
 }) {
   return (
-    <li className={clsx(className, 'flex')}>
+    <li className={clsx(className, "flex")}>
       <Link
         className="group flex font-medium text-sm text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
         href={href}
@@ -42,8 +42,8 @@ function SocialLink({
 }
 
 export const metadata = {
-  title: 'About',
-  description: 'I’m Andy, a senior engineering manager based in Dallas, TX.',
+  title: "About",
+  description: "I’m Andy, a senior engineering manager based in Dallas, TX.",
 };
 
 export default function About() {

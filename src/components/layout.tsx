@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
-import { Footer } from '@/components/footer';
-import { Header } from '@/components/header';
+import type { ReactNode } from "react";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (

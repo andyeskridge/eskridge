@@ -1,10 +1,10 @@
-import { Badge } from '@/components/badge';
-import { SimpleLayout } from '@/components/simple-layout';
-import { getAllTags } from '@/lib/get-all-tags';
+import { Badge } from "@/components/badge";
+import { SimpleLayout } from "@/components/simple-layout";
+import { getAllTags } from "@/lib/get-all-tags";
 
 export const metadata = {
-  title: 'Tags',
-  description: 'Browse articles by tags to find specific topics.',
+  title: "Tags",
+  description: "Browse articles by tags to find specific topics.",
 };
 
 export default async function TagsPage() {

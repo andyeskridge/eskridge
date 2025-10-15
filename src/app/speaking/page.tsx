@@ -1,8 +1,8 @@
-import type React from 'react';
+import type React from "react";
 
-import { Card } from '@/components/card';
-import { Section } from '@/components/section';
-import { SimpleLayout } from '@/components/simple-layout';
+import { Card } from "@/components/card";
+import { Section } from "@/components/section";
+import { SimpleLayout } from "@/components/simple-layout";
 
 function SpeakingSection({
   children,
@@ -44,9 +44,9 @@ function Appearance({
 }
 
 export const metadata = {
-  title: 'Speaking',
+  title: "Speaking",
   description:
-    'I’ve spoken at events all around the world and been interviewed for many podcasts.',
+    "I’ve spoken at events all around the world and been interviewed for many podcasts.",
 };
 
 export default function Speaking() {
