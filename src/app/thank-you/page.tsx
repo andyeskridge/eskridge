@@ -1,8 +1,8 @@
-import { SimpleLayout } from '@/components/simple-layout';
+import { SimpleLayout } from "@/components/simple-layout";
 
 export const metadata = {
-  title: 'You’re subscribed',
-  description: 'Thanks for subscribing to my newsletter.',
+  title: "You’re subscribed",
+  description: "Thanks for subscribing to my newsletter.",
 };
 
 export default function ThankYou() {

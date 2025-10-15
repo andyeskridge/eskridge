@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
 import {
   Popover,
   PopoverBackdrop,
   PopoverButton,
   PopoverPanel,
-} from '@headlessui/react';
-import clsx from 'clsx';
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useTheme } from 'next-themes';
+} from "@headlessui/react";
+import clsx from "clsx";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 import {
   type ComponentPropsWithoutRef,
   type CSSProperties,
@@ -19,13 +19,23 @@ import {
   useEffect,
   useRef,
   useState,
-} from 'react';
+} from "react";
 
-import { Container } from '@/components/container';
+import { Container } from "@/components/container";
 
-import avatarImage from '@/images/avatar.jpg';
+import avatarImage from "@/images/avatar.jpg";
 
-import { ChevronDownIcon, CloseIcon, MoonIcon, SunIcon } from './icons';
+import { ChevronDownIcon, CloseIcon, MoonIcon, SunIcon } from "./icons";
+
+const AVATAR_MIN_SIZE_PX = 36;
+const AVATAR_BASE_SIZE_PX = 64;
+const AVATAR_HORIZONTAL_OFFSET_REM_NUMERATOR = 2;
+const AVATAR_HORIZONTAL_OFFSET_REM_DENOMINATOR = 16;
+
+const AVATAR_MIN_SCALE = AVATAR_MIN_SIZE_PX / AVATAR_BASE_SIZE_PX;
+const AVATAR_MAX_HORIZONTAL_OFFSET =
+  AVATAR_HORIZONTAL_OFFSET_REM_NUMERATOR /
+  AVATAR_HORIZONTAL_OFFSET_REM_DENOMINATOR;
 
 function MobileNavItem({
   href,
@@ -85,10 +95,10 @@ function NavItem({ href, children }: { href: string; children: ReactNode }) {
     <li>
       <Link
         className={clsx(
-          'relative block px-3 py-2 transition',
+          "relative block px-3 py-2 transition",
           isActive
-            ? 'text-teal-500 dark:text-teal-400'
-            : 'hover:text-teal-500 dark:hover:text-teal-400'
+            ? "text-teal-500 dark:text-teal-400"
+            : "hover:text-teal-500 dark:hover:text-teal-400"
         )}
         href={href}
       >
@@ -101,7 +111,7 @@ function NavItem({ href, children }: { href: string; children: ReactNode }) {
   );
 }
 
-function DesktopNavigation(props: ComponentPropsWithoutRef<'nav'>) {
+function DesktopNavigation(props: ComponentPropsWithoutRef<"nav">) {
   return (
     <nav {...props}>
       <ul className="flex rounded-full bg-white/90 px-3 font-medium text-sm text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
@@ -114,7 +124,7 @@ function DesktopNavigation(props: ComponentPropsWithoutRef<'nav'>) {
 
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const otherTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
+  const otherTheme = resolvedTheme === "dark" ? "light" : "dark";
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -123,7 +133,7 @@ function ThemeToggle() {
 
   return (
     <button
-      aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
+      aria-label={mounted ? `Switch to ${otherTheme} theme` : "Toggle theme"}
       className="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
       onClick={() => setTheme(otherTheme)}
       type="button"
@@ -143,12 +153,12 @@ function clamp(number: number, a: number, b: number) {
 function AvatarContainer({
   className,
   ...props
-}: ComponentPropsWithoutRef<'div'>) {
+}: ComponentPropsWithoutRef<"div">) {
   return (
     <div
       className={clsx(
         className,
-        'h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10'
+        "h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10"
       )}
       {...props}
     />
@@ -159,24 +169,24 @@ function Avatar({
   large = false,
   className,
   ...props
-}: Omit<ComponentPropsWithoutRef<typeof Link>, 'href'> & {
+}: Omit<ComponentPropsWithoutRef<typeof Link>, "href"> & {
   large?: boolean;
 }) {
   return (
     <Link
       aria-label="Home"
-      className={clsx(className, 'pointer-events-auto')}
+      className={clsx(className, "pointer-events-auto")}
       href="/"
       {...props}
     >
       <Image
         alt=""
         className={clsx(
-          'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
-          large ? 'h-16 w-16' : 'h-9 w-9'
+          "rounded-full bg-zinc-100 object-cover dark:bg-zinc-800",
+          large ? "h-16 w-16" : "h-9 w-9"
         )}
         priority
-        sizes={large ? '4rem' : '2.25rem'}
+        sizes={large ? "4rem" : "2.25rem"}
         src={avatarImage}
       />
     </Link>
@@ -184,10 +194,10 @@ function Avatar({
 }
 
 export function Header() {
-  const isHomePage = usePathname() === '/';
+  const isHomePage = usePathname() === "/";
 
-  const headerRef = useRef<ElementRef<'div'>>(null);
-  const avatarRef = useRef<ElementRef<'div'>>(null);
+  const headerRef = useRef<ElementRef<"div">>(null);
+  const avatarRef = useRef<ElementRef<"div">>(null);
   const isInitial = useRef(true);
 
   useEffect(() => {
@@ -215,10 +225,10 @@ export function Header() {
       );
 
       if (isInitial.current) {
-        setProperty('--header-position', 'sticky');
+        setProperty("--header-position", "sticky");
       }
 
-      setProperty('--content-offset', `${downDelay}px`);
+      setProperty("--content-offset", `${downDelay}px`);
 
       updateHeaderHeightAndMargin(top, height, scrollY);
       updateHeaderPosition(top, scrollY);
@@ -230,27 +240,27 @@ export function Header() {
       scrollY: number
     ) {
       if (isInitial.current || scrollY < downDelay) {
-        setProperty('--header-height', `${downDelay + height}px`);
-        setProperty('--header-mb', `${-downDelay}px`);
+        setProperty("--header-height", `${downDelay + height}px`);
+        setProperty("--header-mb", `${-downDelay}px`);
       } else if (top + height < -upDelay) {
         const offset = Math.max(height, scrollY - upDelay);
-        setProperty('--header-height', `${offset}px`);
-        setProperty('--header-mb', `${height - offset}px`);
+        setProperty("--header-height", `${offset}px`);
+        setProperty("--header-mb", `${height - offset}px`);
       } else if (top === 0) {
-        setProperty('--header-height', `${scrollY + height}px`);
-        setProperty('--header-mb', `${-scrollY}px`);
+        setProperty("--header-height", `${scrollY + height}px`);
+        setProperty("--header-mb", `${-scrollY}px`);
       }
     }
 
     function updateHeaderPosition(top: number, scrollY: number) {
       if (top === 0 && scrollY > 0 && scrollY >= downDelay) {
-        setProperty('--header-inner-position', 'fixed');
-        removeProperty('--header-top');
-        removeProperty('--avatar-top');
+        setProperty("--header-inner-position", "fixed");
+        removeProperty("--header-top");
+        removeProperty("--avatar-top");
       } else {
-        removeProperty('--header-inner-position');
-        setProperty('--header-top', '0px');
-        setProperty('--avatar-top', '0px');
+        removeProperty("--header-inner-position");
+        setProperty("--header-top", "0px");
+        setProperty("--avatar-top", "0px");
       }
     }
 
@@ -260,9 +270,9 @@ export function Header() {
       }
 
       const fromScale = 1;
-      const toScale = 36 / 64;
+      const toScale = AVATAR_MIN_SCALE;
       const fromX = 0;
-      const toX = 2 / 16;
+      const toX = AVATAR_MAX_HORIZONTAL_OFFSET;
 
       const scrollY = downDelay - window.scrollY;
 
@@ -273,7 +283,7 @@ export function Header() {
       x = clamp(x, fromX, toX);
 
       setProperty(
-        '--avatar-image-transform',
+        "--avatar-image-transform",
         `translate3d(${x}rem, 0, 0) scale(${scale})`
       );
 
@@ -281,8 +291,8 @@ export function Header() {
       const borderX = (-toX + x) * borderScale;
       const borderTransform = `translate3d(${borderX}rem, 0, 0) scale(${borderScale})`;
 
-      setProperty('--avatar-border-transform', borderTransform);
-      setProperty('--avatar-border-opacity', scale === toScale ? '1' : '0');
+      setProperty("--avatar-border-transform", borderTransform);
+      setProperty("--avatar-border-opacity", scale === toScale ? "1" : "0");
     }
 
     function updateStyles() {
@@ -292,12 +302,12 @@ export function Header() {
     }
 
     updateStyles();
-    window.addEventListener('scroll', updateStyles, { passive: true });
-    window.addEventListener('resize', updateStyles);
+    window.addEventListener("scroll", updateStyles, { passive: true });
+    window.addEventListener("resize", updateStyles);
 
     return () => {
-      window.removeEventListener('scroll', updateStyles);
-      window.removeEventListener('resize', updateStyles);
+      window.removeEventListener("scroll", updateStyles);
+      window.removeEventListener("resize", updateStyles);
     };
   }, [isHomePage]);
 
@@ -306,8 +316,8 @@ export function Header() {
       <header
         className="pointer-events-none relative z-50 flex flex-none flex-col"
         style={{
-          height: 'var(--header-height)',
-          marginBottom: 'var(--header-mb)',
+          height: "var(--header-height)",
+          marginBottom: "var(--header-mb)",
         }}
       >
         {isHomePage && (
@@ -319,28 +329,28 @@ export function Header() {
             <Container
               className="-mb-3 top-0 order-last pt-3"
               style={{
-                position: 'var(--header-position)' as CSSProperties['position'],
+                position: "var(--header-position)" as CSSProperties["position"],
               }}
             >
               <div
                 className="top-[var(--avatar-top,theme(spacing.3))] w-full"
                 style={{
                   position:
-                    'var(--header-inner-position)' as CSSProperties['position'],
+                    "var(--header-inner-position)" as CSSProperties["position"],
                 }}
               >
                 <div className="relative">
                   <AvatarContainer
                     className="absolute top-3 left-0 origin-left transition-opacity"
                     style={{
-                      opacity: 'var(--avatar-border-opacity, 0)',
-                      transform: 'var(--avatar-border-transform)',
+                      opacity: "var(--avatar-border-opacity, 0)",
+                      transform: "var(--avatar-border-transform)",
                     }}
                   />
                   <Avatar
                     className="block h-16 w-16 origin-left"
                     large
-                    style={{ transform: 'var(--avatar-image-transform)' }}
+                    style={{ transform: "var(--avatar-image-transform)" }}
                   />
                 </div>
               </div>
@@ -351,14 +361,14 @@ export function Header() {
           className="top-0 z-10 h-16 pt-6"
           ref={headerRef}
           style={{
-            position: 'var(--header-position)' as CSSProperties['position'],
+            position: "var(--header-position)" as CSSProperties["position"],
           }}
         >
           <Container
             className="top-[var(--header-top,theme(spacing.6))] w-full"
             style={{
               position:
-                'var(--header-inner-position)' as CSSProperties['position'],
+                "var(--header-inner-position)" as CSSProperties["position"],
             }}
           >
             <div className="relative flex gap-4">
@@ -385,7 +395,7 @@ export function Header() {
       {isHomePage && (
         <div
           className="flex-none"
-          style={{ height: 'var(--content-offset)' }}
+          style={{ height: "var(--content-offset)" }}
         />
       )}
     </>

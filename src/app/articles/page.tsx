@@ -1,9 +1,9 @@
-import { Card } from '@/components/card';
-import { SimpleLayout } from '@/components/simple-layout';
-import { formatDate } from '@/lib/format-date';
-import { getAllArticles } from '@/lib/get-all-articles';
+import { Card } from "@/components/card";
+import { SimpleLayout } from "@/components/simple-layout";
+import { formatDate } from "@/lib/format-date";
+import { getAllArticles } from "@/lib/get-all-articles";
 
-import type { Post } from '@/tina/__generated__/types';
+import type { Post } from "@/tina/__generated__/types";
 
 function Article({ article }: { article: Post }) {
   return (
@@ -36,9 +36,9 @@ function Article({ article }: { article: Post }) {
 }
 
 export const metadata = {
-  title: 'Articles',
+  title: "Articles",
   description:
-    'All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order.',
+    "All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order.",
 };
 
 export default async function ArticlesIndex() {

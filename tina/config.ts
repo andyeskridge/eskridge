@@ -1,11 +1,11 @@
-import { defineConfig } from 'tinacms';
+import { defineConfig } from "tinacms";
 
-import Category from './collection/category';
-import Post from './collection/post';
-import Tag from './collection/tag';
+import Category from "./collection/category";
+import Post from "./collection/post";
+import Tag from "./collection/tag";
 
 // Your hosting provider likely exposes this as an environment variable
-const branch = process.env.GITHUB_BRANCH || process.env.HEAD || 'main';
+const branch = process.env.GITHUB_BRANCH || process.env.HEAD || "main";
 
 export default defineConfig({
   branch,
@@ -23,7 +23,7 @@ export default defineConfig({
       },
     },
   },
-  ...(process.env.NODE_ENV === 'production'
+  ...(process.env.NODE_ENV === "production"
     ? {
         search: {
           tina: {
@@ -33,13 +33,13 @@ export default defineConfig({
       }
     : {}),
   build: {
-    outputFolder: 'admin',
-    publicFolder: 'public',
+    outputFolder: "admin",
+    publicFolder: "public",
   },
   media: {
     tina: {
-      mediaRoot: '',
-      publicFolder: 'public',
+      mediaRoot: "",
+      publicFolder: "public",
     },
   },
   schema: {

@@ -1,19 +1,19 @@
-import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 initOpenNextCloudflareForDev();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['ts', 'tsx'],
+  pageExtensions: ["ts", "tsx"],
   images: {
-    loader: 'custom',
-    loaderFile: './src/lib/image-loader.ts',
+    loader: "custom",
+    loaderFile: "./src/lib/image-loader.ts",
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'assets.tina.io',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "assets.tina.io",
+        port: "",
+        pathname: "/**",
       },
     ],
   },

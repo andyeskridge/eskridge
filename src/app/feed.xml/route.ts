@@ -1,22 +1,22 @@
-import { load } from 'cheerio';
-import { Feed } from 'feed';
+import { load } from "cheerio";
+import { Feed } from "feed";
 
-import { getAllArticles } from '@/lib/get-all-articles';
+import { getAllArticles } from "@/lib/get-all-articles";
 
 export async function GET(req: Request) {
   const siteUrl =
-    process.env.CF_PAGES_BRANCH === 'main'
-      ? 'https://eskridge.dev'
-      : (process.env.CF_PAGES_URL ?? 'https://localhost:3000');
+    process.env.CF_PAGES_BRANCH === "main"
+      ? "https://eskridge.dev"
+      : (process.env.CF_PAGES_URL ?? "https://localhost:3000");
   const author = {
-    name: 'Andy Eskridge',
-    email: 'andy@eskridge.dev',
+    name: "Andy Eskridge",
+    email: "andy@eskridge.dev",
   };
 
   const feed = new Feed({
     title: author.name,
     description:
-      'eskridge.dev is a small portfolio site written by Andy Eskridge',
+      "eskridge.dev is a small portfolio site written by Andy Eskridge",
     author,
     id: siteUrl,
     link: siteUrl,
@@ -46,11 +46,11 @@ export async function GET(req: Request) {
         const $ = load(html);
 
         const publicUrl = `${siteUrl}/articles/${article._sys.filename}`;
-        const articleDom = $('article').first();
+        const articleDom = $("article").first();
         const title = article.title;
         const date = article.date;
         const content =
-          articleDom.find('[data-mdx-content]').first().html() ?? '';
+          articleDom.find("[data-mdx-content]").first().html() ?? "";
 
         feed.addItem({
           title,
@@ -70,8 +70,8 @@ export async function GET(req: Request) {
   return new Response(feed.rss2(), {
     status: 200,
     headers: {
-      'content-type': 'application/xml',
-      'cache-control': 's-maxage=31556952',
+      "content-type": "application/xml",
+      "cache-control": "s-maxage=31556952",
     },
   });
 }

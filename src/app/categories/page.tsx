@@ -1,11 +1,11 @@
-import { Badge } from '@/components/badge';
-import { SimpleLayout } from '@/components/simple-layout';
-import { getAllCategories } from '@/lib/get-all-categories';
+import { Badge } from "@/components/badge";
+import { SimpleLayout } from "@/components/simple-layout";
+import { getAllCategories } from "@/lib/get-all-categories";
 
 export const metadata = {
-  title: 'Categories',
+  title: "Categories",
   description:
-    'Browse articles by category to find content that interests you.',
+    "Browse articles by category to find content that interests you.",
 };
 
 export default async function CategoriesPage() {

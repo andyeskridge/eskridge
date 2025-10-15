@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import { type ReactNode, useContext } from 'react';
-import { AppContext } from '@/app/providers';
-import { Container } from '@/components/container';
-import { Prose } from '@/components/prose';
-import { formatDate } from '@/lib/format-date';
+import { useRouter } from "next/navigation";
+import { type ReactNode, useContext } from "react";
+import { AppContext } from "@/app/providers";
+import { Container } from "@/components/container";
+import { Prose } from "@/components/prose";
+import { formatDate } from "@/lib/format-date";
 
-import type { PostPartsFragment } from '@/tina/__generated__/types';
+import type { PostPartsFragment } from "@/tina/__generated__/types";
 
-import { Badge } from './badge';
-import { ArrowLeftIcon } from './icons';
+import { Badge } from "./badge";
+import { ArrowLeftIcon } from "./icons";
 
 export function ArticleLayout({
   article,

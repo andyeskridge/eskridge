@@ -1,16 +1,16 @@
-import { notFound } from 'next/navigation';
-import { Card } from '@/components/card';
-import { SimpleLayout } from '@/components/simple-layout';
-import { formatDate } from '@/lib/format-date';
-import { getAllArticles } from '@/lib/get-all-articles';
-import { getAllTags } from '@/lib/get-all-tags';
-import type { Post } from '@/tina/__generated__/types';
+import { notFound } from "next/navigation";
+import { Card } from "@/components/card";
+import { SimpleLayout } from "@/components/simple-layout";
+import { formatDate } from "@/lib/format-date";
+import { getAllArticles } from "@/lib/get-all-articles";
+import { getAllTags } from "@/lib/get-all-tags";
+import type { Post } from "@/tina/__generated__/types";
 
-interface TagPageProps {
+type TagPageProps = {
   params: Promise<{
     slug: string;
   }>;
-}
+};
 
 function Article({ article }: { article: Post }) {
   return (
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: TagPageProps) {
 
   if (!tag) {
     return {
-      title: 'Tag Not Found',
+      title: "Tag Not Found",
     };
   }
 

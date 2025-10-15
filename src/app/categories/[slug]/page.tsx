@@ -1,16 +1,16 @@
-import { notFound } from 'next/navigation';
-import { Card } from '@/components/card';
-import { SimpleLayout } from '@/components/simple-layout';
-import { formatDate } from '@/lib/format-date';
-import { getAllArticles } from '@/lib/get-all-articles';
-import { getAllCategories } from '@/lib/get-all-categories';
-import type { Post } from '@/tina/__generated__/types';
+import { notFound } from "next/navigation";
+import { Card } from "@/components/card";
+import { SimpleLayout } from "@/components/simple-layout";
+import { formatDate } from "@/lib/format-date";
+import { getAllArticles } from "@/lib/get-all-articles";
+import { getAllCategories } from "@/lib/get-all-categories";
+import type { Post } from "@/tina/__generated__/types";
 
-interface CategoryPageProps {
+type CategoryPageProps = {
   params: Promise<{
     slug: string;
   }>;
-}
+};
 
 function Article({ article }: { article: Post }) {
   return (
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: CategoryPageProps) {
 
   if (!category) {
     return {
-      title: 'Category Not Found',
+      title: "Category Not Found",
     };
   }
 
