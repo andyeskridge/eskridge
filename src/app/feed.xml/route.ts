@@ -1,9 +1,40 @@
-import { load } from "cheerio";
 import { Feed } from "feed";
+import { createElement, type ReactNode } from "react";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 
 import { getAllArticles } from "@/lib/get-all-articles";
+import type { Post } from "@/tina/__generated__/types";
 
-export async function GET(req: Request) {
+async function renderArticleContent(
+  article: Post
+): Promise<string | undefined> {
+  const children: ReactNode[] = [];
+
+  if (article.description) {
+    children.push(
+      createElement("p", { key: "description" }, article.description)
+    );
+  }
+
+  if (article.body) {
+    children.push(
+      createElement(
+        "div",
+        { key: "body", "data-mdx-content": true },
+        createElement(TinaMarkdown, { content: article.body })
+      )
+    );
+  }
+
+  if (children.length === 0) {
+    return undefined;
+  }
+
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  return renderToStaticMarkup(createElement("article", null, ...children));
+}
+
+export async function GET(_req: Request) {
   const siteUrl =
     process.env.CF_PAGES_BRANCH === "main"
       ? "https://eskridge.dev"
@@ -30,42 +61,26 @@ export async function GET(req: Request) {
 
   const articles = await getAllArticles();
 
-  await Promise.all(
-    articles.map(async (article) => {
-      try {
-        const url = String(
-          new URL(`/articles/${article._sys.filename}`, req.url)
-        );
-        const response = await fetch(url);
+  for (const article of articles) {
+    try {
+      const publicUrl = `${siteUrl}/articles/${article._sys.filename}`;
+      const content =
+        (await renderArticleContent(article)) ?? article.description ?? "";
 
-        if (!response.ok) {
-          return;
-        }
-
-        const html = await response.text();
-        const $ = load(html);
-
-        const publicUrl = `${siteUrl}/articles/${article._sys.filename}`;
-        const articleDom = $("article").first();
-        const title = article.title;
-        const date = article.date;
-        const content =
-          articleDom.find("[data-mdx-content]").first().html() ?? "";
-
-        feed.addItem({
-          title,
-          id: publicUrl,
-          link: publicUrl,
-          content,
-          author: [author],
-          contributor: [author],
-          date: new Date(date),
-        });
-      } catch (_error) {
-        // Continue processing other articles even if one fails
-      }
-    })
-  );
+      feed.addItem({
+        title: article.title,
+        id: publicUrl,
+        link: publicUrl,
+        content,
+        description: article.description,
+        author: [author],
+        contributor: [author],
+        date: new Date(article.date),
+      });
+    } catch (_error) {
+      // Continue processing other articles even if one fails
+    }
+  }
 
   return new Response(feed.rss2(), {
     status: 200,

@@ -5,8 +5,8 @@ export async function getAllCategories(): Promise<Category[]> {
   const categoriesRes = await client.queries.categoryConnection({
     sort: "name",
   });
-  const categories = (categoriesRes.data.categoryConnection.edges || []).map(
-    (edge) => edge?.node
-  );
-  return categories as Category[];
+  const categories =
+    categoriesRes.data.categoryConnection.edges?.map((edge) => edge?.node) ??
+    [];
+  return categories.filter(Boolean) as Category[];
 }

@@ -4,12 +4,12 @@ import PageClient from "./page-client";
 
 export const dynamicParams = false;
 
-export default async function Page(props: {
+export default async function Page({
+  params,
+}: {
   params: Promise<{ filename: string }>;
 }) {
-  const params = await props.params;
-
-  const { filename } = params;
+  const { filename } = await params;
 
   const res = await client.queries.post({
     relativePath: `${filename}.md`,
@@ -20,9 +20,11 @@ export default async function Page(props: {
 
 export async function generateStaticParams() {
   const posts = await client.queries.postConnection();
-  const paths = posts.data?.postConnection?.edges?.map((edge) => ({
-    filename: edge?.node?._sys.breadcrumbs.join("/"),
-  }));
+  const paths =
+    posts.data?.postConnection?.edges
+      ?.map((edge) => edge?.node?._sys.breadcrumbs.join("/"))
+      .filter((filename): filename is string => Boolean(filename))
+      .map((filename) => ({ filename })) ?? [];
 
-  return paths || [];
+  return paths;
 }

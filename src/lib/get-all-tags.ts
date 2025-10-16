@@ -5,8 +5,7 @@ export async function getAllTags(): Promise<Tag[]> {
   const tagsRes = await client.queries.tagConnection({
     sort: "name",
   });
-  const tags = (tagsRes.data.tagConnection.edges || []).map(
-    (edge) => edge?.node
-  );
-  return tags as Tag[];
+  const tags =
+    tagsRes.data.tagConnection.edges?.map((edge) => edge?.node) ?? [];
+  return tags.filter(Boolean) as Tag[];
 }

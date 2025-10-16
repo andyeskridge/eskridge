@@ -5,8 +5,8 @@ export async function getAllArticles(): Promise<Post[]> {
   const articlesRes = await client.queries.postConnection({
     sort: "date",
   });
-  const articles = (articlesRes.data.postConnection.edges || []).map(
-    (edge) => edge?.node
-  );
-  return articles.filter((article) => !article?.draft) as Post[];
+  const articles =
+    articlesRes.data.postConnection.edges?.map((edge) => edge?.node) ?? [];
+  const validArticles = articles.filter(Boolean) as Post[];
+  return validArticles.filter((article) => article.draft !== true);
 }

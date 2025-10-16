@@ -1,6 +1,10 @@
 import clsx from "clsx";
 import Link from "next/link";
-import type { ButtonHTMLAttributes } from "react";
+import type {
+  ButtonHTMLAttributes,
+  ComponentPropsWithoutRef,
+  ReactNode,
+} from "react";
 
 const variantStyles = {
   primary:
@@ -9,33 +13,44 @@ const variantStyles = {
     "bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70",
 };
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "primary" | "secondary";
-  href?: string;
-  target?: string;
-};
+type LinkOptionalProps = Omit<
+  ComponentPropsWithoutRef<typeof Link>,
+  "className" | "href"
+>;
+
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  LinkOptionalProps & {
+    variant?: "primary" | "secondary";
+    href?: ComponentPropsWithoutRef<typeof Link>["href"];
+  };
 
 export function Button({
   variant = "primary",
   className,
   type = "button",
   href,
-  target,
   ...props
 }: ButtonProps) {
-  className = clsx(
+  const composedClassName = clsx(
     "inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm outline-offset-2 transition active:transition-none",
     variantStyles[variant],
     className
   );
 
   if (href) {
+    const { children, ...linkProps } = props as {
+      children?: ReactNode;
+    } & LinkOptionalProps;
     return (
-      <Link className={className} href={href}>
-        {props.children}
+      <Link className={composedClassName} href={href} {...linkProps}>
+        {children}
       </Link>
     );
   }
 
-  return <button className={className} type={type} {...props} />;
+  return (
+    <button className={composedClassName} type={type} {...props}>
+      {props.children}
+    </button>
+  );
 }
