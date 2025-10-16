@@ -27,7 +27,7 @@ async function renderArticleContent(
   }
 
   if (children.length === 0) {
-    return undefined;
+    return;
   }
 
   const { renderToStaticMarkup } = await import("react-dom/server");
