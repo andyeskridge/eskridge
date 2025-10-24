@@ -6,13 +6,13 @@ import { getAllArticles } from "@/lib/get-all-articles";
 import type { Post } from "@/tina/__generated__/types";
 
 async function renderArticleContent(
-  article: Post
+  article: Post,
 ): Promise<string | undefined> {
   const children: ReactNode[] = [];
 
   if (article.description) {
     children.push(
-      createElement("p", { key: "description" }, article.description)
+      createElement("p", { key: "description" }, article.description),
     );
   }
 
@@ -21,8 +21,8 @@ async function renderArticleContent(
       createElement(
         "div",
         { key: "body", "data-mdx-content": true },
-        createElement(TinaMarkdown, { content: article.body })
-      )
+        createElement(TinaMarkdown, { content: article.body }),
+      ),
     );
   }
 

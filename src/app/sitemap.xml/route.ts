@@ -38,7 +38,7 @@ function generateSitemap(articles: string[]) {
 
 export async function GET(_req: Request) {
   const articleIds = (await getAllArticles()).map(
-    (article) => article._sys.filename
+    (article) => article._sys.filename,
   );
 
   return new Response(generateSitemap(articleIds), {

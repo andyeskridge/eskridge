@@ -1,0 +1,39 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.0/schema.json",
+  "extends": ["ultracite"],
+  "files": {
+    "includes": [
+      "**",
+      "!**/tina/tina-lock.json",
+      "!**/cloudflare-env.d.ts",
+      "!**/bun.lock",
+      "!**/renovate.json",
+      // Skip build artifacts that can contain transpiled output or generated bundles.
+      "!**/.next",
+      "!**/.open-next",
+      "!**/.vercel",
+      "!**/.wrangler",
+      "!**/out",
+      "!**/build",
+      "!**/playwright-report",
+      "!**/test-results",
+      "!public/admin",
+      "!tina/__generated__",
+      // Tailwind CSS 4 directives like @plugin and @theme still parse as errors in Biome 2.3.0.
+      // Exclude the entry stylesheet until Biome ships full Tailwind 4 parser support.
+      "!src/styles/tailwind.css"
+    ]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "javascript": {
+    "globals": ["KVNamespace", "Fetcher"]
+  }
+}
