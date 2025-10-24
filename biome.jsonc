@@ -8,6 +8,8 @@
       "!**/cloudflare-env.d.ts",
       "!**/bun.lock",
       "!**/renovate.json",
+      // Tailwind CSS 4 directives like @plugin and @theme still parse as errors in Biome 2.3.0.
+      // Exclude the entry stylesheet until Biome ships full Tailwind 4 parser support.
       "!src/styles/tailwind.css"
     ]
   },
