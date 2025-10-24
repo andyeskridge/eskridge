@@ -15,7 +15,7 @@ const useDocker = (process.env.PLAYWRIGHT_USE_DOCKER ?? "true") !== "false";
 
 if (!useDocker) {
   console.log(
-    `${logPrefix} PLAYWRIGHT_USE_DOCKER=false, skipping container startup`
+    `${logPrefix} PLAYWRIGHT_USE_DOCKER=false, skipping container startup`,
   );
   process.exit(0);
 }
@@ -65,7 +65,7 @@ const removeContainer = () => {
     console.log(`${logPrefix} removed container "${containerName}"`);
   } catch (error) {
     console.warn(
-      `${logPrefix} failed to remove container "${containerName}": ${error instanceof Error ? error.message : error}`
+      `${logPrefix} failed to remove container "${containerName}": ${error instanceof Error ? error.message : error}`,
     );
   }
 };
@@ -77,7 +77,7 @@ const startExistingContainer = () => {
 
 const createContainer = () => {
   console.log(
-    `${logPrefix} creating container "${containerName}" from ${imageTag}`
+    `${logPrefix} creating container "${containerName}" from ${imageTag}`,
   );
   const runArgs = [
     "run",
@@ -127,7 +127,7 @@ const ensureRunning = () => {
 
 if (!dockerIsAvailable()) {
   console.error(
-    `${logPrefix} docker is not available. Ensure Docker is installed and running.`
+    `${logPrefix} docker is not available. Ensure Docker is installed and running.`,
   );
   process.exit(1);
 }
@@ -144,7 +144,7 @@ try {
         startExistingContainer();
       } catch (error) {
         console.warn(
-          `${logPrefix} failed to start existing container: ${error instanceof Error ? error.message : error}`
+          `${logPrefix} failed to start existing container: ${error instanceof Error ? error.message : error}`,
         );
         removeContainer();
         createContainer();
@@ -160,7 +160,7 @@ try {
     ensureRunning();
   } catch (error) {
     console.warn(
-      `${logPrefix} container failed to start properly: ${error instanceof Error ? error.message : error}`
+      `${logPrefix} container failed to start properly: ${error instanceof Error ? error.message : error}`,
     );
     removeContainer();
     createContainer();
@@ -168,11 +168,11 @@ try {
   }
 
   console.log(
-    `${logPrefix} container "${containerName}" is ready on ws://${host}:${port}${wsPath}`
+    `${logPrefix} container "${containerName}" is ready on ws://${host}:${port}${wsPath}`,
   );
 } catch (error) {
   console.error(
-    `${logPrefix} failed to prepare container: ${error instanceof Error ? error.message : error}`
+    `${logPrefix} failed to prepare container: ${error instanceof Error ? error.message : error}`,
   );
   process.exit(1);
 }

@@ -77,7 +77,7 @@ export default async function TagPage({ params }: TagPageProps) {
   }
 
   const taggedArticles = articles.filter((article) =>
-    article.tags?.some((tagObj) => tagObj?.tag?.slug === slug)
+    article.tags?.some((tagObj) => tagObj?.tag?.slug === slug),
   );
 
   return (

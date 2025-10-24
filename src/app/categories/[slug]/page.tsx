@@ -81,7 +81,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   const categoryArticles = articles.filter(
-    (article) => article.category?.slug === slug
+    (article) => article.category?.slug === slug,
   );
 
   return (

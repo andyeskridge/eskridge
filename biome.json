@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.2.6/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.0/schema.json",
   "extends": ["ultracite"],
   "files": {
     "includes": [
@@ -9,6 +9,10 @@
       "!**/bun.lock",
       "!**/renovate.json"
     ]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2
   },
   "overrides": [
     {
@@ -22,6 +26,11 @@
       }
     }
   ],
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
   "javascript": {
     "globals": ["KVNamespace", "Fetcher"]
   }

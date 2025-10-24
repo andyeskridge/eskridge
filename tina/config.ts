@@ -13,13 +13,13 @@ export default defineConfig({
   token: process.env.TINA_TOKEN, // Get this from tina.io
   admin: {
     authHooks: {
-      // biome-ignore lint/suspicious/useAwait: async function doesn't need await for this use case
       onLogin: async ({ token }: { token: { id_token: string } }) => {
         location.href = `/api/preview/enter?token=${token.id_token}&slug=${location?.pathname}`;
+        await Promise.resolve();
       },
-      // biome-ignore lint/suspicious/useAwait: async function doesn't need await for this use case
       onLogout: async () => {
         location.href = `/api/preview/exit?slug=${location?.pathname}`;
+        await Promise.resolve();
       },
     },
   },
