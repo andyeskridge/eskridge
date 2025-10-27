@@ -15,7 +15,7 @@ const isUserAuthorized = async (args: { clientID: string; token: string }) => {
           authorization: token,
         }),
         method: "GET",
-      },
+      }
     );
 
     if (tinaCloudRes.ok) {

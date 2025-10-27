@@ -21,7 +21,7 @@ export function Badge({
     variant === "category"
       ? "border border-current"
       : "bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200",
-    className,
+    className
   );
 
   const style = color
@@ -37,7 +37,7 @@ export function Badge({
       <Link
         className={clsx(
           baseClasses,
-          "transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700",
+          "transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700"
         )}
         href={href}
         style={style}
