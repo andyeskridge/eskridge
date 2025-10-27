@@ -229,7 +229,7 @@ function Photos() {
           <div
             className={clsx(
               "relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800",
-              rotations[imageIndex % rotations.length],
+              rotations[imageIndex % rotations.length]
             )}
             key={image.src}
           >

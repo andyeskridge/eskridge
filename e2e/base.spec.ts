@@ -5,6 +5,6 @@ test("the index page of the application shows the Next.js logo", async ({
 }) => {
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: "Senior Engineering Manager" }),
+    page.getByRole("heading", { name: "Senior Engineering Manager" })
   ).toBeVisible();
 });

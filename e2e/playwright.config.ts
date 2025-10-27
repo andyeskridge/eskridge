@@ -18,7 +18,7 @@ const useDockerServer =
   (process.env.PLAYWRIGHT_USE_DOCKER ?? "true") !== "false";
 const parsedTimeout = Number.parseInt(
   process.env.PLAYWRIGHT_CONNECT_TIMEOUT ?? "",
-  10,
+  10
 );
 const defaultConnectionTimeout = 30_000;
 const connectTimeout = Number.isNaN(parsedTimeout)

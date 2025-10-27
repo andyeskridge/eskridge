@@ -98,7 +98,7 @@ function NavItem({ href, children }: { href: string; children: ReactNode }) {
           "relative block px-3 py-2 transition",
           isActive
             ? "text-teal-500 dark:text-teal-400"
-            : "hover:text-teal-500 dark:hover:text-teal-400",
+            : "hover:text-teal-500 dark:hover:text-teal-400"
         )}
         href={href}
       >
@@ -158,7 +158,7 @@ function AvatarContainer({
     <div
       className={clsx(
         className,
-        "h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10",
+        "h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10"
       )}
       {...props}
     />
@@ -183,7 +183,7 @@ function Avatar({
         alt=""
         className={clsx(
           "rounded-full bg-zinc-100 object-cover dark:bg-zinc-800",
-          large ? "h-16 w-16" : "h-9 w-9",
+          large ? "h-16 w-16" : "h-9 w-9"
         )}
         priority
         sizes={large ? "4rem" : "2.25rem"}
@@ -221,7 +221,7 @@ export function Header() {
       const scrollY = clamp(
         window.scrollY,
         0,
-        document.body.scrollHeight - window.innerHeight,
+        document.body.scrollHeight - window.innerHeight
       );
 
       if (isInitial.current) {
@@ -237,7 +237,7 @@ export function Header() {
     function updateHeaderHeightAndMargin(
       top: number,
       height: number,
-      scrollY: number,
+      scrollY: number
     ) {
       if (isInitial.current || scrollY < downDelay) {
         setProperty("--header-height", `${downDelay + height}px`);
@@ -284,7 +284,7 @@ export function Header() {
 
       setProperty(
         "--avatar-image-transform",
-        `translate3d(${x}rem, 0, 0) scale(${scale})`,
+        `translate3d(${x}rem, 0, 0) scale(${scale})`
       );
 
       const borderScale = 1 / (toScale / scale);
