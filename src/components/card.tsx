@@ -133,7 +133,7 @@ Card.Meta = function CardMeta({
 
   return (
     <div className="relative z-10 mt-2 flex flex-wrap items-center gap-2">
-      {hasCategory ? (
+      {category && hasCategory ? (
         <Badge
           color={category.color ?? undefined}
           href={`/categories/${category.slug}`}
