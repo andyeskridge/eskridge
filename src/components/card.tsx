@@ -126,6 +126,7 @@ Card.Meta = function CardMeta({
   tags?: Post["tags"];
 }) {
   const hasCategory = Boolean(category?.name) && Boolean(category?.slug);
+  const showCategory = Boolean(category && hasCategory);
 
   if (!category && (!tags || tags.length === 0)) {
     return null;
@@ -133,7 +134,7 @@ Card.Meta = function CardMeta({
 
   return (
     <div className="relative z-10 mt-2 flex flex-wrap items-center gap-2">
-      {category && hasCategory ? (
+      {showCategory ? (
         <Badge
           color={category.color ?? undefined}
           href={`/categories/${category.slug}`}
