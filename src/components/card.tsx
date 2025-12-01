@@ -126,23 +126,26 @@ Card.Meta = function CardMeta({
   tags?: Post["tags"];
 }) {
   const hasCategory = Boolean(category?.name) && Boolean(category?.slug);
-  const showCategory = Boolean(category && hasCategory);
+  const safeCategory = category && hasCategory ? category : null;
+  const showCategory = Boolean(safeCategory);
 
-  if (!category && (!tags || tags.length === 0)) {
+  if (!safeCategory && (!tags || tags.length === 0)) {
     return null;
   }
 
+  const categoryBadge = safeCategory ? (
+    <Badge
+      color={safeCategory.color ?? undefined}
+      href={`/categories/${safeCategory.slug}`}
+      variant="category"
+    >
+      {safeCategory.name}
+    </Badge>
+  ) : null;
+
   return (
     <div className="relative z-10 mt-2 flex flex-wrap items-center gap-2">
-      {showCategory ? (
-        <Badge
-          color={category.color ?? undefined}
-          href={`/categories/${category.slug}`}
-          variant="category"
-        >
-          {category.name}
-        </Badge>
-      ) : null}
+      {showCategory ? categoryBadge : null}
       {tags
         ?.filter(
           (tagObj) => Boolean(tagObj?.tag?.name) && Boolean(tagObj?.tag?.slug)
