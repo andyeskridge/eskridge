@@ -7,7 +7,7 @@ const containerName =
   process.env.PLAYWRIGHT_DOCKER_CONTAINER ?? "playwright-server";
 const imageTag =
   process.env.PLAYWRIGHT_DOCKER_IMAGE ??
-  "mcr.microsoft.com/playwright:v1.56.0-jammy";
+  "mcr.microsoft.com/playwright:v1.57.0-jammy";
 const host = process.env.PLAYWRIGHT_DOCKER_HOST ?? "127.0.0.1";
 const port = process.env.PLAYWRIGHT_DOCKER_PORT ?? "9323";
 const wsPath = process.env.PLAYWRIGHT_DOCKER_PATH ?? "/";
