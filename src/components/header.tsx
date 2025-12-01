@@ -103,9 +103,9 @@ function NavItem({ href, children }: { href: string; children: ReactNode }) {
         href={href}
       >
         {children}
-        {isActive && (
+        {isActive ? (
           <span className="-bottom-px absolute inset-x-1 h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
-        )}
+        ) : null}
       </Link>
     </li>
   );
@@ -320,7 +320,7 @@ export function Header() {
           marginBottom: "var(--header-mb)",
         }}
       >
-        {isHomePage && (
+        {isHomePage ? (
           <>
             <div
               className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"
@@ -356,7 +356,7 @@ export function Header() {
               </div>
             </Container>
           </>
-        )}
+        ) : null}
         <div
           className="top-0 z-10 h-16 pt-6"
           ref={headerRef}
@@ -373,7 +373,7 @@ export function Header() {
           >
             <div className="relative flex gap-4">
               <div className="flex flex-1">
-                {!isHomePage && (
+                {isHomePage ? null : (
                   <AvatarContainer>
                     <Avatar />
                   </AvatarContainer>
@@ -392,12 +392,12 @@ export function Header() {
           </Container>
         </div>
       </header>
-      {isHomePage && (
+      {isHomePage ? (
         <div
           className="flex-none"
           style={{ height: "var(--content-offset)" }}
         />
-      )}
+      ) : null}
     </>
   );
 }

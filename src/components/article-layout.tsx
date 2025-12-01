@@ -32,7 +32,7 @@ export function ArticleLayout({
     <Container className="mt-16 lg:mt-32">
       <div className="xl:relative">
         <div className="mx-auto max-w-2xl">
-          {previousPathname && (
+          {previousPathname ? (
             <button
               aria-label="Go back to articles"
               className="group lg:-left-5 lg:-mt-2 xl:-top-1.5 mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition lg:absolute lg:mb-0 xl:left-0 xl:mt-0 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20"
@@ -41,7 +41,7 @@ export function ArticleLayout({
             >
               <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" />
             </button>
-          )}
+          ) : null}
           <article>
             <header className="flex flex-col">
               <h1 className="mt-6 font-bold text-4xl text-zinc-800 tracking-tight sm:text-5xl dark:text-zinc-100">
@@ -57,7 +57,7 @@ export function ArticleLayout({
 
               {/* Tags and Categories */}
               <div className="mt-4 flex flex-wrap gap-2">
-                {article.category && (
+                {article.category ? (
                   <Badge
                     color={article.category?.color ?? undefined}
                     href={`/categories/${article.category?.slug}`}
@@ -65,7 +65,7 @@ export function ArticleLayout({
                   >
                     {article.category?.name}
                   </Badge>
-                )}
+                ) : null}
                 {article.tags?.map((tagItem) => (
                   <Badge
                     color={tagItem?.tag?.color ?? undefined}
