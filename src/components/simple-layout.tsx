@@ -10,6 +10,8 @@ export function SimpleLayout({
   intro: string;
   children?: ReactNode;
 }) {
+  const hasChildren = children !== undefined && children !== null;
+
   return (
     <Container className="mt-16 sm:mt-32">
       <header className="max-w-2xl">
@@ -20,7 +22,7 @@ export function SimpleLayout({
           {intro}
         </p>
       </header>
-      {children && <div className="mt-16 sm:mt-20">{children}</div>}
+      {hasChildren ? <div className="mt-16 sm:mt-20">{children}</div> : null}
     </Container>
   );
 }

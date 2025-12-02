@@ -49,9 +49,17 @@ Card.Title = function CardTitle<T extends ElementType = "h2">({
 }) {
   const Component = as ?? "h2";
 
+  if (!href) {
+    return (
+      <Component className="font-semibold text-base text-zinc-800 tracking-tight dark:text-zinc-100">
+        {children}
+      </Component>
+    );
+  }
+
   return (
     <Component className="font-semibold text-base text-zinc-800 tracking-tight dark:text-zinc-100">
-      {href ? <Card.Link href={href}>{children}</Card.Link> : children}
+      <Card.Link href={href}>{children}</Card.Link>
     </Component>
   );
 };
@@ -91,24 +99,25 @@ Card.Eyebrow = function CardEyebrow<T extends ElementType = "p">({
   decorate?: boolean;
 }) {
   const Component = as ?? "p";
+  const eyebrowClasses = [
+    className,
+    "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500",
+  ];
+
+  if (decorate) {
+    eyebrowClasses.push("pl-3.5");
+  }
 
   return (
-    <Component
-      className={clsx(
-        className,
-        "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500",
-        decorate && "pl-3.5"
-      )}
-      {...props}
-    >
-      {decorate && (
+    <Component className={clsx(...eyebrowClasses)} {...props}>
+      {decorate ? (
         <span
           aria-hidden="true"
           className="absolute inset-y-0 left-0 flex items-center"
         >
           <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
         </span>
-      )}
+      ) : null}
       {children}
     </Component>
   );
@@ -125,40 +134,43 @@ Card.Meta = function CardMeta({
     return null;
   }
 
+  const categoryInfo = category?.slug && category?.name ? category : null;
+
   return (
     <div className="relative z-10 mt-2 flex flex-wrap items-center gap-2">
-      {category?.name && category?.slug && (
+      {categoryInfo ? (
         <Badge
-          color={category.color ?? undefined}
-          href={`/categories/${category.slug}`}
+          color={categoryInfo.color ?? undefined}
+          href={`/categories/${categoryInfo.slug}`}
           variant="category"
         >
-          {category.name}
+          {categoryInfo.name}
         </Badge>
-      )}
-      {tags
-        ?.filter((tagObj) => tagObj?.tag?.name && tagObj?.tag?.slug)
-        .map((tagObj) => {
-          // Safely access tag properties with optional chaining
-          const name = tagObj?.tag?.name;
-          const slug = tagObj?.tag?.slug;
-          const color = tagObj?.tag?.color;
+      ) : null}
+      {tags?.map((tagObj) => {
+        const name = tagObj?.tag?.name;
+        const slug = tagObj?.tag?.slug;
+        const color = tagObj?.tag?.color;
 
-          if (!(name && slug)) {
-            return null;
-          }
+        if (!name) {
+          return null;
+        }
 
-          return (
-            <Badge
-              color={color || undefined}
-              href={`/tags/${slug}`}
-              key={slug}
-              variant="tag"
-            >
-              {name}
-            </Badge>
-          );
-        })}
+        if (!slug) {
+          return null;
+        }
+
+        return (
+          <Badge
+            color={color || undefined}
+            href={`/tags/${slug}`}
+            key={slug}
+            variant="tag"
+          >
+            {name}
+          </Badge>
+        );
+      })}
     </div>
   );
 };
