@@ -1,9 +1,8 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.9/schema.json",
   "extends": ["ultracite/core", "ultracite/react", "ultracite/next"],
   "files": {
     "includes": [
-      "**",
       "!**/tina/tina-lock.json",
       "!**/cloudflare-env.d.ts",
       "!**/bun.lock",
