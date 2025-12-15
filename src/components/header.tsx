@@ -104,7 +104,7 @@ function NavItem({ href, children }: { href: string; children: ReactNode }) {
       >
         {children}
         {isActive ? (
-          <span className="-bottom-px absolute inset-x-1 h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
+          <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
         ) : null}
       </Link>
     </li>
@@ -327,7 +327,7 @@ export function Header() {
               ref={avatarRef}
             />
             <Container
-              className="-mb-3 top-0 order-last pt-3"
+              className="top-0 order-last -mb-3 pt-3"
               style={{
                 position: "var(--header-position)" as CSSProperties["position"],
               }}
