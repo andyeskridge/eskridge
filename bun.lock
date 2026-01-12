@@ -7,7 +7,7 @@
       "dependencies": {
         "@headlessui/react": "2.2.9",
         "clsx": "2.1.1",
-        "feed": "5.1.0",
+        "feed": "5.2.0",
         "next": "16.0.10",
         "next-themes": "0.4.6",
         "react": "19.2.3",
@@ -1389,7 +1389,7 @@
 
     "fdir": ["fdir@6.5.0", "", { "peerDependencies": { "picomatch": "^3 || ^4" }, "optionalPeers": ["picomatch"] }, "sha512-tIbYtZbucOs0BRGqPJkshJUYdL+SDH7dVM8gjy+ERp3WAUjLEFJE+02kanyHtwjWOnwrKYBiwAmM0p4kLJAnXg=="],
 
-    "feed": ["feed@5.1.0", "", { "dependencies": { "xml-js": "^1.6.11" } }, "sha512-qGNhgYygnefSkAHHrNHqC7p3R8J0/xQDS/cYUud8er/qD9EFGWyCdUDfULHTJQN1d3H3WprzVwMc9MfB4J50Wg=="],
+    "feed": ["feed@5.2.0", "", { "dependencies": { "xml-js": "^1.6.11" } }, "sha512-hgH6CCb+7+0c8PBlakI2KubG6R+Rb1MhpNcdvqUXZTBwBHf32piwY255diAkAmkGZ6AWlywOU88AkOgP9q8Rdw=="],
 
     "fergies-inverted-index": ["fergies-inverted-index@12.0.0", "", { "dependencies": { "browser-level": "1.0.1", "charwise": "3.0.1", "level-read-stream": "1.1.0", "memory-level": "1.0.0", "traverse": "0.6.7" } }, "sha512-lAkyiDSdQog0aqWhyO8/8gnwbh6k27bd18IWJw7IOl2EUWEh22O4C9ebnw8Li3E+HK3Plxgv6ql1Ty/C3gndvg=="],
 
