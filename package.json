@@ -21,7 +21,7 @@
     "tina:build": "tinacms build"
   },
   "dependencies": {
-    "@headlessui/react": "2.2.9",
+    "@headlessui/react": "2.2.10",
     "clsx": "2.1.1",
     "feed": "5.2.0",
     "next": "16.2.6",
