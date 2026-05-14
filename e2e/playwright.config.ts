@@ -24,6 +24,14 @@ const defaultConnectionTimeout = 30_000;
 const connectTimeout = Number.isNaN(parsedTimeout)
   ? defaultConnectionTimeout
   : parsedTimeout;
+const parsedWebServerTimeout = Number.parseInt(
+  process.env.PLAYWRIGHT_WEB_SERVER_TIMEOUT ?? "",
+  10
+);
+const defaultWebServerTimeout = 180_000;
+const webServerTimeout = Number.isNaN(parsedWebServerTimeout)
+  ? defaultWebServerTimeout
+  : parsedWebServerTimeout;
 const wsEndpoint = process.env.PLAYWRIGHT_WS_ENDPOINT ?? defaultWsEndpoint;
 const baseURL =
   process.env.PLAYWRIGHT_BASE_URL ??
@@ -96,9 +104,10 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: "bun run dev:worker",
+    command: "bun run dev:worker:e2e",
     url: "http://localhost:8771",
     reuseExistingServer: !process.env.CI,
     cwd: process.cwd(),
+    timeout: webServerTimeout,
   },
 });

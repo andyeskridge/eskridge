@@ -9,6 +9,7 @@
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "dev:worker": "opennextjs-cloudflare preview -- --port 8771 --ip 0.0.0.0",
+    "dev:worker:e2e": "wrangler dev --local --port 8771 --ip 0.0.0.0",
     "dev": "tinacms dev -c \"next dev\"",
     "pree2e": "node scripts/playwright-docker.mjs",
     "e2e": "playwright test -c e2e/playwright.config.ts",
@@ -44,7 +45,7 @@
     "tailwindcss": "4.1.18",
     "typescript": "5.9.3",
     "ultracite": "6.4.3",
-    "wrangler": "4.59.1"
+    "wrangler": "4.91.0"
   },
   "overrides": {
     "@types/react": "19.2.8",

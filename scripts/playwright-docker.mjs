@@ -1,13 +1,23 @@
 #!/usr/bin/env node
 
 import { spawnSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+
+import {
+  getDefaultPlaywrightDockerImage,
+  getPlaywrightVersion,
+} from "./playwright-docker-image.mjs";
 
 const logPrefix = "[playwright-docker]";
+const packageJson = JSON.parse(
+  readFileSync(new URL("../package.json", import.meta.url), "utf8")
+);
 const containerName =
   process.env.PLAYWRIGHT_DOCKER_CONTAINER ?? "playwright-server";
 const imageTag =
   process.env.PLAYWRIGHT_DOCKER_IMAGE ??
-  "mcr.microsoft.com/playwright:v1.57.0-jammy";
+  getDefaultPlaywrightDockerImage(packageJson);
+const playwrightVersion = getPlaywrightVersion(packageJson);
 const host = process.env.PLAYWRIGHT_DOCKER_HOST ?? "127.0.0.1";
 const port = process.env.PLAYWRIGHT_DOCKER_PORT ?? "9323";
 const wsPath = process.env.PLAYWRIGHT_DOCKER_PATH ?? "/";
@@ -95,7 +105,7 @@ const createContainer = () => {
     imageTag,
     "/bin/bash",
     "-lc",
-    `npx playwright run-server --host 0.0.0.0 --port ${port} --path ${wsPath}`,
+    `npx -y playwright@${playwrightVersion} run-server --host 0.0.0.0 --port ${port} --path ${wsPath}`,
   ];
   runDocker(runArgs);
 };
