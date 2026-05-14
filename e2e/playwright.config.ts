@@ -108,6 +108,8 @@ export default defineConfig({
     url: "http://localhost:8771",
     reuseExistingServer: !process.env.CI,
     cwd: process.cwd(),
+    stdout: "pipe",
+    stderr: "pipe",
     timeout: webServerTimeout,
   },
 });
