@@ -3,9 +3,9 @@ import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 
 interface BadgeProps extends ComponentPropsWithoutRef<"span"> {
-  variant?: "category" | "tag";
   color?: string;
   href?: string;
+  variant?: "category" | "tag";
 }
 
 export function Badge({

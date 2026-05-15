@@ -91,14 +91,14 @@ function Newsletter() {
   );
 }
 
-type Role = {
+interface Role {
   company: string;
-  title: string;
-  logo: ImageProps["src"];
-  start: string | { label: string; dateTime: string };
   end: string | { label: string; dateTime: string };
   link: string;
-};
+  logo: ImageProps["src"];
+  start: string | { label: string; dateTime: string };
+  title: string;
+}
 
 function Role({ role }: { role: Role }) {
   const startLabel =

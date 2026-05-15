@@ -44,7 +44,7 @@
     "postcss": "8.5.14",
     "tailwindcss": "4.1.18",
     "typescript": "5.9.3",
-    "ultracite": "6.4.3",
+    "ultracite": "7.7.0",
     "wrangler": "4.59.1"
   },
   "overrides": {
