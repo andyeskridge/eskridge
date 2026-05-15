@@ -23,15 +23,11 @@ export default defineConfig({
       },
     },
   },
-  ...(process.env.NODE_ENV === "production"
-    ? {
-        search: {
-          tina: {
-            indexerToken: process.env.TINA_INDEXER_TOKEN,
-          },
-        },
-      }
-    : {}),
+  search: {
+    tina: {
+      indexerToken: process.env.TINA_INDEXER_TOKEN,
+    },
+  },
   build: {
     outputFolder: "admin",
     publicFolder: "public",

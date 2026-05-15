@@ -46,6 +46,7 @@ jobs:
           TINA_INDEXER_TOKEN: ${{ secrets.TINA_INDEXER_TOKEN }}
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
           GITHUB_BRANCH: ${{ github.ref_name }}
+          NODE_ENV: production
         run: bun install && bun run build:worker
       - name: e2e
         run: bun run e2e
