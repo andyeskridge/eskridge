@@ -6,11 +6,11 @@ import { getAllArticles } from "@/lib/get-all-articles";
 import { getAllTags } from "@/lib/get-all-tags";
 import type { Post } from "@/tina/__generated__/types";
 
-type TagPageProps = {
+interface TagPageProps {
   params: Promise<{
     slug: string;
   }>;
-};
+}
 
 function Article({ article }: { article: Post }) {
   return (

@@ -6,13 +6,13 @@ import type { PostQuery } from "@/tina/__generated__/types";
 
 import PageServer from "./page-server";
 
-type ClientPageProps = {
+interface ClientPageProps {
+  data: PostQuery;
   query: string;
   variables: {
     relativePath: string;
   };
-  data: PostQuery;
-};
+}
 
 export default function PageClient({
   query,

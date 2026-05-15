@@ -1,6 +1,10 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.9/schema.json",
-  "extends": ["ultracite/core", "ultracite/react", "ultracite/next"],
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": [
+    "ultracite/biome/core",
+    "ultracite/biome/react",
+    "ultracite/biome/next"
+  ],
   "files": {
     "includes": [
       "!**/tina/tina-lock.json",
@@ -25,7 +29,8 @@
   },
   "formatter": {
     "indentStyle": "space",
-    "indentWidth": 2
+    "indentWidth": 2,
+    "lineEnding": "auto"
   },
   "css": {
     "parser": {

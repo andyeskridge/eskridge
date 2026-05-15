@@ -77,7 +77,7 @@ export async function GET(_req: Request) {
         contributor: [author],
         date: new Date(article.date),
       });
-    } catch (_error) {
+    } catch {
       // Continue processing other articles even if one fails
     }
   }

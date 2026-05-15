@@ -24,7 +24,7 @@ const isUserAuthorized = async (args: { clientID: string; token: string }) => {
     }
 
     return null;
-  } catch (_error) {
+  } catch {
     return null;
   }
 };
