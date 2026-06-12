@@ -32,7 +32,7 @@
     "tinacms": "3.9.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.16",
+    "@biomejs/biome": "2.5.0",
     "@opennextjs/cloudflare": "1.19.11",
     "@playwright/test": "1.60.0",
     "@tailwindcss/postcss": "4.3.1",
