@@ -20,6 +20,10 @@
       "!**/build",
       "!**/playwright-report",
       "!**/test-results",
+      // Static SVG assets trigger noisy accessibility and formatting diagnostics in Biome 2.5.1.
+      // Exclude image asset directories rather than rewriting bundled/logo artwork.
+      "!public/**/*.svg",
+      "!src/images/**/*.svg",
       "!public/admin",
       "!tina/__generated__",
       // Tailwind CSS 4 directives like @plugin and @theme still parse as errors in Biome 2.3.0.
