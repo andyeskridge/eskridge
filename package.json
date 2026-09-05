@@ -34,7 +34,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.12",
     "@opennextjs/cloudflare": "1.20.6",
-    "@playwright/test": "1.62.1",
+    "@playwright/test": "1.63.0",
     "@tailwindcss/postcss": "4.3.3",
     "@tailwindcss/typography": "0.5.20",
     "@tinacms/cli": "2.5.6",
