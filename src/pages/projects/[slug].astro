@@ -1,0 +1,125 @@
+---
+import { decodeSlug, getEmDashEntry, getSeoMeta } from "emdash";
+import { Image, PortableText } from "emdash/ui";
+import Base from "../../layouts/Base.astro";
+import { publicOrigin, registerHints, safeHref } from "../../lib/site";
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.rewrite("/404");
+const result = await getEmDashEntry("projects", slug);
+if (!result.entry) return Astro.rewrite("/404");
+registerHints(Astro, result);
+const project = result.entry;
+const seo = getSeoMeta(project, {
+  siteTitle: "Andy Eskridge",
+  siteUrl: publicOrigin(),
+  path: `/projects/${slug}`,
+  defaultDescription: project.data.summary,
+});
+---
+
+<Base
+  title={seo.title}
+  description={seo.description}
+  image={seo.ogImage}
+  canonical={seo.canonical}
+  noindex={result.isPreview || !!seo.robots}
+  content={{ collection: "projects", id: project.data.id, slug }}
+>
+  <article>
+    <header class="article-header">
+      <a class="back-link" href="/projects">
+        ← All projects
+      </a>
+      <p class="eyebrow">
+        {project.data.kind === "professional"
+          ? "Professional work"
+          : "Personal project"}
+      </p>
+      <h1 {...project.edit.title}>{project.data.title}</h1>
+      <p class="article-dek" {...project.edit.summary}>
+        {project.data.summary}
+      </p>
+      <dl class="project-facts">
+        {project.data.role && (
+          <div>
+            <dt>My role</dt>
+            <dd {...project.edit.role}>{project.data.role}</dd>
+          </div>
+        )}
+        {project.data.year && (
+          <div>
+            <dt>Year</dt>
+            <dd {...project.edit.year}>{project.data.year}</dd>
+          </div>
+        )}
+        {project.data.terms?.topic?.length && (
+          <div>
+            <dt>Topics</dt>
+            <dd>
+              {project.data.terms.topic.map((topic) => (
+                <a href={`/topics/${topic.slug}`}>{topic.label} </a>
+              ))}
+            </dd>
+          </div>
+        )}
+      </dl>
+    </header>
+    {project.data.featured_image?.src && (
+      <div class="article-cover" {...project.edit.featured_image}>
+        <Image image={project.data.featured_image} />
+      </div>
+    )}
+    <div class="prose">
+      {project.data.context?.length && (
+        <section>
+          <h2>Context</h2>
+          <PortableText
+            value={project.data.context}
+            {...project.edit.context}
+          />
+        </section>
+      )}
+      {project.data.approach?.length && (
+        <section>
+          <h2>The approach</h2>
+          <PortableText
+            value={project.data.approach}
+            {...project.edit.approach}
+          />
+        </section>
+      )}
+      {project.data.outcomes?.length && (
+        <section>
+          <h2>What I learned</h2>
+          <PortableText
+            value={project.data.outcomes}
+            {...project.edit.outcomes}
+          />
+        </section>
+      )}
+      <PortableText value={project.data.content} {...project.edit.content} />
+    </div>
+    {project.data.gallery?.length && (
+      <div class="project-gallery">
+        {project.data.gallery.map((item) => (
+          <figure>
+            {item.image?.src && <Image image={item.image} />}
+            {item.caption && <figcaption>{item.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    )}
+    {project.data.links?.length && (
+      <div class="article-footer">
+        {project.data.links.map(
+          (link) =>
+            safeHref(link.url) && (
+              <a href={safeHref(link.url)} rel="noopener noreferrer">
+                {link.label} ↗
+              </a>
+            ),
+        )}
+      </div>
+    )}
+  </article>
+</Base>

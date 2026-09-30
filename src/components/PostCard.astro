@@ -1,0 +1,44 @@
+---
+import type { Post } from "../../emdash-env";
+import { formatDate } from "../lib/site";
+import Icon from "./Icon.astro";
+interface Props {
+  post: { id: string; data: Post };
+  index?: number;
+}
+const { post, index } = Astro.props;
+const topics = post.data.terms?.topic ?? [];
+---
+
+<article class="post-card">
+  <div class="post-meta">
+    <span>{topics.map((topic) => topic.label).join(" / ") || "Notes"}</span>
+    {post.data.publishedAt && (
+      <time datetime={new Date(post.data.publishedAt).toISOString()}>
+        {formatDate(post.data.publishedAt)}
+      </time>
+    )}
+  </div>
+  <div class="post-card-main">
+    {index !== undefined && (
+      <span class="row-number" aria-hidden="true">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+    )}
+    <div>
+      <h3>
+        <a href={`/writing/${encodeURIComponent(post.id)}`}>
+          {post.data.title}
+        </a>
+      </h3>
+      <p>{post.data.excerpt}</p>
+    </div>
+    <a
+      class="arrow-link"
+      href={`/writing/${encodeURIComponent(post.id)}`}
+      aria-label={`Read ${post.data.title}`}
+    >
+      <Icon />
+    </a>
+  </div>
+</article>

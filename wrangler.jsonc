@@ -1,0 +1,55 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "eskridge-emdash-local",
+  "main": "./src/worker.ts",
+  "compatibility_date": "2026-09-29",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": { "directory": "./dist/client", "binding": "ASSETS" },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "eskridge-emdash-local" }
+  ],
+  "r2_buckets": [
+    { "binding": "MEDIA", "bucket_name": "eskridge-emdash-media-local" }
+  ],
+  "kv_namespaces": [
+    { "binding": "SESSION", "id": "local-eskridge-emdash-session" }
+  ],
+  "images": { "binding": "IMAGES" },
+  "triggers": { "crons": ["* * * * *"] },
+  "observability": { "enabled": true },
+  "vars": { "SITE_ENV": "development", "SITE_URL": "http://localhost:4321" },
+  "env": {
+    "staging": {
+      "name": "eskridge-emdash-staging",
+      "images": { "binding": "IMAGES" },
+      "vars": {
+        "SITE_ENV": "staging",
+        "SITE_URL": "https://eskridge-emdash-staging.workers.dev"
+      },
+      "d1_databases": [
+        { "binding": "DB", "database_name": "eskridge-emdash-staging" }
+      ],
+      "r2_buckets": [
+        { "binding": "MEDIA", "bucket_name": "eskridge-emdash-media-staging" }
+      ],
+      "kv_namespaces": [{ "binding": "SESSION" }],
+      "triggers": { "crons": ["* * * * *"] }
+    },
+    "production": {
+      "name": "eskridge-emdash-production",
+      "images": { "binding": "IMAGES" },
+      "vars": { "SITE_ENV": "production", "SITE_URL": "https://eskridge.dev" },
+      "d1_databases": [
+        { "binding": "DB", "database_name": "eskridge-emdash-production" }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "MEDIA",
+          "bucket_name": "eskridge-emdash-media-production"
+        }
+      ],
+      "kv_namespaces": [{ "binding": "SESSION" }],
+      "triggers": { "crons": ["* * * * *"] }
+    }
+  }
+}

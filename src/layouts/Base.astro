@@ -1,0 +1,251 @@
+---
+import {
+  getEmDashEntry,
+  getMenuWithCacheHint,
+  getSiteSettingsWithCacheHint,
+} from "emdash";
+import { createPublicPageContext } from "emdash/page";
+import { EmDashHead, EmDashBodyStart, EmDashBodyEnd } from "emdash/ui";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/source-serif-4";
+import "../styles/site.css";
+import Icon from "../components/Icon.astro";
+import {
+  canonicalPath,
+  publicOrigin,
+  registerHints,
+  safeHref,
+  siteEnvironment,
+} from "../lib/site";
+interface Props {
+  title?: string;
+  description?: string | null;
+  image?: string | null;
+  canonical?: string | null;
+  noindex?: boolean;
+  content?: { collection: string; id: string; slug?: string | null };
+}
+const {
+  title,
+  description,
+  image,
+  canonical,
+  content,
+  noindex = false,
+} = Astro.props;
+const [settingsResult, menuResult, aboutResult] = await Promise.all([
+  getSiteSettingsWithCacheHint(),
+  getMenuWithCacheHint("primary"),
+  getEmDashEntry("pages", "about"),
+]);
+registerHints(Astro, settingsResult, menuResult, aboutResult);
+const settings = settingsResult.data;
+const siteTitle = settings.title || "Andy Eskridge";
+const fullTitle = title
+  ? title.includes(siteTitle)
+    ? title
+    : `${title} — ${siteTitle}`
+  : siteTitle;
+const pageDescription =
+  description ||
+  settings.tagline ||
+  "Software leadership. Practical curiosity.";
+const pageCanonical =
+  canonical || new URL(canonicalPath(Astro.url.pathname), publicOrigin()).href;
+const privatePage =
+  noindex ||
+  siteEnvironment() !== "production" ||
+  Astro.url.searchParams.has("_preview") ||
+  Astro.url.searchParams.has("_edit");
+if (privatePage)
+  Astro.response.headers.set("X-Robots-Tag", "noindex, nofollow");
+const menu = menuResult.data?.items ?? [
+  { label: "Writing", url: "/writing", target: "" },
+  { label: "Projects", url: "/projects", target: "" },
+  { label: "About", url: "/about", target: "" },
+];
+const links = aboutResult.entry?.data.contact_links ?? [];
+const pageCtx = createPublicPageContext({
+  Astro,
+  kind: content ? "content" : "custom",
+  pageType: content?.collection === "posts" ? "article" : "website",
+  title: fullTitle,
+  pageTitle: title || siteTitle,
+  description: pageDescription,
+  canonical: pageCanonical,
+  image,
+  content,
+  siteName: siteTitle,
+});
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <script is:inline>
+      (() => {
+        let theme;
+        try {
+          theme = localStorage.getItem("theme");
+        } catch {}
+        document.documentElement.dataset.theme =
+          theme === "light" || theme === "dark"
+            ? theme
+            : matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+      })();
+    </script>
+    <EmDashHead page={pageCtx} />
+    {privatePage && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${siteTitle} — Writing`}
+      href="/feed.xml"
+    />
+    <meta name="theme-color" content="#f8f6f0" />
+  </head>
+  <body>
+    <EmDashBodyStart page={pageCtx} />
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="/" aria-label={`${siteTitle}, home`}>
+        <span class="monogram" aria-hidden="true">
+          ae<span>✳</span>
+        </span>
+        <span>{siteTitle}</span>
+      </a>
+      <div class="header-right">
+        <nav aria-label="Main navigation">
+          {menu.map(
+            (item) =>
+              safeHref(item.url) && (
+                <a
+                  href={safeHref(item.url)}
+                  target={item.target || undefined}
+                  rel={
+                    item.target === "_blank" ? "noopener noreferrer" : undefined
+                  }
+                  aria-current={
+                    Astro.url.pathname === item.url ||
+                    Astro.url.pathname.startsWith(`${item.url}/`)
+                      ? "page"
+                      : undefined
+                  }
+                >
+                  {item.label}
+                </a>
+              ),
+          )}
+        </nav>
+        <div class="header-tools">
+          <a class="icon-button" href="/search" aria-label="Search the site">
+            <Icon name="search" />
+          </a>
+          <button
+            class="icon-button theme-toggle"
+            type="button"
+            aria-label="Switch color theme"
+          >
+            <span class="sun-icon">
+              <Icon name="sun" />
+            </span>
+            <span class="moon-icon">
+              <Icon name="moon" />
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="wrap">
+      <slot />
+    </main>
+    <footer class="site-footer wrap">
+      <div>
+        <a class="footer-name" href="/">
+          {siteTitle}
+          <span aria-hidden="true">✳</span>
+        </a>
+        <p>A place to think, build, and share.</p>
+      </div>
+      <div class="footer-links">
+        {links.map(
+          (link) =>
+            safeHref(link.url) && <a href={safeHref(link.url)}>{link.label}</a>,
+        )}
+        <a href="/feed.xml">
+          RSS <Icon name="rss" />
+        </a>
+        <a href="/privacy">Privacy</a>
+      </div>
+      <div class="footer-bottom">
+        <span>
+          © {new Date().getFullYear()} {siteTitle}
+        </span>
+        <span>Made with care in Dallas, TX.</span>
+        <a href="#top" data-back-top>
+          Back to top ↑
+        </a>
+      </div>
+    </footer>
+    <EmDashBodyEnd page={pageCtx} />
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>(".theme-toggle");
+      function updateLabel() {
+        toggle?.setAttribute(
+          "aria-label",
+          `Switch to ${document.documentElement.dataset.theme === "dark" ? "light" : "dark"} theme`,
+        );
+      }
+      toggle?.addEventListener("click", () => {
+        const theme =
+          document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = theme;
+        try {
+          localStorage.setItem("theme", theme);
+        } catch {}
+        updateLabel();
+      });
+      matchMedia("(prefers-color-scheme: dark)").addEventListener(
+        "change",
+        (event) => {
+          let saved;
+          try {
+            saved = localStorage.getItem("theme");
+          } catch {}
+          if (!saved) {
+            document.documentElement.dataset.theme = event.matches
+              ? "dark"
+              : "light";
+            updateLabel();
+          }
+        },
+      );
+      updateLabel();
+      document
+        .querySelector("[data-back-top]")
+        ?.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "instant"
+              : "smooth",
+          });
+        });
+      document.addEventListener("keydown", (event) => {
+        if ((event.ctrlKey || event.metaKey) && event.key === "k") {
+          event.preventDefault();
+          window.location.href = "/search";
+        }
+      });
+    </script>
+  </body>
+</html>

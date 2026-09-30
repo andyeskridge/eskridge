@@ -1,0 +1,64 @@
+---
+import { decodeSlug, getEmDashEntry, getSeoMeta } from "emdash";
+import { Image, PortableText } from "emdash/ui";
+import Base from "../../layouts/Base.astro";
+import Discussion from "../../components/Discussion.astro";
+import { formatDate, publicOrigin, registerHints } from "../../lib/site";
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.rewrite("/404");
+const result = await getEmDashEntry("posts", slug);
+if (!result.entry) return Astro.rewrite("/404");
+registerHints(Astro, result);
+const post = result.entry;
+const seo = getSeoMeta(post, {
+  siteTitle: "Andy Eskridge",
+  siteUrl: publicOrigin(),
+  path: `/writing/${slug}`,
+  defaultDescription: post.data.excerpt,
+});
+const topics = post.data.terms?.topic ?? [];
+---
+
+<Base
+  title={seo.title}
+  description={seo.description}
+  image={seo.ogImage}
+  canonical={seo.canonical}
+  noindex={result.isPreview || !!seo.robots}
+  content={{ collection: "posts", id: post.data.id, slug }}
+>
+  <article>
+    <header class="article-header">
+      <a class="back-link" href="/writing">
+        ← All writing
+      </a>
+      <div class="post-meta">
+        <span>{topics.map((topic) => topic.label).join(" / ") || "Notes"}</span>
+        {post.data.publishedAt && (
+          <time datetime={post.data.publishedAt.toISOString()}>
+            {formatDate(post.data.publishedAt)}
+          </time>
+        )}
+      </div>
+      <h1 {...post.edit.title}>{post.data.title}</h1>
+      <p class="article-dek" {...post.edit.excerpt}>
+        {post.data.excerpt}
+      </p>
+    </header>
+    {post.data.featured_image?.src && (
+      <div class="article-cover" {...post.edit.featured_image}>
+        <Image image={post.data.featured_image} />
+      </div>
+    )}
+    <div class="prose">
+      <PortableText value={post.data.content} {...post.edit.content} />
+    </div>
+    <footer class="article-footer">
+      <span>Filed under</span>
+      {topics.map((topic) => (
+        <a href={`/topics/${topic.slug}`}>{topic.label}</a>
+      ))}
+    </footer>
+  </article>
+  {!result.isPreview && <Discussion contentId={post.data.id} />}
+</Base>

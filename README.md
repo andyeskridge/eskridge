@@ -1,34 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# eskridge.dev
 
-## Getting Started
+Andy Eskridge's portfolio and writing, rebuilt with Astro and EmDash 1.0.1 for Cloudflare Workers. Content is served from EmDash at runtime; publication needs no code build. The custom editorial theme includes local Source Serif 4/Inter fonts, light/dark themes, published-content search, topic archives, RSS, projects and moderated article discussion.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```sh
+bun install --frozen-lockfile
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Read [deployment and owner setup](docs/deployment.md), [recovery](docs/recovery.md), and [launch content review](docs/launch-content.md) before remote deployment. Initial content in `seed/seed.json` is draft-only. Browser fixtures are created solely in the loopback development CMS and removed after tests.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+bun run seed:validate
+bun run lint:ci
+bun run typecheck
+bun run test
+bun run build
+bunx playwright install chromium
+bun run e2e
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The old Next/Tina/OpenNext application remains on `codex/eskridge-pre-emdash-20260929` at `375d0e60ccc33cfe4a4ea739ad8ab9e7d54c7ca3`. Production has not been cut over. Owner content approval, production passkeys, Cloudflare resource setup and a remote restoration rehearsal are required before launch.

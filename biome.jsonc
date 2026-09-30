@@ -1,47 +1,34 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "extends": [
-    "ultracite/biome/core",
-    "ultracite/biome/react",
-    "ultracite/biome/next"
-  ],
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
   "files": {
     "includes": [
-      "!**/tina/tina-lock.json",
-      "!**/cloudflare-env.d.ts",
-      "!**/bun.lock",
-      "!**/renovate.json",
-      // Skip build artifacts that can contain transpiled output or generated bundles.
-      "!**/.next",
-      "!**/.open-next",
-      "!**/.vercel",
-      "!**/.wrangler",
-      "!**/out",
-      "!**/build",
-      "!**/playwright-report",
-      "!**/test-results",
-      // Static SVG assets trigger noisy accessibility and formatting diagnostics in Biome 2.5.1.
-      // Exclude image asset directories rather than rewriting bundled/logo artwork.
-      "!public/**/*.svg",
-      "!src/images/**/*.svg",
-      "!public/admin",
-      "!tina/__generated__",
-      // Tailwind CSS 4 directives like @plugin and @theme still parse as errors in Biome 2.3.0.
-      // Exclude the entry stylesheet until Biome ships full Tailwind 4 parser support.
-      "!src/styles/tailwind.css"
+      "**",
+      "!**/*.astro",
+      "!emdash-env.d.ts",
+      "!worker-configuration.d.ts",
+      "!bun.lock"
     ]
   },
   "formatter": {
     "indentStyle": "space",
-    "indentWidth": 2,
-    "lineEnding": "auto"
+    "indentWidth": 2
   },
-  "css": {
-    "parser": {
-      "tailwindDirectives": true
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended"
     }
   },
-  "javascript": {
-    "globals": ["KVNamespace", "Fetcher"]
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
   }
 }

@@ -42,3 +42,15 @@ test-results/
 
 public/admin
 tina/__generated__
+
+# EmDash / Astro
+dist/
+.astro/
+.emdash/
+.dev.vars*
+.env*
+!.env.sample
+worker-configuration.d.ts
+output/
+.playwright-cli/
+.recovery/

@@ -1,0 +1,91 @@
+---
+import { getEmDashEntry, getSeoMeta } from "emdash";
+import { Image, PortableText } from "emdash/ui";
+import Base from "../layouts/Base.astro";
+import { publicOrigin, registerHints, safeHref } from "../lib/site";
+const result = await getEmDashEntry("pages", "about");
+registerHints(Astro, result);
+const about = result.entry;
+const seo = about
+  ? getSeoMeta(about, {
+      siteTitle: "Andy Eskridge",
+      siteUrl: publicOrigin(),
+      path: "/about",
+      defaultDescription: about.data.intro,
+    })
+  : null;
+---
+
+<Base
+  noindex={result.isPreview || !!seo?.robots}
+  title={seo?.title || "About"}
+  description={
+    seo?.description ||
+    "Andy Eskridge, Director of Software Development at ISN in Dallas, TX."
+  }
+  image={seo?.ogImage}
+  canonical={seo?.canonical}
+  content={
+    about
+      ? { collection: "pages", id: about.data.id, slug: "about" }
+      : undefined
+  }
+>
+  <header class="page-heading">
+    <p class="eyebrow">The person behind the pixels</p>
+    <h1 {...about?.edit.title}>{about?.data.title || "A little about me."}</h1>
+    <p {...about?.edit.intro}>
+      {about?.data.intro ||
+        "I’m Andy Eskridge, Director of Software Development at ISN, based in Dallas, TX."}
+    </p>
+  </header>
+  <div class="about-grid">
+    <div class="prose">
+      {about?.data.content ? (
+        <PortableText value={about.data.content} {...about.edit.content} />
+      ) : (
+        <>
+          <p>
+            This is a space for engineering leadership, technical experiments,
+            and occasional notes from life.
+          </p>
+          <p>
+            I’m putting together a fresh collection of writing and projects.
+            Thanks for stopping by at the beginning.
+          </p>
+        </>
+      )}
+    </div>
+    <aside class="about-aside" aria-label="Background and contact">
+      {about?.data.portrait?.src && (
+        <div {...about.edit.portrait}>
+          <Image image={about.data.portrait} />
+        </div>
+      )}
+      <div>
+        <p class="eyebrow">Currently</p>
+        <p {...about?.edit.role}>
+          {about?.data.role || "Director of Software Development at ISN"}
+        </p>
+        <p {...about?.edit.location}>{about?.data.location || "Dallas, TX"}</p>
+      </div>
+      {about?.data.contact_links?.length && (
+        <div>
+          <h2>Find me elsewhere</h2>
+          {about.data.contact_links.map(
+            (link) =>
+              safeHref(link.url) && (
+                <a href={safeHref(link.url)}>{link.label} ↗</a>
+              ),
+          )}
+        </div>
+      )}
+      {about?.data.resume?.url && (
+        <div>
+          <h2>The longer version</h2>
+          <a href={safeHref(about.data.resume.url)}>Download my résumé ↓</a>
+        </div>
+      )}
+    </aside>
+  </div>
+</Base>

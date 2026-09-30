@@ -1,0 +1,72 @@
+---
+import { getEmDashCollection } from "emdash";
+import Base from "../../layouts/Base.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import EmptyState from "../../components/EmptyState.astro";
+import Pagination from "../../components/Pagination.astro";
+import { registerHints } from "../../lib/site";
+const kind = Astro.url.searchParams.get("kind");
+const selectedKind =
+  kind === "personal" || kind === "professional" ? kind : undefined;
+const projects = await getEmDashCollection("projects", {
+  status: "published",
+  where: selectedKind ? { kind: selectedKind } : undefined,
+  orderBy: { published_at: "desc" },
+  limit: 10,
+  cursor: Astro.url.searchParams.get("cursor") || undefined,
+});
+registerHints(Astro, projects);
+---
+
+<Base
+  title="Projects"
+  description="Professional work and personal experiments, with the decisions and lessons behind them."
+>
+  <header class="page-heading">
+    <p class="eyebrow">From the workbench</p>
+    <h1>Ideas, made real.</h1>
+    <p>
+      Professional work, personal experiments, and the lessons that come from
+      doing. A look at the decisions behind the finished thing.
+    </p>
+  </header>
+  <nav class="filters" aria-label="Project types">
+    <a
+      class="filter"
+      href="/projects"
+      aria-current={!selectedKind ? "page" : undefined}
+    >
+      All work
+    </a>
+    <a
+      class="filter"
+      href="/projects?kind=professional"
+      aria-current={selectedKind === "professional" ? "page" : undefined}
+    >
+      Professional
+    </a>
+    <a
+      class="filter"
+      href="/projects?kind=personal"
+      aria-current={selectedKind === "personal" ? "page" : undefined}
+    >
+      Personal
+    </a>
+  </nav>
+  {projects.entries.length ? (
+    <div class="project-grid">
+      {projects.entries.map((project, index) => (
+        <ProjectCard project={project} index={index} />
+      ))}
+    </div>
+  ) : (
+    <EmptyState
+      title="Stories from the workbench."
+      text="The first case studies are taking shape. There will be real projects and honest lessons here soon."
+    />
+  )}
+  <Pagination
+    base={selectedKind ? `/projects?kind=${selectedKind}` : "/projects"}
+    nextCursor={projects.nextCursor}
+  />
+</Base>

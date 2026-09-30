@@ -1,0 +1,35 @@
+name: EmDash checks
+on:
+  pull_request:
+  push:
+    branches: [main, codex/emdash-rebuild]
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: oven-sh/setup-bun@v2.2.0
+        with:
+          bun-version: 1.4.2
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: bun install --frozen-lockfile
+      - run: bun run seed:validate
+      - run: bun run lint:ci
+      - run: bun run typecheck
+      - run: bun run test
+      - run: bun run build
+      - run: bunx playwright install --with-deps chromium
+      - name: Local browser acceptance
+        run: bun run e2e
+        env:
+          EMDASH_ENCRYPTION_KEY: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+      - uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: browser-evidence
+          path: output/playwright
