@@ -16,7 +16,7 @@ jobs:
           bun-version: 1.4.2
       - uses: actions/setup-node@v7.0.0
         with:
-          node-version: 24
+          node-version: 24.21.0
       - run: bun install --frozen-lockfile
       - run: bun run seed:validate
       - run: bun run lint:ci
@@ -28,7 +28,7 @@ jobs:
         run: bun run e2e
         env:
           EMDASH_ENCRYPTION_KEY: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v6.0.0
         if: always()
         with:
           name: browser-evidence
