@@ -6,6 +6,8 @@ The rebuild is on `codex/emdash-rebuild`. The previous application is preserved 
 
 EmDash and its Cloudflare database/storage adapter are both pinned to 1.0.1. Astro 7 and its Cloudflare adapter use the compatible versions in `bun.lock`. The Cloudflare starter supplies the native scheduled handler, D1 sessions, R2 storage and Images binding.
 
+During implementation, `main` advanced to `6bc6e18` with legacy Next/Wrangler dependency updates. That latest legacy state is also preserved on `codex/eskridge-pre-emdash-latest-20260929`. The rebuild merged the new main history while retaining its tested Astro/EmDash dependency lock.
+
 ## Local development
 
 1. `bun install --frozen-lockfile`.
