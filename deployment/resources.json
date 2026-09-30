@@ -1,0 +1,12 @@
+{
+  "staging": {
+    "accountId": "4d0ec73da1296e7dcc788788effc7d43",
+    "worker": "eskridge-emdash-staging",
+    "databaseId": "4030f8ac-49b5-4aa4-8832-df3dd9efad4e",
+    "databaseName": "eskridge-emdash-staging",
+    "mediaBucket": "eskridge-emdash-media-staging",
+    "sessionNamespaceId": "364edecefa144495a0fd8122d401d8f6",
+    "siteUrl": "https://eskridge-emdash-staging.eskridge.workers.dev",
+    "targetFingerprint": "eb9162f1883343d7058cdaefafbce723cf54bf788753149ad7d055b0558f70ee"
+  }
+}

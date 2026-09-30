@@ -4,43 +4,89 @@
   "main": "./src/worker.ts",
   "compatibility_date": "2026-09-29",
   "compatibility_flags": ["nodejs_compat"],
-  "assets": { "directory": "./dist/client", "binding": "ASSETS" },
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS"
+  },
   "d1_databases": [
-    { "binding": "DB", "database_name": "eskridge-emdash-local" }
+    {
+      "binding": "DB",
+      "database_name": "eskridge-emdash-local"
+    }
   ],
   "r2_buckets": [
-    { "binding": "MEDIA", "bucket_name": "eskridge-emdash-media-local" }
+    {
+      "binding": "MEDIA",
+      "bucket_name": "eskridge-emdash-media-local"
+    }
   ],
   "kv_namespaces": [
-    { "binding": "SESSION", "id": "local-eskridge-emdash-session" }
+    {
+      "binding": "SESSION",
+      "id": "local-eskridge-emdash-session"
+    }
   ],
-  "images": { "binding": "IMAGES" },
-  "triggers": { "crons": ["* * * * *"] },
-  "observability": { "enabled": true },
-  "vars": { "SITE_ENV": "development", "SITE_URL": "http://localhost:4321" },
+  "images": {
+    "binding": "IMAGES"
+  },
+  "triggers": {
+    "crons": ["* * * * *"]
+  },
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "SITE_ENV": "development",
+    "SITE_URL": "http://localhost:4321"
+  },
   "env": {
     "staging": {
       "name": "eskridge-emdash-staging",
-      "images": { "binding": "IMAGES" },
+      "images": {
+        "binding": "IMAGES"
+      },
       "vars": {
         "SITE_ENV": "staging",
-        "SITE_URL": "https://eskridge-emdash-staging.workers.dev"
+        "SITE_URL": "https://eskridge-emdash-staging.eskridge.workers.dev",
+        "TURNSTILE_SITE_KEY": "0x4AAAAAAFJqgJIopiikN_-9"
       },
       "d1_databases": [
-        { "binding": "DB", "database_name": "eskridge-emdash-staging" }
+        {
+          "binding": "DB",
+          "database_name": "eskridge-emdash-staging",
+          "database_id": "4030f8ac-49b5-4aa4-8832-df3dd9efad4e"
+        }
       ],
       "r2_buckets": [
-        { "binding": "MEDIA", "bucket_name": "eskridge-emdash-media-staging" }
+        {
+          "binding": "MEDIA",
+          "bucket_name": "eskridge-emdash-media-staging"
+        }
       ],
-      "kv_namespaces": [{ "binding": "SESSION" }],
-      "triggers": { "crons": ["* * * * *"] }
+      "kv_namespaces": [
+        {
+          "binding": "SESSION",
+          "id": "364edecefa144495a0fd8122d401d8f6"
+        }
+      ],
+      "triggers": {
+        "crons": ["* * * * *"]
+      }
     },
     "production": {
       "name": "eskridge-emdash-production",
-      "images": { "binding": "IMAGES" },
-      "vars": { "SITE_ENV": "production", "SITE_URL": "https://eskridge.dev" },
+      "images": {
+        "binding": "IMAGES"
+      },
+      "vars": {
+        "SITE_ENV": "production",
+        "SITE_URL": "https://eskridge.dev"
+      },
       "d1_databases": [
-        { "binding": "DB", "database_name": "eskridge-emdash-production" }
+        {
+          "binding": "DB",
+          "database_name": "eskridge-emdash-production"
+        }
       ],
       "r2_buckets": [
         {
@@ -48,8 +94,15 @@
           "bucket_name": "eskridge-emdash-media-production"
         }
       ],
-      "kv_namespaces": [{ "binding": "SESSION" }],
-      "triggers": { "crons": ["* * * * *"] }
+      "kv_namespaces": [
+        {
+          "binding": "SESSION"
+        }
+      ],
+      "triggers": {
+        "crons": ["* * * * *"]
+      }
     }
-  }
+  },
+  "account_id": "4d0ec73da1296e7dcc788788effc7d43"
 }

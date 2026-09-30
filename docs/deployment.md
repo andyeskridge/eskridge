@@ -2,7 +2,7 @@
 
 ## Current state
 
-The rebuild is on `codex/emdash-rebuild`. The previous application is preserved at `codex/eskridge-pre-emdash-20260929`, commit `375d0e60ccc33cfe4a4ea739ad8ab9e7d54c7ca3`. No current production resource or domain route has been changed. Cloudflare was signed out during implementation; remote resource creation, passkeys and restoration remain launch checks.
+The rebuild is on `codex/emdash-rebuild`. The previous application is preserved at `codex/eskridge-pre-emdash-20260929`, commit `375d0e60ccc33cfe4a4ea739ad8ab9e7d54c7ca3`. No current production resource or domain route has been changed. Cloudflare authentication and separate staging D1/R2/KV provisioning were completed on September 29, 2026. Staging resource identities are pinned in `deployment/resources.json`; owner setup, passkeys and remote restoration remain launch checks.
 
 EmDash and its Cloudflare database/storage adapter are both pinned to 1.0.1. Astro 7 and its Cloudflare adapter use the compatible versions in `bun.lock`. The Cloudflare starter supplies the native scheduled handler, D1 sessions, R2 storage and Images binding.
 
@@ -24,11 +24,11 @@ EmDash 1.0.1 needs the versioned Bun patch in `patches/emdash@1.0.1.patch`: afte
 
 ## Remote environment setup
 
-1. Authenticate Wrangler. Set `CLOUDFLARE_ACCOUNT_ID` and a private `CLOUDFLARE_API_TOKEN` with Worker, D1, KV and R2 management permissions. EmDash's deployment migration executor requires an API token even when Wrangler OAuth login is available.
-2. Run `bun scripts/provision.ts staging`. It creates or finds only the reserved EmDash resource names; inspect the IDs and commit `deployment/resources.json` and `wrangler.jsonc`. It resolves the real account Workers subdomain instead of guessing the staging URL.
+1. Authenticate Wrangler. Set `CLOUDFLARE_ACCOUNT_ID` and a private `CLOUDFLARE_API_TOKEN` with Worker, D1, KV and R2 management permissions. EmDash's deployment migration executor requires an API token even when Wrangler OAuth login is available. Local credentials may be stored in the ignored `.env.cloudflare.local`; invoke deployment scripts with `bun --env-file=.env.cloudflare.local ...`. API widget provisioning additionally needs Account Turnstile Edit permission.
+2. Run `bun --env-file=.env.cloudflare.local scripts/provision.ts staging`. It creates or finds only the reserved EmDash resource names; inspect the IDs and commit `deployment/resources.json` and `wrangler.jsonc`. It resolves the real account Workers subdomain instead of guessing the staging URL.
 3. Register a Turnstile widget for that environment's hostname, including the `comment` action. Put its public key in `env.staging.vars.TURNSTILE_SITE_KEY`.
 4. Set independent runtime secrets using `bunx wrangler secret put NAME --env staging`: `EMDASH_ENCRYPTION_KEY`, `SETUP_ACCESS_TOKEN`, `TURNSTILE_SECRET_KEY`. Keep the encryption key escrowed privately with the matching backups. The first secret put can create a placeholder Worker; no production route is involved.
-5. Run `bun run deploy:staging`. The script checks resource separation, requires secrets, builds for the chosen environment, checks the pinned migration fingerprint, applies migrations under EmDash's database lock, checks them again, deploys, then checks migration state and HTTP behavior. Staging always sends `noindex`; its sitemap is unavailable.
+5. Run `bun --env-file=.env.cloudflare.local run deploy:staging`. The script checks resource separation, requires secrets, builds for the chosen environment, checks the pinned migration fingerprint, applies migrations under EmDash's database lock, checks them again, deploys, then checks migration state and HTTP behavior. Staging always sends `noindex`; its sitemap is unavailable.
 6. Visit `https://STAGING-HOST/_emdash/admin/setup?setup_token=YOUR_PRIVATE_BOOTSTRAP_SECRET`. A short-lived secure, HttpOnly cookie permits owner setup and removes the token from the address. Do not share the URL. Complete native passkey setup. Include the seed's draft content.
 7. Configure the article collection's moderation settings to **all** and disable authenticated-user auto-approval as defense in depth. The code plugin independently holds every submission, including returning readers and owner replies.
 
