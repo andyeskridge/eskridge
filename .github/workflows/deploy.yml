@@ -25,6 +25,8 @@ jobs:
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      EMDASH_D1_DATABASE_ID: ${{ vars.EMDASH_D1_DATABASE_ID }}
+      EMDASH_D1_TARGET_FINGERPRINT: ${{ vars.EMDASH_D1_TARGET_FINGERPRINT }}
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: oven-sh/setup-bun@v2.2.0

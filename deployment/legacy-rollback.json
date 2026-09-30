@@ -1,0 +1,26 @@
+{
+  "recordedAt": "2026-09-30T01:24:18.209Z",
+  "accountId": "4d0ec73da1296e7dcc788788effc7d43",
+  "domain": {
+    "id": "dd694f3bd760ee366d50a3f91095f372d3ae2696",
+    "zone_id": "59aa81ba2ea07833dff53a837c2a4957",
+    "zone_name": "eskridge.dev",
+    "hostname": "eskridge.dev",
+    "service": "eskridge",
+    "environment": "production",
+    "cert_id": "08203a1d-2ff9-418e-b9f0-9cc32d3266ac",
+    "previews_enabled": false,
+    "enabled": true
+  },
+  "worker": "eskridge",
+  "deploymentId": "0aef86ad-d8f5-407f-a99a-8f5f3c72368d",
+  "versions": [
+    {
+      "version_id": "95895224-061d-4033-8912-706d5036bd86",
+      "percentage": 100
+    }
+  ],
+  "legacyBranch": "codex/eskridge-pre-emdash-latest-20260929",
+  "legacyCommit": "6bc6e1869c040b3eab117756cad6e69106521a14",
+  "retainDaysAfterCutover": 30
+}

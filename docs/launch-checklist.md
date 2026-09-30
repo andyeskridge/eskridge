@@ -2,7 +2,7 @@
 
 Record results against the actual production build and environment, rather than interpreting an unchecked item as passed.
 
-- [ ] Home, About, one real project and introductory article reviewed and approved by Andy.
+- [x] Home, About, one real project and introductory article approved by Andy on September 29, 2026 ("content is good for now").
 - [ ] Contact/social links confirmed; portrait and résumé either approved or omitted.
 - [ ] No test fixtures in production; unpublished entries absent from search, archives, RSS and sitemap.
 - [ ] Desktop/mobile reviewed in light/dark, keyboard navigation, readable measure, contrast and reduced motion checked.

@@ -82,12 +82,14 @@
       },
       "vars": {
         "SITE_ENV": "production",
-        "SITE_URL": "https://eskridge.dev"
+        "SITE_URL": "https://eskridge.dev",
+        "TURNSTILE_SITE_KEY": "0x4AAAAAAFJrZctRb2rh35RM"
       },
       "d1_databases": [
         {
           "binding": "DB",
-          "database_name": "eskridge-emdash-production"
+          "database_name": "eskridge-emdash-production",
+          "database_id": "4d681934-7cfa-46fc-81e4-929566b760f1"
         }
       ],
       "r2_buckets": [
@@ -98,12 +100,15 @@
       ],
       "kv_namespaces": [
         {
-          "binding": "SESSION"
+          "binding": "SESSION",
+          "id": "3c0fbfc948f240a79fb325054c6eb328"
         }
       ],
       "triggers": {
         "crons": ["* * * * *"]
-      }
+      },
+      "workers_dev": true,
+      "preview_urls": false
     }
   },
   "account_id": "4d0ec73da1296e7dcc788788effc7d43"

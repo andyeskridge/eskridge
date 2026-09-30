@@ -89,6 +89,15 @@ export async function loadResources(target: Environment): Promise<Resources> {
     throw new Error(
       "Cloudflare account does not match the pinned resource manifest.",
     );
+  if (
+    target === "production" &&
+    process.env.GITHUB_ACTIONS === "true" &&
+    (process.env.EMDASH_D1_DATABASE_ID !== selected.databaseId ||
+      process.env.EMDASH_D1_TARGET_FINGERPRINT !== selected.targetFingerprint)
+  )
+    throw new Error(
+      "GitHub production database identity does not match the pinned resource manifest.",
+    );
   for (const other of Object.values(resources)) {
     if (!other || other === selected) continue;
     if (

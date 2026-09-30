@@ -1,6 +1,6 @@
 # Launch content for review
 
-These entries remain drafts in the installation seed. Role and location were confirmed by Andy on September 29, 2026. Homelab examples come from prior collaboration notes and need a public-content review; they are not a new inspection of current infrastructure. Public contact links, portrait and resume are still unconfirmed.
+Andy approved the current launch content on September 29, 2026 ("content is good for now"). These entries remain drafts in the installation seed for owner-controlled production publication. Role and location were confirmed by Andy on September 29, 2026. Homelab examples come from prior collaboration notes; they are not a new inspection of current infrastructure. Public contact links, portrait and resume remain omitted.
 
 ## Software leadership.
 Practical curiosity.
