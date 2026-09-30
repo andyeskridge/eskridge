@@ -1,11 +1,12 @@
 import { defineMiddleware } from "astro:middleware";
 import { env } from "cloudflare:workers";
+import type { APIContext, MiddlewareNext } from "astro";
 import {
   isAllowedAgentMessage,
   isDraftWrite,
   verifyCommentChallenge,
 } from "./lib/security";
-import { siteEnvironment } from "./lib/site";
+import { isPublicSite, siteEnvironment } from "./lib/site";
 
 const retiredPages = new Set([
   "/speaking",
@@ -18,7 +19,10 @@ const retiredPosts = new Set([
   "/articles/Test-Post",
   "/articles/hello-world",
 ]);
-export const onRequest = defineMiddleware(async (context, next) => {
+async function handleRequest(
+  context: APIContext,
+  next: MiddlewareNext,
+): Promise<Response> {
   const path = context.url.pathname.replace(/\/$/, "") || "/";
   const settings = env as unknown as Record<string, string>;
   const scopes = (context.locals as App.Locals & { tokenScopes?: string[] })
@@ -55,7 +59,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
       } catch {
         return forbidden();
       }
-      if (!isDraftWrite(body)) return forbidden();
+      const creating =
+        context.request.method === "POST" &&
+        /^\/_emdash\/api\/content\/[^/]+$/.test(path);
+      if (!isDraftWrite(body, creating)) return forbidden();
     } else if (
       !(
         (context.request.method === "POST" &&
@@ -150,12 +157,32 @@ export const onRequest = defineMiddleware(async (context, next) => {
     /^\/(categories|tags)(\/|$)/.test(path);
   const response = retired ? await context.rewrite("/gone") : await next();
   if (retired) response.headers.set("Cache-Control", "no-cache");
-  if (
-    siteEnvironment() !== "production" ||
+  return response;
+}
+
+// Apply headers after every route, including early denials and redirects.
+// Layout components cannot reliably set response headers once rendering starts.
+export const onRequest = defineMiddleware(async (context, next) => {
+  const response = await handleRequest(context, next);
+  const path = context.url.pathname.replace(/\/$/, "") || "/";
+  const preview =
     context.url.searchParams.has("_preview") ||
-    context.url.searchParams.has("_edit")
+    context.url.searchParams.has("_edit");
+  const privateRoute =
+    path === "/search" || path === "/admin" || path.startsWith("/_emdash/");
+  if (
+    !isPublicSite(context.url) ||
+    privateRoute ||
+    preview ||
+    response.status >= 400
   )
     response.headers.set("X-Robots-Tag", "noindex, nofollow");
+  if (
+    preview ||
+    path.startsWith("/_emdash/admin") ||
+    path.startsWith("/_emdash/api")
+  )
+    response.headers.set("Cache-Control", "private, no-store");
   response.headers.set("X-Content-Type-Options", "nosniff");
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   return response;

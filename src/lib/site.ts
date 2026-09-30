@@ -15,6 +15,13 @@ export function publicOrigin(): string {
   );
 }
 
+export function isPublicSite(url: URL): boolean {
+  return (
+    siteEnvironment() === "production" &&
+    url.origin === new URL(publicOrigin()).origin
+  );
+}
+
 export function registerHints(
   astro: AstroGlobal,
   ...results: { cacheHint?: unknown }[]

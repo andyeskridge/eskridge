@@ -15,6 +15,7 @@ const seo = getSeoMeta(project, {
   path: `/projects/${slug}`,
   defaultDescription: project.data.summary,
 });
+if (seo.robots) Astro.response.headers.set("X-Robots-Tag", seo.robots);
 ---
 
 <Base

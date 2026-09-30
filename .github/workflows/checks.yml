@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: 24.21.0
       - run: bun install --frozen-lockfile
+      - run: bun audit
       - run: bun run seed:validate
       - run: bun run lint:ci
       - run: bun run typecheck

@@ -12,10 +12,10 @@ import "../styles/site.css";
 import Icon from "../components/Icon.astro";
 import {
   canonicalPath,
+  isPublicSite,
   publicOrigin,
   registerHints,
   safeHref,
-  siteEnvironment,
 } from "../lib/site";
 interface Props {
   title?: string;
@@ -54,11 +54,9 @@ const pageCanonical =
   canonical || new URL(canonicalPath(Astro.url.pathname), publicOrigin()).href;
 const privatePage =
   noindex ||
-  siteEnvironment() !== "production" ||
+  !isPublicSite(Astro.url) ||
   Astro.url.searchParams.has("_preview") ||
   Astro.url.searchParams.has("_edit");
-if (privatePage)
-  Astro.response.headers.set("X-Robots-Tag", "noindex, nofollow");
 const menu = menuResult.data?.items ?? [
   { label: "Writing", url: "/writing", target: "" },
   { label: "Projects", url: "/projects", target: "" },
@@ -110,7 +108,7 @@ const pageCtx = createPublicPageContext({
     />
     <meta name="theme-color" content="#f8f6f0" />
   </head>
-  <body>
+  <body id="top">
     <EmDashBodyStart page={pageCtx} />
     <a class="skip-link" href="#main">
       Skip to content

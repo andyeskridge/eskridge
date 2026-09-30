@@ -8,6 +8,7 @@ import {
   migrationReport,
   run,
 } from "./cloudflare";
+import { validateRecoveryManifest } from "./recovery-manifest";
 
 const target = environment(process.argv[2]);
 if (target === "production") {
@@ -52,16 +53,7 @@ if (report.pending.length && report.knownApplied.length) {
       "Schema changes require RECOVERY_MANIFEST from a matching SQL/media/key backup.",
     );
   const backup = JSON.parse(await readFile(backupPath, "utf8"));
-  if (
-    backup.databaseId !== resources.databaseId ||
-    backup.mediaBucket !== resources.mediaBucket ||
-    !backup.complete ||
-    !backup.keyEscrowVerified ||
-    Date.now() - Date.parse(backup.createdAt) > 86400000
-  )
-    throw new Error(
-      "Recovery backup is incomplete, stale, or targets a different environment.",
-    );
+  validateRecoveryManifest(backup, resources);
 }
 await migrationReport(target, resources, "apply");
 await migrationReport(target, resources, "check");

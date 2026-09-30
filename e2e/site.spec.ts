@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import AxeBuilder from "@axe-core/playwright";
 import { type APIRequestContext, expect, test } from "@playwright/test";
 
@@ -15,6 +16,10 @@ let token: string;
 let admin: APIRequestContext;
 const created: { collection: string; id: string }[] = [];
 const uploadedMedia: string[] = [];
+const baseURL = "http://127.0.0.1:4322";
+const wrangler = fileURLToPath(
+  new URL("../node_modules/wrangler/bin/wrangler.js", import.meta.url),
+);
 async function api(path: string, method = "GET", data?: unknown) {
   const response = await admin.fetch(`/_emdash/api/${path}`, {
     method,
@@ -42,21 +47,22 @@ async function create(
 }
 test.beforeAll(async ({ playwright }) => {
   execFileSync(
-    "bun",
+    process.execPath,
     [
-      "x",
-      "wrangler",
+      wrangler,
       "d1",
       "execute",
       "DB",
       "--local",
+      "--persist-to",
+      ".wrangler/e2e",
       "--command",
       "DELETE FROM _emdash_rate_limits",
     ],
     { stdio: "pipe" },
   );
   admin = await playwright.request.newContext({
-    baseURL: "http://127.0.0.1:4321",
+    baseURL,
   });
   const response = await admin.get("/_emdash/api/setup/dev-bypass?token=1");
   expect(response.ok()).toBeTruthy();
@@ -64,14 +70,15 @@ test.beforeAll(async ({ playwright }) => {
 });
 test.beforeEach(() => {
   execFileSync(
-    "bun",
+    process.execPath,
     [
-      "x",
-      "wrangler",
+      wrangler,
       "d1",
       "execute",
       "DB",
       "--local",
+      "--persist-to",
+      ".wrangler/e2e",
       "--command",
       "DELETE FROM _emdash_rate_limits",
     ],
@@ -108,7 +115,7 @@ test("CMS drafts, isolated previews, live publication, discovery and media", asy
   );
   expect(await (await request.get("/feed.xml")).text()).not.toContain(title);
   const preview = await api(`content/posts/${item.id}/preview-url`, "POST", {});
-  const previewPath = new URL(preview.url, "http://127.0.0.1:4321");
+  const previewPath = new URL(preview.url, baseURL);
   await page.goto(previewPath.pathname + previewPath.search);
   await expect(page.getByRole("heading", { name: title })).toBeVisible();
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
@@ -117,8 +124,18 @@ test("CMS drafts, isolated previews, live publication, discovery and media", asy
   );
   await expect(page.locator("#comment-form")).toHaveCount(0);
   expect((await request.get(`/writing/${slug}`)).status()).toBe(404);
-  const tampered = previewPath.search.replace(/.$/, "x");
-  expect((await request.get(`/writing/${slug}${tampered}`)).status()).toBe(404);
+  const tampered = new URL(previewPath);
+  const previewToken = tampered.searchParams.get("_preview");
+  expect(previewToken).toBeTruthy();
+  // Always change a meaningful character, rather than a possibly identical or
+  // unused final base64 padding bit.
+  tampered.searchParams.set(
+    "_preview",
+    `${previewToken?.[0] === "x" ? "y" : "x"}${previewToken?.slice(1)}`,
+  );
+  expect(
+    (await request.get(tampered.pathname + tampered.search)).status(),
+  ).toBe(404);
   await api(`content/posts/${item.id}/publish`, "POST", {});
   await page.goto(`/writing/${slug}`);
   await expect(page.getByText("First public version")).toBeVisible();
@@ -175,6 +192,11 @@ test("CMS drafts, isolated previews, live publication, discovery and media", asy
   const media = (await uploaded.json()).data.item;
   uploadedMedia.push(media.id);
   expect((await request.get(media.url)).ok()).toBeTruthy();
+  await api(`content/posts/${item.id}`, "PUT", { seo: { noIndex: true } });
+  await api(`content/posts/${item.id}/publish`, "POST", {});
+  expect(
+    (await request.get(`/writing/${slug}`)).headers()["x-robots-tag"],
+  ).toContain("noindex");
 });
 
 test("comments need approval, keep email private, render safely and limit spam", async ({
@@ -338,7 +360,7 @@ test("archives, themes, accessibility and responsive navigation", async ({
   );
 });
 
-test("limited agent credentials cannot publish, delete or change schemas", async ({
+test("limited agent credentials cannot publish, unpublish, delete or change schemas", async ({
   request,
 }) => {
   const credentials = await api("admin/api-tokens", "POST", {
@@ -381,6 +403,16 @@ test("limited agent credentials cannot publish, delete or change schemas", async
       })
     ).status(),
   ).toBe(403);
+  await api(`content/posts/${item.id}/publish`, "POST", {});
+  expect(
+    (
+      await request.put(`/_emdash/api/content/posts/${item.id}`, {
+        headers,
+        data: { status: "draft" },
+      })
+    ).status(),
+  ).toBe(403);
+  expect((await request.get(`/writing/${item.slug}`)).status()).toBe(200);
   expect(
     (
       await request.delete(`/_emdash/api/content/posts/${item.id}`, { headers })
@@ -398,6 +430,23 @@ test("limited agent credentials cannot publish, delete or change schemas", async
     ...headers,
     Accept: "application/json, text/event-stream",
   };
+  expect(
+    (
+      await request.post("/_emdash/api/mcp", {
+        headers: mcpHeaders,
+        data: {
+          jsonrpc: "2.0",
+          id: 3,
+          method: "tools/call",
+          params: {
+            name: "content_update",
+            arguments: { collection: "posts", id: item.id, status: "draft" },
+          },
+        },
+      })
+    ).status(),
+  ).toBe(403);
+  expect((await request.get(`/writing/${item.slug}`)).status()).toBe(200);
   expect(
     (
       await request.post("/_emdash/api/mcp", {

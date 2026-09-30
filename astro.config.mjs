@@ -5,10 +5,15 @@ import { d1, r2 } from "@emdash-cms/cloudflare";
 import { defineConfig } from "astro/config";
 import emdash from "emdash/astro";
 
+const browserTest = process.env.ESKRIDGE_E2E === "1";
+
 export default defineConfig({
   site: process.env.SITE_URL || "https://eskridge.dev",
   output: "server",
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    persistState: browserTest ? { path: ".wrangler/e2e" } : true,
+    inspectorPort: browserTest ? false : undefined,
+  }),
   image: { layout: "constrained", responsiveStyles: true },
   integrations: [
     react(),
@@ -36,7 +41,9 @@ export default defineConfig({
         ? "node_modules/.vite-check"
         : process.argv.includes("build")
           ? "node_modules/.vite-build"
-          : "node_modules/.vite-dev",
+          : browserTest
+            ? "node_modules/.vite-e2e"
+            : "node_modules/.vite-dev",
     environments: {
       ssr: {
         optimizeDeps: { include: ["@astrojs/internal-helpers > picomatch"] },
