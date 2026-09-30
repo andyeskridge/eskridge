@@ -54,7 +54,7 @@
     "prettier": "3.9.9",
     "prettier-plugin-astro": "1.1.0",
     "typescript": "6.0.3",
-    "wrangler": "4.143.0"
+    "wrangler": "4.145.0"
   },
   "trustedDependencies": [
     "@biomejs/biome",
@@ -63,7 +63,7 @@
     "workerd"
   ],
   "overrides": {
-    "baseline-browser-mapping": "2.11.0",
+    "baseline-browser-mapping": "2.11.26",
     "browserslist": "4.29.3",
     "dompurify": "3.4.16",
     "js-yaml": "4.3.2",
