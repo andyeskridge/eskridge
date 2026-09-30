@@ -91,3 +91,49 @@ Deploy the reviewed code through the normal main-branch process before treating 
 Complete the outstanding remote exercises in `launch-checklist.md`: signed draft isolation, revisions/scheduled publication, a successful real-reader Turnstile submission plus approval/reply cycle, media transformations, nonempty media restoration, encrypted off-machine backup retention and owner account recovery. The owner explicitly waived a second authenticator at launch; this review does not change that decision.
 
 The Privacy page points visitors to About for contact/removal requests, but no public contact links are configured. Add an owner-approved contact route in the CMS. Public pages also lack a social preview image; an approved default image would improve shared links. No contact details or imagery were invented or published during this review.
+
+## Native EmDash cleanup completed September 30, 2026
+
+The application now wraps native `Comments` and `CommentForm`, uses the built-in
+moderator with native collection settings, and delegates legacy page/taxonomy
+routing to the native redirect manager. The former bundled moderation plugin
+and duplicate comment renderer/submission code were removed. Reply/cancel
+controls, privacy copy and the theme remain; the Turnstile widget uses compact
+size to fit the article column at 320 pixels.
+
+Staging and production each received 13 missing legacy rules through native REST
+endpoints. Both already had article-only comments, approval of every comment and
+authenticated-user auto-approval disabled. A second migration pass made zero
+updates. Original configuration snapshots and migration reports are in ignored
+`output/native-cms`; both short-lived migration credentials were revoked and
+their removal verified. No editorial content was changed. Public production
+checks passed `/articles` 301, `/uses` and retired taxonomy/file 410s, and an
+unknown article 404.
+
+The application changes are on the review branch and have not been deployed.
+The live bundled moderator switches to the built-in provider when that bundle
+is deployed; its selection was verified locally in both development and the
+compiled Worker. Deployment now checks native configuration before removing
+the former routing code. `configure:cms` provides a repeatable initial setup,
+read-only check and conflict-safe migration without reseeding content.
+
+| Check | Result |
+| --- | --- |
+| Frozen installation, seed validation and formatting | Passed; lockfile unchanged |
+| Security audit | No vulnerabilities across 750 packages |
+| Astro diagnostics | 48 files; zero errors, warnings or hints |
+| Unit tests | Seven passed; 59 assertions, including migration idempotence and conflict handling |
+| Desktop/mobile browser acceptance | All ten passed; native moderator, pending owner/returning-reader comments, native-form reply/cancel, safe rendering, private email and article accessibility included |
+| Production build | Passed; existing native administration chunk warning remains |
+| Compiled production-mode Worker | Native moderator selected; missing and failing runtime challenges returned 403; development bypass returned 403; retired page/taxonomy/PDF returned 410 |
+| Compiled visual review | Desktop and 320px article/comments inspected; compact widget inside native form with action `comment`; no horizontal overflow after sizing fix |
+| Fixture cleanup | Temporary local article/thread deleted; article returned 404 |
+
+Browser evidence is in ignored `output/playwright/native-*`; compiled HTTP
+results are in `output/native-cms/compiled-verification.json`. The remaining
+published-reference patch, runtime challenge verifier, reply/action adapter,
+draft-only permission policy and retired PDF adapter each have an upstream gap,
+regression and removal condition in `emdash-customizations.md`. These preserve
+approved behavior that published EmDash 1.0.1 cannot yet supply. Successful
+real-reader Turnstile completion on the deployed site remains an outstanding
+launch exercise; failing test challenges do not establish that result.

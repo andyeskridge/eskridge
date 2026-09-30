@@ -1,4 +1,3 @@
-import { fileURLToPath } from "node:url";
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import { d1, r2 } from "@emdash-cms/cloudflare";
@@ -23,15 +22,6 @@ export default defineConfig({
       storage: r2({ binding: "MEDIA" }),
       migrations: { runtime: "check", dev: "auto" },
       mcp: true,
-      plugins: [
-        {
-          id: "eskridge-comment-policy",
-          version: "1.0.0",
-          entrypoint: fileURLToPath(
-            new URL("./src/plugins/comment-policy.mjs", import.meta.url),
-          ).replaceAll("\\", "/"),
-        },
-      ],
     }),
   ],
   devToolbar: { enabled: false },

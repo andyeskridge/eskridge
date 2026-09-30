@@ -23,6 +23,7 @@
     "e2e": "playwright test",
     "cf-typegen": "wrangler types",
     "seed:validate": "bun scripts/validate-seed.ts",
+    "configure:cms": "bun scripts/configure-cms.ts",
     "deploy:staging": "bun scripts/deploy.ts staging",
     "deploy:production": "bun scripts/deploy.ts production",
     "backup": "bun scripts/backup.ts"

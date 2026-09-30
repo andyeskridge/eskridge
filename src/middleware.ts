@@ -1,6 +1,7 @@
 import { defineMiddleware } from "astro:middleware";
 import { env } from "cloudflare:workers";
 import type { APIContext, MiddlewareNext } from "astro";
+import { getCollectionInfo } from "emdash";
 import {
   isAllowedAgentMessage,
   isDraftWrite,
@@ -8,17 +9,6 @@ import {
 } from "./lib/security";
 import { isPublicSite, siteEnvironment } from "./lib/site";
 
-const retiredPages = new Set([
-  "/speaking",
-  "/uses",
-  "/thank-you",
-  "/AndyEskridgeResume.pdf",
-]);
-const retiredPosts = new Set([
-  "/articles/Another-new-post",
-  "/articles/Test-Post",
-  "/articles/hello-world",
-]);
 async function handleRequest(
   context: APIContext,
   next: MiddlewareNext,
@@ -112,9 +102,12 @@ async function handleRequest(
     context.request.method === "POST" &&
     /^\/_emdash\/api\/comments\//.test(path)
   ) {
+    // Save native moderation settings before accepting comments on a fresh
+    // installation. The built-in moderator owns the approval decision.
+    const collection = await getCollectionInfo("posts");
     if (
-      context.locals.emdash?.hooks.getExclusiveSelection("comment:moderate") !==
-      "eskridge-comment-policy"
+      collection?.commentsModeration !== "all" ||
+      collection.commentsAutoApproveUsers
     )
       return Response.json(
         { error: { message: "Comments are temporarily unavailable." } },
@@ -148,16 +141,10 @@ async function handleRequest(
         );
     }
   }
-  if (path === "/articles") return context.redirect("/writing", 301);
-  if (path === "/home") return context.redirect(`/${context.url.search}`, 302);
-  if (path === "/admin") return context.redirect("/_emdash/admin/", 302);
-  const retired =
-    retiredPages.has(path) ||
-    retiredPosts.has(path) ||
-    /^\/(categories|tags)(\/|$)/.test(path);
-  const response = retired ? await context.rewrite("/gone") : await next();
-  if (retired) response.headers.set("Cache-Control", "no-cache");
-  return response;
+  // EmDash 1.0.1 skips file extensions in redirect middleware. Keep this one
+  // retired file until native terminal rules also handle file URLs.
+  if (path === "/AndyEskridgeResume.pdf") return context.rewrite("/gone");
+  return next();
 }
 
 // Apply headers after every route, including early denials and redirects.
