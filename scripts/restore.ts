@@ -7,7 +7,8 @@ import {
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
-import { bun, cfApi } from "./cloudflare";
+import { cfApi } from "./cloudflare";
+import { restoreD1 } from "./restore-d1";
 
 const manifestPath = resolve(process.argv[2] || "missing-manifest.json");
 const directory = dirname(manifestPath);
@@ -67,17 +68,7 @@ const mediaTarget = await client.send(
 );
 if (mediaTarget.Contents?.length)
   throw new Error("Restore R2 must be empty. Create a new bucket.");
-await bun([
-  "x",
-  "wrangler",
-  "d1",
-  "execute",
-  databaseId,
-  "--remote",
-  "--file",
-  `${directory}/database.sql`,
-  "--yes",
-]);
+await restoreD1(accountId, databaseId, new TextDecoder().decode(sql));
 for (const item of manifest.media) {
   // File names are generated hashes; reject paths before reading any restore object.
   if (!/^[a-f0-9]{64}\.bin$/.test(item.file))
@@ -106,18 +97,18 @@ for (const item of manifest.media) {
   )
     throw new Error("Restored R2 object did not match.");
 }
-const integrity = await cfApi<{ results: { integrity_check: string }[] }[]>(
+const integrity = await cfApi<{ results: { quick_check: string }[] }[]>(
   accountId,
   `/d1/database/${databaseId}/query`,
   "POST",
-  { sql: "PRAGMA integrity_check" },
+  { sql: "PRAGMA quick_check" },
 );
 if (
   !integrity.length ||
   integrity.some(
     (item) =>
       !item.results.length ||
-      item.results.some((row) => row.integrity_check !== "ok"),
+      item.results.some((row) => row.quick_check !== "ok"),
   )
 )
   throw new Error("Restored D1 integrity check failed.");

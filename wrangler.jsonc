@@ -77,6 +77,7 @@
     },
     "production": {
       "name": "eskridge-emdash-production",
+      "routes": [{ "pattern": "eskridge.dev", "custom_domain": true }],
       "images": {
         "binding": "IMAGES"
       },

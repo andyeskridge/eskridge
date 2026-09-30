@@ -2,7 +2,9 @@
 
 `bun scripts/provision.ts staging` and `bun scripts/provision.ts production` create separate resources and write `resources.json` with their immutable IDs and migration target fingerprints. Review and commit that file and `wrangler.jsonc` before deployment. Resource names are intentionally unrelated to the old OpenNext cache.
 
-Each environment needs its own `EMDASH_ENCRYPTION_KEY`, `SETUP_ACCESS_TOKEN`, `TURNSTILE_SECRET_KEY`, public Turnstile site key and session namespace. Never commit secrets. No production domain route is configured by provisioning or deployment.
+Each environment needs its own `EMDASH_ENCRYPTION_KEY`, `SETUP_ACCESS_TOKEN`, `TURNSTILE_SECRET_KEY`, public Turnstile site key and session namespace. Never commit secrets. Initial provisioning does not attach the production custom domain.
+
+After the September 29, 2026 launch, production declares the `eskridge.dev` custom domain in `wrangler.jsonc`, so subsequent main-branch deployments preserve the live attachment. Staging has no production domain route.
 
 `legacy-rollback.json` records the current `eskridge.dev` attachment and deployed legacy Worker version before cutover. Refresh it immediately before changing the domain, and retain the old Worker and its bindings for 30 days afterward.
 
