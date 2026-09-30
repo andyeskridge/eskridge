@@ -28,7 +28,7 @@ jobs:
         run: bun run e2e
         env:
           EMDASH_ENCRYPTION_KEY: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
-      - uses: actions/upload-artifact@v6.0.0
+      - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: browser-evidence
