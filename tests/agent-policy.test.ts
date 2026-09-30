@@ -35,5 +35,20 @@ test("agents can draft but cannot publish, delete, schedule or alter schemas", (
     ]),
   ).toBe(false);
   expect(isDraftWrite({ status: "published" })).toBe(false);
+  expect(isDraftWrite({ status: "draft" })).toBe(false);
+  expect(isDraftWrite({ status: "draft" }, true)).toBe(true);
+  expect(isDraftWrite({ status: "published" }, true)).toBe(false);
   expect(isDraftWrite({ publishedAt: "2026-09-29T00:00:00Z" })).toBe(false);
+  expect(
+    isAllowedAgentMessage({
+      method: "tools/call",
+      params: { name: "content_update", arguments: { status: "draft" } },
+    }),
+  ).toBe(false);
+  expect(
+    isAllowedAgentMessage({
+      method: "tools/call",
+      params: { name: "content_create", arguments: { status: "draft" } },
+    }),
+  ).toBe(true);
 });

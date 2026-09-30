@@ -1,19 +1,8 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
 
 # testing
 /coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
 
 # misc
 .DS_Store
@@ -21,27 +10,11 @@
 
 # debug
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
-.env*.local
-
-# vercel
-.vercel
-
-# typescript
+# generated files
 *.tsbuildinfo
-next-env.d.ts
-.wrangler/state/
-.env
-.open-next/
 .wrangler/
 playwright-report/
 test-results/
-
-public/admin
-tina/__generated__
 
 # EmDash / Astro
 dist/

@@ -78,7 +78,7 @@ const result = {
   integrity: integrity.integrity_check,
   tableCount: tables.length,
   scope:
-    "Local raw D1 SQL restoration into isolated SQLite. Remote R2/key/application restore remains a launch check.",
+    "Local raw D1 SQL restoration into isolated SQLite. Remote media and owner-authentication recovery require separate checks.",
 };
 await mkdir("output/recovery", { recursive: true });
 await writeFile(

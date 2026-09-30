@@ -1,5 +1,5 @@
 ---
-import { getEmDashCollection, getEmDashEntry } from "emdash";
+import { getEmDashCollection, getEmDashEntry, getSeoMeta } from "emdash";
 import Base from "../layouts/Base.astro";
 import Icon from "../components/Icon.astro";
 import ProjectCard from "../components/ProjectCard.astro";
@@ -18,6 +18,8 @@ const [homeResult, postsResult] = await Promise.all([
 ]);
 registerHints(Astro, homeResult, postsResult);
 const home = homeResult.entry;
+const seo = home ? getSeoMeta(home) : null;
+if (seo?.robots) Astro.response.headers.set("X-Robots-Tag", seo.robots);
 const featured = home?.references?.featured_projects.entries ?? [];
 const projectsResult = featured.length
   ? null
@@ -36,7 +38,7 @@ const intro =
 ---
 
 <Base
-  noindex={homeResult.isPreview}
+  noindex={homeResult.isPreview || !!seo?.robots}
   description={intro}
   content={
     home ? { collection: "pages", id: home.data.id, slug: "home" } : undefined

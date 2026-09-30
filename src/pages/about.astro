@@ -6,6 +6,7 @@ import { publicOrigin, registerHints, safeHref } from "../lib/site";
 const result = await getEmDashEntry("pages", "about");
 registerHints(Astro, result);
 const about = result.entry;
+const resumeHref = safeHref(about?.data.resume?.url);
 const seo = about
   ? getSeoMeta(about, {
       siteTitle: "Andy Eskridge",
@@ -14,6 +15,7 @@ const seo = about
       defaultDescription: about.data.intro,
     })
   : null;
+if (seo?.robots) Astro.response.headers.set("X-Robots-Tag", seo.robots);
 ---
 
 <Base
@@ -80,10 +82,10 @@ const seo = about
           )}
         </div>
       )}
-      {about?.data.resume?.url && (
+      {resumeHref && (
         <div>
           <h2>The longer version</h2>
-          <a href={safeHref(about.data.resume.url)}>Download my résumé ↓</a>
+          <a href={resumeHref}>Download my résumé ↓</a>
         </div>
       )}
     </aside>

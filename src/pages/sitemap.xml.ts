@@ -1,9 +1,9 @@
 import type { APIRoute } from "astro";
 import { getEmDashCollection, getSeoMeta, getTaxonomyTerms } from "emdash";
-import { escapeXml, publicOrigin, siteEnvironment } from "../lib/site";
+import { escapeXml, isPublicSite, publicOrigin } from "../lib/site";
 
-export const GET: APIRoute = async () => {
-  if (siteEnvironment() !== "production")
+export const GET: APIRoute = async ({ url }) => {
+  if (!isPublicSite(url))
     return new Response("Not available in this environment", { status: 404 });
   const paths = ["/", "/about", "/writing", "/projects", "/privacy"];
   for (const collection of ["posts", "projects"] as const) {

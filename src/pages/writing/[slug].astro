@@ -17,6 +17,7 @@ const seo = getSeoMeta(post, {
   defaultDescription: post.data.excerpt,
 });
 const topics = post.data.terms?.topic ?? [];
+if (seo.robots) Astro.response.headers.set("X-Robots-Tag", seo.robots);
 ---
 
 <Base

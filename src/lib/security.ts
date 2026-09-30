@@ -17,11 +17,12 @@ const agentTools = new Set([
   "media_upload",
   "media_update",
 ]);
-export function isDraftWrite(body: unknown): boolean {
+export function isDraftWrite(body: unknown, creating = false): boolean {
   if (!body || typeof body !== "object" || Array.isArray(body)) return false;
   const values = body as Record<string, unknown>;
   return (
-    (values.status === undefined || values.status === "draft") &&
+    // On an existing item, even "draft" is a publication action: it unpublishes.
+    (values.status === undefined || (creating && values.status === "draft")) &&
     values.publishedAt === undefined &&
     values.createdAt === undefined &&
     values.scheduledAt === undefined
@@ -43,7 +44,10 @@ export function isAllowedAgentMessage(body: unknown): boolean {
   return (
     !!message.params?.name &&
     agentTools.has(message.params.name) &&
-    isDraftWrite(message.params.arguments || {})
+    isDraftWrite(
+      message.params.arguments || {},
+      message.params.name === "content_create",
+    )
   );
 }
 
