@@ -7,7 +7,7 @@ bun install --frozen-lockfile # Bun 1.4.2; Node 24 is used in CI
 bun run dev
 ```
 
-Read [deployment and owner setup](docs/deployment.md), [recovery](docs/recovery.md), and [verification and outstanding checks](docs/verification.md) before remote deployment. Initial content in `seed/seed.json` is draft-only. Browser tests use a separate loopback server on port 4322 and isolated `.wrangler/e2e` storage; they do not use the regular development CMS.
+Read [deployment and owner setup](docs/deployment.md), [EmDash boundaries and upgrade checklist](docs/emdash-customizations.md), [recovery](docs/recovery.md), and [verification and outstanding checks](docs/verification.md) before remote deployment. Initial content in `seed/seed.json` is draft-only. Browser tests use a separate loopback server on port 4322 and isolated `.wrangler/e2e` storage; they do not use the regular development CMS.
 
 ```sh
 bun run seed:validate

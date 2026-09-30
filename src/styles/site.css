@@ -831,26 +831,41 @@ textarea {
 .comments h2 {
   font-size: 32px;
 }
-.comment-list {
+.comments[data-discussion] .ec-comments {
+  --ec-comment-border: 1px solid var(--line);
+  --ec-comment-indent: 24px;
+}
+.comments[data-discussion] .ec-comments-heading {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--muted);
+}
+.comments[data-discussion] .ec-comments-list {
   padding: 0;
   list-style: none;
   margin-top: 28px;
 }
-.comment {
+.comments[data-discussion] .ec-comment {
   border-top: 1px solid var(--line);
+  border-bottom: 0;
   padding-block: 22px;
 }
-.comment-meta {
+.comments[data-discussion] .ec-comment-header {
   display: flex;
   justify-content: space-between;
   gap: 15px;
   font-size: 11px;
   color: var(--muted);
 }
-.comment-meta strong {
+.comments[data-discussion] .ec-comment-author {
   color: var(--ink);
 }
-.comment-body {
+.comments[data-discussion] .ec-comment-date {
+  color: var(--muted);
+  opacity: 1;
+  font-size: 11px;
+}
+.comments[data-discussion] .ec-comment-body {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   color: var(--ink);
@@ -866,37 +881,37 @@ textarea {
   cursor: pointer;
   margin-top: 14px;
 }
-.comment-replies {
+.comments[data-discussion] .ec-comment-replies {
   list-style: none;
   padding-left: 24px;
   margin-top: 20px;
   border-left: 1px solid var(--line);
 }
-.comment-form {
+.comments[data-discussion] .ec-comment-form {
+  --ec-form-gap: 18px;
+  --ec-form-border: var(--line);
+  --ec-form-bg: var(--paper);
+  --ec-form-color: var(--ink);
+  --ec-form-user-bg: var(--surface);
+  --ec-form-user-bg-dark: var(--surface);
+  --ec-form-submit-bg: var(--accent);
+  --ec-form-submit-color: var(--paper);
+  --ec-form-success-color: var(--accent);
+  --ec-form-error-color: var(--ink);
   margin-top: 30px;
   display: grid;
   gap: 18px;
 }
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-}
-.comment-form .button {
+.comments[data-discussion] .ec-comment-form-submit {
   justify-self: start;
 }
 .comment-form-note {
   font-size: 12px;
 }
-.comment-status {
+.comments[data-discussion] .ec-comment-form-status {
   font-size: 13px;
   min-height: 1.7em;
   color: var(--accent);
-}
-.honeypot {
-  position: absolute;
-  left: -9999px;
-  top: -9999px;
 }
 .reply-context {
   font-size: 12px;

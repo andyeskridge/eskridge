@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import AxeBuilder from "@axe-core/playwright";
 import { type APIRequestContext, expect, test } from "@playwright/test";
+import { configureNativeCms } from "../scripts/native-cms";
 
 const block = (text: string) => [
   {
@@ -67,6 +68,13 @@ test.beforeAll(async ({ playwright }) => {
   const response = await admin.get("/_emdash/api/setup/dev-bypass?token=1");
   expect(response.ok()).toBeTruthy();
   token = (await response.json()).data.token;
+  await configureNativeCms(api, true);
+  const hooks = await api("admin/hooks/exclusive");
+  expect(
+    hooks.items.find(
+      (hook: { hookName: string }) => hook.hookName === "comment:moderate",
+    ).selectedPluginId,
+  ).toBe("emdash-default-comment-moderator");
 });
 test.beforeEach(() => {
   execFileSync(
@@ -122,7 +130,7 @@ test("CMS drafts, isolated previews, live publication, discovery and media", asy
     "content",
     /noindex/,
   );
-  await expect(page.locator("#comment-form")).toHaveCount(0);
+  await expect(page.locator("[data-ec-comment-form]")).toHaveCount(0);
   expect((await request.get(`/writing/${slug}`)).status()).toBe(404);
   const tampered = new URL(previewPath);
   const previewToken = tampered.searchParams.get("_preview");
@@ -214,13 +222,13 @@ test("comments need approval, keep email private, render safely and limit spam",
   await page.goto(`/writing/${slug}`);
   const email = `private-${suffix}@example.test`;
   const unsafe = '<img src=x onerror="window.unsafe=1">';
-  await page.getByLabel("Display name", { exact: true }).fill("Local reader");
-  await page.getByLabel("Email (kept private)").fill(email);
-  await page.getByLabel("Your comment").fill(unsafe);
-  await page.getByRole("button", { name: /Submit for review/ }).click();
-  await expect(page.getByRole("status")).toContainText("review");
+  await page.getByLabel("Name", { exact: true }).fill("Local reader");
+  await page.getByLabel("Email", { exact: true }).fill(email);
+  await page.getByLabel("Comment", { exact: true }).fill(unsafe);
+  await page.getByRole("button", { name: "Post Comment", exact: true }).click();
+  await expect(page.getByRole("status")).toContainText("submitted");
   await page.reload();
-  await expect(page.locator(".comment-body")).toHaveCount(0);
+  await expect(page.locator(".ec-comment-body")).toHaveCount(0);
   const pending = await api(
     `admin/comments?status=pending&collection=posts&contentId=${item.id}`,
   );
@@ -232,8 +240,8 @@ test("comments need approval, keep email private, render safely and limit spam",
     status: "approved",
   });
   await page.reload();
-  await expect(page.locator(".comment-body")).toHaveText(unsafe);
-  await expect(page.locator(".comment-body img")).toHaveCount(0);
+  await expect(page.locator(".ec-comment-body")).toHaveText(unsafe);
+  await expect(page.locator(".ec-comment-body img")).toHaveCount(0);
   expect(await page.content()).not.toContain(email);
   const publicComments = await (
     await request.get(`/_emdash/api/comments/posts/${item.id}`)
@@ -241,20 +249,29 @@ test("comments need approval, keep email private, render safely and limit spam",
   expect(publicComments).not.toContain(email);
   expect(publicComments).not.toContain("authorEmail");
   const endpoint = `/_emdash/api/comments/posts/${item.id}`;
-  const returning = await request.post(endpoint, {
-    headers: { "X-EmDash-Request": "1" },
-    data: {
-      authorName: "Local reader",
-      authorEmail: email,
-      body: "Returning reader",
-      parentId: comment.id,
-    },
-  });
-  expect((await returning.json()).data.status).toBe("pending");
-  const reply = (await returning.json()).data.id;
+  await page
+    .getByRole("button", { name: "Reply to Local reader", exact: true })
+    .click();
+  await expect(page.locator(".reply-context")).toBeVisible();
+  await page.getByRole("button", { name: "Cancel reply" }).click();
+  await expect(page.locator("[name=parentId]")).toBeDisabled();
+  await page
+    .getByRole("button", { name: "Reply to Local reader", exact: true })
+    .click();
+  await page.getByLabel("Name", { exact: true }).fill("Local reader");
+  await page.getByLabel("Email", { exact: true }).fill(email);
+  await page.getByLabel("Comment", { exact: true }).fill("Returning reader");
+  await page.getByRole("button", { name: "Post Comment", exact: true }).click();
+  await expect(page.getByRole("status")).toContainText("submitted");
+  const returning = await api(
+    `admin/comments?status=pending&collection=posts&contentId=${item.id}`,
+  );
+  const reply = returning.items.find(
+    (entry: { body: string }) => entry.body === "Returning reader",
+  ).id;
   await api(`admin/comments/${reply}/status`, "PUT", { status: "approved" });
   await page.reload();
-  await expect(page.locator(".comment-replies .comment-body")).toHaveText(
+  await expect(page.locator(".ec-comment-replies .ec-comment-body")).toHaveText(
     "Returning reader",
   );
   const authenticated = await admin.post(endpoint, {
@@ -262,6 +279,36 @@ test("comments need approval, keep email private, render safely and limit spam",
     data: { authorName: "Owner", authorEmail: email, body: "Owner reply" },
   });
   expect((await authenticated.json()).data.status).toBe("pending");
+  // A settings mistake must close submissions rather than auto-approve readers.
+  try {
+    await api("schema/collections/posts", "PUT", {
+      commentsModeration: "none",
+    });
+    expect(
+      (
+        await request.post(endpoint, {
+          headers: { "X-EmDash-Request": "1" },
+          data: {
+            authorName: "Reader",
+            authorEmail: email,
+            body: "Must stay closed",
+          },
+        })
+      ).status(),
+    ).toBe(503);
+  } finally {
+    await api("schema/collections/posts", "PUT", {
+      commentsModeration: "all",
+      commentsAutoApproveUsers: false,
+    });
+  }
+  expect(
+    (
+      await new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+        .analyze()
+    ).violations,
+  ).toEqual([]);
   const spam = await request.post(endpoint, {
     headers: { "X-EmDash-Request": "1" },
     data: {
@@ -353,7 +400,11 @@ test("archives, themes, accessibility and responsive navigation", async ({
     301,
   );
   expect((await request.get("/uses")).status()).toBe(410);
+  expect((await request.get("/uses/")).status()).toBe(410);
+  expect((await request.get("/categories")).status()).toBe(410);
   expect((await request.get("/tags/obsolete")).status()).toBe(410);
+  expect((await request.get("/AndyEskridgeResume.pdf")).status()).toBe(410);
+  expect((await request.get("/articles/unknown")).status()).toBe(404);
   expect((await request.get("/does-not-exist")).status()).toBe(404);
   expect((await request.get("/writing")).headers()["x-robots-tag"]).toContain(
     "noindex",
@@ -549,7 +600,7 @@ test("CMS homepage selections preserve order and project filtering", async ({
     await expect(
       page.getByRole("heading", { name: "The approach" }),
     ).toBeVisible();
-    await expect(page.locator("#comment-form")).toHaveCount(0);
+    await expect(page.locator("[data-ec-comment-form]")).toHaveCount(0);
     expect(
       (
         await new AxeBuilder({ page })

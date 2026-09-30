@@ -8,6 +8,7 @@ import {
   migrationReport,
   run,
 } from "./cloudflare";
+import { commentSettings, legacyRedirects } from "./native-cms";
 import { validateRecoveryManifest } from "./recovery-manifest";
 
 const target = environment(process.argv[2]);
@@ -57,6 +58,47 @@ if (report.pending.length && report.knownApplied.length) {
 }
 await migrationReport(target, resources, "apply");
 await migrationReport(target, resources, "check");
+// A code deploy must not remove legacy routing before the one-time native
+// configuration migration has completed on an initialized CMS.
+if (report.knownApplied.length) {
+  const state = await cfApi<{ results: Record<string, unknown>[] }[]>(
+    resources.accountId,
+    `/d1/database/${resources.databaseId}/query`,
+    "POST",
+    {
+      sql: "SELECT slug, comments_enabled, comments_moderation, comments_auto_approve_users FROM _emdash_collections",
+    },
+  );
+  const collections = state.flatMap((item) => item.results);
+  if (collections.length) {
+    for (const [slug, expected] of Object.entries(commentSettings)) {
+      const row = collections.find((item) => item.slug === slug);
+      if (
+        !row ||
+        row.comments_enabled !== Number(expected.commentsEnabled) ||
+        (slug === "posts" &&
+          (row.comments_moderation !== "all" ||
+            row.comments_auto_approve_users !== 0))
+      )
+        throw new Error(
+          "Save native comment settings with configure:cms before deployment.",
+        );
+    }
+    const redirects = await cfApi<{ results: { source: string }[] }[]>(
+      resources.accountId,
+      `/d1/database/${resources.databaseId}/query`,
+      "POST",
+      { sql: "SELECT source FROM _emdash_redirects" },
+    );
+    const sources = new Set(
+      redirects.flatMap((item) => item.results.map((rule) => rule.source)),
+    );
+    if (legacyRedirects.some((rule) => !sources.has(rule.source)))
+      throw new Error(
+        "Install native legacy redirects with configure:cms before deployment.",
+      );
+  }
+}
 await bun(["x", "wrangler", "deploy", "--env", target]);
 await migrationReport(target, resources, "check");
 const { subdomain } = await cfApi<{ subdomain: string }>(
