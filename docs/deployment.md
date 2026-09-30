@@ -2,7 +2,7 @@
 
 ## Current state
 
-The rebuild is on `codex/emdash-rebuild`. The previous application is preserved at `codex/eskridge-pre-emdash-20260929`, commit `375d0e60ccc33cfe4a4ea739ad8ab9e7d54c7ca3`. No current production resource or domain route has been changed. Cloudflare authentication and separate staging D1/R2/KV provisioning were completed on September 29, 2026. Staging resource identities are pinned in `deployment/resources.json`; owner setup, passkeys and remote restoration remain launch checks.
+The rebuild is on `codex/emdash-rebuild`. The previous application is preserved at `codex/eskridge-pre-emdash-20260929`, commit `375d0e60ccc33cfe4a4ea739ad8ab9e7d54c7ca3`. No current production resource or domain route has been changed. Staging was provisioned and deployed on September 29, 2026 at `https://eskridge-emdash-staging.eskridge.workers.dev`, with separate D1/R2/KV resources and a hostname-restricted Turnstile widget. Staging identities are pinned in `deployment/resources.json`; the ignored `deployment/release-staging.json` records the deployed application commit. Owner setup, passkeys and remote restoration remain launch checks.
 
 EmDash and its Cloudflare database/storage adapter are both pinned to 1.0.1. Astro 7 and its Cloudflare adapter use the compatible versions in `bun.lock`. The Cloudflare starter supplies the native scheduled handler, D1 sessions, R2 storage and Images binding.
 
