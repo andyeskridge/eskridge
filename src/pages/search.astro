@@ -1,0 +1,83 @@
+---
+import { search } from "emdash";
+import Base from "../layouts/Base.astro";
+import EmptyState from "../components/EmptyState.astro";
+const query = (Astro.url.searchParams.get("q") || "").trim().slice(0, 200);
+const results = query
+  ? await search(query, {
+      collections: ["posts", "projects"],
+      status: "published",
+      limit: 20,
+      cursor: Astro.url.searchParams.get("cursor") || undefined,
+    })
+  : null;
+Astro.response.headers.set("Cache-Control", "private, no-store");
+---
+
+<Base title="Search" noindex>
+  <header class="page-heading">
+    <p class="eyebrow">Follow your curiosity</p>
+    <h1>Find a thread.</h1>
+    <p>Search the writing and projects for something that interests you.</p>
+  </header>
+  <form class="search-form" method="get" action="/search" role="search">
+    <label class="sr-only" for="search-query">
+      Search writing and projects
+    </label>
+    <input
+      id="search-query"
+      name="q"
+      value={query}
+      type="search"
+      placeholder="An idea, a project, a question…"
+      maxlength="200"
+    />
+    <button class="button" type="submit">
+      Search →
+    </button>
+  </form>
+  {results ? (
+    results.items.length ? (
+      <>
+        <p style="font-size:12px;margin-bottom:20px">Results for “{query}”</p>
+        <ul class="search-results">
+          {results.items.map((item) => (
+            <li class="search-result">
+              <p class="eyebrow">
+                {item.collection === "posts" ? "Writing" : "Project"}
+              </p>
+              <h2>
+                <a
+                  href={`/${item.collection === "posts" ? "writing" : "projects"}/${encodeURIComponent(item.slug || item.id)}`}
+                >
+                  {item.title}
+                </a>
+              </h2>
+              <p>{(item.snippet || "").replace(/<[^>]*>/g, "")}</p>
+            </li>
+          ))}
+        </ul>
+        {results.nextCursor && (
+          <nav class="pagination" aria-label="Search results">
+            <a
+              class="text-link"
+              href={`/search?q=${encodeURIComponent(query)}&cursor=${encodeURIComponent(results.nextCursor)}`}
+            >
+              More results →
+            </a>
+          </nav>
+        )}
+      </>
+    ) : (
+      <EmptyState
+        title="No matching threads yet."
+        text="Try another word or explore the writing and projects directly."
+      />
+    )
+  ) : (
+    <EmptyState
+      title="What are you curious about?"
+      text="Try a topic like leadership, software, or homelab."
+    />
+  )}
+</Base>

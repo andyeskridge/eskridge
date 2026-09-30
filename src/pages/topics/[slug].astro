@@ -1,0 +1,87 @@
+---
+import {
+  decodeSlug,
+  getEmDashCollection,
+  getTaxonomyTermsWithCacheHint,
+} from "emdash";
+import Base from "../../layouts/Base.astro";
+import PostCard from "../../components/PostCard.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import EmptyState from "../../components/EmptyState.astro";
+import Pagination from "../../components/Pagination.astro";
+import { registerHints } from "../../lib/site";
+const slug = decodeSlug(Astro.params.slug);
+const topics = await getTaxonomyTermsWithCacheHint("topic", {
+  includeCounts: false,
+});
+const topic = topics.data.find((term) => term.slug === slug);
+if (!topic || !slug) return Astro.rewrite("/404");
+const [posts, projects] = await Promise.all([
+  getEmDashCollection("posts", {
+    status: "published",
+    where: { topic: slug },
+    orderBy: { published_at: "desc" },
+    limit: 10,
+    cursor: Astro.url.searchParams.get("cursor") || undefined,
+  }),
+  getEmDashCollection("projects", {
+    status: "published",
+    where: { topic: slug },
+    orderBy: { published_at: "desc" },
+    limit: 10,
+    cursor: Astro.url.searchParams.get("projects_cursor") || undefined,
+  }),
+]);
+registerHints(Astro, topics, posts, projects);
+---
+
+<Base
+  title={topic.label}
+  description={`Writing and projects about ${topic.label.toLowerCase()}.`}
+>
+  <header class="page-heading">
+    <p class="eyebrow">A thread worth following</p>
+    <h1>{topic.label}.</h1>
+    <p>Writing and work connected by a little shared curiosity.</p>
+  </header>
+  <nav class="filters" aria-label="Writing topics">
+    <a class="filter" href="/writing">
+      All writing
+    </a>
+    {topics.data.map((term) => (
+      <a
+        class="filter"
+        href={`/topics/${term.slug}`}
+        aria-current={term.slug === slug ? "page" : undefined}
+      >
+        {term.label}
+      </a>
+    ))}
+  </nav>
+  {posts.entries.length
+    ? posts.entries.map((post) => <PostCard post={post} />)
+    : !projects.entries.length && (
+        <EmptyState
+          title="More to come."
+          text="There’s room for new ideas here. Check back for writing and projects on this topic."
+        />
+      )}
+  <Pagination base={`/topics/${slug}`} nextCursor={posts.nextCursor} />
+  {projects.entries.length > 0 && (
+    <section class="section">
+      <div class="section-heading">
+        <h2>Related projects</h2>
+      </div>
+      <div class="project-grid">
+        {projects.entries.map((project, index) => (
+          <ProjectCard project={project} index={index} />
+        ))}
+      </div>
+      <Pagination
+        base={`/topics/${slug}`}
+        cursorKey="projects_cursor"
+        nextCursor={projects.nextCursor}
+      />
+    </section>
+  )}
+</Base>

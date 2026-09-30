@@ -1,0 +1,46 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="Privacy"
+  description="How comments and visitor data are handled on this personal site."
+>
+  <header class="page-heading">
+    <p class="eyebrow">A little transparency</p>
+    <h1>Your privacy matters.</h1>
+    <p>
+      This is a personal site. Here’s what happens when you visit or leave a
+      comment.
+    </p>
+  </header>
+  <div class="prose">
+    <h2>Reading the site</h2>
+    <p>
+      The site uses Cloudflare to deliver pages and media. Cloudflare processes
+      request information for delivery, security, and operational logs. There
+      are no advertising trackers or third-party analytics installed.
+    </p>
+    <p>
+      Your color theme preference is saved in your browser. Administrator
+      sessions use cookies; reading public content does not require an account.
+    </p>
+    <h2>Leaving a comment</h2>
+    <p>
+      Your display name and approved comment are public. Your email address is
+      private, accessible only for site administration and comment moderation.
+      Comments also store a site-specific hash of your IP address and browser
+      request information for rate limiting and abuse handling.
+    </p>
+    <p>
+      Cloudflare Turnstile is used to verify comment submissions. No comment
+      becomes public until it is reviewed. Comment data remains until the
+      comment is removed by the site owner.
+    </p>
+    <h2>Questions or removal requests</h2>
+    <p>
+      Use the contact links on the About page to ask about a comment or request
+      its removal.
+    </p>
+  </div>
+</Base>

@@ -1,58 +1,67 @@
 {
   "name": "eskridge",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22.16"
+  },
+  "emdash": {
+    "label": "Andy Eskridge",
+    "seed": "seed/seed.json"
+  },
   "scripts": {
-    "build:worker": "opennextjs-cloudflare build",
-    "build": "tinacms build && next build",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "dev:worker": "opennextjs-cloudflare preview -- --port 8771 --ip 0.0.0.0",
-    "dev:worker:e2e": "node scripts/wrangler-e2e-server.mjs",
-    "dev": "tinacms dev -c \"next dev\"",
-    "pree2e": "node scripts/playwright-docker.mjs",
-    "e2e": "playwright test -c e2e/playwright.config.ts",
-    "lint:ci": "biome ci",
-    "lint": "biome check",
-    "populate:local": "opennextjs-cloudflare populateCache local",
-    "populate:remote": "opennextjs-cloudflare populateCache remote",
-    "preview:worker": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "start": "tinacms build && next start",
-    "tina:build": "tinacms build"
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "preview": "wrangler dev --persist-to .wrangler/state",
+    "typecheck": "astro check",
+    "lint": "biome check .",
+    "lint:ci": "biome ci . && prettier --check 'src/**/*.astro'",
+    "format": "prettier --write 'src/**/*.astro' && biome check --write .",
+    "test": "bun test tests",
+    "e2e": "playwright test",
+    "cf-typegen": "wrangler types",
+    "seed:validate": "bun scripts/validate-seed.ts",
+    "deploy:staging": "bun scripts/deploy.ts staging",
+    "deploy:production": "bun scripts/deploy.ts production",
+    "backup": "bun scripts/backup.ts"
   },
   "dependencies": {
-    "@headlessui/react": "2.2.10",
-    "clsx": "2.1.1",
-    "feed": "6.0.0",
-    "next": "16.3.7",
-    "next-themes": "0.4.6",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
-    "tinacms": "3.11.0"
+    "@astrojs/cloudflare": "14.3.1",
+    "@astrojs/react": "6.0.5",
+    "@emdash-cms/cloudflare": "1.0.1",
+    "@fontsource-variable/inter": "5.3.0",
+    "@fontsource-variable/source-serif-4": "5.3.0",
+    "astro": "7.3.2",
+    "emdash": "1.0.1",
+    "picomatch": "4.0.5",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@aws-sdk/client-s3": "3.1143.0",
+    "@axe-core/playwright": "4.13.0",
     "@biomejs/biome": "2.5.14",
-    "@opennextjs/cloudflare": "1.20.7",
+    "@cloudflare/workers-types": "5.20260820.1",
     "@playwright/test": "1.63.0",
-    "@tailwindcss/postcss": "4.3.3",
-    "@tailwindcss/typography": "0.5.20",
-    "@tinacms/cli": "2.5.6",
+    "@types/bun": "1.4.2",
     "@types/node": "26.6.3",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "postcss": "8.5.28",
-    "tailwindcss": "4.3.3",
+    "jsonc-parser": "3.3.1",
+    "prettier": "3.9.9",
+    "prettier-plugin-astro": "1.1.0",
     "typescript": "6.0.3",
-    "ultracite": "7.8.4",
-    "wrangler": "4.144.0"
-  },
-  "overrides": {
-    "@types/react": "19.3.0",
-    "@types/react-dom": "19.3.0"
+    "wrangler": "4.143.0"
   },
   "trustedDependencies": [
     "@biomejs/biome",
-    "@tailwindcss/oxide"
-  ]
+    "esbuild",
+    "sharp",
+    "workerd"
+  ],
+  "patchedDependencies": {
+    "emdash@1.0.1": "patches/emdash@1.0.1.patch"
+  }
 }

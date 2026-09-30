@@ -1,8 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
+  "extends": ["config:recommended"],
   "fetchChangeLogs": "pr",
   "lockFileMaintenance": {
     "enabled": true,
@@ -10,9 +8,7 @@
     "rebaseWhen": "behind-base-branch",
     "branchTopic": "lock-file-maintenance",
     "commitMessageAction": "Lock file maintenance",
-    "schedule": [
-      "before 5am on monday"
-    ],
+    "schedule": ["before 5am on monday"],
     "prBodyDefinitions": {
       "Change": "All locks refreshed"
     }
@@ -21,20 +17,13 @@
   "rangeStrategy": "pin",
   "packageRules": [
     {
-      "groupName": "tinacms packages",
-      "matchPackageNames": [
-        "tinacms{/,}**",
-        "@tinacms{/,}**"
-      ]
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
     },
     {
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ],
-      "automerge": true
+      "groupName": "EmDash CMS",
+      "matchPackageNames": ["emdash", "@emdash-cms/**"],
+      "automerge": false
     }
   ]
 }

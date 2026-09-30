@@ -1,0 +1,25 @@
+# Recovery runbook
+
+EmDash JSON export is useful for moving editorial content; it is insufficient for disaster recovery. Preserve raw D1 SQL, matching R2 objects and their metadata, the encryption key, application commit and lockfile, migration manifest, resource identities and deployment version together.
+
+## Before schema changes or upgrades
+
+1. Work from the clean commit identified by `deployment/release-ENV.json`. Record the deployed Worker version using `bunx wrangler deployments list --env ENV`.
+2. Pause writes by setting runtime secret `SITE_READ_ONLY` to `1` on that Worker. Its middleware rejects publication, uploads, administration mutations and comment submissions. Verify `/health.json` reports `readOnly: true`; do not rely on a reminder alone. The scheduled handler also skips maintenance while this flag is set, so scheduled publishing cannot race the snapshot.
+3. Set private `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `ENCRYPTION_KEY_FILE` (the matching key escrow file) and optional `BACKUP_DIRECTORY` outside the repository. Verify the escrowed key matches the deployed key and set `KEY_ESCROW_VERIFIED=1`. Run `bun run backup ENV`. The script captures raw D1 schema and exact SQL values (including FTS definitions, rowids and index data), copies every paginated R2 object, preserves object metadata, hashes SQL/media, copies the private encryption key, locked application and migration manifest, and writes a complete manifest only after all steps succeed.
+4. Transfer the snapshot to encrypted off-machine storage with restricted access. It contains identities, private comment email, credentials and draft content. `.recovery` is ignored by Git. Retain the deployment ID alongside the snapshot. Confirm the escrowed key matches the deployed secret; Cloudflare does not return secret values.
+5. Resume the cron and clear `SITE_READ_ONLY` only after the snapshot succeeds. For a migration, keep writes paused until migration and health checks complete. Set `RECOVERY_MANIFEST` to the matching fresh backup manifest before the deployment script applies a schema change. Never run parallel migrations; EmDash's database lock and CI concurrency are both required.
+
+## Restoration rehearsal
+
+1. Create a fresh D1 and R2 bucket with names beginning `eskridge-emdash-restore-`, plus a separate KV namespace and Worker. Keep this environment noindex and separate from production/staging IDs.
+2. Set `RESTORE_DATABASE_ID`, `RESTORE_MEDIA_BUCKET`, account/API credentials and R2 S3 credentials. Run `bun scripts/restore.ts ABSOLUTE-PATH-TO-manifest.json`. It rejects the source resources, non-restoration names and nonempty D1 databases or R2 buckets, verifies SQL/media checksums, imports SQL, restores R2 metadata and reads each object back to verify it.
+3. Extract `application.tar`, install the saved `bun.lock`, bind the isolated resources and set the saved encryption key on the isolated Worker. Build the **saved application version**, not current `main`. Core migration mode stays `check`. Check migration history and `PRAGMA integrity_check` results.
+4. Verify published pages, private drafts, revisions, ordered references, approved/pending comment separation, private email, uploaded media and encryption-dependent settings. Passkeys are domain-bound: do not expect production passkeys to authenticate on a recovery domain. Use a controlled recovery administrator procedure, never expose development bypass on a deployed Worker.
+5. Record the rehearsal date, database/media counts, checksum results and verified behavior in a private recovery report. Remote restoration is a required launch check and has not been claimed complete merely because these scripts exist.
+
+## Rollback
+
+Before cutover, the existing site remains the rollback deployment. After cutover, switch the custom domain back to the recorded previous Worker/deployment if the rebuild fails. Preserve the new environment for diagnosis.
+
+For an EmDash upgrade with compatible schemas, deploy the recorded prior Worker version and verify it checks the database successfully. If the prior application cannot use the upgraded schema, restore the complete pre-upgrade SQL/media/key snapshot into isolated replacement resources, bind the matching application, verify it, then switch traffic. Do not attempt a code-only rollback across incompatible schema versions or restore production in place without first proving the recovery copy.
