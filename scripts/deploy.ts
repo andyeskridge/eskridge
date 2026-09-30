@@ -71,16 +71,28 @@ const { subdomain } = await cfApi<{ subdomain: string }>(
   resources.accountId,
   "/workers/subdomain",
 );
-const health = await fetch(
-  `https://${resources.worker}.${subdomain}.workers.dev/writing`,
-  { redirect: "manual", signal: AbortSignal.timeout(30000) },
-);
+const healthUrl = `https://${resources.worker}.${subdomain}.workers.dev/writing`;
+let health: Response | undefined;
+for (let attempt = 1; attempt <= 6; attempt++) {
+  health = await fetch(healthUrl, {
+    redirect: "manual",
+    signal: AbortSignal.timeout(30000),
+  });
+  if (![404, 502, 503, 504].includes(health.status) || attempt === 6) break;
+  await health.body?.cancel();
+  console.log(
+    `Deployment route returned HTTP ${health.status}; checking again in 10 seconds (${attempt}/6).`,
+  );
+  await Bun.sleep(10000);
+}
 if (
-  health.status !== 200 ||
+  health?.status !== 200 ||
   (target === "staging" &&
     !health.headers.get("X-Robots-Tag")?.includes("noindex"))
 )
-  throw new Error("Deployment health check failed; consult recovery runbook.");
+  throw new Error(
+    `Deployment health check failed (HTTP ${health?.status ?? "unavailable"}); consult recovery runbook.`,
+  );
 console.log(`${target} deployed and checked: ${resources.siteUrl}`);
 await writeFile(
   `deployment/release-${target}.json`,
