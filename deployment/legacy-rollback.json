@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-09-30T01:24:18.209Z",
+  "recordedAt": "2026-09-30T03:22:39.261Z",
   "accountId": "4d0ec73da1296e7dcc788788effc7d43",
   "domain": {
     "id": "dd694f3bd760ee366d50a3f91095f372d3ae2696",
@@ -22,5 +22,8 @@
   ],
   "legacyBranch": "codex/eskridge-pre-emdash-latest-20260929",
   "legacyCommit": "6bc6e1869c040b3eab117756cad6e69106521a14",
-  "retainDaysAfterCutover": 30
+  "retainDaysAfterCutover": 30,
+  "cutoverAt": "2026-09-30T03:22:46.768Z",
+  "newWorker": "eskridge-emdash-production",
+  "retainUntil": "2026-10-29"
 }
