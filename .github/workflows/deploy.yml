@@ -29,8 +29,6 @@ jobs:
       EMDASH_D1_TARGET_FINGERPRINT: ${{ vars.EMDASH_D1_TARGET_FINGERPRINT }}
     steps:
       - uses: actions/checkout@v7.0.1
-        with:
-          fetch-depth: 2
       - uses: oven-sh/setup-bun@v2.2.0
         with:
           bun-version: 1.4.2
