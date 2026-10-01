@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import { parse } from "jsonc-parser";
 import {
@@ -10,6 +11,8 @@ import {
 } from "./cloudflare";
 import { commentSettings, legacyRedirects } from "./native-cms";
 import { validateRecoveryManifest } from "./recovery-manifest";
+import { allowsUpgrade1903WithoutBackup } from "./upgrade-1903-waiver";
+import { verifyLive } from "./verify-live";
 
 const target = environment(process.argv[2]);
 if (target === "production") {
@@ -46,14 +49,33 @@ await bun(["run", "build"], {
 const report = await migrationReport(target, resources, "status");
 if (report.pending.length && report.knownApplied.length) {
   const backupPath = process.env.RECOVERY_MANIFEST;
-  if (!backupPath)
+  if (backupPath) {
+    const backup = JSON.parse(await readFile(backupPath, "utf8"));
+    validateRecoveryManifest(backup, resources);
+  } else if (
+    allowsUpgrade1903WithoutBackup({
+      target,
+      resources,
+      report,
+      parentCommit: (await run(["git", "rev-parse", "HEAD^"], {}, true)).trim(),
+      lockSha256: createHash("sha256")
+        .update(await readFile("bun.lock"))
+        .digest("hex"),
+      event: process.env.GITHUB_EVENT_NAME,
+      repository: process.env.GITHUB_REPOSITORY,
+    })
+  ) {
+    console.warn(
+      "PR #1903: owner-authorized one-time backup waiver for migrations 090–091. No guaranteed data restore is available. Remove this exception after successful deployment.",
+    );
+  } else {
     throw new Error(
       "Schema changes require RECOVERY_MANIFEST from a matching SQL/media/key backup.",
     );
-  const backup = JSON.parse(await readFile(backupPath, "utf8"));
-  validateRecoveryManifest(backup, resources);
+  }
 }
-await migrationReport(target, resources, "apply");
+const applied = await migrationReport(target, resources, "apply");
+console.log(`Migrations applied: ${applied.executed.join(", ") || "none"}`);
 await migrationReport(target, resources, "check");
 // A code deploy must not remove legacy routing before the one-time native
 // configuration migration has completed on an initialized CMS.
@@ -125,6 +147,7 @@ if (
     `Deployment health check failed (HTTP ${health?.status ?? "unavailable"}); consult recovery runbook.`,
   );
 console.log(`${target} deployed and checked: ${resources.siteUrl}`);
+if (target === "production") await verifyLive(resources);
 await writeFile(
   `deployment/release-${target}.json`,
   JSON.stringify(

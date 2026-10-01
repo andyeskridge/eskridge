@@ -78,13 +78,18 @@ missing configuration. The compiled regression uses only synthetic tokens and an
 intercepted Siteverify boundary; it does not solve a CAPTCHA, create a widget, or
 replace the outstanding real-reader launch exercise.
 
-This upgrade remains **blocked on the production recovery handoff**. Core
-migrations 089–091 add seed-completion state, a redirect loop guard and redirect
-artifact tables/triggers. Before merging, arrange a matching recent SQL/media/key
-recovery snapshot and an explicit `RECOVERY_MANIFEST` handoff to the production
-runner. The current workflow supplies no manifest, so its schema guard will stop
-before applying these migrations to an initialized database. Do not bypass that
-guard or reseed a live CMS.
+The owner explicitly accepted a one-time upgrade without a backup on 2026-10-01:
+“I’m good to do the upgrade without a backup for now.” There is no guaranteed
+way to restore existing data if this migration fails. Production already has
+089 applied; the remaining SQLite migrations 090–091 add a redirect-enable loop
+guard and redirect artifact tables/triggers without deleting user content.
+`scripts/upgrade-1903-waiver.ts` permits only this production target, the pinned
+lockfile, exactly those two pending migrations, and the push immediately after
+main commit `38a174b`, expiring 2026-10-02 at 21:00 UTC. Existing target/history/
+lock checks remain mandatory. Remove the exception immediately after successful
+deployment; every future schema change still requires a matching fresh backup.
+The deployment verifies live pages/health and rejects missing/invalid comment
+tokens with a nonexistent parent as a second safeguard against persistence.
 
 The reply/action and retired-PDF adapters remain: 1.1.0's native form still has
 no action prop or reply controls. The draft-only policy and topic pagination
