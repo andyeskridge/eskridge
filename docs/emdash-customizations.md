@@ -83,11 +83,12 @@ The owner explicitly accepted a one-time upgrade without a backup on 2026-10-01:
 way to restore existing data if this migration fails. Production already has
 089 applied; the remaining SQLite migrations 090–091 add a redirect-enable loop
 guard and redirect artifact tables/triggers without deleting user content.
-`scripts/upgrade-1903-waiver.ts` permits only this production target, the pinned
-lockfile, exactly those two pending migrations, and the push immediately after
-main commit `38a174b`, expiring 2026-10-02 at 21:00 UTC. Existing target/history/
-lock checks remain mandatory. Remove the exception immediately after successful
-deployment; every future schema change still requires a matching fresh backup.
+The temporary waiver in PR #1903 was limited to this production target, the
+pinned lockfile, exactly those two pending migrations, and the push immediately
+after main commit `38a174b`, with a 24-hour expiry. Its executable exception is
+removed by this follow-up; the normal fresh-backup requirement applies to every
+future schema change. The owner's acceptance did not authorize deletion or
+replacement of user data. No backup was created for this upgrade.
 The deployment verifies live pages/health and rejects missing/invalid comment
 tokens with a nonexistent parent as a second safeguard against persistence.
 
