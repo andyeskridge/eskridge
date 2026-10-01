@@ -62,3 +62,31 @@ Run seed validation, audit, formatting, type checks, unit tests, build and brows
 acceptance against isolated local/staging data. Complete runtime Turnstile
 verification before replacing its adapter. Preserve owner setup protection,
 private previews/indexing policy and write-paused backup/scheduler behavior.
+
+## EmDash 1.1.0 upgrade review (October 1, 2026)
+
+The upgrade branch ports the published-reference patch to 1.1.0. Upstream still
+omits the published baseline in `recordPublishedReferences`; the unpatched
+upgrade fails the mobile homepage-selection regression with three references
+where the field allows two. The patch changes both the shipped runtime chunk
+and its TypeScript source, and replaces the obsolete 1.0.1 patch registration.
+
+This upgrade is **not ready for production**, even if the development checks pass:
+
+- Native comment verification now reads `process.env` at runtime. With
+  `nodejs_compat` and the deployed runtime secret, the existing middleware and
+  native handler both validate the same single-use Turnstile token. Build-time
+  masking no longer prevents the second validation. Complete the single-verifier
+  migration while retaining fail-closed missing-secret handling and hostname/action
+  binding, and test a compiled Worker with valid, invalid, missing and reused
+  tokens before merging. The development browser suite cannot establish this.
+- Core migrations 089–091 add seed-completion state, a redirect loop guard and
+  redirect artifact tables/triggers. Before merging, arrange the matching recent
+  SQL/media/key recovery snapshot and an explicit `RECOVERY_MANIFEST` handoff to
+  the production runner. The current workflow supplies no manifest, so its schema
+  guard will stop before applying these migrations to an initialized database.
+  Do not bypass that guard or reseed a live CMS.
+
+The reply/action and retired-PDF adapters remain: 1.1.0's native form still has
+no action prop or reply controls. The draft-only policy and topic pagination
+findings from the prior audit are unchanged by this dependency upgrade.

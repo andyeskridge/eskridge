@@ -1,8 +1,8 @@
-diff --git a/dist/api-BBZlif0y.mjs b/dist/api-BBZlif0y.mjs
-index 46689d8013572ada54c91dfa0ee14f34ee11d83d..32c3466bfe04e0ecd95f8236ac00760b562c8b89 100644
---- a/dist/api-BBZlif0y.mjs
-+++ b/dist/api-BBZlif0y.mjs
-@@ -194,7 +194,7 @@ function applyReferenceDiff(baseline, staged, live) {
+diff --git a/dist/api-CltsXhiX.mjs b/dist/api-CltsXhiX.mjs
+index 698e0e8ebf864e0fbe84c8d41c2b63959f81d4c2..cf36cef56fd1c7da2e2cb8d412c72f1149cde556 100644
+--- a/dist/api-CltsXhiX.mjs
++++ b/dist/api-CltsXhiX.mjs
+@@ -195,7 +195,7 @@ function applyReferenceDiff(baseline, staged, live) {
  async function recordPublishedReferences(db, collection, revisionId, entryGroup) {
  	const selection = await liveReferenceSelection(db, collection, entryGroup);
  	if (Object.keys(selection).length === 0) return;

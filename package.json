@@ -72,6 +72,6 @@
     "qs": "6.16.0"
   },
   "patchedDependencies": {
-    "emdash@1.0.1": "patches/emdash@1.0.1.patch"
+    "emdash@1.1.0": "patches/emdash@1.1.0.patch"
   }
 }
