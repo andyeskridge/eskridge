@@ -45,9 +45,9 @@ and removal condition here. Prefer public APIs, settings and components first.
 
 | Exception | Reason | Regression and removal condition |
 | --- | --- | --- |
-| Published-reference patch | 1.0.1 can restore a stale project reference baseline when a seeded homepage is unpublished, changed and republished. Recording the published selection as its baseline preserves ordering and the two-project limit without a schema change. | The homepage browser test publishes/unpublishes/replaces/reorders selections and checks draft isolation. Remove the patch when a released package passes this sequence unpatched. The installed version and upstream main still contain the [affected implementation](https://github.com/emdash-cms/emdash/blob/main/packages/core/src/api/handlers/staged-references.ts). |
-| Runtime Turnstile verifier | Published 1.0.1 reads `import.meta.env`, which Vite substitutes at build time. Our verifier reads the deployed Worker secret, verifies hostname/action and fails closed. Builds clear both secret aliases so tokens are verified once and secrets cannot enter the bundle. | Unit tests cover incorrect hostname/action, missing keys/tokens and transport failures. Upstream [fixed runtime reads](https://github.com/emdash-cms/emdash/commit/0b9426e1bffa435f40388bb4864acd8d0d5bc989). Adopt its published release, test a compiled Worker with only runtime secrets for valid, invalid, missing and reused tokens, then remove the verifier and build-time masking together. |
-| Reply/action adapter | 1.0.1 renders threads and accepts `parentId`, but lacks reply/cancel controls and a Turnstile action prop. Our wrapper connects these without duplicating submission. | Browser coverage submits a native-form reply, cancels reply mode and checks threading/safe input. Remove each adapter when native components provide its behavior. |
+| Published-reference patch | 1.1.0 can restore a stale project reference baseline when a seeded homepage is unpublished, changed and republished. Recording the published selection as its baseline preserves ordering and the two-project limit without a schema change. | The homepage browser test publishes/unpublishes/replaces/reorders selections and checks draft isolation. Remove the patch when a released package passes this sequence unpatched. The installed version and upstream main still contain the [affected implementation](https://github.com/emdash-cms/emdash/blob/main/packages/core/src/api/handlers/staged-references.ts). |
+| Native Turnstile binding patch | 1.1.0 correctly reads runtime secrets but only checks Siteverify's success flag. The patch passes the request hostname into the native verifier and requires that hostname, the `comment` action, and a successful HTTP response. Production middleware requires the same runtime secret aliases and site key; it never verifies or consumes the token itself. The former custom verifier and build-time secret masking are removed together. | Unit tests exercise source and shipped runtime code. `bun run test:runtime` uses the actual compiled Worker in production mode with a disposable copy of e2e data and intercepted Siteverify responses: exactly one validation, replay/host/action rejection, malformed/unavailable/HTTP-error rejection, missing token/secret/site-key denial, both secret aliases, and pending moderation. Remove this patch when native EmDash offers these hostname/action constraints. |
+| Reply/action adapter | 1.1.0 renders threads and accepts `parentId`, but lacks reply/cancel controls and a Turnstile action prop. Our wrapper connects these without duplicating submission. | Browser coverage submits a native-form reply, cancels reply mode and checks threading/safe input. Remove each adapter when native components provide its behavior. |
 | Draft-only REST/MCP policy | Native token scopes combine editing, publication and deletion. A Contributor cannot edit even its own existing content; Author/Editor roles include publishing/deleting. Our workflow permits drafting on existing owner entries while reserving publication/deletion/schema changes for the owner. | REST/MCP tests verify permitted editing and rejected publishing, unpublishing, deletion and schema mutation. Replace the policy when native permissions separate these actions for the same ownership workflow. See [native permissions](https://github.com/emdash-cms/emdash/blob/emdash%401.0.1/packages/auth/src/rbac.ts). |
 | Retired PDF adapter | Native redirect middleware skips file-extension paths, including `/AndyEskridgeResume.pdf`. | Browser checks require `410` for that file. Move it to a native terminal rule when a released version handles file URLs. |
 
@@ -71,21 +71,20 @@ upgrade fails the mobile homepage-selection regression with three references
 where the field allows two. The patch changes both the shipped runtime chunk
 and its TypeScript source, and replaces the obsolete 1.0.1 patch registration.
 
-This upgrade is **not ready for production**, even if the development checks pass:
+The Turnstile double-verification blocker is fixed: native EmDash is the only
+verifier, with hostname/action binding retained by the package patch. Production
+middleware reads the same runtime secret aliases as native EmDash and rejects
+missing configuration. The compiled regression uses only synthetic tokens and an
+intercepted Siteverify boundary; it does not solve a CAPTCHA, create a widget, or
+replace the outstanding real-reader launch exercise.
 
-- Native comment verification now reads `process.env` at runtime. With
-  `nodejs_compat` and the deployed runtime secret, the existing middleware and
-  native handler both validate the same single-use Turnstile token. Build-time
-  masking no longer prevents the second validation. Complete the single-verifier
-  migration while retaining fail-closed missing-secret handling and hostname/action
-  binding, and test a compiled Worker with valid, invalid, missing and reused
-  tokens before merging. The development browser suite cannot establish this.
-- Core migrations 089–091 add seed-completion state, a redirect loop guard and
-  redirect artifact tables/triggers. Before merging, arrange the matching recent
-  SQL/media/key recovery snapshot and an explicit `RECOVERY_MANIFEST` handoff to
-  the production runner. The current workflow supplies no manifest, so its schema
-  guard will stop before applying these migrations to an initialized database.
-  Do not bypass that guard or reseed a live CMS.
+This upgrade remains **blocked on the production recovery handoff**. Core
+migrations 089–091 add seed-completion state, a redirect loop guard and redirect
+artifact tables/triggers. Before merging, arrange a matching recent SQL/media/key
+recovery snapshot and an explicit `RECOVERY_MANIFEST` handoff to the production
+runner. The current workflow supplies no manifest, so its schema guard will stop
+before applying these migrations to an initialized database. Do not bypass that
+guard or reseed a live CMS.
 
 The reply/action and retired-PDF adapters remain: 1.1.0's native form still has
 no action prop or reply controls. The draft-only policy and topic pagination

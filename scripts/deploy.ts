@@ -39,12 +39,9 @@ for (const name of [
 const config = parse(await readFile("wrangler.jsonc", "utf8"));
 if (!config.env[target].vars.TURNSTILE_SITE_KEY)
   throw new Error("Configure the environment's public TURNSTILE_SITE_KEY.");
-// Never embed the challenge secret in Vite's import.meta.env replacement.
 await bun(["run", "build"], {
   CLOUDFLARE_ENV: target,
   SITE_URL: resources.siteUrl,
-  TURNSTILE_SECRET_KEY: "",
-  EMDASH_TURNSTILE_SECRET_KEY: "",
 });
 const report = await migrationReport(target, resources, "status");
 if (report.pending.length && report.knownApplied.length) {

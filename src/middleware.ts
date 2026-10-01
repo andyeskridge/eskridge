@@ -2,11 +2,7 @@ import { defineMiddleware } from "astro:middleware";
 import { env } from "cloudflare:workers";
 import type { APIContext, MiddlewareNext } from "astro";
 import { getCollectionInfo } from "emdash";
-import {
-  isAllowedAgentMessage,
-  isDraftWrite,
-  verifyCommentChallenge,
-} from "./lib/security";
+import { isAllowedAgentMessage, isDraftWrite } from "./lib/security";
 import { isPublicSite, siteEnvironment } from "./lib/site";
 
 async function handleRequest(
@@ -116,32 +112,19 @@ async function handleRequest(
     if (!/^\/_emdash\/api\/comments\/posts\/[^/]+$/.test(path))
       return new Response("Not found", { status: 404 });
     if (siteEnvironment() !== "development") {
-      const secret = settings.TURNSTILE_SECRET_KEY;
+      // Match native EmDash's runtime-only secret resolution. Native submission
+      // verifies the single-use token; middleware must never consume it first.
+      const secret =
+        process.env.EMDASH_TURNSTILE_SECRET_KEY ||
+        process.env.TURNSTILE_SECRET_KEY;
       if (!secret || !settings.TURNSTILE_SITE_KEY)
         return Response.json(
           { error: { message: "Comments are temporarily unavailable." } },
           { status: 503 },
         );
-      let token: unknown;
-      try {
-        token = (
-          (await context.request.clone().json()) as { turnstileToken?: unknown }
-        ).turnstileToken;
-      } catch {
-        /* Native API will validate the body after challenge verification. */
-      }
-      if (!(await verifyCommentChallenge(token, secret, context.url.hostname)))
-        return Response.json(
-          {
-            error: {
-              message: "Please complete the verification and try again.",
-            },
-          },
-          { status: 403 },
-        );
     }
   }
-  // EmDash 1.0.1 skips file extensions in redirect middleware. Keep this one
+  // EmDash 1.1.0 skips file extensions in redirect middleware. Keep this one
   // retired file until native terminal rules also handle file URLs.
   if (path === "/AndyEskridgeResume.pdf") return context.rewrite("/gone");
   return next();
