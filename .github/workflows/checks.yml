@@ -24,9 +24,16 @@ jobs:
       - run: bun run typecheck
       - run: bun run test
       - run: bun run build
+        env:
+          TURNSTILE_SECRET_KEY: build-only-turnstile-sentinel
+          EMDASH_TURNSTILE_SECRET_KEY: build-only-emdash-turnstile-sentinel
       - run: bunx playwright install --with-deps chromium
       - name: Local browser acceptance
         run: bun run e2e
+        env:
+          EMDASH_ENCRYPTION_KEY: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+      - name: Compiled production comment regression
+        run: bun run test:runtime
         env:
           EMDASH_ENCRYPTION_KEY: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
       - uses: actions/upload-artifact@v7.0.1

@@ -1,9 +1,3 @@
-export interface ChallengeResult {
-  success?: boolean;
-  hostname?: string;
-  action?: string;
-}
-
 const agentTools = new Set([
   "content_list",
   "content_get",
@@ -49,33 +43,4 @@ export function isAllowedAgentMessage(body: unknown): boolean {
       message.params.name === "content_create",
     )
   );
-}
-
-export async function verifyCommentChallenge(
-  token: unknown,
-  secret: string,
-  hostname: string,
-  fetcher: (input: string, init: RequestInit) => Promise<Response> = fetch,
-): Promise<boolean> {
-  if (typeof token !== "string" || !token || !secret) return false;
-  try {
-    const response = await fetcher(
-      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ secret, response: token }),
-        signal: AbortSignal.timeout(10000),
-      },
-    );
-    const result = (await response.json()) as ChallengeResult;
-    return (
-      response.ok &&
-      result.success === true &&
-      result.hostname === hostname &&
-      result.action === "comment"
-    );
-  } catch {
-    return false;
-  }
 }
