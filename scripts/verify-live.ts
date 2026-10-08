@@ -20,7 +20,7 @@ export async function verifyLive(resources: Resources) {
     environment: string;
     readOnly: boolean;
   };
-  assert.equal(health.application, "emdash@1.1.0");
+  assert.equal(health.application, "emdash@1.2.0");
   assert.equal(health.environment, "production");
   assert.equal(health.readOnly, false);
 

@@ -75,6 +75,6 @@
     "sharp": "0.35.5"
   },
   "patchedDependencies": {
-    "emdash@1.1.0": "patches/emdash@1.1.0.patch"
+    "emdash@1.2.0": "patches/emdash@1.2.0.patch"
   }
 }

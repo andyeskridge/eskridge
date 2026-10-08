@@ -138,7 +138,7 @@ try {
   const health = await mf.dispatchFetch(`${origin}/health.json`);
   const healthState = await health.json();
   assert.equal(healthState.environment, "production");
-  assert.equal(healthState.application, "emdash@1.1.0");
+  assert.equal(healthState.application, "emdash@1.2.0");
   const valid = await submit("single-use");
   assert.equal(valid.status, 201, await valid.clone().text());
   assert.equal((await valid.json()).data.status, "pending");

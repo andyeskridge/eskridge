@@ -45,9 +45,9 @@ and removal condition here. Prefer public APIs, settings and components first.
 
 | Exception | Reason | Regression and removal condition |
 | --- | --- | --- |
-| Published-reference patch | 1.1.0 can restore a stale project reference baseline when a seeded homepage is unpublished, changed and republished. Recording the published selection as its baseline preserves ordering and the two-project limit without a schema change. | The homepage browser test publishes/unpublishes/replaces/reorders selections and checks draft isolation. Remove the patch when a released package passes this sequence unpatched. The installed version and upstream main still contain the [affected implementation](https://github.com/emdash-cms/emdash/blob/main/packages/core/src/api/handlers/staged-references.ts). |
-| Native Turnstile binding patch | 1.1.0 correctly reads runtime secrets but only checks Siteverify's success flag. The patch passes the request hostname into the native verifier and requires that hostname, the `comment` action, and a successful HTTP response. Production middleware requires the same runtime secret aliases and site key; it never verifies or consumes the token itself. The former custom verifier and build-time secret masking are removed together. | Unit tests exercise source and shipped runtime code. `bun run test:runtime` uses the actual compiled Worker in production mode with a disposable copy of e2e data and intercepted Siteverify responses: exactly one validation, replay/host/action rejection, malformed/unavailable/HTTP-error rejection, missing token/secret/site-key denial, both secret aliases, and pending moderation. Remove this patch when native EmDash offers these hostname/action constraints. |
-| Reply/action adapter | 1.1.0 renders threads and accepts `parentId`, but lacks reply/cancel controls and a Turnstile action prop. Our wrapper connects these without duplicating submission. | Browser coverage submits a native-form reply, cancels reply mode and checks threading/safe input. Remove each adapter when native components provide its behavior. |
+| Published-reference patch | 1.2.0 can restore a stale project reference baseline when a seeded homepage is unpublished, changed and republished. Recording the published selection as its baseline preserves ordering and the two-project limit without a schema change. | The homepage browser test publishes/unpublishes/replaces/reorders selections and checks draft isolation. Remove the patch when a released package passes this sequence unpatched. The released 1.2.0 package still contains the affected `recordPublishedReferences` implementation. |
+| Native Turnstile binding patch | 1.2.0 correctly reads runtime secrets but only checks Siteverify's success flag. The patch passes the request hostname into the native verifier and requires that hostname, the `comment` action, and a successful HTTP response. Production middleware requires the same runtime secret aliases and site key; it never verifies or consumes the token itself. The former custom verifier and build-time secret masking are removed together. | Unit tests exercise source and shipped runtime code. `bun run test:runtime` uses the actual compiled Worker in production mode with a disposable copy of e2e data and intercepted Siteverify responses: exactly one validation, replay/host/action rejection, malformed/unavailable/HTTP-error rejection, missing token/secret/site-key denial, both secret aliases, and pending moderation. Remove this patch when native EmDash offers these hostname/action constraints. |
+| Reply/action adapter | 1.2.0 renders threads and accepts `parentId`, but lacks reply/cancel controls and a Turnstile action prop. Our wrapper connects these without duplicating submission. | Browser coverage submits a native-form reply, cancels reply mode and checks threading/safe input. Remove each adapter when native components provide its behavior. |
 | Draft-only REST/MCP policy | Native token scopes combine editing, publication and deletion. A Contributor cannot edit even its own existing content; Author/Editor roles include publishing/deleting. Our workflow permits drafting on existing owner entries while reserving publication/deletion/schema changes for the owner. | REST/MCP tests verify permitted editing and rejected publishing, unpublishing, deletion and schema mutation. Replace the policy when native permissions separate these actions for the same ownership workflow. See [native permissions](https://github.com/emdash-cms/emdash/blob/emdash%401.0.1/packages/auth/src/rbac.ts). |
 | Retired PDF adapter | Native redirect middleware skips file-extension paths, including `/AndyEskridgeResume.pdf`. | Browser checks require `410` for that file. Move it to a native terminal rule when a released version handles file URLs. |
 
@@ -95,3 +95,26 @@ tokens with a nonexistent parent as a second safeguard against persistence.
 The reply/action and retired-PDF adapters remain: 1.1.0's native form still has
 no action prop or reply controls. The draft-only policy and topic pagination
 findings from the prior audit are unchanged by this dependency upgrade.
+
+## EmDash 1.2.0 upgrade review (October 8, 2026)
+
+The upgrade keeps EmDash and its Cloudflare adapter on 1.2.0 together. Both
+`recordPublishedReferences` and native Turnstile verification still need the
+site's fixes in the released package. The versioned Bun patch is ported to the
+new shipped chunk names and registered for 1.2.0; the obsolete 1.1.0 patch is
+removed. Source/runtime verifier tests, browser homepage-selection tests and
+the compiled production comment regression cover the preserved behavior.
+
+All SQLite migration files 001–091 are byte-identical to 1.1.0, with no new
+SQLite migrations. The generated ordered migration names remain identical;
+the migration-set fingerprint changes because it includes the package version.
+Health and deployment verification identify the application as `emdash@1.2.0`. The
+existing reply/action adapter, retired-PDF response and draft-only token policy
+remain. The previously recorded published-metadata permission and topic cursor
+issues are still present; this dependency update does not resolve them.
+
+The audit failure shared by the open dependency PRs is fixed by pinning Sharp
+to 0.35.5, including its matching libvips packages, for
+[GHSA-wq5f-xc86-pv6w](https://github.com/advisories/GHSA-wq5f-xc86-pv6w).
+No remote migration, deployment, CMS configuration or content change is part of
+this review. Normal deployment and recovery requirements remain in effect.
