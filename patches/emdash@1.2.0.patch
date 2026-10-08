@@ -1,10 +1,7 @@
-diff --git a/node_modules/emdash/.bun-tag-6f4facb72e4b2ac7 b/.bun-tag-6f4facb72e4b2ac7
-new file mode 100644
-index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
-diff --git a/dist/api-CltsXhiX.mjs b/dist/api-CltsXhiX.mjs
-index 698e0e8ebf864e0fbe84c8d41c2b63959f81d4c2..cf36cef56fd1c7da2e2cb8d412c72f1149cde556 100644
---- a/dist/api-CltsXhiX.mjs
-+++ b/dist/api-CltsXhiX.mjs
+diff --git a/dist/api-DBw_IWoi.mjs b/dist/api-DBw_IWoi.mjs
+index 9ee58c6..254b9b5 100644
+--- a/dist/api-DBw_IWoi.mjs
++++ b/dist/api-DBw_IWoi.mjs
 @@ -195,7 +195,7 @@ function applyReferenceDiff(baseline, staged, live) {
  async function recordPublishedReferences(db, collection, revisionId, entryGroup) {
  	const selection = await liveReferenceSelection(db, collection, entryGroup);
@@ -14,23 +11,23 @@ index 698e0e8ebf864e0fbe84c8d41c2b63959f81d4c2..cf36cef56fd1c7da2e2cb8d412c72f11
  }
  /**
  * Promote a staged selection to live links.
-diff --git a/dist/public-submission-CkmT2SKv.mjs b/dist/public-submission-CkmT2SKv.mjs
-index 6eca37a14a1758c20369954c833b8326381ee500..3b7725e0afe255d941bf054ff4b9a6da77b72ef7 100644
---- a/dist/public-submission-CkmT2SKv.mjs
-+++ b/dist/public-submission-CkmT2SKv.mjs
-@@ -144,7 +144,7 @@ async function submitPublicComment(runtime, collection, contentId, request, user
+diff --git a/dist/public-submission-BQZavgZU.mjs b/dist/public-submission-BQZavgZU.mjs
+index 279aef3..9a5c3cc 100644
+--- a/dist/public-submission-BQZavgZU.mjs
++++ b/dist/public-submission-BQZavgZU.mjs
+@@ -145,7 +145,7 @@ async function submitPublicComment(runtime, collection, contentId, request, user
  		const meta = extractRequestMeta(request, runtime.config);
- 		const { getTurnstileSecretKey, verifyTurnstileToken } = await import("./turnstile-Do60baId.mjs");
+ 		const { getTurnstileSecretKey, verifyTurnstileToken } = await import("./turnstile-DaFLtyrs.mjs");
  		const turnstileSecretKey = getTurnstileSecretKey();
 -		if (turnstileSecretKey && !await verifyTurnstileToken(body.turnstileToken, turnstileSecretKey, meta.ip)) return apiError("TURNSTILE_FAILED", "CAPTCHA verification failed", 403);
 +		if (turnstileSecretKey && !await verifyTurnstileToken(body.turnstileToken, turnstileSecretKey, new URL(request.url).hostname, meta.ip)) return apiError("TURNSTILE_FAILED", "CAPTCHA verification failed", 403);
  		const { ipSalt } = await resolveSecretsCached(runtime.db);
  		const ipHash = meta.ip ? await hashIp(meta.ip, ipSalt) : "unknown";
  		if (!(await checkRateLimit(runtime.db, ipHash, "comments/submit", ipHash === "unknown" ? 20 : 5, 600)).allowed) {
-diff --git a/dist/turnstile-Do60baId.mjs b/dist/turnstile-Do60baId.mjs
-index e7443ee9c727629e9c05e2a32462b11181f8d517..e46a6521df680fd15359cc94d61f4d2a714de310 100644
---- a/dist/turnstile-Do60baId.mjs
-+++ b/dist/turnstile-Do60baId.mjs
+diff --git a/dist/turnstile-DaFLtyrs.mjs b/dist/turnstile-DaFLtyrs.mjs
+index 9595692..89e0e73 100644
+--- a/dist/turnstile-DaFLtyrs.mjs
++++ b/dist/turnstile-DaFLtyrs.mjs
 @@ -31,22 +31,23 @@ function getTurnstileSecretKey() {
  * transport error all return `false` — when the operator has configured a
  * secret, an unverifiable submission must not be persisted.
@@ -61,7 +58,7 @@ index e7443ee9c727629e9c05e2a32462b11181f8d517..e46a6521df680fd15359cc94d61f4d2a
  		console.error("[comments] Turnstile siteverify request failed:", error instanceof Error ? error.message : error);
  		return false;
 diff --git a/src/api/handlers/staged-references.ts b/src/api/handlers/staged-references.ts
-index 14bb8ab44d9f19aee04d499d5e24a213d4850d0e..a49be167da356b57a5e03eb22f6f337582bebc48 100644
+index 14bb8ab..a49be16 100644
 --- a/src/api/handlers/staged-references.ts
 +++ b/src/api/handlers/staged-references.ts
 @@ -5,6 +5,7 @@ import { RevisionRepository } from "../../database/repositories/revision.js";
@@ -82,10 +79,10 @@ index 14bb8ab44d9f19aee04d499d5e24a213d4850d0e..a49be167da356b57a5e03eb22f6f3375
  
  /**
 diff --git a/src/comments/public-submission.ts b/src/comments/public-submission.ts
-index 2ee4925a6760679f0f13253edff04489209a3fac..db5e7e781694c08a91b91b9835d19a4f51e650cb 100644
+index 265126c..d3c60df 100644
 --- a/src/comments/public-submission.ts
 +++ b/src/comments/public-submission.ts
-@@ -107,7 +107,7 @@ export async function submitPublicComment(
+@@ -108,7 +108,7 @@ export async function submitPublicComment(
  		const turnstileSecretKey = getTurnstileSecretKey();
  		if (
  			turnstileSecretKey &&
@@ -95,7 +92,7 @@ index 2ee4925a6760679f0f13253edff04489209a3fac..db5e7e781694c08a91b91b9835d19a4f
  			return apiError("TURNSTILE_FAILED", "CAPTCHA verification failed", 403);
  		}
 diff --git a/src/comments/turnstile.ts b/src/comments/turnstile.ts
-index 67fc3744f6360985ac7c77a57ddc10feed38ec80..d771149d5eaf8ea8da8c513ab8ea8a4586d22df5 100644
+index 67fc374..d771149 100644
 --- a/src/comments/turnstile.ts
 +++ b/src/comments/turnstile.ts
 @@ -36,9 +36,10 @@ export function getTurnstileSecretKey(): string {

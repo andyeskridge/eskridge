@@ -124,7 +124,7 @@ async function handleRequest(
         );
     }
   }
-  // EmDash 1.1.0 skips file extensions in redirect middleware. Keep this one
+  // EmDash 1.2.0 skips file extensions in redirect middleware. Keep this one
   // retired file until native terminal rules also handle file URLs.
   if (path === "/AndyEskridgeResume.pdf") return context.rewrite("/gone");
   return next();
