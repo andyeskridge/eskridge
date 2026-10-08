@@ -71,7 +71,8 @@
     "dompurify": "3.4.16",
     "js-yaml": "4.3.2",
     "miniflare": "5.20260926.1-alpha",
-    "qs": "6.16.0"
+    "qs": "6.16.0",
+    "sharp": "0.35.5"
   },
   "patchedDependencies": {
     "emdash@1.1.0": "patches/emdash@1.1.0.patch"
