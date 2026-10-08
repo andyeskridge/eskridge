@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
-    "@aws-sdk/client-s3": "3.1146.0",
+    "@aws-sdk/client-s3": "3.1147.0",
     "@axe-core/playwright": "4.13.0",
     "@biomejs/biome": "2.5.15",
     "@cloudflare/workers-types": "5.20261006.1",
@@ -71,7 +71,8 @@
     "dompurify": "3.4.16",
     "js-yaml": "4.3.2",
     "miniflare": "5.20260926.1-alpha",
-    "qs": "6.16.0"
+    "qs": "6.16.0",
+    "sharp": "0.35.5"
   },
   "patchedDependencies": {
     "emdash@1.1.0": "patches/emdash@1.1.0.patch"
