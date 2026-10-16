@@ -31,11 +31,11 @@ jobs:
       - name: Local browser acceptance
         run: bun run e2e
         env:
-          EMDASH_ENCRYPTION_KEY: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+          EMDASH_ENCRYPTION_KEY: emdash_enc_v1_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
       - name: Compiled production comment regression
         run: bun run test:runtime
         env:
-          EMDASH_ENCRYPTION_KEY: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+          EMDASH_ENCRYPTION_KEY: emdash_enc_v1_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
       - uses: actions/upload-artifact@v7.0.2
         if: always()
         with:

@@ -45,10 +45,10 @@ and removal condition here. Prefer public APIs, settings and components first.
 
 | Exception | Reason | Regression and removal condition |
 | --- | --- | --- |
-| Published-reference patch | 1.2.0 can restore a stale project reference baseline when a seeded homepage is unpublished, changed and republished. Recording the published selection as its baseline preserves ordering and the two-project limit without a schema change. | The homepage browser test publishes/unpublishes/replaces/reorders selections and checks draft isolation. Remove the patch when a released package passes this sequence unpatched. The released 1.2.0 package still contains the affected `recordPublishedReferences` implementation. |
-| Native Turnstile binding patch | 1.2.0 correctly reads runtime secrets but only checks Siteverify's success flag. The patch passes the request hostname into the native verifier and requires that hostname, the `comment` action, and a successful HTTP response. Production middleware requires the same runtime secret aliases and site key; it never verifies or consumes the token itself. The former custom verifier and build-time secret masking are removed together. | Unit tests exercise source and shipped runtime code. `bun run test:runtime` uses the actual compiled Worker in production mode with a disposable copy of e2e data and intercepted Siteverify responses: exactly one validation, replay/host/action rejection, malformed/unavailable/HTTP-error rejection, missing token/secret/site-key denial, both secret aliases, and pending moderation. Remove this patch when native EmDash offers these hostname/action constraints. |
-| Reply/action adapter | 1.2.0 renders threads and accepts `parentId`, but lacks reply/cancel controls and a Turnstile action prop. Our wrapper connects these without duplicating submission. | Browser coverage submits a native-form reply, cancels reply mode and checks threading/safe input. Remove each adapter when native components provide its behavior. |
-| Draft-only REST/MCP policy | Native token scopes combine editing, publication and deletion. A Contributor cannot edit even its own existing content; Author/Editor roles include publishing/deleting. Our workflow permits drafting on existing owner entries while reserving publication/deletion/schema changes for the owner. | REST/MCP tests verify permitted editing and rejected publishing, unpublishing, deletion and schema mutation. Replace the policy when native permissions separate these actions for the same ownership workflow. See [native permissions](https://github.com/emdash-cms/emdash/blob/emdash%401.0.1/packages/auth/src/rbac.ts). |
+| Published-reference patch | 1.3.0 can restore a stale project reference baseline when a seeded homepage is unpublished, changed and republished. Recording the published selection as its baseline preserves ordering and the two-project limit without a schema change. | The homepage browser test publishes/unpublishes/replaces/reorders selections and checks draft isolation. Remove the patch when a released package passes this sequence unpatched. The released 1.3.0 package still contains the affected `recordPublishedReferences` implementation. |
+| Native Turnstile binding patch | 1.3.0 correctly reads runtime secrets but only checks Siteverify's success flag. The patch passes the request hostname into the native verifier and requires that hostname, the `comment` action, and a successful HTTP response. Production middleware requires the same runtime secret aliases and site key; it never verifies or consumes the token itself. The former custom verifier and build-time secret masking are removed together. | Unit tests exercise source and shipped runtime code. `bun run test:runtime` uses the actual compiled Worker in production mode with a disposable copy of e2e data and intercepted Siteverify responses: exactly one validation, replay/host/action rejection, malformed/unavailable/HTTP-error rejection, missing token/secret/site-key denial, both secret aliases, and pending moderation. Remove this patch when native EmDash offers these hostname/action constraints. |
+| Reply/action adapter | 1.3.0 renders threads and accepts `parentId`, but lacks reply/cancel controls and a Turnstile action prop. Our wrapper connects these without duplicating submission. | Browser coverage submits a native-form reply, cancels reply mode and checks threading/safe input. Remove each adapter when native components provide its behavior. |
+| Draft-only REST/MCP policy | Native token scopes combine editing, publication and deletion. A Contributor can edit its own unpublished drafts, but cannot draft changes to existing owner entries; Author/Editor roles include publishing/deleting. Our workflow permits drafting on existing owner entries while reserving publication/deletion/schema changes for the owner. | REST/MCP tests verify permitted editing and rejected publishing, unpublishing, deletion and schema mutation. Replace the policy when native permissions separate these actions for the same ownership workflow. See [native permissions](https://github.com/emdash-cms/emdash/blob/emdash%401.0.1/packages/auth/src/rbac.ts). |
 | Retired PDF adapter | Native redirect middleware skips file-extension paths, including `/AndyEskridgeResume.pdf`. | Browser checks require `410` for that file. Move it to a native terminal rule when a released version handles file URLs. |
 
 ## Upgrade validation
@@ -118,3 +118,29 @@ to 0.35.5, including its matching libvips packages, for
 [GHSA-wq5f-xc86-pv6w](https://github.com/advisories/GHSA-wq5f-xc86-pv6w).
 No remote migration, deployment, CMS configuration or content change is part of
 this review. Normal deployment and recovery requirements remain in effect.
+
+## EmDash 1.3.0 upgrade review (October 16, 2026)
+
+The upgrade keeps EmDash and its Cloudflare adapter on 1.3.0 together. Renovate
+left the patch registered for 1.2.0, so the new package lost the published
+reference baseline and native Turnstile hostname/action checks. Both gaps remain
+in the released 1.3.0 package. The versioned patch ports the existing source and
+shipped-runtime fixes to the new chunk names and replaces the obsolete
+registration. Existing unit, homepage browser and compiled production comment
+regressions cover the behavior.
+
+All 90 numbered SQLite migration files (001-091) are byte-identical to 1.2.0,
+with no additions or removals. The application version changes the migration-set
+fingerprint, but the schema and ordered migration names remain unchanged. Health,
+deployment verification and the compiled runtime regression identify the new
+application as `emdash@1.3.0`. Normal recovery and migration safeguards apply.
+
+The native Contributor improvement permits editing its own unpublished drafts;
+it does not cover the required drafting workflow on existing owner entries, so
+the draft-only REST/MCP policy remains. The reply/action and retired-PDF adapters
+also remain and are covered by browser acceptance.
+
+The CI encryption key was a raw hexadecimal fixture, which EmDash rejects.
+Browser and compiled-runtime checks now use a synthetic key in EmDash's
+versioned format; local setup instructions use the native key generator.
+Production credentials are unchanged.
