@@ -125,8 +125,9 @@ The upgrade keeps EmDash and its Cloudflare adapter on 1.3.0 together. Renovate
 left the patch registered for 1.2.0, so the new package lost the published
 reference baseline and native Turnstile hostname/action checks. Both gaps remain
 in the released 1.3.0 package. The versioned patch ports the existing source and
-shipped-runtime fixes to the new chunk names and replaces the obsolete registration. Existing unit,
-homepage browser and compiled production comment regressions cover the behavior.
+shipped-runtime fixes to the new chunk names and replaces the obsolete
+registration. Existing unit, homepage browser and compiled production comment
+regressions cover the behavior.
 
 All 90 numbered SQLite migration files (001-091) are byte-identical to 1.2.0,
 with no additions or removals. The application version changes the migration-set
