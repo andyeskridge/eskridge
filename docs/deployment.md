@@ -11,7 +11,7 @@ During implementation, `main` advanced to `6bc6e18` with legacy Next/Wrangler de
 ## Local development
 
 1. `bun install --frozen-lockfile`.
-   Use Bun 1.4.2 and Node 22.19 or newer; CI uses Node 24. The Node minimum includes the installed HTTP client's requirement, rather than only Astro's lower minimum.
+   Use Bun 1.4.3 and Node 22.22.0 or newer; CI uses Node 24. The Node minimum matches Astro 7.4 and its React integration.
 2. Copy `.env.sample` to a private `.env`; generate a unique encryption key with `bun -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`.
 3. `bun run dev` (bound to loopback).
 4. Open `http://127.0.0.1:4321/_emdash/api/setup/dev-bypass?redirect=/_emdash/admin`. This bypass is rejected in built/deployed code. It creates a local development user and applies the seed once, keeping the launch content in draft.
