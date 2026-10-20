@@ -47,7 +47,7 @@
   },
   "overrides": {
     "baseline-browser-mapping": "2.11.30",
-    "browserslist": "4.29.3",
+    "browserslist": "4.29.4",
     "dompurify": "3.4.17",
     "js-yaml": "4.3.2",
     "miniflare": "5.20260926.1-alpha",
