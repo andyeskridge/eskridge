@@ -4,7 +4,7 @@
 
 The Astro/EmDash rebuild is merged and live at `https://eskridge.dev` following the September 29, 2026 launch. The previous application is preserved at `codex/eskridge-pre-emdash-latest-20260929`, commit `6bc6e1869c040b3eab117756cad6e69106521a14`. Staging remains at `https://eskridge-emdash-staging.eskridge.workers.dev`, with separate D1/R2/KV resources and a hostname-restricted Turnstile widget. Environment identities are pinned in `deployment/resources.json`; ignored `deployment/release-ENV.json` records the deployed application commit. Outstanding remote acceptance checks are listed in `launch-checklist.md`.
 
-EmDash and its Cloudflare database/storage adapter are both pinned to 1.3.0. Astro 7 and its Cloudflare adapter use the compatible versions in `bun.lock`. Security overrides pin patched transitive dependencies without changing the CMS version or schema. Miniflare is pinned to the same patched alpha revision already used by the Cloudflare Vite plugin, which selects Undici 7.29.1 while leaving Unifont's Undici 8 dependency on its own compatible major. Run `bun audit` after dependency changes and keep the EmDash reference patch until its regression passes with an upstream replacement. The Cloudflare starter supplies the native scheduled handler, D1 sessions, R2 storage and Images binding.
+EmDash and its Cloudflare database/storage adapter are both pinned to 1.3.0. Astro 7 and its Cloudflare adapter use the compatible versions in `bun.lock`. Security overrides pin patched transitive dependencies without changing the CMS version or schema. Miniflare remains pinned to 5.20260926.1-alpha with Cloudflare Vite plugin 1.63.1 as a tested pair. Plugin 1.64.0 requires newer Miniflare exports, while its newer emulator transport passes Linux CI but resets subsequent requests after early comment/agent denials on Windows. Keep the compatible pair until a replacement passes the full Windows browser and compiled-runtime regressions. The locked graph keeps Undici on each consumer's compatible major. Run `bun audit` after dependency changes and keep the EmDash reference patch until its regression passes with an upstream replacement. The Cloudflare starter supplies the native scheduled handler, D1 sessions, R2 storage and Images binding.
 
 During implementation, `main` advanced to `6bc6e18` with legacy Next/Wrangler dependency updates. That latest legacy state is also preserved on `codex/eskridge-pre-emdash-latest-20260929`. The rebuild merged the new main history while retaining its tested Astro/EmDash dependency lock.
 
@@ -17,7 +17,7 @@ remove it when the dependency graph supplies a fixed version without it.
 ## Local development
 
 1. `bun install --frozen-lockfile`.
-   Use Bun 1.4.3 and Node 22.22.0 or newer; CI uses Node 24. The Node minimum matches Astro 7.4 and its React integration.
+   Use Bun 1.4.3 and Node 22.23.4 or newer; CI uses Node 24.22.1. The Node minimum matches Astro 7.4.2 and its React integration.
 2. Copy `.env.sample` to a private `.env`; generate a unique encryption key with `bunx emdash secrets generate` and save its output as `EMDASH_ENCRYPTION_KEY`. EmDash requires its versioned key format, rather than a raw hexadecimal value.
 3. `bun run dev` (bound to loopback).
 4. Open `http://127.0.0.1:4321/_emdash/api/setup/dev-bypass?redirect=/_emdash/admin`. This bypass is rejected in built/deployed code. It creates a local development user and applies the seed once, keeping the launch content in draft.
