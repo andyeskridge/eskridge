@@ -5,7 +5,7 @@
   "type": "module",
   "packageManager": "bun@1.4.3",
   "engines": {
-    "node": ">=22.22.0"
+    "node": ">=22.23.4"
   },
   "emdash": {
     "label": "Andy Eskridge",
@@ -53,7 +53,7 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "jsonc-parser": "3.3.1",
-    "miniflare": "5.20261019.1-beta",
+    "miniflare": "5.20260926.1-alpha",
     "prettier": "3.9.10",
     "prettier-plugin-astro": "1.1.1",
     "typescript": "6.0.3",
@@ -66,10 +66,12 @@
     "workerd"
   ],
   "overrides": {
+    "@cloudflare/vite-plugin": "1.63.1",
     "baseline-browser-mapping": "2.11.30",
     "browserslist": "4.29.4",
     "dompurify": "3.4.17",
     "js-yaml": "4.3.2",
+    "miniflare": "5.20260926.1-alpha",
     "qs": "6.16.1",
     "sanitize-html": "2.18.1",
     "sharp": "0.35.5"
