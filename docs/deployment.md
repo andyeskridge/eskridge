@@ -8,6 +8,12 @@ EmDash and its Cloudflare database/storage adapter are both pinned to 1.3.0. Ast
 
 During implementation, `main` advanced to `6bc6e18` with legacy Next/Wrangler dependency updates. That latest legacy state is also preserved on `codex/eskridge-pre-emdash-latest-20260929`. The rebuild merged the new main history while retaining its tested Astro/EmDash dependency lock.
 
+The October 22 dependency review pins `sanitize-html` to 2.18.1 for
+[GHSA-c9rx-x947-fp3h](https://github.com/advisories/GHSA-c9rx-x947-fp3h).
+The affected 2.18.0 release can overflow the stack when sanitizing discarded
+iframe contents. The override stays within EmDash's supported dependency range;
+remove it when the dependency graph supplies a fixed version without it.
+
 ## Local development
 
 1. `bun install --frozen-lockfile`.
