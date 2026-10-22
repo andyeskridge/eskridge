@@ -7,7 +7,7 @@ export const GET: APIRoute = () =>
       environment: siteEnvironment(),
       readOnly:
         (env as unknown as Record<string, string>).SITE_READ_ONLY === "1",
-      application: "emdash@1.3.0",
+      application: "emdash@1.3.1",
     },
     { headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } },
   );

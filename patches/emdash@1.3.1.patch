@@ -1,7 +1,7 @@
-diff --git a/dist/api-D-7BNHoz.mjs b/dist/api-D-7BNHoz.mjs
+diff --git a/dist/api-C_LxFnOm.mjs b/dist/api-C_LxFnOm.mjs
 index 9ee58c6..254b9b5 100644
---- a/dist/api-D-7BNHoz.mjs
-+++ b/dist/api-D-7BNHoz.mjs
+--- a/dist/api-C_LxFnOm.mjs
++++ b/dist/api-C_LxFnOm.mjs
 @@ -195,7 +195,7 @@ function applyReferenceDiff(baseline, staged, live) {
  async function recordPublishedReferences(db, collection, revisionId, entryGroup) {
  	const selection = await liveReferenceSelection(db, collection, entryGroup);
@@ -11,23 +11,23 @@ index 9ee58c6..254b9b5 100644
  }
  /**
  * Promote a staged selection to live links.
-diff --git a/dist/public-submission-Di3TsgzX.mjs b/dist/public-submission-Di3TsgzX.mjs
+diff --git a/dist/public-submission-C5JZIykp.mjs b/dist/public-submission-C5JZIykp.mjs
 index 279aef3..9a5c3cc 100644
---- a/dist/public-submission-Di3TsgzX.mjs
-+++ b/dist/public-submission-Di3TsgzX.mjs
+--- a/dist/public-submission-C5JZIykp.mjs
++++ b/dist/public-submission-C5JZIykp.mjs
 @@ -145,7 +145,7 @@ async function submitPublicComment(runtime, collection, contentId, request, user
  		const meta = extractRequestMeta(request, runtime.config);
- 		const { getTurnstileSecretKey, verifyTurnstileToken } = await import("./turnstile-CJwvsOqw.mjs");
+ 		const { getTurnstileSecretKey, verifyTurnstileToken } = await import("./turnstile-Ct5YuFNY.mjs");
  		const turnstileSecretKey = getTurnstileSecretKey();
 -		if (turnstileSecretKey && !await verifyTurnstileToken(body.turnstileToken, turnstileSecretKey, meta.ip)) return apiError("TURNSTILE_FAILED", "CAPTCHA verification failed", 403);
 +		if (turnstileSecretKey && !await verifyTurnstileToken(body.turnstileToken, turnstileSecretKey, new URL(request.url).hostname, meta.ip)) return apiError("TURNSTILE_FAILED", "CAPTCHA verification failed", 403);
  		const { ipSalt } = await resolveSecretsCached(runtime.db);
  		const ipHash = meta.ip ? await hashIp(meta.ip, ipSalt) : "unknown";
  		if (!(await checkRateLimit(runtime.db, ipHash, "comments/submit", ipHash === "unknown" ? 20 : 5, 600)).allowed) {
-diff --git a/dist/turnstile-CJwvsOqw.mjs b/dist/turnstile-CJwvsOqw.mjs
+diff --git a/dist/turnstile-Ct5YuFNY.mjs b/dist/turnstile-Ct5YuFNY.mjs
 index 9595692..89e0e73 100644
---- a/dist/turnstile-CJwvsOqw.mjs
-+++ b/dist/turnstile-CJwvsOqw.mjs
+--- a/dist/turnstile-Ct5YuFNY.mjs
++++ b/dist/turnstile-Ct5YuFNY.mjs
 @@ -31,22 +31,23 @@ function getTurnstileSecretKey() {
  * transport error all return `false` — when the operator has configured a
  * secret, an unverifiable submission must not be persisted.
