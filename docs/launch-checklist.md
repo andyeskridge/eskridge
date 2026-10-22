@@ -1,7 +1,6 @@
 # Launch acceptance
 
 Record results against the actual production build and environment, rather than interpreting an unchecked item as passed.
-
 - [x] Home, About, one real project and introductory article approved by Andy on September 29, 2026 ("content is good for now").
 - [x] Launch copy approved; contact/social links, portrait and résumé omitted from launch content.
 - [x] Production contains only the four owner-published launch entries. No public test fixtures.
