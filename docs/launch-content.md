@@ -3,6 +3,7 @@
 Andy approved the current launch content on September 29, 2026 ("content is good for now"). These entries remain drafts in the installation seed for owner-controlled production publication. Role and location were confirmed by Andy on September 29, 2026. Homelab examples come from prior collaboration notes; they are not a new inspection of current infrastructure. Public contact links, portrait and resume remain omitted.
 
 ## Software leadership.
+
 Practical curiosity.
 
 I’m Andy Eskridge, Director of Software Development at ISN in Dallas, TX. This is a place for ideas about leading teams, building useful things, and life beyond the screen.
