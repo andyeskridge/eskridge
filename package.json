@@ -72,7 +72,7 @@
     "dompurify": "3.4.17",
     "js-yaml": "4.3.2",
     "miniflare": "5.20260926.1-alpha",
-    "qs": "6.16.1",
+    "qs": "6.17.1",
     "sanitize-html": "2.18.1",
     "sharp": "0.35.5"
   },
