@@ -42,6 +42,9 @@
     "@biomejs/biome",
     "workerd",
   ],
+  "patchedDependencies": {
+    "emdash@1.4.0": "patches/emdash@1.4.0.patch",
+  },
   "overrides": {
     "@cloudflare/vite-plugin": "1.63.1",
     "baseline-browser-mapping": "2.11.35",
