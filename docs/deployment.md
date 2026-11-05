@@ -25,7 +25,7 @@ versions without them.
 ## Local development
 
 1. `bun install --frozen-lockfile`.
-   Use Bun 1.4.4 and Node 22.23.4 or newer; CI uses Node 24.22.1. The Node minimum matches Astro 7.4.2 and its React integration.
+   Use Bun 1.4.4 and Node 22.23.4 or newer; CI uses Node 26.13.0. The Node minimum matches Astro 7.4.5 and its React integration.
 2. Copy `.env.sample` to a private `.env`; generate a unique encryption key with `bunx emdash secrets generate` and save its output as `EMDASH_ENCRYPTION_KEY`. EmDash requires its versioned key format, rather than a raw hexadecimal value.
 3. `bun run dev` (bound to loopback).
 4. Open `http://127.0.0.1:4321/_emdash/api/setup/dev-bypass?redirect=/_emdash/admin`. This bypass is rejected in built/deployed code. It creates a local development user and applies the seed once, keeping the launch content in draft.
