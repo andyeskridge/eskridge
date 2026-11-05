@@ -14,10 +14,18 @@ The affected 2.18.0 release can overflow the stack when sanitizing discarded
 iframe contents. The override stays within EmDash's supported dependency range;
 remove it when the dependency graph supplies a fixed version without it.
 
+The November 5 dependency repair pins `body-parser` to 2.4.0 and `zod` to
+4.6.7, and scopes the `undici` 7.30.1 override to consumers declaring major 7.
+Consumers declaring Undici 8 keep their compatible major. These overrides fix
+the audit findings without upgrading EmDash or the tested Miniflare/Vite pair.
+The version-scoped override requires Bun 1.4.4 and lockfile version 3. Remove
+these overrides when the locked dependency graph supplies fixed compatible
+versions without them.
+
 ## Local development
 
 1. `bun install --frozen-lockfile`.
-   Use Bun 1.4.3 and Node 22.23.4 or newer; CI uses Node 24.22.1. The Node minimum matches Astro 7.4.2 and its React integration.
+   Use Bun 1.4.4 and Node 22.23.4 or newer; CI uses Node 24.22.1. The Node minimum matches Astro 7.4.2 and its React integration.
 2. Copy `.env.sample` to a private `.env`; generate a unique encryption key with `bunx emdash secrets generate` and save its output as `EMDASH_ENCRYPTION_KEY`. EmDash requires its versioned key format, rather than a raw hexadecimal value.
 3. `bun run dev` (bound to loopback).
 4. Open `http://127.0.0.1:4321/_emdash/api/setup/dev-bypass?redirect=/_emdash/admin`. This bypass is rejected in built/deployed code. It creates a local development user and applies the seed once, keeping the launch content in draft.
