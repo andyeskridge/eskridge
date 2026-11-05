@@ -1,45 +1,56 @@
-#set page(width: 8.5in, height: 11in, margin: 1in)
-#set text(font: "Helvetica", size: 10pt)
+// Historical source conversion from the 2025 repository snapshot in PR #1559.
+// Preserve the original facts; "Present" does not describe current employment.
+#set page(width: 8.5in, height: 11in, margin: (x: 0.65in, y: 0.6in), numbering: "1", number-align: center)
+#set text(font: sys.inputs.at("font", default: "Times New Roman"), size: 11pt)
+#set par(leading: 0.35em, spacing: 0.5em)
 #set heading(numbering: none)
-#show heading.where(level: 1): it => block(spacing: 0.4em, strong(upper(it)))
-#show heading.where(level: 2): it => block(spacing: 0.3em, strong(it))
+#show heading.where(level: 1): it => block(width: 100%, above: 0.8em, below: 0.4em)[
+  #align(center)[#text(size: 11pt, weight: "bold")[#upper(it.body)]]
+]
 
 #let resume-role(
-  company,
-  location,
-  dates,
-  title,
-  bullets,
+  company: none,
+  location: "",
+  dates: "",
+  title: "",
+  bullets: (),
   title-dates: none,
 ) = block[
-  #set text(weight: "semibold")
-  #text(company) #h(0.6em) \hfill #text(location) #h(0.6em) #text(dates)
-  #set text(weight: "regular")
-  #if title-dates != none {
-    #text(weight: "semibold")[#title] #h(0.6em) \hfill #text(title-dates)
-  } else {
-    #text(weight: "semibold")[#title]
-  }
-  #list(bullets, marker: "•", spacing: 0.35em)
+  #if company != none [
+    #grid(
+      columns: (1fr, auto),
+      column-gutter: 0.5em,
+      [#strong(company) | #strong(location)],
+      [#strong(dates)],
+    )
+  ]
+  #grid(
+    columns: (1fr, auto),
+    column-gutter: 0.5em,
+    [#strong(title)],
+    [#if title-dates != none { strong(title-dates) }],
+  )
+  #list(..bullets, marker: [•], spacing: 0.25em)
+  #v(0.25em)
 ]
 
 #align(center)[
   #text(size: 20pt, weight: "bold")[ANDY ESKRIDGE]
-  \n
-  850.341.9336 \| andy@eskridge.dev \| eskridge.dev \| Dallas, TX
+  #linebreak()
+  #text("850.341.9336 | andy@eskridge.dev | eskridge.dev | Dallas, TX")
+  #linebreak()
+  #text(size: 8pt, fill: rgb("#555555"))[Historical source conversion - 2025 repository snapshot]
 ]
 
-#v(0.75em)
-
-#heading(1)[Senior Engineering Manager]
+#heading(level: 1)[Senior Engineering Manager]
 Senior Engineering Manager with extensive experience in managing product development, software engineering, and quality assurance teams. Demonstrates the ability to produce highly productive and effective teams through technological expertise and empathetic leadership, fostering value through trust and personal investment in team members. Proven success in managing expanding markets, delivering multiple products, and achieving impressive results within deadlines. Capable of taking complete ownership of the design, development, testing, deployment, and maintenance of software applications, systems, and technology projects.
 
-#heading(1)[Experience]
+#heading(level: 1)[Experience]
 
 #resume-role(
   company: "Stellar Elements",
   location: "Dallas, TX",
-  dates: "2022 -- Present",
+  dates: "2022-Present",
   title: "Associate Director",
   bullets: (
     "Provided technical oversight and management for employees consulting at Chick-fil-A",
@@ -52,9 +63,6 @@ Senior Engineering Manager with extensive experience in managing product develop
 )
 
 #resume-role(
-  company: "Stellar Elements",
-  location: "Dallas, TX",
-  dates: "2022 -- Present",
   title: "Senior Solution Architect",
   bullets: (
     "Managed an SRE team of five developers and one business analyst",
@@ -68,9 +76,9 @@ Senior Engineering Manager with extensive experience in managing product develop
 #resume-role(
   company: "Cenergistic",
   location: "Dallas, TX",
-  dates: "2018 -- 2022",
+  dates: "2018-2022",
   title: "Chief Technical Officer",
-  title-dates: "2021 -- 2022",
+  title-dates: "2021-2022",
   bullets: (
     "Engineered innovative products that doubled operational capacity, enabling management of an additional 2 million square feet",
     "Conducted training sessions for up to 150 participants",
@@ -82,12 +90,11 @@ Senior Engineering Manager with extensive experience in managing product develop
   ),
 )
 
+#pagebreak()
+
 #resume-role(
-  company: "Cenergistic",
-  location: "Dallas, TX",
-  dates: "2018 -- 2022",
   title: "Director of Software Development",
-  title-dates: "2018 -- 2021",
+  title-dates: "2018-2021",
   bullets: (
     "Built and managed a new team of ten developers and QA within six months",
     "Developed and deployed a React Native app in eight months",
@@ -102,7 +109,7 @@ Senior Engineering Manager with extensive experience in managing product develop
 #resume-role(
   company: "Beck Technology",
   location: "Dallas, TX",
-  dates: "2016 -- 2018",
+  dates: "2016-2018",
   title: "Project Leader",
   bullets: (
     "Led and trained a team of two junior developers",
@@ -114,7 +121,7 @@ Senior Engineering Manager with extensive experience in managing product develop
 #resume-role(
   company: "Provider Science",
   location: "Dallas, TX",
-  dates: "2015 -- 2016",
+  dates: "2015-2016",
   title: "Senior Software Engineer",
   bullets: (
     "Designed and implemented a Decision Forest-based prediction system to determine optimal pharmacy staffing",
@@ -126,7 +133,7 @@ Senior Engineering Manager with extensive experience in managing product develop
 #resume-role(
   company: "Gwynn Group",
   location: "Dallas, TX",
-  dates: "2015 -- 2015",
+  dates: "2015-2015",
   title: "Senior Software Engineer",
   bullets: (
     "Created a temporal exponential smoothing forecast engine that reduced false alarms by 20%",
@@ -137,7 +144,7 @@ Senior Engineering Manager with extensive experience in managing product develop
 #resume-role(
   company: "Allegro",
   location: "Dallas, TX",
-  dates: "2013 -- 2015",
+  dates: "2013-2015",
   title: "Software Engineer",
   bullets: (
     "Reengineered the legacy ad hoc build process using MSBuild and C#, resulting in a 4x speedup",
@@ -146,8 +153,8 @@ Senior Engineering Manager with extensive experience in managing product develop
   ),
 )
 
-#heading(1)[Technologies and Tools]
-AWS, Typescript, React, GenAI, OpenAI, LLM, React Native, SQL, Python, Java, Docker, Terraform, JavaScript, Node.js, Express, Redis, Elasticsearch, Postman, Cypress, Puppeteer, .NET, C#, D3, Fastlane, TestFlight, Sentry, VSCode, GitHub, GitHub Actions, JIRA
+#heading(level: 1)[Technologies and Tools]
+AWS, Typescript, React, GenAI, OpenAI, LLM, React Native, SQL, Python, Java, Docker, Terraform, JavaScript, Node.js, Express, Redis, Elasticsearch, Postman, Cypress, Puppeteer, .NET, C\#, D3, Fastlane, TestFlight, Sentry, VSCode, GitHub, GitHub Actions, JIRA
 
-#heading(1)[Education]
-Computer Science, University of Texas, Austin, TX \hfill 2008 -- 2012
+#heading(level: 1)[Education]
+Computer Science, University of Texas, Austin, TX #h(1fr) 2008-2012
