@@ -3,7 +3,7 @@
 Andy Eskridge's portfolio and writing, rebuilt with Astro and EmDash 1.4.0 for Cloudflare Workers. Content is served from EmDash at runtime; publication needs no code build. The custom editorial theme includes local Source Serif 4/Inter fonts, light/dark themes, published-content search, topic archives, RSS, projects and moderated article discussion.
 
 ```sh
-bun install --frozen-lockfile # Bun 1.4.3; Node >=22.23.4 (CI uses Node 24.22.1)
+bun install --frozen-lockfile # Bun 1.4.4; Node >=22.23.4 (CI uses Node 26.13.0)
 bun run dev
 ```
 
