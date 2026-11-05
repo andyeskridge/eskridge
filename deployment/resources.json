@@ -1,0 +1,22 @@
+{
+  "staging": {
+    "accountId": "4d0ec73da1296e7dcc788788effc7d43",
+    "worker": "eskridge-emdash-staging",
+    "databaseId": "4030f8ac-49b5-4aa4-8832-df3dd9efad4e",
+    "databaseName": "eskridge-emdash-staging",
+    "mediaBucket": "eskridge-emdash-media-staging",
+    "sessionNamespaceId": "364edecefa144495a0fd8122d401d8f6",
+    "siteUrl": "https://eskridge-emdash-staging.eskridge.workers.dev",
+    "targetFingerprint": "eb9162f1883343d7058cdaefafbce723cf54bf788753149ad7d055b0558f70ee"
+  },
+  "production": {
+    "accountId": "4d0ec73da1296e7dcc788788effc7d43",
+    "worker": "eskridge-emdash-production",
+    "databaseId": "4d681934-7cfa-46fc-81e4-929566b760f1",
+    "databaseName": "eskridge-emdash-production",
+    "mediaBucket": "eskridge-emdash-media-production",
+    "sessionNamespaceId": "3c0fbfc948f240a79fb325054c6eb328",
+    "siteUrl": "https://eskridge.dev",
+    "targetFingerprint": "cb371b13a9aab5e204a2590edc55116b73721dab89c5d37d7c371cb17e4be767"
+  }
+}

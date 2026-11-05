@@ -1,0 +1,47 @@
+---
+import type { Project } from "../../emdash-env";
+import { Image } from "emdash/ui";
+import Icon from "./Icon.astro";
+interface Props {
+  project: { id: string; data: Project };
+  index?: number;
+}
+const { project, index = 0 } = Astro.props;
+---
+
+<article class="project-card">
+  <a
+    class:list={["project-image", `project-image-${index % 2}`]}
+    href={`/projects/${encodeURIComponent(project.id)}`}
+    aria-label={`Explore ${project.data.title}`}
+  >
+    {project.data.featured_image?.src ? (
+      <Image image={project.data.featured_image} />
+    ) : (
+      <div class="project-art" aria-hidden="true">
+        <div class="art-orbit"></div>
+        <div class="art-grid"></div>
+        <span>
+          {project.data.kind === "professional"
+            ? "People × Product"
+            : "Ideas → Experiments"}
+        </span>
+      </div>
+    )}
+    <span class="project-image-caption">
+      {project.data.kind === "professional"
+        ? "Professional work"
+        : "Personal project"}
+      <span>{project.data.year}</span>
+    </span>
+  </a>
+  <div class="project-heading">
+    <h3>
+      <a href={`/projects/${encodeURIComponent(project.id)}`}>
+        {project.data.title}
+      </a>
+    </h3>
+    <Icon />
+  </div>
+  <p>{project.data.summary}</p>
+</article>

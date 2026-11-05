@@ -1,0 +1,129 @@
+---
+import { Comments, CommentForm } from "emdash/ui/comments";
+import { env } from "cloudflare:workers";
+import { siteEnvironment } from "../lib/site";
+interface Props {
+  contentId: string;
+}
+const { contentId } = Astro.props;
+const siteKey = (env as unknown as Record<string, string>).TURNSTILE_SITE_KEY;
+const enabled = siteEnvironment() === "development" || !!siteKey;
+// Approval and replies must appear immediately after moderation.
+Astro.response.headers.set("Cache-Control", "private, no-store");
+---
+
+<section class="comments" data-discussion aria-labelledby="discussion-title">
+  <h2 id="discussion-title">A little conversation.</h2>
+  <p class="comment-form-note" style="margin-top:12px">
+    Thoughtful questions and different perspectives are welcome.
+  </p>
+  <Comments collection="posts" {contentId} threaded sort="oldest" />
+  {enabled ? (
+    <>
+      <p class="comment-form-note" id="comment-privacy">
+        All comments are reviewed before appearing. Your email stays private and
+        is only used to manage your comment.{" "}
+        <a class="text-link" href="/privacy">
+          Privacy details
+        </a>
+      </p>
+      <div class="reply-context" hidden>
+        <span data-reply-label></span>
+        <button class="reply-button" type="button" data-cancel-reply>
+          Cancel reply
+        </button>
+      </div>
+      <CommentForm collection="posts" {contentId} />
+      {siteKey && (
+        <>
+          <div
+            class="cf-turnstile"
+            data-comment-challenge
+            data-sitekey={siteKey}
+            data-action="comment"
+            data-size="compact"
+            data-theme="auto"
+          ></div>
+          {/* 1.3.1's widget lacks an action prop. Move our widget into the
+              native form; EmDash owns serialization and submission. */}
+          <script is:inline>
+            (() => {
+              const section =
+                document.currentScript.closest("[data-discussion]");
+              const form = section.querySelector("[data-ec-comment-form]");
+              const widget = section.querySelector("[data-comment-challenge]");
+              if (form && widget) {
+                form.insertBefore(widget, form.querySelector("[type=submit]"));
+              }
+            })();
+          </script>
+          <script
+            is:inline
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            async
+            defer
+          ></script>
+        </>
+      )}
+      <noscript>
+        <p>Enable JavaScript to submit a comment.</p>
+      </noscript>
+    </>
+  ) : (
+    <p class="comment-form-note">
+      New comments are temporarily unavailable. Please check back soon.
+    </p>
+  )}
+</section>
+<script>
+  // Native Comments renders threads and CommentForm posts parentId. This
+  // adapter connects reply buttons to that supported form field.
+  document
+    .querySelectorAll<HTMLElement>("[data-discussion]")
+    .forEach((section) => {
+      const form = section.querySelector<HTMLFormElement>(
+        "[data-ec-comment-form]",
+      );
+      if (!form) return;
+      const context = section.querySelector<HTMLElement>(".reply-context");
+      const label = section.querySelector<HTMLElement>("[data-reply-label]");
+      const parent = document.createElement("input");
+      parent.type = "hidden";
+      parent.name = "parentId";
+      parent.disabled = true;
+      form.appendChild(parent);
+      form
+        .querySelector("[name=authorEmail]")
+        ?.setAttribute("aria-describedby", "comment-privacy");
+      section
+        .querySelectorAll<HTMLElement>(".ec-comment")
+        .forEach((comment) => {
+          const button = document.createElement("button");
+          const name =
+            comment
+              .querySelector(".ec-comment-author")
+              ?.firstChild?.textContent?.trim() || "reader";
+          button.type = "button";
+          button.className = "reply-button";
+          button.textContent = `Reply to ${name}`;
+          const body = comment.querySelector<HTMLElement>(".ec-comment-body");
+          body?.parentNode?.insertBefore(button, body.nextSibling);
+          button.addEventListener("click", () => {
+            parent.value = comment.dataset.commentId || "";
+            parent.disabled = false;
+            if (context && label) {
+              context.hidden = false;
+              label.textContent = `Replying to ${name}`;
+            }
+            form.querySelector<HTMLTextAreaElement>("textarea")?.focus();
+          });
+        });
+      section
+        .querySelector("[data-cancel-reply]")
+        ?.addEventListener("click", () => {
+          parent.disabled = true;
+          parent.value = "";
+          if (context) context.hidden = true;
+        });
+    });
+</script>

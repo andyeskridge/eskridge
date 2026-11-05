@@ -1,0 +1,51 @@
+---
+import { getEmDashCollection, getTaxonomyTermsWithCacheHint } from "emdash";
+import Base from "../../layouts/Base.astro";
+import PostCard from "../../components/PostCard.astro";
+import EmptyState from "../../components/EmptyState.astro";
+import Pagination from "../../components/Pagination.astro";
+import { registerHints } from "../../lib/site";
+const [posts, topics] = await Promise.all([
+  getEmDashCollection("posts", {
+    status: "published",
+    orderBy: { published_at: "desc" },
+    limit: 10,
+    cursor: Astro.url.searchParams.get("cursor") || undefined,
+  }),
+  getTaxonomyTermsWithCacheHint("topic", { includeCounts: false }),
+]);
+registerHints(Astro, posts, topics);
+---
+
+<Base
+  title="Writing"
+  description="Notes on engineering leadership, technical experiments, and life beyond the screen."
+>
+  <header class="page-heading">
+    <p class="eyebrow">The notebook</p>
+    <h1>Thinking out loud.</h1>
+    <p>
+      Notes on leading teams, making things, and staying curious. Some polished
+      thoughts, some work in progress.
+    </p>
+  </header>
+  <nav class="filters" aria-label="Writing topics">
+    <a class="filter" href="/writing" aria-current="page">
+      All writing
+    </a>
+    {topics.data.map((topic) => (
+      <a class="filter" href={`/topics/${topic.slug}`}>
+        {topic.label}
+      </a>
+    ))}
+  </nav>
+  {posts.entries.length ? (
+    posts.entries.map((post, index) => <PostCard post={post} index={index} />)
+  ) : (
+    <EmptyState
+      title="A fresh page."
+      text="The first articles are taking shape. You can follow the RSS feed to read them when they’re ready."
+    />
+  )}
+  <Pagination base="/writing" nextCursor={posts.nextCursor} />
+</Base>

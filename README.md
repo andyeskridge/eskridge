@@ -1,34 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# eskridge.dev
 
-## Getting Started
+Andy Eskridge's portfolio and writing, rebuilt with Astro and EmDash 1.3.1 for Cloudflare Workers. Content is served from EmDash at runtime; publication needs no code build. The custom editorial theme includes local Source Serif 4/Inter fonts, light/dark themes, published-content search, topic archives, RSS, projects and moderated article discussion.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```sh
+bun install --frozen-lockfile # Bun 1.4.3; Node >=22.23.4 (CI uses Node 24.22.1)
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Read [deployment and owner setup](docs/deployment.md), [EmDash boundaries and upgrade checklist](docs/emdash-customizations.md), [recovery](docs/recovery.md), and [verification and outstanding checks](docs/verification.md) before remote deployment. Initial content in `seed/seed.json` is draft-only. Browser tests use a separate loopback server on port 4322 and isolated `.wrangler/e2e` storage; they do not use the regular development CMS.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+bun run seed:validate
+bun audit
+bun run lint:ci
+bun run typecheck
+bun run test
+bun run build
+bunx playwright install chromium
+bun run e2e
+bun run test:runtime # compiled production path; uses a disposable copy of e2e data
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Production launched on September 29, 2026, with four owner-approved entries. The previous application is preserved on `codex/eskridge-pre-emdash-latest-20260929` at `6bc6e1869c040b3eab117756cad6e69106521a14`; its deployment/resources must remain available through October 29, 2026. See [the rollback record](deployment/legacy-rollback.json) and [remaining acceptance checks](docs/launch-checklist.md). Historical rollback records and retired-URL handling are intentional; legacy application code and generated bundles are no longer part of this checkout.

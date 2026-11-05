@@ -1,35 +1,18 @@
 {
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": ["./src/*"],
-      "@/tina/*": ["./tina/*"]
-    },
-    "target": "ESNext"
+    "types": ["node", "bun", "@cloudflare/workers-types"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   },
   "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "cloudflare-env.d.ts"
+    ".astro/types.d.ts",
+    "src",
+    "scripts",
+    "tests",
+    "e2e",
+    "playwright.config.ts",
+    "emdash-env.d.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["dist", "node_modules"]
 }

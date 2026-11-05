@@ -1,0 +1,43 @@
+name: EmDash checks
+on:
+  pull_request:
+  push:
+    branches: [main, codex/emdash-rebuild]
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: oven-sh/setup-bun@v2.2.0
+        with:
+          bun-version: 1.4.4
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 24.22.2
+      - run: bun install --frozen-lockfile
+      - run: bun audit
+      - run: bun run seed:validate
+      - run: bun run lint:ci
+      - run: bun run typecheck
+      - run: bun run test
+      - run: bun run build
+        env:
+          TURNSTILE_SECRET_KEY: build-only-turnstile-sentinel
+          EMDASH_TURNSTILE_SECRET_KEY: build-only-emdash-turnstile-sentinel
+      - run: bunx playwright install --with-deps chromium
+      - name: Local browser acceptance
+        run: bun run e2e
+        env:
+          EMDASH_ENCRYPTION_KEY: emdash_enc_v1_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+      - name: Compiled production comment regression
+        run: bun run test:runtime
+        env:
+          EMDASH_ENCRYPTION_KEY: emdash_enc_v1_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: browser-evidence
+          path: output/playwright

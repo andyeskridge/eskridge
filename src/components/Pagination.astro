@@ -1,0 +1,22 @@
+---
+interface Props {
+  nextCursor?: string;
+  base: string;
+  cursorKey?: string;
+}
+const { nextCursor, base, cursorKey = "cursor" } = Astro.props;
+const hasCursor = Astro.url.searchParams.has(cursorKey);
+const nextUrl = new URL(base, Astro.url);
+if (nextCursor) nextUrl.searchParams.set(cursorKey, nextCursor);
+---
+
+{(nextCursor || hasCursor) && (
+  <nav class="pagination" aria-label="Pagination">
+    {hasCursor && <a href={base}>Back to newest</a>}
+    {nextCursor && (
+      <a class="text-link" href={`${nextUrl.pathname}${nextUrl.search}`}>
+        Older entries <span aria-hidden="true">→</span>
+      </a>
+    )}
+  </nav>
+)}

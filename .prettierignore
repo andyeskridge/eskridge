@@ -1,0 +1,8 @@
+node_modules
+dist
+.astro
+.emdash
+.wrangler
+output
+bun.lock
+emdash-env.d.ts
