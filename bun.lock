@@ -21,7 +21,7 @@
         "@aws-sdk/client-s3": "3.1163.0",
         "@axe-core/playwright": "4.14.0",
         "@biomejs/biome": "2.6.5",
-        "@cloudflare/workers-types": "5.20261104.1",
+        "@cloudflare/workers-types": "5.20261106.1",
         "@playwright/test": "1.64.1",
         "@types/bun": "1.4.4",
         "@types/node": "26.6.6",
@@ -262,7 +262,7 @@
 
     "@cloudflare/workerd-windows-64": ["@cloudflare/workerd-windows-64@1.20261101.1", "", { "os": "win32", "cpu": "x64" }, "sha512-nDRpV9VRhzdrNpJOJNfe6rjOTq5LXFGC6WFCeGR/LA+cNnou1fwF0AQm//zmSDOELPNoQFi6SqjUcloZvy1sKw=="],
 
-    "@cloudflare/workers-types": ["@cloudflare/workers-types@5.20261104.1", "", {}, "sha512-XSPcK88JXnW/oC82wuXvaP7vgyk2myydugbgOd/RcLKwqkwW0cP09Ozp9ItACa4IAZ7uKtMIfxZpUTXajYVd1Q=="],
+    "@cloudflare/workers-types": ["@cloudflare/workers-types@5.20261106.1", "", {}, "sha512-uQtZyYehF0hwImaFi0/z/BWeTC/DMKpEo+nCySs5WZwoMhnIqLnN3sVjS7GCBc222EWf+F6khsHPWIvPEaP6JA=="],
 
     "@codemirror/autocomplete": ["@codemirror/autocomplete@6.20.4", "", { "dependencies": { "@codemirror/language": "^6.0.0", "@codemirror/state": "^6.0.0", "@codemirror/view": "^6.17.0", "@lezer/common": "^1.0.0" } }, "sha512-yF8RhOf2SXlg00+qtupzLhrglcas61boqaONiNcbPIebHCpJocpqTBA6dyrtUrQO47hqyTdeob/3XnYilT7TaQ=="],
 
