@@ -54,7 +54,7 @@
     "@types/react-dom": "19.3.0",
     "jsonc-parser": "3.3.1",
     "miniflare": "5.20261101.0-beta",
-    "prettier": "3.9.10",
+    "prettier": "3.10.0",
     "prettier-plugin-astro": "1.1.2",
     "typescript": "6.0.3",
     "wrangler": "4.160.0"
