@@ -67,7 +67,7 @@
   ],
   "overrides": {
     "@cloudflare/vite-plugin": "1.69.1",
-    "baseline-browser-mapping": "2.11.36",
+    "baseline-browser-mapping": "2.11.37",
     "body-parser": "2.4.0",
     "browserslist": "4.29.5",
     "dompurify": "3.4.17",
