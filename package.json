@@ -44,7 +44,7 @@
   "devDependencies": {
     "@astrojs/check": "0.9.12",
     "@aws-sdk/client-s3": "3.1176.0",
-    "@axe-core/playwright": "4.14.0",
+    "@axe-core/playwright": "4.14.1",
     "@biomejs/biome": "2.6.8",
     "@cloudflare/workers-types": "5.20261124.1",
     "@playwright/test": "1.65.1",
